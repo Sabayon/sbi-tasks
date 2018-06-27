@@ -1,0 +1,14 @@
+{
+  "source": "https://github.com/Sabayon/community-repositories",
+  "script": "export LC_ALL=en_US.UTF-8; /usr/bin/sark-localbuild",
+  "directory": "/community",
+  "task": "docker_execute",
+  "artefact_path": "artifacts",
+  "storage":"2154014966644308953",
+  "storage_path": "confs",
+  "image": "sabayon/builder-amd64",
+  "tag_namespace": "community",
+  "namespace": "community",
+  "cache_image": "yes",
+  "planned": "@daily"
+}

@@ -1,0 +1,14 @@
+{
+  "source": "https://github.com/Sabayon/community-repositories",
+  "script": "/usr/bin/sark-localbuild",
+  "directory": "/science",
+  "task": "docker_execute",
+  "namespace": "science",
+  "artefact_path": "artifacts",
+  "storage":"2076548926821985834",
+  "storage_path": "confs",
+  "cache_image": "yes",
+  "image": "sabayon/builder-amd64",
+  "tag_namespace": "science",
+  "planned": "@daily"
+}
