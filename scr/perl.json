@@ -1,0 +1,13 @@
+{
+  "source": "https://github.com/Sabayon/community-repositories",
+  "script": "/usr/bin/sark-localbuild",
+  "directory": "/perl",
+  "task": "docker_execute",
+  "namespace": "perl",
+  "artefact_path": "artifacts",
+  "storage":"5763072341858033277",
+  "storage_path": "confs",
+  "image": "sabayon/builder-amd64",
+  "tag_namespace": "perl",
+  "cache_image": "yes"
+}

@@ -1,0 +1,13 @@
+{
+  "source": "https://github.com/Sabayon/community-repositories",
+  "script": "/usr/bin/sark-localbuild",
+  "directory": "/mudler",
+  "task": "docker_execute",
+  "namespace": "mudler",
+  "artefact_path": "artifacts",
+  "storage":"3224462066628783553",
+  "storage_path": "confs",
+  "image": "sabayon/builder-amd64",
+  "tag_namespace": "mudler",
+  "cache_image": "yes"
+}

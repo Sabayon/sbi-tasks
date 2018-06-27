@@ -1,0 +1,13 @@
+{
+  "source": "https://github.com/Sabayon/community-repositories",
+  "script": "/usr/bin/sark-localbuild",
+  "directory": "/sihnon-desktop",
+  "task": "docker_execute",
+  "namespace": "sihnon-desktop",
+  "artefact_path": "artifacts",
+  "storage":"9042214114607668711",
+  "storage_path": "confs",
+  "image": "sabayon/builder-amd64",
+  "tag_namespace": "sihnon-desktop",
+  "cache_image": "yes"
+}
