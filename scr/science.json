@@ -1,6 +1,6 @@
 {
   "source": "https://github.com/Sabayon/community-repositories",
-  "script": ["/usr/bin/sark-localbuild"],
+  "script": ["wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O ./builder","wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild","chmod a+x ./builder","chmod a+x ./sark-localbuild","./sark-localbuild"],
   "directory": "/science",
   "task": "docker_execute",
   "namespace": "science",

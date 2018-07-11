@@ -1,6 +1,6 @@
 {
   "source": "https://github.com/Sabayon/community-repositories",
-  "script": ["export LC_ALL=en_US.UTF-8; /usr/bin/sark-localbuild"],
+  "script": ["export LC_ALL=en_US.UTF-8","wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O ./builder","wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild","chmod a+x ./builder","chmod a+x ./sark-localbuild","./sark-localbuild"],
   "directory": "/community",
   "task": "docker_execute",
   "artefact_path": "artifacts",
