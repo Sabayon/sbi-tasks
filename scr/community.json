@@ -1,6 +1,6 @@
 {
   "source": "https://github.com/Sabayon/community-repositories",
-  "script": "export LC_ALL=en_US.UTF-8; /usr/bin/sark-localbuild",
+  "script": ["export LC_ALL=en_US.UTF-8; /usr/bin/sark-localbuild"],
   "directory": "/community",
   "task": "docker_execute",
   "artefact_path": "artifacts",

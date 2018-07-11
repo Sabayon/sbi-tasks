@@ -1,6 +1,6 @@
 {
   "source": "https://github.com/Sabayon/community-repositories",
-  "script": "/usr/bin/sark-localbuild",
+  "script": ["/usr/bin/sark-localbuild"],
   "directory": "/perl",
   "task": "docker_execute",
   "namespace": "perl",

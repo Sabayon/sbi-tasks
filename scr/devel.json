@@ -1,6 +1,6 @@
 {
   "source": "https://github.com/Sabayon/community-repositories",
-  "script": "/usr/bin/sark-localbuild",
+  "script": ["/usr/bin/sark-localbuild"],
   "directory": "/devel",
   "task": "docker_execute",
   "artefact_path": "artifacts",
