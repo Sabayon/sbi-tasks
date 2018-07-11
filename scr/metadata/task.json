@@ -1,0 +1,9 @@
+{
+  "source": "https://github.com/Sabayon/sbi-tasks",
+  "script": ["bash scripts/generate_metadata.sh", "mv metadata.json artefacts/"],
+  "directory": "/scr/metadata",
+  "task": "docker_execute",
+  "image": "sabayon/builder-amd64",
+  "tag_namespace": "metadata",
+  "cache_image": "yes"
+}
