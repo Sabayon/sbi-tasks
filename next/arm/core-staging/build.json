@@ -1,0 +1,15 @@
+{
+  "source": "https://gitlab.com/mudler/Mottainai-test",
+  "script": [ "emerge -C net-wireless/bluez dev-python/certifi net-misc/ntp dev-db/mariadb dev-python/chardet;emerge -C dev-libs/libxml2;emerge -C dev-python/cryptography; equo up; equo i dev-python/pip urllib3; pip install --user shyaml && emerge -C dev-python/pip","cp -rfv /root/.local/bin/shyaml /usr/bin/shyaml && chmod +x /usr/bin/shyaml", "mv artifacts/pkgs-checker_linux_arm /usr/bin/pkgs-checker", "wget https://github.com/krallin/tini/releases/download/v0.18.0/tini-armhf -O /usr/bin/tini", "chmod +x /usr/bin/tini", "chmod +x /usr/bin/pkgs-checker", "wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-functions.sh -O /sbin/sark-functions.sh && chmod 755 /etc/sark-functions","wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder","wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild","chmod a+x /usr/sbin/builder","chmod a+x ./sark-localbuild","./sark-localbuild"],
+  "directory": "/next/core-staging",
+  "storage": "3190393910779426736",
+  "namespace": "qemu:daily",
+  "task": "docker_execute",
+  "artefact_path": "artifacts",
+  "storage_path": "storage",
+  "image": "sabayon/armhfp",
+  "tag_namespace": "core-staging-arm",
+  "cache_image": "yes",
+  "environment": ["REPOSITORY_NAME=core-staging-arm","ARCHES=armv7l", "USE_EQUO=0"],
+  "queue": "arm"
+}
