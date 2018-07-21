@@ -1,0 +1,18 @@
+source: https://github.com/Sabayon/community-repositories
+directory: /community
+image: sabayon/builder-amd64
+namespace: community
+tag_namespace: community
+artefact_path: artifacts
+cache_image: "yes"
+script:
+- export LC_ALL=en_US.UTF-8
+- wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+- wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild
+  -O ./sark-localbuild
+- chmod a+x /usr/sbin/builder
+- chmod a+x ./sark-localbuild
+- ./sark-localbuild
+storage: "2154014966644308953"
+storage_path: confs
+task: docker_execute
