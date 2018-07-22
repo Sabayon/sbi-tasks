@@ -1,8 +1,8 @@
 source: https://github.com/Sabayon/community-repositories
-directory: /community
+directory: /perl
 image: sabayon/builder-amd64
-namespace: community
-tag_namespace: community
+namespace: perl
+tag_namespace: perl
 artefact_path: artifacts
 cache_image: "yes"
 script:
@@ -12,7 +12,7 @@ script:
 - chmod a+x /usr/sbin/builder
 - chmod a+x ./sark-localbuild
 - ./sark-localbuild
-storage: "2154014966644308953"
+storage: "5763072341858033277"
 storage_path: confs
 task: docker_execute
 planned: "@daily"

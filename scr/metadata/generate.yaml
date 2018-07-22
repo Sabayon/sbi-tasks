@@ -1,0 +1,11 @@
+source: https://github.com/Sabayon/sbi-tasks
+directory: /scr/metadata
+image: sabayon/builder-amd64
+tag_namespace: metadata
+script:
+  - bash scripts/generate_metadata.sh
+  - mv metadata.json artefacts/
+environment:
+  - SYNC_URL=https://dispatcher.sabayon.org/sbi/namespace/
+task: docker_execute
+planned: "@daily"
