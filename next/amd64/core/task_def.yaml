@@ -1,0 +1,33 @@
+artefact_path: artifacts
+cache_clean: "yes"
+directory: /next/amd64/core
+environment:
+- REPOSITORY_NAME=core-amd64
+- USE_EQUO=0
+- LC_ALL=en_US.UTF-8
+image: sabayon/builder-amd64
+script:
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-functions.sh -O /sbin/sark-functions.sh
+  - chmod 755 /sbin/sark-functions.sh
+  - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+  - chmod 755 /etc/sark-functions; echo 'done'
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
+  - chmod a+x /usr/sbin/builder
+  - chmod a+x ./sark-localbuild
+  - echo "#!/bin/bash" > /pre-script
+  - echo "sed -i 's/sys-devel\/gcc -~amd64//g' /etc/portage/package.keywords/00-sabayon.package.keywords" >> /pre-script
+  - echo "sed -i 's/sys-devel\/base-gcc -~amd64//g' /etc/portage/package.keywords/00-sabayon.package.keywords" >> /pre-script
+  - cp -rfv /pre-script ./
+  - chmod +x pre-script
+  - USE_EQUO=0 /usr/sbin/builder sys-devel/base-gcc::sabayon-distro
+  - gcc-config 1
+  - USE_EQUO=0 /usr/sbin/builder sys-devel/gcc::sabayon-distro
+  - gcc-config 2
+  - source /etc/profile
+  - ./sark-localbuild
+source: https://github.com/Sabayon/sbi-tasks
+storage: "3190393910779426736"
+storage_path: storage
+tag_namespace: core-staging-amd64
+task: docker_execute
