@@ -174,7 +174,6 @@ script:
   - SAB_BUILDFILE=x11-wm.particle.yaml ./sark-localbuild
   - SAB_BUILDFILE=xfce-base.particle.yaml ./sark-localbuild
   - SAB_BUILDFILE=xfce-extra.particle.yaml ./sark-localbuild
-  - SAB_BUILDFILE=zzz-preserved-rebuild.particle.yaml ./sark-localbuild
 source: https://github.com/Sabayon/sbi-tasks
 storage_path: storage
 tag_namespace: essential-staging-amd64
