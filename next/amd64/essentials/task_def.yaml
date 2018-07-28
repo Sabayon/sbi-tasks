@@ -1,0 +1,25 @@
+artefact_path: artifacts
+cache_clean: "yes"
+directory: /next/amd64/essentials
+environment:
+- REPOSITORY_NAME=essentials-amd64
+- USE_EQUO=1
+- LC_ALL=en_US.UTF-8
+image: sabayon/builder-amd64
+script:
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-functions.sh -O /sbin/sark-functions.sh
+  - chmod 755 /sbin/sark-functions.sh
+  - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+  - chmod 755 /etc/sark-functions; echo 'done'
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
+  - chmod a+x /usr/sbin/builder
+  - chmod a+x ./sark-localbuild
+  - equo repo disable sabayonlinux.org
+  - source /etc/profile
+  - SAB_BUILDFILE=packages.yaml ./sark-localbuild
+  - SAB_BUILDFILE=kernel.yaml ./sark-localbuild
+source: https://github.com/Sabayon/sbi-tasks
+storage_path: storage
+tag_namespace: essential-staging-amd64
+task: docker_execute
