@@ -1,0 +1,47 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - app-doc/NaturalDocs
+    - app-doc/abs-guide
+    - app-doc/autobook
+    - app-doc/blas-docs
+    - app-doc/casting-spels-emacs
+    - app-doc/devmanual
+    - app-doc/djbdns-man
+    - app-doc/doxygen
+    - app-doc/elisp-manual
+    - app-doc/gimp-help
+    - app-doc/gnucash-docs
+    - app-doc/halibut
+    - app-doc/jargon
+    - app-doc/lapack-docs
+    - app-doc/linkers-and-loaders
+    - app-doc/linux-device-drivers
+    - app-doc/linux-gazette-all
+    - app-doc/linux-gazette-base
+    - app-doc/linux-kernel-in-a-nutshell
+    - app-doc/linuxfromscratch
+    - app-doc/mkdoxy
+    - app-doc/motif-reference-manual
+    - app-doc/php-docs
+    - app-doc/phrack-all
+    - app-doc/pms
+    - app-doc/psmark
+    - app-doc/selfhtml
+    - app-doc/selflinux
+    - app-doc/single-unix-specification
+    - app-doc/tldp-howto
+    - app-doc/vilearn
+    - app-doc/xmltoman
+    - app-doc/zsh-lovers

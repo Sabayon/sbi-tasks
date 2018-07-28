@@ -12,6 +12,4 @@ build:
     default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
   target:
-    - sys-apps/systemd::sabayon-distro
-    - sys-kernel/genkernel-next
-    - sys-kernel/linux-sabayon[dracut]
+    - dev-lang/erlang

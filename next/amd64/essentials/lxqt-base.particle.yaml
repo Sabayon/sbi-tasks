@@ -1,0 +1,31 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - lxqt-base/liblxqt
+    - lxqt-base/libsysstat
+    - lxqt-base/lxqt-about
+    - lxqt-base/lxqt-admin
+    - lxqt-base/lxqt-common
+    - lxqt-base/lxqt-config
+    - lxqt-base/lxqt-globalkeys
+    - lxqt-base/lxqt-meta
+    - lxqt-base/lxqt-notificationd
+    - lxqt-base/lxqt-panel
+    - lxqt-base/lxqt-policykit
+    - lxqt-base/lxqt-powermanagement
+    - lxqt-base/lxqt-openssh-askpass
+    - lxqt-base/lxqt-qtplugin
+    - lxqt-base/lxqt-runner
+    - lxqt-base/lxqt-session
+    - lxqt-base/lxqt-sudo

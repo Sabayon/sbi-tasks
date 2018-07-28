@@ -1,0 +1,57 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - dev-embedded/arduino
+    - dev-embedded/avarice
+    - dev-embedded/avra
+    - dev-embedded/avrdude
+    - dev-embedded/bitbake
+    - dev-embedded/dc-tool-ip
+    - dev-embedded/ftdi_eeprom
+    - dev-embedded/gnap-dev
+    - dev-embedded/gnap-ext
+    - dev-embedded/gnome-avrdude
+    - dev-embedded/gpsim
+    - dev-embedded/gpsim-lcd
+    - dev-embedded/gputils
+    - dev-embedded/icdprog
+    - dev-embedded/include
+    - dev-embedded/jal
+    - dev-embedded/jtag
+    - dev-embedded/libftd2xx
+    - dev-embedded/libftdi
+    - dev-embedded/msp430mcu
+    - dev-embedded/mspdebug
+    - dev-embedded/openocd
+    - dev-embedded/parapin
+    - dev-embedded/picasm
+    - dev-embedded/picp
+    - dev-embedded/picprog
+    - dev-embedded/pista
+    - dev-embedded/pk2cmd
+    - dev-embedded/ponyprog
+    - dev-embedded/powersoftplus-libftdi
+    - dev-embedded/scratchbox2
+    - dev-embedded/sdcc
+    - dev-embedded/sgpp-lite-arm-eabi-bin
+    - dev-embedded/sgpp-lite-arm-linux-bin
+    - dev-embedded/sgpp-lite-arm-uclinux-bin
+    - dev-embedded/srecord
+    - dev-embedded/tavrasm
+    - dev-embedded/tigcc
+    - dev-embedded/u-boot-tools
+    - dev-embedded/uisp
+    - dev-embedded/upslug2
+    - dev-embedded/usbprog
+    - dev-embedded/zmac

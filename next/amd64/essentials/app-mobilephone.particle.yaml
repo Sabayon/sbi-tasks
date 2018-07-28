@@ -1,0 +1,31 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - app-mobilephone/anyremote
+    - app-mobilephone/cobex
+    - app-mobilephone/gammu
+    - app-mobilephone/ganyremote
+    - app-mobilephone/gnocky
+    - app-mobilephone/gnokii
+    - app-mobilephone/gnome-phone-manager
+    - app-mobilephone/heimdall
+    - app-mobilephone/kannel
+    - app-mobilephone/obex-data-server
+    - app-mobilephone/obexd
+    - app-mobilephone/pysms
+    - app-mobilephone/scmxx
+    - app-mobilephone/smsclient
+    - app-mobilephone/sobexsrv
+    - app-mobilephone/vmoconv
+    - app-mobilephone/wammu

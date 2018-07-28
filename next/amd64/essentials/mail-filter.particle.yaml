@@ -1,0 +1,53 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - mail-filter/anomy-sanitizer
+    - mail-filter/ask
+    - mail-filter/assp
+    - mail-filter/bmf
+    - mail-filter/bogofilter
+    - mail-filter/clamassassin
+    - mail-filter/clamsmtp
+    - mail-filter/dcc
+    - mail-filter/dovecot-antispam
+    - mail-filter/dspam
+    - mail-filter/gld
+    - mail-filter/imapfilter
+    - mail-filter/isbg
+    - mail-filter/libmilter
+    - mail-filter/libsieve
+    - mail-filter/libspf2
+    - mail-filter/maildrop
+    - mail-filter/mailfilter
+    - mail-filter/mapson
+    - mail-filter/milter-regex
+    - mail-filter/mimedefang
+    - mail-filter/normalizemime
+    - mail-filter/opendkim
+    - mail-filter/policyd
+    - mail-filter/popfile
+    - mail-filter/postfwd
+    - mail-filter/postgrey
+    - mail-filter/procmail
+    - mail-filter/procmail-lib
+    - mail-filter/pypolicyd-spf
+    - mail-filter/razor
+    - mail-filter/rblcheck
+    - mail-filter/spamass-milter
+    - mail-filter/spamassassin
+    - mail-filter/spamassassin-botnet
+    - mail-filter/spambayes
+    - mail-filter/spampd
+    - mail-filter/sqlgrey
+    - mail-filter/tmda

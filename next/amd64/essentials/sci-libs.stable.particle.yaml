@@ -1,0 +1,36 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - sci-libs/fftw
+    - sci-libs/fftw
+    - sci-libs/galib
+    - sci-libs/gaul-devel
+    - sci-libs/gdal
+    - sci-libs/geos
+    - sci-libs/getdata
+    - sci-libs/grits
+    - sci-libs/gsl
+    - sci-libs/gts
+    - sci-libs/hdf
+    - sci-libs/hdf5
+    - sci-libs/nlopt
+    - sci-libs/ogdi
+    - sci-libs/opencascade
+    - sci-libs/openfoam
+    - sci-libs/udunits
+    - sci-libs/ufconfig
+    - sci-libs/umfpack
+    - sci-libs/vecmath-objectclub
+    - sci-libs/vtk
+    - sci-libs/xylib

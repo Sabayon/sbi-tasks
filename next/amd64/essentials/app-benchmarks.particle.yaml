@@ -1,0 +1,41 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - app-benchmarks/acovea
+    - app-benchmarks/acovea-gtk
+    - app-benchmarks/bashmark
+    - app-benchmarks/bonnie++
+    - app-benchmarks/bonnie
+    - app-benchmarks/bootchart2
+    - app-benchmarks/contest
+    - app-benchmarks/cpuburn
+    - app-benchmarks/dbench
+    - app-benchmarks/filebench
+    - app-benchmarks/forkbomb
+    - app-benchmarks/gtkperf
+    - app-benchmarks/httperf
+    - app-benchmarks/interbench
+    - app-benchmarks/iozone
+    - app-benchmarks/jmeter
+    - app-benchmarks/nbench
+    - app-benchmarks/piozone
+    - app-benchmarks/pipebench
+    - app-benchmarks/ramspeed
+    - app-benchmarks/siege
+    - app-benchmarks/spew
+    - app-benchmarks/stress
+    - app-benchmarks/sysbench
+    - app-benchmarks/tiobench
+    - app-benchmarks/volanomark
+    - app-benchmarks/wrk

@@ -1,0 +1,44 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - www-client/chromium
+    - www-client/conkeror
+    - www-client/dooble
+    - www-client/dwb
+    - www-client/elinks
+    - www-client/epiphany
+    - www-client/fetch
+    - www-client/falkon
+    - www-client/firefox
+    - www-client/google-chrome
+    - www-client/httrack
+    - www-client/jd
+    - www-client/links
+    - www-client/lynx
+    - www-client/midori
+    - www-client/netrik
+    - www-client/opera
+    - www-client/opera-developer
+    - www-client/phantomjs
+    - www-client/pybugz
+    - www-client/seamonkey
+    - www-client/seamonkey-bin
+    - www-client/surf
+    - www-client/surfraw
+    - www-client/uget
+    - www-client/vimb
+    - www-client/vivaldi
+    - www-client/w3m
+    - www-client/w3mir
+    - www-client/w3mmee

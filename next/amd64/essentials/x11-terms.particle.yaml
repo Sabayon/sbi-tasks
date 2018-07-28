@@ -1,0 +1,39 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - x11-terms/aterm
+    - x11-terms/eterm
+    - x11-terms/evilvte
+    - x11-terms/gnome-terminal
+    - x11-terms/guake
+    - x11-terms/hanterm
+    - x11-terms/kterm
+    - x11-terms/mate-terminal
+    - x11-terms/mlterm
+    - x11-terms/mrxvt
+    - x11-terms/multi-aterm
+    - x11-terms/pangoterm
+    - x11-terms/qterminal
+    - x11-terms/root-tail
+    - x11-terms/roxterm
+    - x11-terms/rxvt-unicode
+    - x11-terms/sakura
+    - x11-terms/st
+    - x11-terms/terminator
+    - x11-terms/terminology
+    - x11-terms/tilda
+    - x11-terms/xfce4-terminal
+    - x11-terms/xterm
+    - x11-terms/xvt
+    - x11-terms/yeahconsole

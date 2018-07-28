@@ -1,0 +1,66 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - www-apps/389-dsgw
+    - www-apps/Apache-Gallery
+    - www-apps/ampache
+    - www-apps/b2evolution
+    - www-apps/blazeblogger
+    - www-apps/blohg
+    - www-apps/bugzilla
+    - www-apps/cgisysinfo
+    - www-apps/cgit
+    - www-apps/collectd-web
+    - www-apps/curator
+    - www-apps/cvsweb
+    - www-apps/dokuwiki
+    - www-apps/dotproject
+    - www-apps/drraw
+    - www-apps/drupal
+    - www-apps/dspam-web
+    - www-apps/egroupware
+    - www-apps/gitweb
+    - www-apps/gnopaste
+    - www-apps/groupoffice
+    - www-apps/ikiwiki
+    - www-apps/lxr
+    - www-apps/mantisbt
+    - www-apps/mediawiki
+    - www-apps/mirmon
+    - www-apps/mod_survey
+    - www-apps/moinmoin
+    - www-apps/mythweb
+    - www-apps/nanoblogger
+    - www-apps/online-bookmarks
+    - www-apps/otrs
+    - www-apps/phpBB
+    - www-apps/phpmp
+    - www-apps/phpsysinfo
+    - www-apps/postfixadmin
+    - www-apps/pyblosxom
+    - www-apps/rt
+    - www-apps/scgi
+    - www-apps/sitebar
+    - www-apps/trac
+    - www-apps/trac-accountmanager
+    - www-apps/trac-downloads
+    - www-apps/trac-mercurial
+    - www-apps/trac-tags
+    - www-apps/twiki
+    - www-apps/venus
+    - www-apps/viewvc
+    - www-apps/websvn
+    - www-apps/wiliki
+    - www-apps/wordpress
+    - www-apps/zina

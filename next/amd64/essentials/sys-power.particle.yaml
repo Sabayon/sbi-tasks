@@ -1,0 +1,33 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - sys-power/acpi
+    - sys-power/acpi_call
+    - sys-power/acpid
+    - sys-power/acpitool
+    - sys-power/apcupsd
+    - sys-power/bbswitch
+    - sys-power/cpupower
+    - sys-power/hibernate-script
+    - sys-power/iasl
+    - sys-power/ncpufreqd
+    - sys-power/nut
+    - sys-power/pm-quirks
+    - sys-power/pm-utils
+    - sys-power/powernowd
+    - sys-power/powerstat
+    - sys-power/powertop
+    - sys-power/sispmctl
+    - sys-power/thermald
+    - sys-power/upower

@@ -1,0 +1,65 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - app-cdr/b5i2iso
+    - app-cdr/backlite
+    - app-cdr/bashburn
+    - app-cdr/bchunk
+    - app-cdr/bin2iso
+    - app-cdr/brasero
+    - app-cdr/burn-cd
+    - app-cdr/burncdda
+    - app-cdr/burncenter
+    - app-cdr/ccd2iso
+    - app-cdr/cdck
+    - app-cdr/cdemu
+    - app-cdr/cdemu-daemon
+    - app-cdr/cdlabelgen
+    - app-cdr/cdrdao
+    - app-cdr/cdrtools
+    - app-cdr/cdw
+    - app-cdr/cuecue
+    - app-cdr/cuegen
+    - app-cdr/cuetools
+    - app-cdr/daa2iso
+    - app-cdr/disc-cover
+    - app-cdr/dvd+rw-tools
+    - app-cdr/dvdisaster
+    - app-cdr/dvdshrink
+    - app-cdr/extract-xiso
+    - app-cdr/gaffitter
+    - app-cdr/gcdemu
+    - app-cdr/gnomebaker
+    - app-cdr/graveman
+    - app-cdr/gtkcdlabel
+    - app-cdr/iat
+    - app-cdr/isomaster
+    - app-cdr/isomd5sum
+    - app-cdr/k3b
+    - app-cdr/kcdemu
+    - app-cdr/mirage2iso
+    - app-cdr/mkcdtoc
+    - app-cdr/mode2cdmaker
+    - app-cdr/mp3burn
+    - app-cdr/multicd
+    - app-cdr/nrg2iso
+    - app-cdr/plextor-tool
+    - app-cdr/poweriso
+    - app-cdr/sync2cd
+    - app-cdr/tkdvd
+    - app-cdr/uif2iso
+    - app-cdr/xbiso
+    - app-cdr/xcdroast
+    - app-cdr/xdvdfs-tools
+    - app-cdr/xfburn

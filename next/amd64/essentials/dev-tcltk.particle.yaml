@@ -1,0 +1,54 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - dev-tcltk/anigif
+    - dev-tcltk/blt
+    - dev-tcltk/bwidget
+    - dev-tcltk/ck
+    - dev-tcltk/combobox
+    - dev-tcltk/expect
+    - dev-tcltk/expect-lite
+    - dev-tcltk/itcl
+    - dev-tcltk/itk
+    - dev-tcltk/iwidgets
+    - dev-tcltk/mysqltcl
+    - dev-tcltk/scwoop
+    - dev-tcltk/snack
+    - dev-tcltk/tablelist
+    - dev-tcltk/tcl-gtk
+    - dev-tcltk/tcl-mccp
+    - dev-tcltk/tcl3d
+    - dev-tcltk/tcllib
+    - dev-tcltk/tclperl
+    - dev-tcltk/tclpython
+    - dev-tcltk/tclreadline
+    - dev-tcltk/tclx
+    - dev-tcltk/tclxml
+    - dev-tcltk/tdom
+    - dev-tcltk/thread
+    - dev-tcltk/tix
+    - dev-tcltk/tkTheme
+    - dev-tcltk/tkXwin
+    - dev-tcltk/tkcon
+    - dev-tcltk/tkimg
+    - dev-tcltk/tklib
+    - dev-tcltk/tkpiechart
+    - dev-tcltk/tkpng
+    - dev-tcltk/tktable
+    - dev-tcltk/tktray
+    - dev-tcltk/tktreectrl
+    - dev-tcltk/tkzinc
+    - dev-tcltk/tls
+    - dev-tcltk/togl
+    - dev-tcltk/vtcl

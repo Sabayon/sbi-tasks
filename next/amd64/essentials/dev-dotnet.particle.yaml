@@ -1,0 +1,37 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - dev-dotnet/art-sharp
+    - dev-dotnet/atk-sharp
+    - dev-dotnet/dbus-sharp
+    - dev-dotnet/dbus-sharp-glib
+    - dev-dotnet/gconf-sharp
+    - dev-dotnet/gdk-sharp
+    - dev-dotnet/glade-sharp
+    - dev-dotnet/glib-sharp
+    - dev-dotnet/gnomevfs-sharp
+    - dev-dotnet/gsf-sharp
+    - dev-dotnet/gtk-dotnet-sharp
+    - dev-dotnet/gtk-sharp
+    - dev-dotnet/gtk-sharp-gapi
+    - dev-dotnet/ikvm-bin
+    - dev-dotnet/libgdiplus
+    - dev-dotnet/log4net
+    - dev-dotnet/mono-addins
+    - dev-dotnet/ndesk-dbus
+    - dev-dotnet/ndesk-dbus-glib
+    - dev-dotnet/notify-sharp
+    - dev-dotnet/pango-sharp
+    - dev-dotnet/pe-format
+    - dev-dotnet/xsp

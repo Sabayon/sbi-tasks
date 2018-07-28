@@ -1,0 +1,98 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - virtual/acl
+    - virtual/ada
+    - virtual/awk
+    - virtual/blas
+    - virtual/cblas
+    - virtual/cdrtools
+    - virtual/checkpassword
+    - virtual/commonlisp
+    - virtual/cron
+    - virtual/daemontools
+    - virtual/dev-manager
+    - virtual/editor
+    - virtual/eject
+    - virtual/emacs
+    - virtual/emacs-cedet
+    - virtual/emacs-flim
+    - virtual/fam
+    - virtual/ffmpeg
+    - virtual/fortran
+    - virtual/freedesktop-icon-theme
+    - virtual/glu
+    - virtual/gnustep-back
+    - virtual/gsasl
+    - virtual/httpd-basic
+    - virtual/httpd-cgi
+    - virtual/httpd-php
+    - virtual/imap-c-client
+    - virtual/jdk
+    - virtual/jdk
+    - virtual/jpeg
+    - virtual/jpeg
+    - virtual/jre
+    - virtual/jre
+    - virtual/krb5
+    - virtual/lapack
+    - virtual/latex-base
+    - virtual/libc
+    - virtual/libffi
+    - virtual/libiconv
+    - virtual/libintl
+    - virtual/libstdc++
+    - virtual/libusb
+    - virtual/libusb
+    - virtual/linux-sources
+    - virtual/linuxtv-dvb-headers
+    - virtual/logger
+    - virtual/mailx
+    - virtual/man
+    - virtual/modutils
+    - virtual/mpi
+    - virtual/mta
+    - virtual/mysql
+    - virtual/notification-daemon
+    - virtual/ooo
+    - virtual/opencl
+    - virtual/opengl
+    - virtual/os-headers
+    - virtual/pager
+    - virtual/pam
+    - virtual/perl-Attribute-Handlers
+    - virtual/perl-Exporter
+    - virtual/perl-ExtUtils-Install
+    - virtual/perl-IO
+    - virtual/perl-Math-BigInt
+    - virtual/perl-Text-ParseWords
+    - virtual/perl-Text-Tabs+Wrap
+    - virtual/pkgconfig
+    - virtual/pmake
+    - virtual/python-argparse
+    - virtual/python-futures
+    - virtual/python-unittest2
+    - virtual/ruby-ffi
+    - virtual/ruby-ssl
+    - virtual/ruby-ssl
+    - virtual/rubygems
+    - virtual/rubygems
+    - virtual/shadow
+    - virtual/ssh
+    - virtual/tex-base
+    - virtual/texi2dvi
+    - virtual/ttf-fonts
+    - virtual/udev
+    - virtual/w3m
+    - virtual/yacc

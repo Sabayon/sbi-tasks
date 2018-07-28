@@ -1,0 +1,83 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - dev-tex/aastex
+    - dev-tex/abntex
+    - dev-tex/bera
+    - dev-tex/biber
+    - dev-tex/biblatex
+    - dev-tex/bibtex2html
+    - dev-tex/bibtexu
+    - dev-tex/catdvi
+    - dev-tex/chktex
+    - dev-tex/cjk-latex
+    - dev-tex/cpp2latex
+    - dev-tex/crosstex
+    - dev-tex/csindex
+    - dev-tex/culmus-latex
+    - dev-tex/currvita
+    - dev-tex/curve
+    - dev-tex/detex
+    - dev-tex/dot2tex
+    - dev-tex/dot2texi
+    - dev-tex/dvi2gr
+    - dev-tex/dvi2tty
+    - dev-tex/dvipost
+    - dev-tex/envlab
+    - dev-tex/europecv
+    - dev-tex/feynmf
+    - dev-tex/flabels
+    - dev-tex/floatflt
+    - dev-tex/foiltex
+    - dev-tex/frakturx
+    - dev-tex/g-brief
+    - dev-tex/glossaries
+    - dev-tex/harvard
+    - dev-tex/herm-pic
+    - dev-tex/hevea
+    - dev-tex/hlatex
+    - dev-tex/html2latex
+    - dev-tex/hyphen_show
+    - dev-tex/ivritex
+    - dev-tex/latex-beamer
+    - dev-tex/latex-calendar
+    - dev-tex/latex2html
+    - dev-tex/latex2rtf
+    - dev-tex/latexdiff
+    - dev-tex/latexmk
+    - dev-tex/lazylist
+    - dev-tex/leaflet
+    - dev-tex/lgrind
+    - dev-tex/luatex
+    - dev-tex/metapost
+    - dev-tex/newlfm
+    - dev-tex/notoccite
+    - dev-tex/oesch
+    - dev-tex/pdfannotextractor
+    - dev-tex/pgf
+    - dev-tex/polytable
+    - dev-tex/quotchap
+    - dev-tex/rcsinfo
+    - dev-tex/revtex
+    - dev-tex/rubber
+    - dev-tex/serienbrief
+    - dev-tex/sketch
+    - dev-tex/style-check
+    - dev-tex/svninfo
+    - dev-tex/tex4ht
+    - dev-tex/texmfind
+    - dev-tex/tipa
+    - dev-tex/tth
+    - dev-tex/xcolor
+    - dev-tex/xmltex

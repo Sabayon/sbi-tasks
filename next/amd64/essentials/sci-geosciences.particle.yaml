@@ -1,0 +1,30 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - sci-geosciences/aweather
+    - sci-geosciences/geocode-glib
+    - sci-geosciences/gnome-maps
+    - sci-geosciences/gmapcatcher
+    - sci-geosciences/gmt
+    - sci-geosciences/gpsbabel
+    - sci-geosciences/gpscorrelate
+    - sci-geosciences/gpsd
+    - sci-geosciences/josm
+    - sci-geosciences/mapnik-world-boundaries
+    - sci-geosciences/mapserver
+    - sci-geosciences/merkaartor
+    - sci-geosciences/qgis
+    - sci-geosciences/qmapshack
+    - sci-geosciences/routino
+    - sci-geosciences/viking

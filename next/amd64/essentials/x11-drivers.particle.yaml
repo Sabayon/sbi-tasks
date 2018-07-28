@@ -1,0 +1,45 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - x11-drivers/xf86-input-evdev
+    - x11-drivers/xf86-input-joystick
+    - x11-drivers/xf86-input-mtrack
+    - x11-drivers/xf86-input-synaptics
+    - x11-drivers/xf86-input-vmmouse
+    - x11-drivers/xf86-input-void
+    - x11-drivers/xf86-input-wacom
+    - x11-drivers/xf86-video-amdgpu
+    - x11-drivers/xf86-video-ark
+    - x11-drivers/xf86-video-ast
+    - x11-drivers/xf86-video-ati
+    - x11-drivers/xf86-video-dummy
+    - x11-drivers/xf86-video-fbdev
+    - x11-drivers/xf86-video-glint
+    - x11-drivers/xf86-video-intel
+    - x11-drivers/xf86-video-mga
+    - x11-drivers/xf86-video-modesetting
+    - x11-drivers/xf86-video-neomagic
+    - x11-drivers/xf86-video-nouveau
+    - x11-drivers/xf86-video-nv
+    - x11-drivers/xf86-video-openchrome
+    - x11-drivers/xf86-video-qxl
+    - x11-drivers/xf86-video-r128
+    - x11-drivers/xf86-video-s3
+    - x11-drivers/xf86-video-siliconmotion
+    - x11-drivers/xf86-video-sis
+    - x11-drivers/xf86-video-tdfx
+    - x11-drivers/xf86-video-v4l
+    - x11-drivers/xf86-video-vesa
+    - x11-drivers/xf86-video-vmware
+    - x11-drivers/xf86-video-voodoo

@@ -1,0 +1,50 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - gnome-base/dconf
+    - gnome-base/gconf
+    - gnome-base/gdm
+    - gnome-base/gnome
+    - gnome-base/gnome-common
+    - gnome-base/gnome-control-center
+    - gnome-base/gnome-core-apps
+    - gnome-base/gnome-core-libs
+    - gnome-base/gnome-desktop
+    - gnome-base/gnome-desktop
+    - gnome-base/gnome-extra-apps
+    - gnome-base/gnome-keyring
+    - gnome-base/gnome-menus
+    - gnome-base/gnome-menus
+    - gnome-base/gnome-mime-data
+    - gnome-base/gnome-session
+    - gnome-base/gnome-settings-daemon
+    - gnome-base/gnome-shell
+    - gnome-base/gnome-vfs
+    - gnome-base/gsettings-desktop-schemas
+    - gnome-base/gvfs
+    - gnome-base/libbonobo
+    - gnome-base/libbonoboui
+    - gnome-base/libglade
+    - gnome-base/libgnome
+    - gnome-base/libgnome-keyring
+    - gnome-base/libgnomecanvas
+    - gnome-base/libgnomekbd
+    - gnome-base/libgnomeprint
+    - gnome-base/libgnomeprintui
+    - gnome-base/libgnomeui
+    - gnome-base/libgtop
+    - gnome-base/librsvg
+    - gnome-base/libslab
+    - gnome-base/nautilus
+    - gnome-base/orbit

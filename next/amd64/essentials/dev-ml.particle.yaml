@@ -1,0 +1,71 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - dev-ml/ANSITerminal
+    - dev-ml/batteries
+    - dev-ml/bin-prot
+    - dev-ml/bolt
+    - dev-ml/camlidl
+    - dev-ml/camlp5
+    - dev-ml/camlzip
+    - dev-ml/camomile
+    - dev-ml/core
+    - dev-ml/core_kernel
+    - dev-ml/cryptokit
+    - dev-ml/extlib
+    - dev-ml/facile
+    - dev-ml/fieldslib
+    - dev-ml/findlib
+    - dev-ml/fort
+    - dev-ml/gd4o
+    - dev-ml/herelib
+    - dev-ml/kaputt
+    - dev-ml/lablgl
+    - dev-ml/lablgtk
+    - dev-ml/lwt
+    - dev-ml/oasis
+    - dev-ml/obrowser
+    - dev-ml/ocaml-autoconf
+    - dev-ml/ocaml-data-notation
+    - dev-ml/ocaml-doc
+    - dev-ml/ocaml-expat
+    - dev-ml/ocaml-expect
+    - dev-ml/ocaml-fileutils
+    - dev-ml/ocaml-make
+    - dev-ml/ocaml-mysql
+    - dev-ml/ocaml-sqlite3
+    - dev-ml/ocaml-ssl
+    - dev-ml/ocamldsort
+    - dev-ml/ocamlduce
+    - dev-ml/ocamlgraph
+    - dev-ml/ocamlify
+    - dev-ml/ocamlnet
+    - dev-ml/ocamlsdl
+    - dev-ml/ocamlweb
+    - dev-ml/ocurl
+    - dev-ml/odns
+    - dev-ml/ounit
+    - dev-ml/pa_ounit
+    - dev-ml/pcre-ocaml
+    - dev-ml/pipebang
+    - dev-ml/pomap
+    - dev-ml/postgresql-ocaml
+    - dev-ml/pxp
+    - dev-ml/react
+    - dev-ml/res
+    - dev-ml/sexplib
+    - dev-ml/type-conv
+    - dev-ml/ulex
+    - dev-ml/variantslib
+    - dev-ml/xmlm

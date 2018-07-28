@@ -1,0 +1,45 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - sys-auth/bioapi
+    - sys-auth/fprint_demo
+    - sys-auth/fprintd
+    - sys-auth/libfprint
+    - sys-auth/libnss-mysql
+    - sys-auth/nss-mdns
+    - sys-auth/nss-myhostname
+    - sys-auth/nss_ldap
+    - sys-auth/pam-afs-session
+    - sys-auth/pam_abl
+    - sys-auth/pam_dotfile
+    - sys-auth/pam_fprint
+    - sys-auth/pam_krb5
+    - sys-auth/pam_ldap
+    - sys-auth/pam_mktemp
+    - sys-auth/pam_mount
+    - sys-auth/pam_mysql
+    - sys-auth/pam_p11
+    - sys-auth/pam_passwdqc
+    - sys-auth/pam_pkcs11
+    - sys-auth/pam_require
+    - sys-auth/pam_skey
+    - sys-auth/pam_ssh
+    - sys-auth/pambase
+    - sys-auth/polkit
+    - sys-auth/polkit-kde-agent
+    - sys-auth/polkit-qt
+    - sys-auth/realtime-base
+    - sys-auth/rtkit
+    - sys-auth/skey
+    - sys-auth/thinkfinger

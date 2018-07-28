@@ -1,0 +1,42 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - sci-mathematics/calc
+    - sci-mathematics/cgal
+    - sci-mathematics/coq
+    - sci-mathematics/euler
+    - sci-mathematics/fann
+    - sci-mathematics/geogebra
+    - sci-mathematics/geomview
+    - sci-mathematics/gimps
+    - sci-mathematics/ginac
+    - sci-mathematics/glpk
+    - sci-mathematics/gmm
+    - sci-mathematics/gretl
+    - sci-mathematics/lpsolve
+    - sci-mathematics/mathomatic
+    - sci-mathematics/maxima
+    - sci-mathematics/octave
+    - sci-mathematics/otter
+    - sci-mathematics/pari
+    - sci-mathematics/pspp
+    - sci-mathematics/rkward
+    - sci-mathematics/rngstreams
+    - sci-mathematics/rstudio
+    - sci-mathematics/singular
+    - sci-mathematics/snns
+    - sci-mathematics/unuran
+    - sci-mathematics/wxmaxima
+    - sci-mathematics/xmds
+    - sci-mathematics/yacas

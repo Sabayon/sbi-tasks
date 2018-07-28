@@ -1,0 +1,49 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - app-accessibility/SphinxTrain
+    - app-accessibility/accerciser
+    - app-accessibility/at-spi2-atk
+    - app-accessibility/at-spi2-core
+    - app-accessibility/brltty
+    - app-accessibility/caribou
+    - app-accessibility/eflite
+    - app-accessibility/emacspeak
+    - app-accessibility/emacspeak-ss
+    - app-accessibility/epos
+    - app-accessibility/espeak
+    - app-accessibility/espeakup
+    - app-accessibility/festival
+    - app-accessibility/festival-fi
+    - app-accessibility/festival-freebsoft-utils
+    - app-accessibility/festival-hts
+    - app-accessibility/festival-it
+    - app-accessibility/festival-ru
+    - app-accessibility/flite
+    - app-accessibility/freetts
+    - app-accessibility/julius
+    - app-accessibility/mbrola
+    - app-accessibility/nfbtrans
+    - app-accessibility/orca
+    - app-accessibility/perlbox-voice
+    - app-accessibility/pidgin-festival
+    - app-accessibility/powiedz
+    - app-accessibility/simon
+    - app-accessibility/sound-icons
+    - app-accessibility/speech-dispatcher
+    - app-accessibility/speech-tools
+    - app-accessibility/sphinx2
+    - app-accessibility/sphinx3
+    - app-accessibility/sphinxbase
+    - app-accessibility/yasr

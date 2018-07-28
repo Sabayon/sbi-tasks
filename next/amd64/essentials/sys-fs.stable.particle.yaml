@@ -1,0 +1,36 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - sys-fs/avfs
+    - sys-fs/cryptsetup
+    - sys-fs/diskdev_cmds
+    - sys-fs/dmraid
+    - sys-fs/ecryptfs-utils
+    - sys-fs/encfs
+    - sys-fs/lvm2
+    - sys-fs/mdadm
+    - sys-fs/quota
+    - sys-fs/quotatool
+    - sys-fs/safecopy
+    - sys-fs/shake
+    - sys-fs/siefs
+    - sys-fs/sysfsutils
+    - sys-fs/udev
+    - sys-fs/udev-init-scripts
+    - sys-fs/udftools
+    - sys-fs/udisks
+    - sys-fs/vhba
+    - sys-fs/vzquota
+    - sys-fs/zerofree
+    - sys-fs/zfs-userspace

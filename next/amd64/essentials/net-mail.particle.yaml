@@ -1,0 +1,82 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - net-mail/altermime
+    - net-mail/archivemail
+    - net-mail/asmail
+    - net-mail/checkpassword
+    - net-mail/checkpassword-pam
+    - net-mail/cmd5checkpw
+    - net-mail/cyrus-imap-admin
+    - net-mail/cyrus-imapd
+    - net-mail/davmail-bin
+    - net-mail/dbmail
+    - net-mail/dot-forward
+    - net-mail/dovecot
+    - net-mail/email
+    - net-mail/eps
+    - net-mail/fetchmail
+    - net-mail/fetchyahoo
+    - net-mail/getmail
+    - net-mail/gnarwl
+    - net-mail/gnubiff
+    - net-mail/grepmail
+    - net-mail/hotwayd
+    - net-mail/imapsync
+    - net-mail/isync
+    - net-mail/lbdb
+    - net-mail/libpst
+    - net-mail/mailbase
+    - net-mail/maildirtree
+    - net-mail/mailgraph
+    - net-mail/mailman
+    - net-mail/mailsync
+    - net-mail/mairix
+    - net-mail/mess822
+    - net-mail/metamail
+    - net-mail/mhonarc
+    - net-mail/mlmmj
+    - net-mail/mpack
+    - net-mail/mpop
+    - net-mail/mu
+    - net-mail/notmuch
+    - net-mail/offlineimap
+    - net-mail/peephole
+    - net-mail/pflogsumm
+    - net-mail/pfqueue
+    - net-mail/pop-before-smtp
+    - net-mail/popa3d
+    - net-mail/poppassd_ceti
+    - net-mail/qlogtools
+    - net-mail/qmrtg
+    - net-mail/qpopper
+    - net-mail/qprint
+    - net-mail/queue-repair
+    - net-mail/randomsig
+    - net-mail/relay-ctrl
+    - net-mail/ripmime
+    - net-mail/ripole
+    - net-mail/rss2email
+    - net-mail/safecat
+    - net-mail/sendEmail
+    - net-mail/signify
+    - net-mail/smtptools
+    - net-mail/swaks
+    - net-mail/t-prot
+    - net-mail/tnef
+    - net-mail/tpop3d
+    - net-mail/up-imapproxy
+    - net-mail/uw-mailutils
+    - net-mail/vacation
+    - net-mail/yosucker

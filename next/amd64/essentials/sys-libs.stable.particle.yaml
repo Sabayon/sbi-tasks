@@ -1,0 +1,46 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - sys-libs/cracklib
+    - sys-libs/db
+    - sys-libs/gdbm
+    - sys-libs/glibc
+    - sys-libs/gpm
+    - sys-libs/gwenhywfar
+    - sys-libs/lib-compat-loki
+    - sys-libs/libavc1394
+    - sys-libs/libcap
+    - sys-libs/libcap-ng
+    - sys-libs/libchipcard
+    - sys-libs/libhx
+    - sys-libs/libixp
+    - sys-libs/libkudzu
+    - sys-libs/libmath++
+    - sys-libs/libosinfo
+    - sys-libs/libseccomp
+    - sys-libs/libsepol
+    - sys-libs/libstatgrab
+    - sys-libs/libstdc++-v3
+    - sys-libs/libtermcap-compat
+    - sys-libs/libunwind
+    - sys-libs/libuser
+    - sys-libs/libutempter
+    - sys-libs/lwp
+    - sys-libs/mtdev
+    - sys-libs/ncurses
+    - sys-libs/pam
+    - sys-libs/readline
+    - sys-libs/rvm
+    - sys-libs/slang
+    - sys-libs/system-config-base

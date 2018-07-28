@@ -1,0 +1,39 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - app-shells/bashish
+    - app-shells/bash-completion
+    - app-shells/ccsh
+    - app-shells/dash
+    - app-shells/dsh
+    - app-shells/fish
+    - app-shells/ksh
+    - app-shells/localshell
+    - app-shells/mksh
+    - app-shells/pdmenu
+    - app-shells/pdsh
+    - app-shells/posh
+    - app-shells/psh
+    - app-shells/rc
+    - app-shells/rrs
+    - app-shells/rssh
+    - app-shells/sash
+    - app-shells/shish
+    - app-shells/smrsh
+    - app-shells/soapbox
+    - app-shells/squirrelsh
+    - app-shells/tcsh
+    - app-shells/thefuck
+    - app-shells/zsh
+    - app-shells/zsh-completions

@@ -1,0 +1,28 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - xfce-base/exo
+    - xfce-base/garcon
+    - xfce-base/libxfce4ui
+    - xfce-base/libxfce4util
+    - xfce-base/libxfcegui4
+    - xfce-base/thunar
+    - xfce-base/xfce4-appfinder
+    - xfce-base/xfce4-meta
+    - xfce-base/xfce4-panel
+    - xfce-base/xfce4-session
+    - xfce-base/xfce4-settings
+    - xfce-base/xfconf
+    - xfce-base/xfdesktop
+    - xfce-base/xfwm4

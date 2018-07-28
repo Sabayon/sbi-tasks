@@ -1,0 +1,65 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - gnome-extra/assogiate
+    - gnome-extra/cinnamon
+    - gnome-extra/nemo
+    - gnome-extra/cinnamon-control-center
+    - gnome-extra/cinnamon-desktop
+    - gnome-extra/cinnamon-screensaver
+    - gnome-extra/cinnamon-session
+    - gnome-extra/cinnamon-settings-daemon
+    - gnome-extra/cinnamon-translations
+    - gnome-extra/eiciel
+    - gnome-extra/evolution-data-server
+    - gnome-extra/evolution-ews
+    - gnome-extra/gnome-builder
+    - gnome-extra/gnome-calculator
+    - gnome-extra/gnome-calendar
+    - gnome-extra/gnome-characters
+    - gnome-extra/gconf-editor
+    - gnome-extra/gnome-color-manager
+    - gnome-extra/gnome-contacts
+    - gnome-extra/gnome-directory-thumbnailer
+    - gnome-extra/gnome-documents
+    - gnome-extra/gnome-getting-started-docs
+    - gnome-extra/gnome-logs
+    - gnome-extra/gnome-packagekit
+    - gnome-extra/gnome-power-manager
+    - gnome-extra/gnome-shell-extensions
+    - gnome-extra/gnome-shell-frippery
+    - gnome-extra/gnome-software
+    - gnome-extra/gnome-system-monitor
+    - gnome-extra/gnome-tweak-tool
+    - gnome-extra/gnome-user-docs
+    - gnome-extra/gnome-user-share
+    - gnome-extra/gnome-utils
+    - gnome-extra/gnome-web-photo
+    - gnome-extra/gtkhtml
+    - gnome-extra/gucharmap
+    - gnome-extra/libgda
+    - gnome-extra/libgda
+    - gnome-extra/libgsf
+    - gnome-extra/mousetweaks
+    - gnome-extra/nautilus-dropbox
+    - gnome-extra/nautilus-image-converter
+    - gnome-extra/nautilus-sendto
+    - gnome-extra/nautilus-tracker-tags
+    - gnome-extra/nm-applet
+    - gnome-extra/polkit-gnome
+    - gnome-extra/seahorse-nautilus
+    - gnome-extra/sushi
+    - gnome-extra/yelp
+    - gnome-extra/yelp-xsl
+    - gnome-extra/zenity

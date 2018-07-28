@@ -1,0 +1,58 @@
+repository:
+  description: Essentials
+build:
+  equo:
+    repositories:
+      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+  qa_checks: 0
+  emerge:
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - net-irc/anope
+    - net-irc/bip
+    - net-irc/bnc
+    - net-irc/bobotpp
+    - net-irc/cgiirc
+    - net-irc/dircproxy
+    - net-irc/dccserver
+    - net-irc/eggdrop
+    - net-irc/eiwic
+    - net-irc/emech
+    - net-irc/epic5
+    - net-irc/ezbounce
+    - net-irc/hexchat
+    - net-irc/ii
+    - net-irc/inspircd
+    - net-irc/ircii
+    - net-irc/ircservices
+    - net-irc/ircstats
+    - net-irc/irssi
+    - net-irc/irssi-otr
+    - net-irc/irssistats
+    - net-irc/jircii
+    - net-irc/konversation
+    - net-irc/kvirc
+    - net-irc/miau
+    - net-irc/muh
+    - net-irc/ngircd
+    - net-irc/ninja
+    - net-irc/pisg
+    - net-irc/polari
+    - net-irc/psybnc
+    - net-irc/quassel
+    - net-irc/quassel-client
+    - net-irc/quassel-common
+    - net-irc/quassel-core
+    - net-irc/rbot
+    - net-irc/rhapsody
+    - net-irc/scrollz
+    - net-irc/sic
+    - net-irc/telepathy-idle
+    - net-irc/unrealircd
+    - net-irc/weechat
+    - net-irc/xaric
+    - net-irc/znc
