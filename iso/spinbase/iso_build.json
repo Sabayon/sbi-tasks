@@ -1,0 +1,23 @@
+{
+  "script": [
+    "/usr/bin/tini -s -- /sabayon-stuff/sabayon_molecules.sh run daily --skip-email --stdout --image spinbase --skip-docker-rmi --skip-dev" ],
+  "directory": "/",
+  "task": "docker_execute",
+  "image": "geaaru/sabayon-molecules-amd64",
+  "storage": "8925468933589065900",
+  "artefact_path": "namespace",
+  "storage_path": "/confs",
+  "tag_namespace": "spinbase:iso",
+  "environment": [
+    "SABAYON_ENMAN_REPOS=https://dispatcher.sabayon.org/sbi/namespace/isodev/isodev",
+    "SABAYON_UNMASK_PKGS='app-misc/sabayon-live-9999::isodev'",
+    "SABAYON_EXTRA_PKGS=app-misc/sabayon-live",
+    "SABAYON_MOLECULES_SYSTEMD_MODE=1"
+  ],
+  "binds": [
+    "/dev/loop-control:/dev/loop-control",
+    "/dev/loop0:/dev/loop0",
+    "/dev/loop1:/dev/loop1",
+    "/tmp:/run"
+  ]
+}
