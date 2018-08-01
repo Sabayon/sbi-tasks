@@ -1,6 +1,13 @@
 # Authors: Sabayon Team
+#          geaaru@sabayonlinux.org
+#          mudler@sabayonlinux.org)
+
+# Note: Molecules use /dev/loopX device for mount .ISO file so we
+#       need from host device access to loop controller and a free
+#       loop device
 
 pipeline_name: "Sabayon ISO Build Pipeline"
+
 concurrency: 1 # Number of parallel builds
 group:
   - "gnome"
@@ -11,7 +18,8 @@ group:
   - "server"
   - "lxqt"
 
-queue: 'general' # Optional, force the pipeline to a specific queue
+# Temporary use only farmer node that support dynamic loop on container
+queue: "farmerXX93a749205ad42cb57168dbaa498045dc83c5035f1e23f8a39591adfeb7d4f108"
 
 tasks:
 
@@ -25,8 +33,6 @@ tasks:
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
-      - /dev/loop0:/dev/loop0
-      - /dev/loop1:/dev/loop1
       - /tmp:/run
     directory: /
     environment:
@@ -52,8 +58,6 @@ tasks:
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
-      - /dev/loop0:/dev/loop0
-      - /dev/loop1:/dev/loop1
       - /tmp:/run
     directory: /
     environment:
@@ -79,8 +83,6 @@ tasks:
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
-      - /dev/loop0:/dev/loop0
-      - /dev/loop1:/dev/loop1
       - /tmp:/run
     directory: /
     environment:
@@ -106,8 +108,6 @@ tasks:
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
-      - /dev/loop0:/dev/loop0
-      - /dev/loop1:/dev/loop1
       - /tmp:/run
     directory: /
     environment:
@@ -133,8 +133,6 @@ tasks:
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
-      - /dev/loop0:/dev/loop0
-      - /dev/loop1:/dev/loop1
       - /tmp:/run
     directory: /
     environment:
@@ -160,8 +158,6 @@ tasks:
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
-      - /dev/loop0:/dev/loop0
-      - /dev/loop1:/dev/loop1
       - /tmp:/run
     directory: /
     environment:
@@ -187,8 +183,6 @@ tasks:
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
-      - /dev/loop0:/dev/loop0
-      - /dev/loop1:/dev/loop1
       - /tmp:/run
     directory: /
     environment:
