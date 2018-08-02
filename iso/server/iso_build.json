@@ -13,7 +13,7 @@
   "environment": [
     "SABAYON_MOLECULES_GITURL=https://github.com/geaaru/molecules.git",
     "SABAYON_MOLECULES_SYSTEMD_SLEEP=20",
-    "SABAYON_MOLECULES_SYSTEMD_MODE=1",
+    "SABAYON_MOLECULES_SYSTEMD_MODE=0",
     "SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh",
     "SABAYON_USE_IMG=0"
   ],

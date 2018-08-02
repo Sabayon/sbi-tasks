@@ -1,6 +1,6 @@
 {
   "script": [
-    "/usr/bin/tini -s -- /sabayon-stuff/sabayon_molecules.sh run daily --image gnome --skip-docker-rmi --skip-dev"
+    "/usr/bin/tini -s -- /sabayon-stuff/sabayon_molecules.sh run daily --image lxqt --skip-docker-rmi --skip-dev"
   ],
   "directory": "/",
   "task": "docker_execute",
