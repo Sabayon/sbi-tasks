@@ -174,7 +174,7 @@ tasks:
     timeout: 0
 
   # Sabayon Lxqt ISO
-  server:
+  lxqt:
     image: geaaru/isobuilder-amd64
     script:
       - /usr/bin/tini -s -- /sabayon-stuff/sabayon_molecules.sh run daily --image lxqt --skip-docker-rmi --skip-dev
