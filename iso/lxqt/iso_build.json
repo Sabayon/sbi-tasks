@@ -22,5 +22,6 @@
   "binds": [
     "/dev/loop-control:/dev/loop-control",
     "/tmp:/run"
-  ]
+  ],
+  "planned": "0 0 3 * * *"
 }
