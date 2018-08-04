@@ -12,7 +12,7 @@ script:
 - chmod a+x /usr/sbin/builder
 - chmod a+x ./sark-localbuild
 - ./sark-localbuild
-storage: "5022363002905760805"
+storage: "7853977132774944695"
 storage_path: confs
 task: docker_execute
 planned: "@daily"
