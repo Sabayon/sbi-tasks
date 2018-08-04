@@ -9,6 +9,7 @@ script:
 - export LC_ALL=en_US.UTF-8
 # Temporarily hotpatch pkgs-checker for one that can handle empty packages
 - wget https://dispatcher.sabayon.org/sbi/namespace/pkgs-checker-cross-bin/pkgs-checker-amd64 -O /usr/bin/pkgs-checker
+- chmod a+x /usr/bin/pkgs-checker
 - export PKGS_CHECKER_OPTS="--hash-empty -L ERROR"
 - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
 - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
