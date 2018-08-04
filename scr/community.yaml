@@ -9,6 +9,7 @@ script:
 - export LC_ALL=en_US.UTF-8
 - equo install enman
 - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+- equo update devel
 - equo install pkgs-checker
 - export PKGS_CHECKER_OPTS="--hash-empty -L ERROR -v"
 - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
