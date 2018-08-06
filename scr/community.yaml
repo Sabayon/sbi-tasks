@@ -17,6 +17,7 @@ script:
   - chmod 0755 /sbin/sark-functions.sh
   - chmod 0755 /usr/sbin/builder
   - chmod 0755 ./sark-localbuild
+  - ln -s /usr/bin/builder ./builder
   - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
   - cp -rfv /sbin/sark-functions.sh ./sark-functions.sh
   - export PKGS_CHECKER_OPTS="-L WARN -c -v --ignore-errors"
