@@ -2,7 +2,7 @@
   "source": "https://gitlab.com/mudler/Mottainai-test",
   "image": "spotify/docker-gc",
   "directory": "/",
-  "script": "/docker-gc",
+  "script": ["/docker-gc"],
   "task": "docker_execute",
   "prune": "yes",
   "planned": "@daily",
