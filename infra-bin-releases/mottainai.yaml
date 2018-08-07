@@ -1,0 +1,30 @@
+environment:
+- LC_ALL=en_US.UTF-8
+image: sabayon/builder-amd64
+script:
+  - equo up && equo i dev-lang/go
+  - mkdir go
+  - export GOPATH=$PWD/go
+  - export PATH="$PATH:$GOPATH/bin"
+  - WORKDIR=$PWD
+  - mkdir -p go/src/github.com/MottainaiCI
+  - git clone https://github.com/MottainaiCI/mottainai-server go/src/github.com/MottainaiCI/mottainai-server
+  - git clone https://github.com/MottainaiCI/mottainai-cli go/src/github.com/MottainaiCI/mottainai-cli
+  - git clone https://github.com/MottainaiCI/mottainai-agent go/src/github.com/MottainaiCI/mottainai-agent
+  - pushd go/src/github.com/MottainaiCI/mottainai-agent
+  - make deps
+  - make build
+  - mv release/* $WORKDIR/artefacts/
+  - popd
+  - pushd go/src/github.com/MottainaiCI/mottainai-cli
+  - make deps
+  - make build
+  - mv release/* $WORKDIR/artefacts/
+  - popd
+  - pushd go/src/github.com/MottainaiCI/mottainai-server
+  - make deps
+  - make multiarch-build
+  - mv release/* $WORKDIR/artefacts/
+  - popd
+tag_namespace: mottainai-cross-bin
+task: docker_execute
