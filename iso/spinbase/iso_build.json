@@ -21,6 +21,6 @@
     "/tmp:/run"
   ],
   "queue": "iso",
-  "retry": 5,
+  "retry": "5",
   "planned": "0 0 1 * * *"
 }
