@@ -10,6 +10,7 @@
   "namespace": "spinbase:iso",
   "tag_namespace": "sabayon:iso",
   "publish_mode": "append",
+  "queue": "iso",
   "environment": [
     "SABAYON_MOLECULES_GITURL=https://github.com/geaaru/molecules.git",
     "SABAYON_MOLECULES_SYSTEMD_SLEEP=20",

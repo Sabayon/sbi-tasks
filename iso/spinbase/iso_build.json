@@ -20,7 +20,7 @@
     "/dev/loop-control:/dev/loop-control",
     "/tmp:/run"
   ],
-  "queue": "farmerXX93a749205ad42cb57168dbaa498045dc83c5035f1e23f8a39591adfeb7d4f108",
+  "queue": "iso",
   "retry": 5,
   "planned": "0 0 1 * * *"
 }
