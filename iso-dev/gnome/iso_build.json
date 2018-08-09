@@ -1,0 +1,27 @@
+{
+  "script": [
+    "/usr/bin/tini -s -- /sabayon-stuff/sabayon_molecules.sh run daily --image gnome --skip-docker-rmi --only-dev"
+  ],
+  "directory": "/",
+  "task": "docker_execute",
+  "image": "geaaru/isobuilder-amd64",
+  "storage": "8925468933589065900",
+  "artefact_path": "namespace",
+  "storage_path": "/confs",
+  "namespace": "spinbase:iso-dev",
+  "tag_namespace": "sabayon:iso",
+  "publish_mode": "append",
+  "queue": "iso",
+  "retry": "5",
+  "environment": [
+    "SABAYON_MOLECULES_GITURL=https://github.com/geaaru/molecules.git",
+    "SABAYON_MOLECULES_SYSTEMD_SLEEP=20",
+    "SABAYON_MOLECULES_SYSTEMD_MODE=0",
+    "SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh",
+    "SABAYON_USE_IMG=0"
+  ],
+  "binds": [
+    "/dev/loop-control:/dev/loop-control",
+    "/tmp:/run"
+  ]
+}
