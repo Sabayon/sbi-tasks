@@ -1,0 +1,39 @@
+# Authors: Sabayon Team
+#          geaaru@sabayonlinux.org
+#
+# Description: Script for manage retries on create Spinbase ISO images duo problem
+#              with SystemD initialization inside Docker.
+
+
+image: sabayon/base-amd64
+script:
+  - export ACCEPT_LICENSE='*'
+  - export LC_ALL=en_US.UTF-8
+  - equo up && equo install enman
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/mottainai/mottainai
+  - echo 'https_validate_cert = false' >> /etc/entropy/repositories.conf.d/entropy_enman_mottainai
+  - equo up
+  - equo install dev-util/mottainai-cli
+  - echo '=================================================================='
+  - echo 'Downloading task JSON...'
+  - wget -O iso_build.json https://raw.githubusercontent.com/Sabayon/sbi-tasks/master/iso/spinbase/iso_build.json
+  - echo "=================================================================="
+  - mkdir -p /root/.config/
+  - echo 'Sourcing storage file...'
+  - eval '. $(pwd)/confs/mcli.keys'
+  - export F=1
+  - echo "=================================================================="
+  - echo "=================================================================="
+  - "eval 'for ((i=0;i<$RETRIES;i++)) ; do echo \"$i: Try to build spinbase... \";  mottainai-cli -p sab-infra task create --json ./iso_build.json --monitor && F=0 && break ; done'"
+  - echo "=================================================================="
+  - echo 'Result = $F'
+  - echo "=================================================================="
+  - eval 'exit $F'
+task: docker_execute
+environment:
+  - RETRIES=3
+storage: "8925468933589065900"
+storage_path: /confs
+timeout: 0
+planned: "0 0 1 * * *"
+
