@@ -84,7 +84,6 @@ build:
     - app-admin/perl-cleaner
     - app-admin/pprocm
     - app-admin/psmon
-    - app-admin/puppet-agent
     - app-admin/pwcrypt
     - app-admin/pwgen
     - app-admin/pydf
