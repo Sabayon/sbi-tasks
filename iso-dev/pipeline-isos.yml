@@ -6,7 +6,7 @@
 #       need from host device access to loop controller and a free
 #       loop device
 
-pipeline_name: "Sabayon ISO Build Pipeline"
+pipeline_name: "Sabayon ISO Dev Build Pipeline"
 
 concurrency: 1 # Number of parallel builds
 group:
