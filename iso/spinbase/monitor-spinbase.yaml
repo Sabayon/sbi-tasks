@@ -24,7 +24,7 @@ script:
   - export F=1
   - echo "=================================================================="
   - echo "=================================================================="
-  - "eval 'for ((i=0;i<$RETRIES;i++)) ; do echo \"$i: Try to build spinbase... \";  mottainai-cli -p sab-infra task create --json ./iso_build.json --monitor && F=0 && break ; done'"
+  - eval 'for ((i=0;i<$RETRIES;i++)) ; do echo \"$i: Try to build spinbase... \";  mottainai-cli -p sab-infra task create --json ./iso_build.json --monitor && F=0 && break ; done'
   - echo "=================================================================="
   - echo "Result = $F"
   - echo "=================================================================="
