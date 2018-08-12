@@ -13,7 +13,7 @@
     "SABAYON_ENMAN_REPOS=https://dispatcher.sabayon.org/sbi/namespace/isodev/isodev",
     "SABAYON_UNMASK_PKGS='app-misc/sabayon-live-9999::isodev'",
     "SABAYON_EXTRA_PKGS=app-misc/sabayon-live",
-    "SABAYON_MOLECULES_GITURL=https://github.com/geaaru/molecules.git",
+    "SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git",
     "SABAYON_MOLECULES_SYSTEMD_SLEEP=20",
     "SABAYON_MOLECULES_SYSTEMD_MODE=1",
     "SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh",
