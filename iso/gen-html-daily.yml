@@ -1,0 +1,23 @@
+# Authors: Sabayon Team
+#          geaaru@sabayonlinux.org
+#          mudler@sabayonlinux.org)
+#
+# Description: Task for generate html pages for daily ISOs
+
+image: sabayon/base-amd64
+source: https://github.com/Sabayon/molecules
+script:
+  - equo up && equo install dev-perl/HTML-Template
+  - /bin/bash ./scripts/gen_html/gen-iso-html.sh --dir ./namespace/iso/
+task: docker_execute
+artefact_path: namespace
+directory: /
+environment:
+  - SAB_GENHTML_DUMP_HTML=0
+  - SAB_GENHTML_REMOVE_ISO=1
+  - LC_ALL=en_US.UTF-8
+  - ACCEPT_LICENSE='*'
+namespace: sabayon:iso
+publish_mode: append
+timeout: 0
+
