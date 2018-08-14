@@ -34,7 +34,7 @@ pushd $TEMPWORK
         wget "$SYNC_URL/${i}/${i}/PKGLIST-${a}" -q -O "${i}/PKGLIST-${a}"
     done
   done
-  sark-genreposmeta || exit 1s
+  sark-genreposmeta || exit 1
   cp -rfv metadata.json "$WORKSPACE"/ || exit 1
 
 popd
