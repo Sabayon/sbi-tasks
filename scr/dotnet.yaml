@@ -11,6 +11,8 @@ script:
 - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
 - chmod a+x /usr/sbin/builder
 - chmod a+x ./sark-localbuild
+# Temporarily generate cache without building packages
+- export PRETEND=1
 - ./sark-localbuild
 storage: ""
 storage_path: confs
