@@ -6,12 +6,21 @@ tag_namespace: sihnon-common
 artefact_path: artifacts
 cache_image: "yes"
 script:
-- export LC_ALL=en_US.UTF-8
-- wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
-- wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
-- chmod a+x /usr/sbin/builder
-- chmod a+x ./sark-localbuild
-- ./sark-localbuild
+  - export LC_ALL=en_US.UTF-8
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+  - equo update devel
+  - env ACCEPT_LICENSE='*' equo install pkgs-checker
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+  - wget https://gitlab.com/geaaru/Mottainai-test/raw/master/test/sark-functions.sh -O /sbin/sark-functions.sh
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
+  - chmod 0755 /sbin/sark-functions.sh
+  - chmod 0755 /usr/sbin/builder
+  - chmod 0755 ./sark-localbuild
+  - ln -s /usr/sbin/builder ./builder
+  - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+  - cp -rfv /sbin/sark-functions.sh ./sark-functions.sh
+  - export PKGS_CHECKER_OPTS="-L WARN -c -v --ignore-errors"
+  - ./sark-localbuild
 storage: "202372093426954774"
 storage_path: confs
 task: docker_execute
