@@ -11,6 +11,7 @@ REPOS_TO_SYNC=(
     "mudler"
     "community"
     "devel"
+    "haskell"
     "sihnon-common"
     "sihnon-desktop"
     "sihnon-server"
