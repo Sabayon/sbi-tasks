@@ -1,0 +1,62 @@
+
+script:
+  - export LC_ALL=en_US.UTF-8
+  - export ACCEPT_LICENSE='*'
+  - export SAB_EMERGE_OPTS='-j --with-bdeps=y'
+  - uname -a
+  - emerge-webrsync
+  - layman -f
+  - echo y | layman -a sabayon
+  - echo y | layman -a sabayon-distro
+  - sed -i -e 's:armv7l.*::g' /var/lib/layman/sabayon-distro/profiles/profiles.desc
+  - eselect profile list
+  - sed -i -e 's:^PYTHON_.*::g' /etc/portage/make.conf
+  - sed -i -e 's:^CFLAGS.*::g' /etc/portage/make.conf
+  - sed -i -e 's:^CXXFLAGS.*::g' /etc/portage/make.conf
+  - eselect profile set 34
+  - mkdir -p /etc/portage/package.mask/
+  # - echo 'sys-apps/systemd::gentoo' >> /etc/portage/package.mask/00-sabayon.package.mask
+  - echo 'sys-devel/gcc::gentoo' >> /etc/portage/package.mask/00-sabayon.package.mask
+  - emerge -C $(qlist -IC dev-perl/) $(qlist -IC virtual/perl) $(qlist -IC perl-core/) app-crypt/pinentry sys-apps/texinfo sys-apps/baselayout dev-python/requests dev-vcs/git app-text/po4a media-gfx/graphite2 app-eselect/eselect-python
+  # Force building of bash without ebuild
+  # baselayout needed for /etc/profile file
+  - emerge -u app-shells/bash app-crypt/gnupg sys-apps/baselayout --oneshot --quiet
+  - emerge ${SAB_EMERGE_OPTS} dev-perl/XML-Parser sys-apps/util-linux $(qgrep -JN sys-libs/readline | cut -f1 -d":" | uniq | sed -e 's:^:=:g' | grep -v "util-linux" )
+  - emerge sys-devel/gcc-config sys-apps/gentoo-functions -j -u
+  - export current_gcc=$(gcc-config -c)
+  - export current_gcc_version=$(echo $(gcc-config -c) | awk 'match($0, /[0-9].[0-9].[0-9]/) { print substr($0, RSTART, RLENGTH) }')
+  - FEATURES="-collision-protect -protect-owned" emerge -b sys-devel/base-gcc::sabayon-distro --quiet-build
+  - export sabayon_gcc=$(gcc-config -c)
+  - export sabayon_gcc_version=$(echo $(gcc-config -c) | awk 'match($0, /[0-9].[0-9].[0-9]/) { print substr($0, RSTART, RLENGTH) }')
+  - gcc-config ${current_gcc}
+  - source /etc/profile
+  - FEATURES="-collision-protect -protect-owned" emerge -b sys-devel/gcc::sabayon-distro  --quiet-build
+  - FEATURES="-collision-protect -protect-owned" emerge -K sys-devel/base-gcc::sabayon-distro sys-devel/gcc::sabayon-distro
+  - gcc-config ${sabayon_gcc}
+  - source /etc/profile
+  - emerge --unmerge app-admin/eselect app-text/xmlto
+  - emerge sandbox coreutils -j
+  - sed -e 's/compat/compat files/g' -i  /etc/nsswitch.conf
+  - emerge --newuse --deep --with-bdeps=y -j @system --buildpkg -pv
+  - emerge --newuse --deep --with-bdeps=y -j @system --buildpkg
+  - emerge sys-apps/entropy-server sys-apps/entropy app-admin/equo
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-functions.sh -O /sbin/sark-functions.sh
+  - chmod 755 /sbin/sark-functions.sh
+  - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+  - chmod 755 /etc/sark-functions; echo 'done'
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
+  - chmod a+x /usr/sbin/builder
+  - chmod a+x ./sark-localbuild
+  - SAB_BUILDFILE=core-build.yml ./sark-localbuild
+environment:
+  - SHELL=/bin/bash
+  - USE_EQUO=1
+  - REPOSITORY_NAME=core-arm
+task: docker_execute
+artefact_path: artifacts
+image: geaaru/stage3-gentoo-systemd-armv7a_hardfp
+source: https://github.com/Sabayon/sbi-tasks
+directory: "next/arm/core"
+queue: arm
+

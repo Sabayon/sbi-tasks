@@ -1,0 +1,11 @@
+repository:
+  description: Core Arm repo
+build:
+  emerge:
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+  target:
+    - sys-apps/portage
+    - app-shells/bash
