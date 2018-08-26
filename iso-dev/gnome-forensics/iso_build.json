@@ -9,7 +9,7 @@
   "artefact_path": "namespace",
   "storage_path": "/confs",
   "namespace": "spinbase:iso-dev",
-  "tag_namespace": "sabayon:iso",
+  "tag_namespace": "sabayon:iso-dev",
   "publish_mode": "append",
   "queue": "iso",
   "environment": [

@@ -45,7 +45,7 @@ tasks:
     publish_mode: append
     storage: "8925468933589065900"
     storage_path: /confs
-    tag_namespace: sabayon:iso
+    tag_namespace: sabayon:iso-dev
     timeout: 0
 
   # Sabayon KDE ISO
@@ -70,7 +70,7 @@ tasks:
     publish_mode: append
     storage: "8925468933589065900"
     storage_path: /confs
-    tag_namespace: sabayon:iso
+    tag_namespace: sabayon:iso-dev
     timeout: 0
 
   # Sabayon MATE ISO
@@ -95,7 +95,7 @@ tasks:
     publish_mode: append
     storage: "8925468933589065900"
     storage_path: /confs
-    tag_namespace: sabayon:iso
+    tag_namespace: sabayon:iso-dev
     timeout: 0
 
   # Sabayon Xfce ISO
@@ -120,7 +120,7 @@ tasks:
     publish_mode: append
     storage: "8925468933589065900"
     storage_path: /confs
-    tag_namespace: sabayon:iso
+    tag_namespace: sabayon:iso-dev
     timeout: 0
 
   # Sabayon Minimal ISO
@@ -145,7 +145,7 @@ tasks:
     publish_mode: append
     storage: "8925468933589065900"
     storage_path: /confs
-    tag_namespace: sabayon:iso
+    tag_namespace: sabayon:iso-dev
     timeout: 0
 
   # Sabayon Server ISO
@@ -170,7 +170,7 @@ tasks:
     publish_mode: append
     storage: "8925468933589065900"
     storage_path: /confs
-    tag_namespace: sabayon:iso
+    tag_namespace: sabayon:iso-dev
     timeout: 0
 
   # Sabayon Lxqt ISO
@@ -195,6 +195,6 @@ tasks:
     publish_mode: append
     storage: "8925468933589065900"
     storage_path: /confs
-    tag_namespace: sabayon:iso
+    tag_namespace: sabayon:iso-dev
     timeout: 0
 
