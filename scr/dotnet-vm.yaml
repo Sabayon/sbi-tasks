@@ -1,0 +1,21 @@
+environment:
+- LC_ALL=en_US.UTF-8
+source: 'https://github.com/Sabayon/community-repositories'
+tag_namespace: 'dotnet'
+image: 'https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box'
+queue: 'virtualbox'
+artefacts_path: 'artifacts'
+storage_path: 'confs'
+environment:
+    - ACCEPT_LICENSE=*
+script:
+    - export ACCEPT_LICENSE=*
+    - wget https://raw.githubusercontent.com/Sabayon/docker-builder-amd64/master/script/post-upgrade.sh
+    - ( sudo bash post-upgrade.sh || true )
+    - ls
+    - sudo equo up && sudo ACCEPT_LICENSE=* equo i sabayon-devkit sabayon-sark git
+    - git clone https://github.com/Sabayon/community-repositories
+    - ( mv confs /vagrant/ || true )
+    - pushd community-repositories/dotnet
+    - sudo sark-localbuild && sudo mv artifacts/* /vagrant/artefacts/
+task: virtualbox_execute
