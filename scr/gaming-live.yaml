@@ -1,0 +1,18 @@
+source: https://github.com/Sabayon/community-repositories
+directory: /gaming-live
+image: sabayon/builder-amd64
+namespace: gaming-live
+tag_namespace: gaming-live
+artefact_path: artifacts
+cache_image: "yes"
+script:
+- export LC_ALL=en_US.UTF-8
+- wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+- wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
+- chmod a+x /usr/sbin/builder
+- chmod a+x ./sark-localbuild
+- ./sark-localbuild
+storage: "4305828396602493158"
+storage_path: confs
+task: docker_execute
+planned: "@daily"
