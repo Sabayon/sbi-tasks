@@ -8,7 +8,6 @@ script:
   - layman -f
   - echo y | layman -a sabayon
   - echo y | layman -a sabayon-distro
-  - sed -i -e 's:armv7l.*::g' /var/lib/layman/sabayon-distro/profiles/profiles.desc
   - eselect profile list
   - sed -i -e 's:^PYTHON_.*::g' /etc/portage/make.conf
   - sed -i -e 's:^CFLAGS.*::g' /etc/portage/make.conf
@@ -36,7 +35,10 @@ script:
   - source /etc/profile
   - emerge --unmerge app-admin/eselect app-text/xmlto
   - emerge sandbox coreutils -j
+  # Fix problem after upgrade of glibc
   - sed -e 's/compat/compat files/g' -i  /etc/nsswitch.conf
+  # Force installation of libaio: missing dependency of lvm2!!!
+  - emerge dev-libs/libaio -j
   - emerge --newuse --deep --with-bdeps=y -j @system --buildpkg -pv
   - emerge --newuse --deep --with-bdeps=y -j @system --buildpkg
   - emerge sys-apps/entropy-server sys-apps/entropy app-admin/equo
