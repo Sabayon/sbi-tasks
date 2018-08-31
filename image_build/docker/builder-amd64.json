@@ -1,6 +1,6 @@
 {
   "source": "https://github.com/Sabayon/docker-builder-amd64",
-  "script": ["set -e; source storage/env ","./script/build.sh ","docker run --rm sabayon/builder-amd64 app-text/tree","docker login -u $DOCKER_USER -p $DOCKER_PASS","docker push sabayon/builder-amd64" ],
+  "script": ["set -e; source storage/env ","./script/build.sh ","docker login -u $DOCKER_USER -p $DOCKER_PASS","docker push sabayon/builder-amd64" ],
   "directory": "/",
   "task": "docker_execute",
   "artefact_path": "artifacts",
