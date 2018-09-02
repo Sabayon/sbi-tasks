@@ -5,7 +5,6 @@ build:
     # Install each package separately
     split_install: 1
     preserved_rebuild: 1
-    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    default_args: --accept-properties=-interactive -t --quiet --complete-graph --newuse --deep --with-bdeps=y -j --buildpkg
   target:
-    - sys-apps/portage
-    - app-shells/bash
+    - sys-apps/systemd
