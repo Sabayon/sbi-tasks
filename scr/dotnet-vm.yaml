@@ -19,3 +19,4 @@ script:
     - pushd community-repositories/dotnet
     - sudo sark-localbuild && sudo mv artifacts/* /vagrant/artefacts/
 task: virtualbox_execute
+planned: "@daily"
