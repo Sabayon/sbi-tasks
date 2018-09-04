@@ -15,4 +15,5 @@ script:
 storage: "9042214114607668711"
 storage_path: confs
 task: docker_execute
+timeout: 64800
 planned: "@daily"
