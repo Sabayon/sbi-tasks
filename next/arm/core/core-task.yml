@@ -1,7 +1,8 @@
 
 script:
   - export LC_ALL=en_US.UTF-8
-  - ./scripts/build-core.sh
+  - ./scripts/build-core.sh init
+  - ./scripts/build-core.sh build
   - wget https://dispatcher.sabayon.org/sbi/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker
   - chmod a+x /usr/bin/pkgs-checker
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh

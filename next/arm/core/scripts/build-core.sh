@@ -121,7 +121,7 @@ build () {
   FEATURES="-collision-protect -protect-owned" emerge -b sys-devel/gcc::sabayon-distro  --quiet-build
 
   if [ ${sabayon_gcc_version} != ${current_gcc_version} ] ; then
-    emerge --unmerge =sys-devel/gcc-${current_gcc_version}::gentoo || return 1
+    emerge --unmerge =sys-devel/gcc-${current_gcc_version}::gentoo || true
     # If there is same version this is not needed.
   fi
 
