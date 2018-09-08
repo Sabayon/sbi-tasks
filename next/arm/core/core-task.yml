@@ -24,7 +24,7 @@ environment:
   - SKIP_PORTAGE_SYNC=1
     # Avoid remove of portagate with compiled packages.
   - SKIP_CLEAN_PACKAGESDIR=1
-  - BUILDER_PROFILE=34
+  - BUILDER_PROFILE=61
   - SKIP_COMMIT=1
   - SKIP_PULL=1
 task: docker_execute
