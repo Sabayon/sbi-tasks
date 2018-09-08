@@ -8,9 +8,9 @@ SABAYON_EQUO_DIR="/var/lib/entropy/client/database/"
 . $(dirname $(readlink -f $BASH_SOURCE))/commons.sh
 
 SABAYON_EXTRA_MASK=(
-  "# 2017-11-26 Geaaru: Use sabayon version"
-  "app-crypt/pinentry::gentoo"
-  ""
+#  "# 2017-11-26 Geaaru: Use sabayon version"
+#  "app-crypt/pinentry::gentoo"
+#  ""
 
   "# 2017-11-26 Geaaru: Use sabayon version"
   "sys-devel/gcc::gentoo"
@@ -20,9 +20,9 @@ SABAYON_EXTRA_MASK=(
   "sys-apps/baselayout::gentoo"
   ""
 
-  "# 2018-04-07 Geaaru: Use sabayon version"
-  "dev-vcs/git::gentoo"
-  ""
+#  "# 2018-04-07 Geaaru: Use sabayon version"
+#  "dev-vcs/git::gentoo"
+#  ""
 )
 
 sabayon_clean_makeconf () {
