@@ -5,6 +5,7 @@ namespace: gaming-live
 tag_namespace: gaming-live
 artefact_path: artifacts
 cache_image: "yes"
+cache_clean: "yes"
 script:
 - export LC_ALL=en_US.UTF-8
 - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
