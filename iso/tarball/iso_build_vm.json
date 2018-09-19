@@ -1,0 +1,34 @@
+{
+  "script": [
+     "sudo wget https://raw.githubusercontent.com/Sabayon/docker-isobuilder-amd64/master/scripts/sabayon_molecules.sh -O /sabayon_molecules.sh",
+   "sudo chmod +x /sabayon_molecules.sh",
+    "sudo equo up",
+   "sudo mv /vagrant/namespace/iso /iso",
+   "sudo /sabayon_molecules.sh init",
+   "sudo /sabayon_molecules.sh phase1",
+   "sudo SABAYON_KERNEL_VERSION=4.18 MOLECULE_ISO_TITLE=SABAYON SYSTEMD=0 SABAYON_USE_IMG=0 SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh SABAYON_MOLECULES_SYSTEMD_MODE=0 SABAYON_MOLECULES_ISO=/iso DRACUT_SQUASHFS=1 DRACUT=1 /sabayon_molecules.sh run daily --image tarball --skip-docker-rmi --skip-dev",
+   "sudo cp -rfv /sabayon/iso /vagrant/namespace" ],
+  "directory": "/",
+  "task": "virtualbox_execute",
+  "image": "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box",
+  "storage": "8925468933589065900",
+  "artefact_path": "namespace",
+  "storage_path": "/confs",
+  "namespace": "spinbase:iso",
+  "tag_namespace": "sabayon:iso",
+  "publish_mode": "append",
+  "queue": "virtualbox",
+  "environment": [
+    "SYSTEMD=0",
+    "DRACUT=1",
+    "SABAYON_EXTRA_PKGS=sys-kernel/linux-sabayon::devel-kernel",
+    "SABAYON_MOLECULES_SYSTEMD_SLEEP=20",
+    "SABAYON_MOLECULES_SYSTEMD_MODE=0",
+    "SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh",
+    "SABAYON_USE_IMG=0",
+    "RAM=4096",
+    "CPU=4"
+  ],
+  "retry": "3",
+  "planned": "0 0 3 * * *"
+}
