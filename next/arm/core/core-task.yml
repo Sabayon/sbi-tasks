@@ -1,6 +1,8 @@
 
 script:
   - export LC_ALL=en_US.UTF-8
+  - eval "export SOURCE_DIR=$(pwd)"
+  - echo "SOURCE_DIR = ${SOURCE_DIR}"
   - ./scripts/build-core.sh init
   - ./scripts/build-core.sh build
   - wget https://dispatcher.sabayon.org/sbi/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker

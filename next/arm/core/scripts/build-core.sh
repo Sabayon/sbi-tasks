@@ -41,7 +41,7 @@ sabayon_stage3_init_equo () {
   mkdir -p ${equodir}
   cd ${equodir}
 
-  cat ./scripts/equo.sql | sqlite3 equo.db
+  cat ${SOURCE_DIR}/scripts/equo.sql | sqlite3 equo.db
 
   size=$(ls -l ${equodir}/equo.db  | cut -d' ' -f5)
   if [ x"$size" == x"0" ] ; then
