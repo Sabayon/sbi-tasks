@@ -156,7 +156,7 @@ build () {
   sabayon_stage3_init_equo
 
   # Calling equo rescue generate, unfortunately we have to use expect
-  /usr/bin/expect ./scripts/equo-rescue-generate.exp
+  /usr/bin/expect ${SOURCE_DIR}/scripts/equo-rescue-generate.exp
 }
 
 
