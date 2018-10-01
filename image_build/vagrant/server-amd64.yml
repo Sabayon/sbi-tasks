@@ -10,4 +10,4 @@ queue: 'virtualbox'
 task: docker_execute
 tag_namespace: "vagrant"
 publish_mode: "append"
-
+planned: "0 0 10 * * *"
