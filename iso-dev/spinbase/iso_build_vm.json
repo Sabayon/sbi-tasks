@@ -11,7 +11,7 @@
    "sudo mv /sabayon/iso /vagrant/namespace" ],
   "directory": "/",
   "task": "virtualbox_execute",
-  "image": "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box",
+  "image": "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box",
   "storage": "8925468933589065900",
   "artefact_path": "namespace",
   "storage_path": "/confs",
@@ -20,10 +20,11 @@
   "environment": [
     "SYSTEMD=0",
     "DRACUT=1",
-    "SABAYON_MOLECULES_SYSTEMD_SLEEP=20",
     "SABAYON_MOLECULES_SYSTEMD_MODE=0",
     "SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh",
-    "SABAYON_USE_IMG=0"
+    "SABAYON_USE_IMG=0",
+    "RAM=4096",
+    "CPU=4"
   ],
   "queue": "virtualbox",
   "retry": "5",
