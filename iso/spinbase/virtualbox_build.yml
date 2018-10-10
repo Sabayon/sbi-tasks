@@ -6,7 +6,6 @@
 
 
 artefact_path: namespace
-entrypoint: []
 environment:
   - SABAYON_EXTRA_PKGS=sys-kernel/linux-sabayon::devel-kernel
   - SABAYON_MOLECULES_SYSTEMD_SLEEP=20
@@ -15,7 +14,7 @@ environment:
   - SABAYON_USE_IMG=0
   - SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git"
   - SABAYON_MOLECULES_ISO=/vagrant/namespace
-image: https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box
+image: https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box
 publish_mode: append
 queue: virtualbox
 retry: "5"
@@ -32,6 +31,5 @@ storage: "8925468933589065900"
 storage_path: /confs
 tag_namespace: spinbase:iso
 task: virtualbox_execute
-timeout: 0
 planned: "0 0 1 * * *"
 
