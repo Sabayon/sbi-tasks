@@ -2,7 +2,7 @@
 # Author: Geaaru <geaaru@sabayonlinux.org>
 #
 
-SABAYON_PROFILE_ID=${SABAYON_PROFILE_ID:-61}
+SABAYON_PROFILE_ID=${SABAYON_PROFILE_ID:-65}
 SABAYON_EQUO_DIR="/var/lib/entropy/client/database/"
 
 . $(dirname $(readlink -f $BASH_SOURCE))/commons.sh
