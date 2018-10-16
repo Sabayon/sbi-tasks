@@ -4,7 +4,7 @@ image: 'sabayon/packer-amd64'
 binds:
    - /dev/vboxdrv:/dev/vboxdrv
 script:
-   - packer build -var 'flavor=Server' -var 'vagrant=vagrant' -var 'guest_additions=virtualbox' -var 'extra=extra' -only virtualbox-iso images.json
+   - packer build -var 'flavor=Server' -var 'vagrant=vagrant' -var 'guest_additions=virtualbox' -only virtualbox-iso images.json
    - mv *.box artefacts/
 queue: 'virtualbox'
 task: docker_execute
