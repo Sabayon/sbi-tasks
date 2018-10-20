@@ -4,7 +4,7 @@ image: 'sabayon/builder-amd64'
 storage: '9317096982217158'
 script:
    - source storage/env
-   - equo up && equo i docker
+   - equo up && ACCEPT_LICENSE=* equo i docker
    - docker login -u $DOCKER_USER -p $DOCKER_PASS
    - docker build --no-cache --rm -t sabayon/packer-amd64 .
    - docker push sabayon/packer-amd64
