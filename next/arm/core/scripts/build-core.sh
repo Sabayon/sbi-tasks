@@ -131,6 +131,9 @@ build () {
   gcc-config ${sabayon_gcc}
   . /etc/profile
 
+  # Force use of py3.6
+  eselect python set python3.6
+
   emerge --unmerge app-admin/eselect app-text/xmlto
   emerge sandbox coreutils -j
 
@@ -141,14 +144,15 @@ build () {
   emerge dev-libs/libaio -j
 
   # Needed for builder and sark-localbuild
-  emerge sys-process/tini dev-python/shyaml app-portage/gentoolkit -j
+  emerge sys-process/tini dev-python/shyaml app-portage/gentoolkit
 
   emerge --newuse --deep --with-bdeps=y -j @system --buildpkg -pv
   emerge --newuse --deep --with-bdeps=y -j @system --buildpkg
 
   emerge ${SAB_EMERGE_OPTS} @preserved-rebuild
 
-  emerge sys-apps/entropy-server sys-apps/entropy app-admin/equo dev-tcltk/expect
+  emerge sys-apps/entropy-server sys-apps/entropy app-admin/equo dev-tcltk/expect \
+    dev-vcs/git dev-python/requests -j
 
   sabayon_set_default_shell "/bin/bash"
 
