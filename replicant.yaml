@@ -1,0 +1,18 @@
+source: "https://github.com/Sabayon/sbi-tasks"
+environment:
+- LC_ALL=en_US.UTF-8
+image: sabayon/base-amd64
+script:
+  - equo up && ACCEPT_LICENSE=* equo i enman
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+  - echo 'https_validate_cert = false' >> /etc/entropy/repositories.conf.d/entropy_enman_devel
+  - equo up && ACCEPT_LICENSE=* equo i mottainai-cli dev-util/replicant
+  - mkdir -p /root/.config/
+  - echo 'Sourcing storage file...'
+  - eval '. $(pwd)/confs/mcli.keys'
+  - replicant -p sab-infra environment destroy
+  - replicant -p sab-infra environment deploy
+task: docker_execute
+storage: "8925468933589065900"
+storage_path: /confs
+
