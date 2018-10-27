@@ -7,5 +7,5 @@
   "storage":"9317096982217158",
   "storage_path": "storage",
   "image": "sabayon/builder-amd64",
-  "planned": "@daily"
+  "planned": "@weekly"
 }
