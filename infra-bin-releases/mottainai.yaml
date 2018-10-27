@@ -28,3 +28,4 @@ script:
   - popd
 tag_namespace: mottainai-cross-bin
 task: docker_execute
+planned: "@daily"
