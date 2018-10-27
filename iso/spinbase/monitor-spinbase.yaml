@@ -35,5 +35,5 @@ environment:
 storage: "8925468933589065900"
 storage_path: /confs
 timeout: 0
-planned: "0 0 1 * * *"
+#planned: "0 0 1 * * *"
 

@@ -14,13 +14,14 @@ environment:
   - SABAYON_USE_IMG=0
   - SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git"
   - SABAYON_MOLECULES_ISO=/vagrant/namespace
-image: https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box
+image: https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box
 publish_mode: append
 queue: virtualbox
 retry: "5"
 script:
   - sudo wget https://raw.githubusercontent.com/Sabayon/docker-isobuilder-amd64/master/scripts/sabayon_molecules.sh -O /sabayon_molecules.sh
   - sudo chmod +x /sabayon_molecules.sh
+  - sudo equo up
   - sudo ACCEPT_LICENSE=* equo i docker tini
   - sudo systemctl start docker
   - sudo /sabayon_molecules.sh init

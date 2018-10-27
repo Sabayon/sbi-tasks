@@ -9,3 +9,4 @@ script:
    - docker build --no-cache --rm -t sabayon/packer-amd64 .
    - docker push sabayon/packer-amd64
 task: docker_execute
+planned: "@daily"

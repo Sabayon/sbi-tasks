@@ -22,6 +22,5 @@
     "/dev/loop-control:/dev/loop-control",
     "/tmp:/run"
   ],
-  "retry": "3",
-  "planned": "0 0 3 * * *"
+  "retry": "3"
 }
