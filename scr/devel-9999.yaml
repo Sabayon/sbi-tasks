@@ -1,0 +1,20 @@
+source: https://github.com/Sabayon/community-repositories
+directory: /devel-9999
+image: sabayon/builder-amd64
+namespace: devel-9999
+tag_namespace: devel-9999
+artefact_path: artifacts
+cache_image: "yes"
+script:
+- export LC_ALL=en_US.UTF-8
+- wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+- wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
+- chmod a+x /usr/sbin/builder
+- chmod a+x ./sark-localbuild
+- eselect python set python3.6
+- ./sark-localbuild
+storage: "7853977132774944695"
+storage_path: confs
+task: docker_execute
+timeout: 64800
+planned: "@daily"
