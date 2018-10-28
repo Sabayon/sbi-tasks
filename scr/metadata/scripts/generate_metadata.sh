@@ -12,6 +12,7 @@ REPOS_TO_SYNC=(
     "community"
     "devel"
     "haskell"
+    "rust"
     "sihnon-common"
     "sihnon-desktop"
     "sihnon-server"
