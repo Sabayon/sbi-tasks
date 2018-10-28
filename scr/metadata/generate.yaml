@@ -1,11 +1,15 @@
 source: https://github.com/Sabayon/sbi-tasks
 directory: /scr/metadata
-image: sabayon/builder-amd64
+image: sabayon/base-amd64
 tag_namespace: metadata
 script:
+  - equo up && equo i wget enman
+  - enman add devel && equo up
+  - equo i sabayon-sark
   - bash scripts/generate_metadata.sh
   - mv metadata.json artefacts/
 environment:
   - SYNC_URL=https://dispatcher.sabayon.org/sbi/namespace/
+  - ACCEPT_LICENSE=*
 task: docker_execute
 planned: "@daily"
