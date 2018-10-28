@@ -33,6 +33,6 @@ task: docker_execute
 artefact_path: artifacts
 image: geaaru/stage3-gentoo-systemd-armv7a_hardfp
 source: https://github.com/Sabayon/sbi-tasks
-directory: "next/arm/core"
+directory: "/next/arm/core"
 queue: arm
 
