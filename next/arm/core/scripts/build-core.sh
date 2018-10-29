@@ -144,7 +144,7 @@ build () {
   emerge dev-libs/libaio -j
 
   # Needed for builder and sark-localbuild
-  emerge sys-process/tini dev-python/shyaml app-portage/gentoolkit
+  emerge sys-process/tini dev-python/shyaml app-portage/gentoolkit -j
 
   emerge --newuse --deep --with-bdeps=y -j @system --buildpkg -pv
   emerge --newuse --deep --with-bdeps=y -j @system --buildpkg

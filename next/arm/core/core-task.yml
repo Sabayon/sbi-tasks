@@ -16,6 +16,7 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
   - chmod a+x /usr/sbin/builder
   - chmod a+x ./sark-localbuild
+  - eselect python set python3.6
   - SAB_BUILDFILE=core-build.yml ./sark-localbuild
 environment:
   - SHELL=/bin/bash
