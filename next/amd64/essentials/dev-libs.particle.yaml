@@ -205,7 +205,7 @@ build:
     - dev-libs/lzo
     - dev-libs/m17n-lib
     - dev-libs/maloc
-    - dev-libs/mini-xml
+    - dev-libs/mxml
     - dev-libs/mongo-c-driver
     - dev-libs/mozldap
     - dev-libs/mpc
