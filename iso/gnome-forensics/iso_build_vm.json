@@ -30,5 +30,5 @@
     "CPU=4"
   ],
   "retry": "3",
-  "planned": "0 0 3 * * *"
+  "planned": "@weekly"
 }
