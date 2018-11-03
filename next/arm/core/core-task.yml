@@ -17,6 +17,8 @@ script:
   - chmod a+x /usr/sbin/builder
   - chmod a+x ./sark-localbuild
   - eselect python set python3.6
+  # Force py3.6 on eit
+  - sed -e 's:python2.7:python:g' -i /usr/bin/eit
   - SAB_BUILDFILE=core-build.yml ./sark-localbuild
 environment:
   - SHELL=/bin/bash
