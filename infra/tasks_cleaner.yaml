@@ -1,0 +1,25 @@
+# Author: Sabayon Dev Team
+# Task Cleaner
+
+image: 'sabayon/base-amd64'
+storage: "8925468933589065900"
+storage_path: "/confs"
+source: "https://github.com/Sabayon/sbi-tasks.git"
+directory: "/infra"
+script:
+  - export ACCEPT_LICENSE='*'
+  - export LC_ALL=en_US.UTF-8
+  - equo up && equo install enman
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+  - echo 'https_validate_cert = false' >> /etc/entropy/repositories.conf.d/entropy_enman_devel
+  - equo up
+  - equo install dev-util/mottainai-cli
+  - mkdir -p /root/.config/
+  - echo 'Sourcing storage file...'
+  - eval '. $(pwd)/confs/mcli.keys'
+  - echo "=================================================================="
+  - echo "Clean old tasks:"
+  - scripts/tasks_cleaner.sh
+  - echo "=================================================================="
+planned: "0 0 10 * * *"
+task: docker_execute
