@@ -18,6 +18,7 @@ script:
   - echo 'Sourcing storage file...'
   - eval '. $(pwd)/confs/mcli.keys'
   - echo "=================================================================="
+  - export MOTTAINAI_CLI_PROFILE=sab-infra
   - echo "Clean old tasks:"
   - scripts/tasks_cleaner.sh
   - echo "=================================================================="
