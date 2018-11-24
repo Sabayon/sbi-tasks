@@ -11,7 +11,6 @@ script:
 - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
 - chmod a+x /usr/sbin/builder
 - chmod a+x ./sark-localbuild
-- eselect python set python3.6
 - ./sark-localbuild
 storage: "7853977132774944695"
 storage_path: confs
