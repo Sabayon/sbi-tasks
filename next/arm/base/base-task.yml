@@ -1,0 +1,39 @@
+
+script:
+  - export LC_ALL=en_US.UTF-8
+  - eval "export SOURCE_DIR=$(pwd)"
+  - echo "SOURCE_DIR = ${SOURCE_DIR}"
+  - wget https://dispatcher.sabayon.org/sbi/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker
+  - chmod a+x /usr/bin/pkgs-checker
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+  - chmod 755 /sbin/sark-functions.sh
+  - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+  - chmod 755 /etc/sark-functions
+  - echo '===> Preparing last step....'
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
+  - chmod a+x /usr/sbin/builder
+  - chmod a+x ./sark-localbuild
+  - eselect python set python3.6
+  # Force py3.6 on eit
+  - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+  # Create mask file of upstream packages
+  - source /sbin/sark-functions.sh
+  - sabayon_mask_upstream_pkgs
+  - SAB_BUILDFILE=dev-lang.particle.yaml ./sark-localbuild
+  - SAB_BUILDFILE=dev-lang.stable.particle.yaml ./sark-localbuild
+  - SAB_BUILDFILE=dev-libs.particle.yaml ./sark-localbuild
+environment:
+  - SHELL=/bin/bash
+  - SABAYON_ARCH=arm
+  - USE_EQUO=0
+  - REPOSITORY_NAME=core-arm
+  - SKIP_COMMIT=1
+  - SKIP_PULL=1
+task: docker_execute
+artefact_path: artifacts
+image: geaaru/sabayon-builder-arm
+source: https://github.com/Sabayon/sbi-tasks
+directory: "/next/arm/core"
+queue: arm
+
