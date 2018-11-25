@@ -3,8 +3,6 @@ script:
   - export LC_ALL=en_US.UTF-8
   - eval "export SOURCE_DIR=$(pwd)"
   - echo "SOURCE_DIR = ${SOURCE_DIR}"
-  - ./scripts/build-core.sh init
-  - ./scripts/build-core.sh build
   - wget https://dispatcher.sabayon.org/sbi/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker
   - chmod a+x /usr/bin/pkgs-checker
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
@@ -19,22 +17,20 @@ script:
   - eselect python set python3.6
   # Force py3.6 on eit
   - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+  # Create mask file of upstream packages
+  - source /sbin/sark-functions.sh
+  - sabayon_mask_upstream_pkgs
   - SAB_BUILDFILE=core-build.yml ./sark-localbuild
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=arm
   - USE_EQUO=0
   - REPOSITORY_NAME=core-arm
-    # Avoid sync of portage 
-  - SKIP_PORTAGE_SYNC=1
-    # Avoid remove of portagate with compiled packages.
-  - SKIP_CLEAN_PACKAGESDIR=1
-  - BUILDER_PROFILE=65
   - SKIP_COMMIT=1
   - SKIP_PULL=1
 task: docker_execute
 artefact_path: artifacts
-image: geaaru/stage3-gentoo-systemd-armv7a_hardfp
+image: geaaru/sabayon-builder-arm
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/core"
 queue: arm
