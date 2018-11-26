@@ -9,7 +9,9 @@ build:
     # Install each package separately
     split_install: 1
     preserved_rebuild: 1
-    default_args: --accept-properties=-interactive -t --quiet --complete-graph --newuse --deep --with-bdeps=y -j --buildpkg
+    # default_args: --accept-properties=-interactive -t --quiet --complete-graph --newuse --deep --with-bdeps=y -j --buildpkg
+    # --newuse option implies --selective that exclude package already updated. We need force build of all packages when we have a new repo.
+    default_args: --accept-properties=-interactive -t --quiet --complete-graph --newuse --selective=n --deep --with-bdeps=y -j --buildpkg
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
   target:
     - sys-apps/portage
