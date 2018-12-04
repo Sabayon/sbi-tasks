@@ -4,12 +4,14 @@
 
 set -e
 
+DEBUG=${DEBUG:-0}
 # Define retention period in days. Default 120 days
 RETENTION_PERIOD=${RETENTION_PERIOD:-120}
 
 main () {
 
   local l=0
+  local removed=0
   local  nowdate=$(date +"%Y-%m-%d")
   local taskid=""
   local tdate=""
@@ -20,13 +22,14 @@ main () {
     exit 1
   fi
 
+  echo "Searching for old task to remove..."
   local tasks_list=$(mottainai-cli task list | awk '{str = sprintf("%s_%s", $8, $2)} { print str }')
   for i in ${tasks_list} ; do
     taskid=""
     tdate=""
     days=""
 
-    let l++
+    let l++ || true
     if [ $l -lt 3 ] ; then
       # Skip header
       continue
@@ -35,11 +38,18 @@ main () {
     tdate=$(echo $i | sed -e 's:_.*::g')
     days=$(python -c "from datetime import datetime; print ((datetime.strptime('$nowdate', '%Y-%m-%d')-datetime.strptime('$tdate', '%Y-%m-%d')).days)")
 
+    if [ "$DEBUG" = 1 ] ; then
+      echo "Check task ${taskid} with date ${tdate}: days $days"
+    fi
+
     if [ $days -gt ${RETENTION_PERIOD} ] ; then
       echo "Removing task $taskid ($tdate - $days)"
       mottainai-cli task remove $taskid
+      let removed++ || true
     fi
   done
+
+  echo "All done. Removed tasks: $removed."
 
   exit 0
 }
