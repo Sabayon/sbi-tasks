@@ -3,7 +3,7 @@
    "sudo wget https://raw.githubusercontent.com/Sabayon/docker-isobuilder-amd64/master/scripts/sabayon_molecules.sh -O /sabayon_molecules.sh",
    "sudo chmod +x /sabayon_molecules.sh",
    "sudo equo up",
-   "sudo ACCEPT_LICENSE=* equo i --relaxed --norecursive mail-mta/postfix net-p2p/mktorrent-borg sys-fs/dosfstools dev-util/molecule dev-vcs/git app-misc/ca-certificates app-emulation/docker app-emulation/docker-companion sys-process/tini sys-boot/syslinux",
+   "sudo ACCEPT_LICENSE=* equo i --relaxed --norecursive mail-mta/postfix net-p2p/mktorrent-borg sys-fs/dosfstools dev-util/molecule dev-vcs/git app-misc/ca-certificates app-emulation/docker app-emulation/docker-companion sys-process/tini sys-boot/syslinux sys-fs/squashfs-tools",
    "sudo systemctl start docker",
    "sudo SABAYON_SKIP_UPGRADE=1 /sabayon_molecules.sh init",
    "sudo SABAYON_EXTRA_PKGS=sys-kernel/linux-sabayon:4.18 SABAYON_KERNEL_VERSION=4.18 MOLECULE_ISO_TITLE=SABAYON SABAYON_INSTALL_KERNEL=1 SYSTEMD=0 DRACUT=1 SABAYON_USE_IMG=0 SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh SABAYON_MOLECULES_SYSTEMD_MODE=0 /sabayon_molecules.sh run daily --image spinbase --skip-docker-rmi --skip-dev",
