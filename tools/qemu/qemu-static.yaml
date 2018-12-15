@@ -1,0 +1,32 @@
+# Authors: Sabayon Team
+#          geaaru@sabayonlinux.org
+#          mudler@sabayonlinux.org)
+#
+# Description: Task for create qemu static binaries.
+
+image: sabayon/builder-amd64
+script:
+  - export LC_ALL=en_US.UTF-8
+  - export ACCEPT_LICENSE='*'
+  - equo up && equo install app-emulation/qemu
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
+  - chmod a+x /usr/sbin/builder
+  - chmod a+x ./sark-localbuild
+  - SAB_BUILDFILE=build.yml ./sark-localbuild
+  - cp /usr/bin/qemu-* namespace/
+environment:
+  - SHELL=/bin/bash
+  - SABAYON_ARCH=arm
+  - REPOSITORY_NAME=core-arm
+  - SKIP_COMMIT=1
+  - SKIP_PULL=1
+task: lxd
+artefact_path: namespace
+source: https://github.com/Sabayon/sbi-tasks
+directory: /tools/qemu
+tag_namespace: qemu-static
+#planned: "weekly"
+timeout: 0
+retry: "3"
+

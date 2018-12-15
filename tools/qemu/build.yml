@@ -1,0 +1,14 @@
+repository:
+  description: QEMU Static repository
+build:
+  qa_checks: 0
+  emerge:
+    # Set sabayon-arm profile
+    profile: 65
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg --newuse --deep
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - app-emulation/qemu
