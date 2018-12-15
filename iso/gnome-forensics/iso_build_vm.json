@@ -29,6 +29,5 @@
     "RAM=4096",
     "CPU=4"
   ],
-  "retry": "3",
-  "planned": "@weekly"
+  "retry": "3"
 }
