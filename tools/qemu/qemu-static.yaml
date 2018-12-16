@@ -4,11 +4,16 @@
 #
 # Description: Task for create qemu static binaries.
 
-image: sabayon/builder-amd64
+image: sabayon
 script:
   - export LC_ALL=en_US.UTF-8
   - export ACCEPT_LICENSE='*'
-  - equo up && equo install app-emulation/qemu
+  # :'( workaround for too fast bootstrap of lxd container.
+  # DHCP offer is not arrived and routing is not set
+  - sleep 3
+  - equo up
+  - equo install app-misc/sabayon-sark app-misc/sabayon-devkit sys-devel/gcc
+  - equo install app-emulation/qemu
   - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
   - chmod a+x /usr/sbin/builder
