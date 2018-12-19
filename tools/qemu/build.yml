@@ -3,8 +3,8 @@ repository:
 build:
   qa_checks: 0
   emerge:
-    # Set sabayon-arm profile
-    profile: 65
+    # Set profile default/linux/amd64/17.0/systemd
+    profile: 25
     # Install each package separately
     split_install: 0
     preserved_rebuild: 1

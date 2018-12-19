@@ -22,6 +22,8 @@ script:
   - chmod 755 /sbin/sark-functions.sh
   - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
   - chmod 755 /etc/sark-functions
+  # Not sure if is present or not.
+  - eval 'rm /etc/portage/make.conf || true'
   - ln -s /etc/portage/make.conf.amd64 /etc/portage/make.conf
   - SAB_BUILDFILE=build.yml ./sark-localbuild
   - cp /usr/bin/qemu-* namespace/
