@@ -23,4 +23,6 @@ script:
   - scripts/tasks_cleaner.sh
   - echo "=================================================================="
 planned: "0 0 10 * * *"
+environment:
+  - RETENTION_PERIOD=10
 task: docker_execute
