@@ -10,9 +10,11 @@ script:
   - export ACCEPT_LICENSE='*'
   # :'( workaround for too fast bootstrap of lxd container.
   # DHCP offer is not arrived and routing is not set
-  - sleep 5
+  - sleep 6
+  # Temporary: I fix this on LXD network configuration.
+  - echo "nameserver 1.1.1.1" > /etc/resolv.conf
   - equo up
-  - equo install app-misc/sabayon-sark app-misc/sabayon-devkit sys-devel/gcc
+  - equo install app-misc/sabayon-sark app-misc/sabayon-devkit sys-devel/gcc sys-apps/entropy-server
   - equo install app-emulation/qemu
   - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
@@ -26,7 +28,7 @@ script:
   - eval 'rm /etc/portage/make.conf || true'
   - ln -s /etc/portage/make.conf.amd64 /etc/portage/make.conf
   - SAB_BUILDFILE=build.yml ./sark-localbuild
-  - cp /usr/bin/qemu-* namespace/
+  - cp -a /usr/bin/qemu-* namespace/
 environment:
   - SHELL=/bin/bash
   - REPOSITORY_NAME=qemu-static
