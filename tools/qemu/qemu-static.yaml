@@ -29,8 +29,7 @@ script:
   - cp /usr/bin/qemu-* namespace/
 environment:
   - SHELL=/bin/bash
-  - SABAYON_ARCH=arm
-  - REPOSITORY_NAME=core-arm
+  - REPOSITORY_NAME=qemu-static
   - SKIP_COMMIT=1
   - SKIP_PULL=1
 task: lxd

@@ -3,12 +3,12 @@ repository:
 build:
   qa_checks: 0
   emerge:
-    # Set profile default/linux/amd64/17.0/systemd
-    profile: 25
+    # Set profile default/linux/amd64/17.0/desktop
+    profile: 16
     # Install each package separately
     split_install: 0
     preserved_rebuild: 1
-    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg --newuse --deep
+    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg --newuse
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
   target:
     - app-emulation/qemu
