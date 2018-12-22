@@ -23,7 +23,7 @@ main () {
   fi
 
   echo "Searching for old task to remove..."
-  local tasks_list=$(mottainai-cli task list | awk '{str = sprintf("%s_%s", $8, $2)} { print str }')
+  local tasks_list=$(mottainai-cli task list | grep -w "success\|failed\|error" --color=none | awk '{str = sprintf("%s_%s", $8, $2)} { print str }')
   for i in ${tasks_list} ; do
     taskid=""
     tdate=""
