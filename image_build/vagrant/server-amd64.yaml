@@ -7,7 +7,8 @@ script:
    - packer build -var 'flavor=Server' -var 'vagrant=vagrant' -var 'guest_additions=virtualbox' -only virtualbox-iso images.json
    - mv *.box artefacts/
 queue: 'virtualbox'
-task: docker_execute
+type: docker_execute
+name: "Build Vagrant Image"
 tag_namespace: "vagrant"
 publish_mode: "append"
 planned: "0 0 10 * * *"

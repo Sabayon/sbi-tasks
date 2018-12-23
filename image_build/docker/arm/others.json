@@ -2,7 +2,7 @@
   "source": "https://github.com/Sabayon/dockerbuilder-vagrant",
   "script": ["source storage/env ","sudo equo up && sudo equo i git-lfs git docker","docker login -u $DOCKER_USER -p $DOCKER_PASS","bash nightly.sh" ],
   "directory": "/",
-  "task": "docker_execute",
+  "type": "docker_execute",
   "artefact_path": "artifacts",
   "queue": "arm",
   "storage":"9317096982217158",
