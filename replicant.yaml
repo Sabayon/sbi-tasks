@@ -12,7 +12,8 @@ script:
   - eval '. $(pwd)/confs/mcli.keys'
   - replicant -p sab-infra environment destroy
   - replicant -p sab-infra environment deploy
-task: docker_execute
+type: docker_execute
+name: "Replicant job"
 storage: "8925468933589065900"
 storage_path: /confs
 
