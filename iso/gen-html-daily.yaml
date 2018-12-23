@@ -3,7 +3,7 @@
 #          mudler@sabayonlinux.org)
 #
 # Description: Task for generate html pages for daily ISOs
-
+name: "genhtml"
 image: sabayon/base-amd64
 source: https://github.com/Sabayon/molecules
 script:
@@ -14,7 +14,7 @@ script:
   - /bin/bash ./scripts/gen_html/gen-iso-html.sh --dir ./namespace/iso/
   - /bin/date -u > ./namespace/iso/RELEASE_DATE_DAILY
   - chmod a+rw -R ./namespace/iso
-task: docker_execute
+type: docker_execute
 artefact_path: namespace
 directory: /
 environment:
@@ -26,4 +26,3 @@ publish_mode: append
 planned: "0 0 10 * * *"
 timeout: 0
 retry: "3"
-

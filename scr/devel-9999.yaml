@@ -1,3 +1,4 @@
+name: "SCR devel-9999"
 source: https://github.com/Sabayon/community-repositories
 directory: /devel-9999
 image: sabayon/builder-amd64
@@ -14,6 +15,6 @@ script:
 - ./sark-localbuild
 storage: "7853977132774944695"
 storage_path: confs
-task: docker_execute
+type: docker_execute
 timeout: 64800
 planned: "@daily"

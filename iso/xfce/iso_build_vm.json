@@ -1,4 +1,5 @@
 {
+  "name": "Xfce Daily",
   "script": [
      "sudo wget https://raw.githubusercontent.com/Sabayon/docker-isobuilder-amd64/master/scripts/sabayon_molecules.sh -O /sabayon_molecules.sh",
    "sudo chmod +x /sabayon_molecules.sh",
@@ -9,7 +10,7 @@
    "sudo SABAYON_KERNEL_VERSION=4.18 MOLECULE_ISO_TITLE=SABAYON SYSTEMD=0 SABAYON_USE_IMG=0 SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh SABAYON_MOLECULES_SYSTEMD_MODE=0 SABAYON_MOLECULES_ISO=/iso DRACUT_SQUASHFS=1 DRACUT=1 /sabayon_molecules.sh run daily --image xfce --skip-docker-rmi --skip-dev",
    "sudo cp -rfv /sabayon/iso /vagrant/namespace" ],
   "directory": "/",
-  "task": "virtualbox_execute",
+  "type": "virtualbox_execute",
   "image": "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box",
   "storage": "8925468933589065900",
   "artefact_path": "namespace",

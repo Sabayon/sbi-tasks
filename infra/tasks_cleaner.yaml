@@ -1,6 +1,6 @@
 # Author: Sabayon Dev Team
 # Task Cleaner
-
+name: "Maintenance"
 image: 'sabayon/base-amd64'
 storage: "8925468933589065900"
 storage_path: "/confs"
@@ -25,4 +25,4 @@ script:
 planned: "@daily"
 environment:
   - RETENTION_PERIOD=10
-task: docker_execute
+type: docker_execute

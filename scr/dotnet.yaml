@@ -1,3 +1,4 @@
+name: "SCR dotnet"
 source: https://github.com/Sabayon/community-repositories
 directory: /dotnet
 image: sabayon/builder-amd64
@@ -16,6 +17,6 @@ script:
 - ./sark-localbuild
 storage: ""
 storage_path: confs
-task: docker_execute
+type: docker_execute
 timeout: 64800
 #planned: "@daily"

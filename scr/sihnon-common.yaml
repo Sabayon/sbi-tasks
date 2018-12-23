@@ -1,3 +1,4 @@
+name: "SCR sihnon-common"
 source: https://github.com/Sabayon/community-repositories
 directory: /sihnon-common
 image: sabayon/builder-amd64
@@ -23,6 +24,6 @@ script:
   - ./sark-localbuild
 storage: "202372093426954774"
 storage_path: confs
-task: docker_execute
+type: docker_execute
 timeout: 64800
 planned: "@daily"

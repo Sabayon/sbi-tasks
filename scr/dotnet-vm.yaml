@@ -1,3 +1,4 @@
+name: "SCR dotnet (vm)"
 environment:
 - LC_ALL=en_US.UTF-8
 source: 'https://github.com/Sabayon/community-repositories'
@@ -18,6 +19,6 @@ script:
     - ( mv confs /vagrant/ || true )
     - pushd community-repositories/dotnet
     - sudo sark-localbuild && sudo mv artifacts/* /vagrant/artefacts/
-task: virtualbox_execute
+type: virtualbox_execute
 timeout: 64800
 planned: "@daily"

@@ -3,7 +3,7 @@
 #          mudler@sabayonlinux.org)
 #
 # Description: Task for create qemu static binaries.
-
+name: "Qemu static build"
 image: sabayon
 script:
   - export LC_ALL=en_US.UTF-8
@@ -34,7 +34,7 @@ environment:
   - REPOSITORY_NAME=qemu-static
   - SKIP_COMMIT=1
   - SKIP_PULL=1
-task: lxd
+type: lxd
 artefact_path: namespace
 source: https://github.com/Sabayon/sbi-tasks
 directory: /tools/qemu
@@ -42,4 +42,3 @@ tag_namespace: qemu-static
 #planned: "weekly"
 timeout: 0
 retry: "3"
-

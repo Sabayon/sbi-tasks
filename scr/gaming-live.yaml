@@ -1,3 +1,4 @@
+name: "SCR gaming-live"
 source: https://github.com/Sabayon/community-repositories
 directory: /gaming-live
 image: sabayon/builder-amd64
@@ -15,6 +16,6 @@ script:
 - ./sark-localbuild
 storage: "4305828396602493158"
 storage_path: confs
-task: docker_execute
+type: docker_execute
 timeout: 64800
 planned: "@daily"
