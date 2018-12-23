@@ -1,3 +1,4 @@
+name: "metadata-gen"
 source: https://github.com/Sabayon/sbi-tasks
 directory: /scr/metadata
 image: sabayon/base-amd64
@@ -11,5 +12,5 @@ script:
 environment:
   - SYNC_URL=https://dispatcher.sabayon.org/sbi/namespace/
   - ACCEPT_LICENSE=*
-task: docker_execute
+type: docker_execute
 planned: "@daily"
