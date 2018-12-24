@@ -36,6 +36,7 @@ environment:
   - SKIP_PULL=1
 type: lxd
 artefact_path: namespace
+queue: lxd
 source: https://github.com/Sabayon/sbi-tasks
 directory: /tools/qemu
 tag_namespace: qemu-static
