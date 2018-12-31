@@ -20,5 +20,5 @@ script:
     - pushd community-repositories/dotnet
     - sudo sark-localbuild && sudo mv artifacts/* /vagrant/artefacts/
 type: virtualbox_execute
-timeout: 64800
+timeout: 36000
 #planned: "@daily"
