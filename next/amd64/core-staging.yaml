@@ -15,19 +15,20 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
   - chmod a+x /usr/sbin/builder
   - chmod a+x ./sark-localbuild
-  - echo "#!/bin/bash" > /pre-script
-  - echo "sed -i 's/sys-devel\/gcc -~amd64//g' /etc/portage/package.keywords/00-sabayon.package.keywords" >> /pre-script
-  - echo "sed -i 's/sys-devel\/base-gcc -~amd64//g' /etc/portage/package.keywords/00-sabayon.package.keywords" >> /pre-script
-  - cp -rfv /pre-script ./
-  - chmod +x pre-script
-  - USE_EQUO=0 /usr/sbin/builder sys-devel/base-gcc::sabayon-distro
-  - gcc-config 1
-  - USE_EQUO=0 /usr/sbin/builder sys-devel/gcc::sabayon-distro
-  - gcc-config 2
-  - source /etc/profile
   - ./sark-localbuild
 source: https://github.com/Sabayon/sbi-tasks
 storage: "3190393910779426736"
 storage_path: storage
 tag_namespace: core-staging-amd64
 task: docker_execute
+
+#  - echo "#!/bin/bash" > /pre-script
+#  - echo "sed -i 's/sys-devel\/gcc -~amd64//g' /etc/portage/package.keywords/00-sabayon.package.keywords" >> /pre-script
+#  - echo "sed -i 's/sys-devel\/base-gcc -~amd64//g' /etc/portage/package.keywords/00-sabayon.package.keywords" >> /pre-script
+#  - cp -rfv /pre-script ./
+#  - chmod +x pre-script
+#  - USE_EQUO=0 /usr/sbin/builder sys-devel/base-gcc::sabayon-distro
+#  - gcc-config 1
+#  - USE_EQUO=0 /usr/sbin/builder sys-devel/gcc::sabayon-distro
+#  - gcc-config 2
+#  - source /etc/profile
