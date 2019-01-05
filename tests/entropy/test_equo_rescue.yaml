@@ -1,0 +1,38 @@
+# Author: Sabayon Dev Team
+# Test Equo rescue generate command.
+name: "Test Entropy1"
+image: 'sabayon/base-amd64'
+script:
+  - export ACCEPT_LICENSE='*'
+  - export LC_ALL=en_US.UTF-8
+  - env-update
+  - equo up && equo install enman dev-tcltk/expect layman git sys-dev
+  # Install DEPEND of equo
+  - equo install app-text/build-docbook-catalog app-text/docbook-xsl-stylesheets dev-libs/libxslt app-text/sgml-common dev-libs/libnatspec app-arch/unzip app-text/docbook-xml-dtd app-text/asciidoc
+  # Install gcc
+  - equo install sys-devel/gcc
+  - eval "echo -9 | equo conf update"
+  - source /etc/profile
+  - cd /etc
+  - rm localtime
+  - ln -sf ../usr/share/zoneinfo/Europe/Helsinki localtime
+  - ls -l
+  - emerge-webrsync
+  #  - emerge --sync
+  - eval 'rm -rf /var/lib/layman/* || true'
+  - touch /var/lib/layman/make.conf
+  - "eval 'sed -i -e \"s/conf_type.*/conf_type: repos.conf/g\" /etc/layman/layman.cfg'"
+  - cat /etc/layman/layman.cfg
+  - layman -f
+  - eval 'echo y | layman -a sabayon'
+  - eval 'echo y | layman -a sabayon-distro'
+  - emerge -vt equo --autounmask-write
+  - etc-update
+  - emerge -vt equo
+  - cd /root
+  - wget https://raw.githubusercontent.com/Sabayon/docker-armhfp/develop/builder-scratch/scripts/equo-rescue-generate.exp
+  - /usr/bin/expect ./equo-rescue-generate.exp
+  - equo install sqlite3
+environment:
+  - ETP_NONINTERACTIVE=1
+type: docker
