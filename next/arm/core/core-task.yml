@@ -5,8 +5,8 @@ script:
   - echo "SOURCE_DIR = ${SOURCE_DIR}"
   # Temporary workaround for delay on DHCP response
   - sleep 10
-  - wget https://dispatcher.sabayon.org/sbi/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker
-  - chmod a+x /usr/bin/pkgs-checker
+  # - wget https://dispatcher.sabayon.org/sbi/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker
+  # - chmod a+x /usr/bin/pkgs-checker
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - chmod 755 /sbin/sark-functions.sh
   - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
@@ -35,6 +35,7 @@ environment:
   # - SKIP_PULL=1
   # I need call emerge-webrsync at begin to retrive data for active profile.
   - SKIP_PORTAGE_SYNC=1
+  - SAB_PORTDIR=/etc/portage
 type: lxd
 name: ARM Core
 artefact_path: artifacts
