@@ -3,6 +3,8 @@ script:
   - export LC_ALL=en_US.UTF-8
   - eval "export SOURCE_DIR=$(pwd)"
   - echo "SOURCE_DIR = ${SOURCE_DIR}"
+  # Temporary workaround for delay on DHCP response
+  - sleep 10
   - wget https://dispatcher.sabayon.org/sbi/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker
   - chmod a+x /usr/bin/pkgs-checker
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
@@ -14,6 +16,7 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
   - chmod a+x /usr/sbin/builder
   - chmod a+x ./sark-localbuild
+  - emerge-webrsync
   - eselect python set python3.6
   # Force py3.6 on eit
   - sed -e 's:python2.7:python:g' -i /usr/bin/eit
@@ -28,6 +31,8 @@ environment:
   - REPOSITORY_NAME=core-arm
   - SKIP_COMMIT=1
   - SKIP_PULL=1
+  # I need call emerge-webrsync at begin to retrive data for active profile.
+  - SKIP_PORTAGE_SYNC=1
 type: lxd
 name: ARM Core
 artefact_path: artifacts
