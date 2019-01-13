@@ -22,6 +22,8 @@ script:
   - sed -e 's:python2.7:python:g' -i /usr/bin/eit
   # Create mask file of upstream packages
   - source /sbin/sark-functions.sh
+  # Temporary until we create a new builder image. Not needed with LXD
+  - rm -v /etc/portage/package.env/01-sabayon.package.env
   - sabayon_mask_upstream_pkgs
   - SAB_BUILDFILE=core-build.yml ./sark-localbuild
 environment:
@@ -29,8 +31,8 @@ environment:
   - SABAYON_ARCH=arm
   - USE_EQUO=0
   - REPOSITORY_NAME=core-arm
-  - SKIP_COMMIT=1
-  - SKIP_PULL=1
+  # - SKIP_COMMIT=1
+  # - SKIP_PULL=1
   # I need call emerge-webrsync at begin to retrive data for active profile.
   - SKIP_PORTAGE_SYNC=1
 type: lxd

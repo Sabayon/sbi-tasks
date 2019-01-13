@@ -47,6 +47,7 @@ build:
     - sys-apps/less
     - sys-apps/man-pages
     - sys-apps/net-tools
+    - sys-apps/kmod
     - sys-apps/sed
     - sys-apps/util-linux
     - sys-apps/which
