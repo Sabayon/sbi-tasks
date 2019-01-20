@@ -31,8 +31,10 @@ environment:
   - SABAYON_ARCH=arm
   - USE_EQUO=0
   - REPOSITORY_NAME=core-arm
-  # - SKIP_COMMIT=1
-  # - SKIP_PULL=1
+  - SKIP_COMMIT=1
+  - SKIP_PULL=1
+  # without REPO_RESET seems that repository doesn't handle correctly use flags.
+  - REPO_RESET=1
   # I need call emerge-webrsync at begin to retrive data for active profile.
   - SKIP_PORTAGE_SYNC=1
   - SAB_PORTDIR=/etc/portage
