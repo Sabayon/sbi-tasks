@@ -7,13 +7,14 @@ mkdir go
 export GOPATH=$PWD/go
 export PATH="$PATH:$GOPATH/bin"
 WORKDIR=$PWD
+VENDORDIR="github.com/MottainaiCI"
 
-mkdir -p go/src/github.com/MottainaiCI
+mkdir -p go/src/${VENDORDIR}
 
 for SUBPROJECT in "mottainai-server" "mottainai-cli" "mottainai-agent" "replicant"
 do
-	git clone https://github.com/MottainaiCI/${SUBPROJECT} go/src/github.com/MottainaiCI/${SUBPROJECT}
-	pushd go/src/github.com/MottainaiCI/${SUBPROJECT}
+	git clone https://${VENDORDIR}/${SUBPROJECT} go/src/${VENDORDIR}/${SUBPROJECT}
+	pushd go/src/${VENDORDIR}/${SUBPROJECT}
   make deps
   make multiarch-build
   mv release/* $WORKDIR/artefacts/
