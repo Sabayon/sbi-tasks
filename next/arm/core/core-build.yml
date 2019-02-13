@@ -16,6 +16,8 @@ build:
   target:
     - sys-apps/portage
     - dev-libs/mpc
+      # cloog is needed for graphite (See: http://yuguangzhang.com/blog/enabling-gcc-graphite-and-lto-on-gentoo/)
+    - dev-libs/cloog
     - sys-devel/gcc::sabayon-distro
     - sys-devel/base-gcc::sabayon-distro
     - sys-devel/libtool

@@ -1,4 +1,3 @@
-
 script:
   - export LC_ALL=en_US.UTF-8
   - eval "export SOURCE_DIR=$(pwd)"
@@ -16,7 +15,8 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
   - chmod a+x /usr/sbin/builder
   - chmod a+x ./sark-localbuild
-  - emerge-webrsync
+  # Avoid final emerge (temporary)
+  - emerge --unmerge dev-lang/go
   - eselect python set python3.6
   # Force py3.6 on eit
   - sed -e 's:python2.7:python:g' -i /usr/bin/eit
@@ -36,12 +36,14 @@ environment:
   # without REPO_RESET seems that repository doesn't handle correctly use flags.
   - REPO_RESET=1
   # I need call emerge-webrsync at begin to retrive data for active profile.
-  - SKIP_PORTAGE_SYNC=1
+  # - SKIP_PORTAGE_SYNC=1
   - SAB_PORTDIR=/etc/portage
 type: lxd
 name: ARM Core
 artefact_path: artifacts
 image: sabayon/builder-arm
+# image: geaaru/sabayon-builder-arm
+# type: docker
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/core"
 queue: arm
