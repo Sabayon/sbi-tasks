@@ -30,6 +30,7 @@ tasks:
       - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
       # Temporary
       - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
       - /usr/bin/tini -s -- /sabayon_molecules.sh run daily --image gnome --skip-docker-rmi --skip-dev
     type: docker
     name: "Sabayon GNOME ISO"
@@ -56,6 +57,7 @@ tasks:
     script:
       - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
       - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
       - /usr/bin/tini -s -- /sabayon_molecules.sh run daily --image kde --skip-docker-rmi --skip-dev
     type: docker
     name: "Sabayon KDE ISO"
@@ -82,6 +84,7 @@ tasks:
     script:
       - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
       - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
       - /usr/bin/tini -s -- /sabayon_molecules.sh run daily --image mate --skip-docker-rmi --skip-dev
     type: docker
     name: "Sabayon MATE ISO"
@@ -109,6 +112,7 @@ tasks:
     script:
       - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
       - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
       - /usr/bin/tini -s -- /sabayon_molecules.sh run daily --image xfce --skip-docker-rmi --skip-dev
     type: docker
     name: "Sabayon Xfce ISO"
@@ -135,6 +139,7 @@ tasks:
     script:
       - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
       - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
       - /usr/bin/tini -s -- /sabayon_molecules.sh run daily --image minimal --skip-docker-rmi --skip-dev
     type: docker
     name: "Sabayon Minimal ISO"
@@ -161,6 +166,7 @@ tasks:
     script:
       - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
       - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
       - /usr/bin/tini -s -- /sabayon_molecules.sh run daily --image server --skip-docker-rmi --skip-dev
     type: docker
     name: "Sabayon Server ISO"
@@ -187,6 +193,7 @@ tasks:
     script:
       - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
       - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
       - /usr/bin/tini -s -- /sabayon_molecules.sh run daily --image lxqt --skip-docker-rmi --skip-dev
     type: docker
     name: "Sabayon LxQT ISO"
