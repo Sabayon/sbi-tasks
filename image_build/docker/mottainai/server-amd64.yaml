@@ -9,8 +9,8 @@ script:
    - 'echo "{\"experimental\": \"enabled\",\"credsStore\": \"wincred\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
    - docker manifest
    - docker login -u $DOCKER_USER -p $DOCKER_PASS
-   - docker build --no-cache --rm -t mottainaici/server-amd64:latest-amd64 .
-   - docker push mottainaici/server-amd64
+   - docker build --no-cache --rm -t mottainaici/server:latest-amd64 .
+   - docker push mottainaici/server
 type: docker_execute
 name: "Mottainai Server Docker Image"
 planned: "@daily"
