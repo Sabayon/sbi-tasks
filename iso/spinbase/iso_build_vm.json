@@ -26,5 +26,5 @@
     "SABAYON_USE_IMG=0"
   ],
   "queue": "virtualbox",
-  "retry": "5",
+  "retry": "5"
 }
