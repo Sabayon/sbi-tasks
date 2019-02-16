@@ -27,5 +27,4 @@
   ],
   "queue": "virtualbox",
   "retry": "5",
-  "planned": "0 0 20 * * *"
 }
