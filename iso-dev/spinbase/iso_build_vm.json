@@ -27,6 +27,5 @@
     "CPU=4"
   ],
   "queue": "virtualbox",
-  "retry": "5",
-  "planned": "0 0 1 * * *"
+  "retry": "5"
 }
