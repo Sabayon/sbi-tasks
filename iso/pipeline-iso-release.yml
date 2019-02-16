@@ -1,0 +1,216 @@
+# Authors: Sabayon Team
+#          geaaru@sabayonlinux.org
+#          mudler@sabayonlinux.org)
+
+# Note: Molecules use /dev/loopX device for mount .ISO file so we
+#       need from host device access to loop controller and a free
+#       loop device
+
+pipeline_name: "ISO Release Build Pipeline"
+
+concurrency: 3 # Number of parallel builds
+group:
+  - "gnome"
+  - "kde"
+  - "mate"
+  - "xfce"
+  - "minimal"
+  - "server"
+  - "lxqt"
+
+# Temporary use only farmer node that support dynamic loop on container
+# queue: "general"
+
+tasks:
+
+  # Sabayon GNOME ISO
+  gnome:
+    image: sabayon/isobuilder-amd64
+    script:
+      - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
+      # Temporary
+      - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
+      - /usr/bin/tini -s -- /sabayon_molecules.sh run monthly --image gnome --skip-docker-rmi --skip-dev
+    type: docker
+    name: "Sabayon GNOME ISO"
+    artefact_path: namespace
+    binds:
+      - /dev/loop-control:/dev/loop-control
+    directory: /
+    environment:
+      - SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git
+      - SABAYON_MOLECULES_SYSTEMD_SLEEP=20
+      - SABAYON_MOLECULES_SYSTEMD_MODE=0
+      - SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh
+      - SABAYON_USE_IMG=0
+    namespace: spinbase:iso
+    publish_mode: append
+    storage: "8925468933589065900"
+    storage_path: /confs
+    tag_namespace: cocoon:iso:next-release
+    timeout: 0
+
+  # Sabayon KDE ISO
+  kde:
+    image: sabayon/isobuilder-amd64
+    script:
+      - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
+      - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
+      - /usr/bin/tini -s -- /sabayon_molecules.sh run monthly --image kde --skip-docker-rmi --skip-dev
+    type: docker
+    name: "Sabayon KDE ISO"
+    artefact_path: namespace
+    binds:
+      - /dev/loop-control:/dev/loop-control
+    directory: /
+    environment:
+      - SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git
+      - SABAYON_MOLECULES_SYSTEMD_SLEEP=20
+      - SABAYON_MOLECULES_SYSTEMD_MODE=0
+      - SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh
+      - SABAYON_USE_IMG=0
+    namespace: spinbase:iso
+    publish_mode: append
+    storage: "8925468933589065900"
+    storage_path: /confs
+    tag_namespace: cocoon:iso:next-release
+    timeout: 0
+
+  # Sabayon MATE ISO
+  mate:
+    image: sabayon/isobuilder-amd64
+    script:
+      - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
+      - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
+      - /usr/bin/tini -s -- /sabayon_molecules.sh run monthly --image mate --skip-docker-rmi --skip-dev
+    type: docker
+    name: "Sabayon MATE ISO"
+    artefact_path: namespace
+    binds:
+      - /dev/loop-control:/dev/loop-control
+      #- /tmp:/run
+    directory: /
+    environment:
+      - SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git
+      - SABAYON_MOLECULES_SYSTEMD_SLEEP=20
+      - SABAYON_MOLECULES_SYSTEMD_MODE=0
+      - SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh
+      - SABAYON_USE_IMG=0
+    namespace: spinbase:iso
+    publish_mode: append
+    storage: "8925468933589065900"
+    storage_path: /confs
+    tag_namespace: cocoon:iso:next-release
+    timeout: 0
+
+  # Sabayon Xfce ISO
+  xfce:
+    image: sabayon/isobuilder-amd64
+    script:
+      - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
+      - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
+      - /usr/bin/tini -s -- /sabayon_molecules.sh run monthly --image xfce --skip-docker-rmi --skip-dev
+    type: docker
+    name: "Sabayon Xfce ISO"
+    artefact_path: namespace
+    binds:
+      - /dev/loop-control:/dev/loop-control
+    directory: /
+    environment:
+      - SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git
+      - SABAYON_MOLECULES_SYSTEMD_SLEEP=20
+      - SABAYON_MOLECULES_SYSTEMD_MODE=0
+      - SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh
+      - SABAYON_USE_IMG=0
+    namespace: spinbase:iso
+    publish_mode: append
+    storage: "8925468933589065900"
+    storage_path: /confs
+    tag_namespace: cocoon:iso:next-release
+    timeout: 0
+
+  # Sabayon Minimal ISO
+  minimal:
+    image: sabayon/isobuilder-amd64
+    script:
+      - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
+      - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
+      - /usr/bin/tini -s -- /sabayon_molecules.sh run monthly --image minimal --skip-docker-rmi --skip-dev
+    type: docker
+    name: "Sabayon Minimal ISO"
+    artefact_path: namespace
+    binds:
+      - /dev/loop-control:/dev/loop-control
+    directory: /
+    environment:
+      - SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git
+      - SABAYON_MOLECULES_SYSTEMD_SLEEP=20
+      - SABAYON_MOLECULES_SYSTEMD_MODE=0
+      - SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh
+      - SABAYON_USE_IMG=0
+    namespace: spinbase:iso
+    publish_mode: append
+    storage: "8925468933589065900"
+    storage_path: /confs
+    tag_namespace: cocoon:iso:next-release
+    timeout: 0
+
+  # Sabayon Server ISO
+  server:
+    image: sabayon/isobuilder-amd64
+    script:
+      - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
+      - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
+      - /usr/bin/tini -s -- /sabayon_molecules.sh run monthly --image server --skip-docker-rmi --skip-dev
+    type: docker
+    name: "Sabayon Server ISO"
+    artefact_path: namespace
+    binds:
+      - /dev/loop-control:/dev/loop-control
+    directory: /
+    environment:
+      - SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git
+      - SABAYON_MOLECULES_SYSTEMD_SLEEP=20
+      - SABAYON_MOLECULES_SYSTEMD_MODE=0
+      - SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh
+      - SABAYON_USE_IMG=0
+    namespace: spinbase:iso
+    publish_mode: append
+    storage: "8925468933589065900"
+    storage_path: /confs
+    tag_namespace: cocoon:iso:next-release
+    timeout: 0
+
+  # Sabayon Lxqt ISO
+  lxqt:
+    image: sabayon/isobuilder-amd64
+    script:
+      - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
+      - rm -rf /sabayon
+      - eval 'rm namespace/build_*.log || true'
+      - /usr/bin/tini -s -- /sabayon_molecules.sh run monthly --image lxqt --skip-docker-rmi --skip-dev
+    type: docker
+    name: "Sabayon LxQT ISO"
+    artefact_path: namespace
+    binds:
+      - /dev/loop-control:/dev/loop-control
+    directory: /
+    environment:
+      - SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git
+      - SABAYON_MOLECULES_SYSTEMD_SLEEP=20
+      - SABAYON_MOLECULES_SYSTEMD_MODE=0
+      - SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh
+      - SABAYON_USE_IMG=0
+    namespace: spinbase:iso
+    publish_mode: append
+    storage: "8925468933589065900"
+    storage_path: /confs
+    tag_namespace: cocoon:iso:next-release
+    timeout: 0
+
