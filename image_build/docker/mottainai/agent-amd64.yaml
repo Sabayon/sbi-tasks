@@ -6,8 +6,8 @@ script:
    - source storage/env
    - equo up && ACCEPT_LICENSE=* equo i docker
    - docker login -u $DOCKER_USER -p $DOCKER_PASS
-   - docker build --no-cache --rm -t mottainaici/agent-amd64 .
-   - docker push mottainaici/agent-amd64
+   - docker build --no-cache --rm -t mottainaici/agent:latest-amd64 .
+   - docker push mottainaici/agent
 type: docker_execute
 name: "Mottainai Agent Docker Image"
 planned: "@daily"
