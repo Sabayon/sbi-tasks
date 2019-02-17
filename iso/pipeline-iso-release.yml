@@ -42,6 +42,8 @@ tasks:
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -67,6 +69,8 @@ tasks:
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -93,6 +97,8 @@ tasks:
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -118,6 +124,8 @@ tasks:
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -143,6 +151,8 @@ tasks:
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -168,6 +178,8 @@ tasks:
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -193,6 +205,8 @@ tasks:
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
