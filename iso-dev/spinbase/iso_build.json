@@ -8,7 +8,7 @@
   ],
   "directory": "/",
   "type": "docker",
-  "name": "Spinbase ISO Daily",
+  "name": "Spinbase Dev ISO Daily",
   "image": "sabayon/isobuilder-amd64",
   "storage": "8925468933589065900",
   "artefact_path": "namespace",
