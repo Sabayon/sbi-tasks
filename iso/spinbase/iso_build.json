@@ -18,6 +18,7 @@
   "environment": [
     "SABAYON_MOLECULES_GIT_OPTS=-b develop",
     "DRACUT=1",
+    "DRACUT_SQUASHFS=1",
     "SABAYON_INSTALL_KERNEL=1",
     "MOLECULE_ISO_TITLE=SABAYON"
   ],
