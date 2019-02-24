@@ -1,0 +1,58 @@
+script:
+  - export LC_ALL=en_US.UTF-8
+  - eval "export SOURCE_DIR=$(pwd)"
+  - echo "SOURCE_DIR = ${SOURCE_DIR}"
+  # Temporary workaround for delay on DHCP response
+  - sleep 10
+  # - wget https://dispatcher.sabayon.org/sbi/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker
+  # - chmod a+x /usr/bin/pkgs-checker
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+  - chmod 755 /sbin/sark-functions.sh
+  - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+  - chmod 755 /etc/sark-functions
+  - echo '===> Preparing last step....'
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
+  - chmod a+x /usr/sbin/builder
+  - chmod a+x ./sark-localbuild
+  # Avoid final emerge (temporary)
+  - emerge --unmerge dev-lang/go
+  - eselect python set python3.6
+  # Force py3.6 on eit
+  - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+  # Create mask file of upstream packages
+  - source /sbin/sark-functions.sh
+  # Temporary until we create a new builder image. Not needed with LXD
+  - rm -v /etc/portage/package.env/01-sabayon.package.env
+  - sabayon_mask_upstream_pkgs
+  - emerge --unmerge virtual/service-manager net-misc/netifrc
+  - equo rescue spmsync
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/core-arm/core-arm
+  - equo update core-arm
+  - equo upgrade
+  - sed -i -e 's/^\s*- .*//' core-build.yml
+  - echo "    - net-misc/iputils" >> core-build.yml
+  - echo "    - app-portage/gemato" >> core-build.yml
+  - SAB_BUILDFILE=core-build.yml ./sark-localbuild
+environment:
+  - SHELL=/bin/bash
+  - SABAYON_ARCH=arm
+  - USE_EQUO=0
+  - REPOSITORY_NAME=core-arm
+  - SKIP_COMMIT=1
+  - SKIP_PULL=1
+  # I need call emerge-webrsync at begin to retrive data for active profile.
+  # - SKIP_PORTAGE_SYNC=1
+  - SAB_PORTDIR=/etc/portage
+#type: lxd
+#name: ARM Core Iputils
+namespace: core-arm
+tag_namespace: core-arm
+artefact_path: artifacts
+image: sabayon/builder-arm
+image: geaaru/sabayon-builder-arm
+type: docker
+source: https://github.com/Sabayon/sbi-tasks
+directory: "/next/arm/core"
+queue: arm
+
