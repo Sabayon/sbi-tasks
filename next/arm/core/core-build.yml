@@ -15,6 +15,7 @@ build:
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
   target:
     - sys-apps/portage
+    - app-portage/gemato
     - dev-libs/mpc
       # cloog is needed for graphite (See: http://yuguangzhang.com/blog/enabling-gcc-graphite-and-lto-on-gentoo/)
     - dev-libs/cloog

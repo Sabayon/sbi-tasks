@@ -4,4 +4,4 @@ app-shells/bash afs net nls plugins readline
 sys-apps/kmod tools
 app-arch/xz-utils extra-filters nls threads
 
-
+app-portage/gemato blake2 bzip2 gpg
