@@ -20,6 +20,12 @@ script:
   # Create mask file of upstream packages
   - source /sbin/sark-functions.sh
   - sabayon_mask_upstream_pkgs
+  # Temporary until i fix image
+  - emerge --unmerge virtual/service-manager net-misc/netifrc
+  - equo rescue spmsync
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/core-arm/core-arm
+  - equo update core-arm
+  - equo upgrade
   - SAB_BUILDFILE=dev-lang.particle.yaml ./sark-localbuild
   - SAB_BUILDFILE=dev-lang.stable.particle.yaml ./sark-localbuild
   - SAB_BUILDFILE=dev-libs.particle.yaml ./sark-localbuild
@@ -30,10 +36,11 @@ environment:
   - REPOSITORY_NAME=core-arm
   - SKIP_COMMIT=1
   - SKIP_PULL=1
-task: docker_execute
+type: lxd
+name: "ARM Base Repo"
 artefact_path: artifacts
-image: geaaru/sabayon-builder-arm
+image: sabayon/builder-arm
 source: https://github.com/Sabayon/sbi-tasks
-directory: "/next/arm/core"
+directory: "/next/arm/base"
 queue: arm
 

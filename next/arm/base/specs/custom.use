@@ -1,0 +1,32 @@
+# TODO: check if here we want this uses: introspection
+
+# dev-libs
+
+dev-libs/apr urandom
+dev-libs/apr-util berkdb gdbm ldap openssl
+dev-libs/atk introspection
+dev-libs/beecrypt cxx python threads
+dev-libs/boehm-gc cxx thread
+dev-libs/boost context icu nls python threads
+dev-libs/botan ssl zlib bzip2
+dev-libs/cdk unicode
+dev-libs/chmlib examples
+dev-libs/confuse nls
+dev-libs/crypto++ asm
+dev-libs/cyberjack udev usb
+dev-libs/cyrus-sasl berkdb gdbm kerberos pam ssl
+dev-libs/darts zlib
+dev-libs/elfutils bzip2 nls static-libs utils
+dev-libs/expat static-libs unicode
+dev-libs/fcgi html
+dev-libs/folks bluetooth eds telepathy
+dev-libs/gdl introspection
+dev-libs/glib dbus mime static-libs xattr
+dev-libs/gobject-introspection cairo
+dev-libs/iksemel ssl
+dev-libs/json-glib introspection
+dev-libs/keybinder introspection python
+dev-libs/leveldb tcmalloc snappy
+dev-libs/libcdio cxx
+dev-libs/libconfig cxx
+
