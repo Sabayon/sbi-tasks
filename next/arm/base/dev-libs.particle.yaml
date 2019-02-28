@@ -7,16 +7,14 @@ build:
   qa_checks: 0
   emerge:
     # Set sabayon-arm profile
-    profile: 65
+    profile: 79
     # Install each package separately
     split_install: 1
     preserved_rebuild: 1
-    default_args: --accept-properties=-interactive -t --quiet --nospinner --oneshot --complete-graph --buildpkg
+    default_args: --accept-properties=-interactive -t --nospinner --oneshot --complete-graph --buildpkg -j 3
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
   target:
     - dev-libs/389-adminutil
-    - dev-libs/DFB++
-    - dev-libs/DirectFB
     - dev-libs/ace
     - dev-libs/apr
     - dev-libs/apr-util
@@ -32,11 +30,7 @@ build:
     - dev-libs/cgicc
     - dev-libs/check
     - dev-libs/chmlib
-    - dev-libs/clearsilver
-    - dev-libs/cloog
-    - dev-libs/cloog-ppl
     - dev-libs/confuse
-    - dev-libs/cryptlib
     - dev-libs/crypto++
     - dev-libs/cvector
     - dev-libs/cxxtools
@@ -48,7 +42,6 @@ build:
     - dev-libs/dbus-glib
     - dev-libs/dietlibc
     - dev-libs/dotconf
-    - dev-libs/dvutil
     - dev-libs/eb
     - dev-libs/elfio
     - dev-libs/elfutils
@@ -62,7 +55,6 @@ build:
     - dev-libs/folks
     - dev-libs/fribidi
     - dev-libs/g-wrap
-    - dev-libs/gdl
     - dev-libs/gdl
     - dev-libs/geoip
     - dev-libs/gf2x
@@ -79,16 +71,12 @@ build:
     - dev-libs/iksemel
     - dev-libs/ilbc-rfc3951
     - dev-libs/iniparser
-    - dev-libs/intel-common
-    - dev-libs/isl
     - dev-libs/jemalloc
-    - dev-libs/jrtplib
     - dev-libs/json-c
     - dev-libs/json-glib
     - dev-libs/jsoncpp
     - dev-libs/jthread
     - dev-libs/judy
-    - dev-libs/keybinder
     - dev-libs/keybinder
     - dev-libs/klibc
     - dev-libs/kpathsea
@@ -106,7 +94,6 @@ build:
     - dev-libs/libbulletml
     - dev-libs/libburn
     - dev-libs/libcdio
-    - dev-libs/libchewing
     - dev-libs/libcitadel
     - dev-libs/libconfig
     - dev-libs/libcoyotl
@@ -124,46 +111,35 @@ build:
     - dev-libs/libestr
     - dev-libs/libev
     - dev-libs/libevocosm
-    - dev-libs/libexplain
     - dev-libs/libezV24
     - dev-libs/libf2c
     - dev-libs/libffi
     - dev-libs/libg15
     - dev-libs/libg15render
-    - dev-libs/libgalago
     - dev-libs/libgamin
     - dev-libs/libgcrypt
     - dev-libs/libgdata
     - dev-libs/libgee
-    - dev-libs/libgee
-    - dev-libs/libgeier
     - dev-libs/libgpg-error
-    - dev-libs/libgringotts
     - dev-libs/libgusb
     - dev-libs/libgweather
     - dev-libs/libhome
     - dev-libs/libical
     - dev-libs/libindicate
-    - dev-libs/libindicate-qt
-    - dev-libs/libindicator
     - dev-libs/libindicator
     - dev-libs/libisoburn
     - dev-libs/libisofs
     - dev-libs/libksba
     - dev-libs/liblazy
-    - dev-libs/liblightscribe
-    - dev-libs/liblinebreak
     - dev-libs/liblogging
     - dev-libs/liblognorm
     - dev-libs/libmaa
-    - dev-libs/libmal
     - dev-libs/libmateweather
     - dev-libs/libmba
     - dev-libs/libmcrypt
     - dev-libs/libmirage
     - dev-libs/libmix
     - dev-libs/libmoe
-    - dev-libs/libmowgli
     - dev-libs/libmowgli
     - dev-libs/libnatspec
     - dev-libs/libofx
@@ -209,7 +185,6 @@ build:
     - dev-libs/maloc
     - dev-libs/mxml
     - dev-libs/mongo-c-driver
-    - dev-libs/mozldap
     - dev-libs/mpc
     - dev-libs/mpfr
     - dev-libs/nettle
@@ -228,7 +203,6 @@ build:
     - dev-libs/pslib
     - dev-libs/ptexenc
     - dev-libs/pugixml
-    - dev-libs/qjson
     - dev-libs/qoauth
     - dev-libs/qrosscore
     - dev-libs/quazip
@@ -243,7 +217,6 @@ build:
     - dev-libs/snowball-stemmer
     - dev-libs/sord
     - dev-libs/stfl
-    - dev-libs/suikyo
     - dev-libs/svrcore
     - dev-libs/tinyxml
     - dev-libs/tinyxml2
