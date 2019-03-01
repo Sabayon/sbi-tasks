@@ -148,7 +148,6 @@ build:
     - dev-libs/libotf
     - dev-libs/libowfat
     - dev-libs/libp11
-    - dev-libs/libpcre
     - dev-libs/libpeas
     - dev-libs/libpipeline
     - dev-libs/libpqxx
@@ -172,7 +171,6 @@ build:
     - dev-libs/libx86
     - dev-libs/libx86emu
     - dev-libs/libxdg-basedir
-    - dev-libs/libxml2
     - dev-libs/libxslt
     - dev-libs/libyaml
     - dev-libs/libzip
@@ -185,7 +183,6 @@ build:
     - dev-libs/maloc
     - dev-libs/mxml
     - dev-libs/mongo-c-driver
-    - dev-libs/mpc
     - dev-libs/mpfr
     - dev-libs/nettle
     - dev-libs/newt
