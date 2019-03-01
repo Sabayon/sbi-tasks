@@ -26,6 +26,9 @@ script:
   - enman add https://dispatcher.sabayon.org/sbi/namespace/core-arm/core-arm
   - equo update core-arm
   - equo upgrade
+  - SAB_BUILDFILE=sys-libs.particle.yaml ./sark-localbuild
+  # Avoid emerge-webrsync for every build. I already do that.
+  - export SKIP_PORTAGE_SYNC=1
   - SAB_BUILDFILE=dev-lang.particle.yaml ./sark-localbuild
   - SAB_BUILDFILE=dev-lang.stable.particle.yaml ./sark-localbuild
   - SAB_BUILDFILE=dev-libs.particle.yaml ./sark-localbuild
@@ -43,4 +46,5 @@ image: sabayon/builder-arm
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
 queue: arm
-
+#namespace: base-arm
+#tag_namespace: base-arm

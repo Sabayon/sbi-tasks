@@ -1,0 +1,5 @@
+# We use Sabayon version
+app-text/poppler::gentoo
+
+>=dev-lang/python-3.7.0
+
