@@ -4,7 +4,7 @@
      "rm -rf /sabayon",
      "eval 'rm namespace/build_*.log || true'",
      "eval 'rm /usr/bin/docker-companion || true'",
-     "/usr/bin/tini -s -- /sabayon_molecules.sh run daily --image mate --skip-dev --skip-docker-rmi"
+     "/sabayon_molecules.sh run daily --image mate --skip-dev"
   ],
   "directory": "/",
   "type": "docker",
@@ -16,14 +16,15 @@
   "namespace": "spinbase:iso",
   "tag_namespace": "sabayon:iso",
   "publish_mode": "append",
-  "queue": "iso",
   "environment": [
     "DRACUT=1",
     "DRACUT_SQUASHFS=1",
-    "MOLECULE_ISO_TITLE=SABAYON"
+    "MOLECULE_ISO_TITLE=SABAYON",
+    "SABAYON_MOLECULES_GIT_OPTS=-b develop"
   ],
   "binds": [
     "/dev/loop-control:/dev/loop-control"
   ],
-  "retry": "3"
+  "retry": "3",
+  "planned": "0 0 3 * * *"
 }
