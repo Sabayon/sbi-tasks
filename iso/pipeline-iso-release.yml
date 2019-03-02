@@ -8,7 +8,7 @@
 
 pipeline_name: "ISO Release Build Pipeline"
 
-concurrency: 3 # Number of parallel builds
+concurrency: 4 # Number of parallel builds
 group:
   - "gnome"
   - "kde"
@@ -34,7 +34,7 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - /sabayon_molecules.sh run monthly --image gnome --skip-dev
     type: docker
-    name: "Sabayon GNOME ISO"
+    name: "Sabayon GNOME ISO Release"
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
@@ -44,7 +44,7 @@ tasks:
       - DRACUT_SQUASHFS=1
       - "MOLECULE_ISO_TITLE=SABAYON"
       # Force use of daily spinbase image.
-      - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
+      - SABAYON_SOURCE_ISO=Sbayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
     namespace: spinbase:iso
     publish_mode: append
@@ -62,7 +62,7 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - /sabayon_molecules.sh run monthly --image kde --skip-dev
     type: docker
-    name: "Sabayon KDE ISO"
+    name: "Sabayon KDE ISO Release"
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
@@ -90,7 +90,7 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - /sabayon_molecules.sh run monthly --image mate --skip-dev
     type: docker
-    name: "Sabayon MATE ISO"
+    name: "Sabayon MATE ISO Release"
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
@@ -119,7 +119,7 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - /sabayon_molecules.sh run monthly --image xfce --skip-dev
     type: docker
-    name: "Sabayon Xfce ISO"
+    name: "Sabayon Xfce ISO Release"
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
@@ -147,7 +147,7 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - /sabayon_molecules.sh run monthly --image minimal --skip-dev
     type: docker
-    name: "Sabayon Minimal ISO"
+    name: "Sabayon Minimal ISO Release"
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
@@ -175,7 +175,7 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - /sabayon_molecules.sh run monthly --image server --skip-dev
     type: docker
-    name: "Sabayon Server ISO"
+    name: "Sabayon Server ISO Release"
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
@@ -203,7 +203,7 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - /sabayon_molecules.sh run monthly --image lxqt --skip-dev
     type: docker
-    name: "Sabayon LxQT ISO"
+    name: "Sabayon LxQT ISO Release"
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
@@ -223,7 +223,7 @@ tasks:
     timeout: 0
 
   # Sabayon tarball
-  lxqt:
+  tarball:
     image: sabayon/isobuilder-amd64
     script:
       - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
@@ -231,7 +231,7 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - /sabayon_molecules.sh run monthly --image tarball --skip-dev
     type: docker
-    name: "Sabayon Tarball ISO"
+    name: "Sabayon Tarball ISO Release"
     artefact_path: namespace
     binds:
       - /dev/loop-control:/dev/loop-control
