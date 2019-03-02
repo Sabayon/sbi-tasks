@@ -17,6 +17,7 @@ group:
   - "minimal"
   - "server"
   - "lxqt"
+  - "tarball"
 
 # Temporary use only farmer node that support dynamic loop on container
 # queue: "general"
@@ -39,11 +40,12 @@ tasks:
       - /dev/loop-control:/dev/loop-control
     directory: /
     environment:
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
+      - "MOLECULE_ISO_TITLE=SABAYON",
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
-      - DRACUT=1
-      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -66,11 +68,12 @@ tasks:
       - /dev/loop-control:/dev/loop-control
     directory: /
     environment:
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
+      - "MOLECULE_ISO_TITLE=SABAYON",
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
-      - DRACUT=1
-      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -94,11 +97,12 @@ tasks:
       #- /tmp:/run
     directory: /
     environment:
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
+      - "MOLECULE_ISO_TITLE=SABAYON",
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
-      - DRACUT=1
-      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -121,11 +125,12 @@ tasks:
       - /dev/loop-control:/dev/loop-control
     directory: /
     environment:
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
+      - "MOLECULE_ISO_TITLE=SABAYON",
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
-      - DRACUT=1
-      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -148,11 +153,12 @@ tasks:
       - /dev/loop-control:/dev/loop-control
     directory: /
     environment:
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
+      - "MOLECULE_ISO_TITLE=SABAYON",
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
-      - DRACUT=1
-      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -175,11 +181,12 @@ tasks:
       - /dev/loop-control:/dev/loop-control
     directory: /
     environment:
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
+      - "MOLECULE_ISO_TITLE=SABAYON",
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
-      - DRACUT=1
-      - DRACUT_SQUASHFS=1
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
@@ -202,11 +209,40 @@ tasks:
       - /dev/loop-control:/dev/loop-control
     directory: /
     environment:
+      - DRACUT=1
+      - DRACUT_SQUASHFS=1
+      - "MOLECULE_ISO_TITLE=SABAYON",
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
+    namespace: spinbase:iso
+    publish_mode: append
+    storage: "8925468933589065900"
+    storage_path: /confs
+    tag_namespace: cocoon:iso:next-release
+    timeout: 0
+
+  # Sabayon tarball
+  lxqt:
+    image: sabayon/isobuilder-amd64
+    script:
+      - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
+      - eval 'rm -rf /sabayon || true'
+      - eval 'rm namespace/build_*.log || true'
+      - /sabayon_molecules.sh run monthly --image tarball --skip-dev
+    type: docker
+    name: "Sabayon Tarball ISO"
+    artefact_path: namespace
+    binds:
+      - /dev/loop-control:/dev/loop-control
+    directory: /
+    environment:
       - DRACUT=1
       - DRACUT_SQUASHFS=1
+      - "MOLECULE_ISO_TITLE=SABAYON",
+      # Force use of daily spinbase image.
+      - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
+      - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900"
