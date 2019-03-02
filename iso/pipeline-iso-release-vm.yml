@@ -37,7 +37,7 @@ tasks:
     name: "Sabayon Gnome ISO Release"
     artefact_path: namespace
     namespace: "spinbase:iso"
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     directory: /
     environment:
@@ -71,7 +71,7 @@ tasks:
     name: "Sabayon KDE Release ISO"
     artefact_path: namespace
     namespace: "spinbase:iso"
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     directory: /
     environment:
@@ -105,7 +105,7 @@ tasks:
     name: "Sabayon Mate ISO Release"
     artefact_path: namespace
     namespace: "spinbase:iso"
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     directory: /
     environment:
@@ -139,7 +139,7 @@ tasks:
     name: "Sabayon Minimal ISO Release"
     artefact_path: namespace
     namespace: "spinbase:iso"
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     directory: /
     environment:
@@ -173,7 +173,7 @@ tasks:
     name: "Sabayon Server ISO Release"
     artefact_path: namespace
     namespace: "spinbase:iso"
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     directory: /
     environment:
@@ -207,7 +207,7 @@ tasks:
     name: "Sabayon LxQT ISO Release"
     artefact_path: namespace
     namespace: "spinbase:iso"
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     directory: /
     environment:
@@ -223,4 +223,3 @@ tasks:
     image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box"
     retry: "3"
     timeout: 0
-

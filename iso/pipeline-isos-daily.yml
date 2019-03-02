@@ -46,7 +46,7 @@ tasks:
       - SABAYON_USE_IMG=0
     namespace: spinbase:iso
     publish_mode: append
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     tag_namespace: sabayon:iso
     timeout: 0
@@ -73,7 +73,7 @@ tasks:
       - SABAYON_USE_IMG=0
     namespace: spinbase:iso
     publish_mode: append
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     tag_namespace: sabayon:iso
     timeout: 0
@@ -101,7 +101,7 @@ tasks:
       - SABAYON_USE_IMG=0
     namespace: spinbase:iso
     publish_mode: append
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     tag_namespace: sabayon:iso
     timeout: 0
@@ -128,7 +128,7 @@ tasks:
       - SABAYON_USE_IMG=0
     namespace: spinbase:iso
     publish_mode: append
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     tag_namespace: sabayon:iso
     timeout: 0
@@ -155,7 +155,7 @@ tasks:
       - SABAYON_USE_IMG=0
     namespace: spinbase:iso
     publish_mode: append
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     tag_namespace: sabayon:iso
     timeout: 0
@@ -182,7 +182,7 @@ tasks:
       - SABAYON_USE_IMG=0
     namespace: spinbase:iso
     publish_mode: append
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     tag_namespace: sabayon:iso
     timeout: 0
@@ -209,8 +209,7 @@ tasks:
       - SABAYON_USE_IMG=0
     namespace: spinbase:iso
     publish_mode: append
-    storage: "8925468933589065900"
+    storage: "8925468933589065900,6632034308897681895"
     storage_path: /confs
     tag_namespace: sabayon:iso
     timeout: 0
-

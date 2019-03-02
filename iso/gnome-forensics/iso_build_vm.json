@@ -11,7 +11,7 @@
   "directory": "/",
   "task": "virtualbox_execute",
   "image": "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box",
-  "storage": "8925468933589065900",
+  "storage": "8925468933589065900,6632034308897681895",
   "artefact_path": "namespace",
   "storage_path": "/confs",
   "namespace": "spinbase:iso",

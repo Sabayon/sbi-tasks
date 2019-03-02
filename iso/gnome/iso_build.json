@@ -10,7 +10,7 @@
   "type": "docker",
   "name": "Gnome ISO Daily (docker)",
   "image": "sabayon/isobuilder-amd64",
-  "storage": "8925468933589065900",
+  "storage": "8925468933589065900,6632034308897681895",
   "artefact_path": "namespace",
   "storage_path": "/confs",
   "namespace": "spinbase:iso",
