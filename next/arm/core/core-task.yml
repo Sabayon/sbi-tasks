@@ -50,4 +50,5 @@ type: lxd
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/core"
 queue: arm
-
+namespace: core-arm
+tag_namespace: core-arm
