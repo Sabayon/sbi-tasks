@@ -44,7 +44,7 @@ tasks:
       - DRACUT_SQUASHFS=1
       - "MOLECULE_ISO_TITLE=SABAYON"
       # Force use of daily spinbase image.
-      - SABAYON_SOURCE_ISO=Sbayon_Linux_DAILY_amd64_SpinBase.iso
+      - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
       - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
       - "SABAYON_RELEASE=19.03"
     namespace: spinbase:iso
