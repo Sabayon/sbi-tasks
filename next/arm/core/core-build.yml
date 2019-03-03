@@ -15,8 +15,6 @@ build:
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
   target:
     - app-crypt/gentoo-keys
-    - sys-apps/portage
-    - app-portage/gemato
     - dev-libs/mpc
       # cloog is needed for graphite (See: http://yuguangzhang.com/blog/enabling-gcc-graphite-and-lto-on-gentoo/)
     - dev-libs/cloog
@@ -36,6 +34,8 @@ build:
     - app-crypt/openpgp-keys-gentoo-release
     - app-crypt/rhash
     - app-shells/bash
+    - net-dns/libidn2
+    - net-libs/gnutls
     - app-misc/ca-certificates
     - net-misc/iputils
     - net-misc/rsync
@@ -73,3 +73,5 @@ build:
     - virtual/service-manager
     - virtual/shadow
     - virtual/ssh
+    - sys-apps/portage
+    - app-portage/gemato
