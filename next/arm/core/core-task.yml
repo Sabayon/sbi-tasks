@@ -25,10 +25,9 @@ script:
   # Temporary until we create a new builder image. Not needed with LXD
   - rm -v /etc/portage/package.env/01-sabayon.package.env
   - sabayon_mask_upstream_pkgs
+  # Temporary fix upgrade of libidn2
+  - emerge --accept-properties=-interactive -t --quiet ---j --buildpkg --oneshot net-dns/libidn2 net-libs/gnutls
   - SAB_BUILDFILE=core-build.yml ./sark-localbuild
-  # Temporary for remove TermReadKey from core repo
-  - eit rm --from core-arm dev-perl/TermReadKey --quick
-  - eit push --quick core-arm
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=arm

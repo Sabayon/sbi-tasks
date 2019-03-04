@@ -5,3 +5,6 @@ sys-apps/kmod tools
 app-arch/xz-utils extra-filters nls threads
 
 app-portage/gemato blake2 bzip2 gpg
+
+net-libs/gnutls cxx idn nls openssl seccomp tls-heartbeat zlib tools
+

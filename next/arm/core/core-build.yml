@@ -1,5 +1,9 @@
 repository:
   description: Core Arm repo
+  maintenance:
+    remove:
+      # We want this on base or other repo
+      - dev-perl/TermReadKey
 build:
   qa_checks: 0
   emerge:
@@ -15,6 +19,19 @@ build:
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
   target:
     - app-crypt/gentoo-keys
+    - app-crypt/openpgp-keys-gentoo-release
+    - dev-util/cmake
+    - sys-libs/cracklib
+    - sys-apps/file
+    - sys-apps/sandbox
+    - app-misc/pax-utils
+    - sys-apps/debianutils
+    - sys-apps/dbus
+    - sys-apps/systemd
+    - net-dns/libidn2
+    # After upgrade of libidn2 it is needed rebuild gnutls to avoid:
+    # libgnutls.so: undefined reference to `_idn2_punycode_decode@IDN2_0.0.0'
+    - net-libs/gnutls
     - dev-libs/mpc
       # cloog is needed for graphite (See: http://yuguangzhang.com/blog/enabling-gcc-graphite-and-lto-on-gentoo/)
     - dev-libs/cloog
@@ -31,11 +48,8 @@ build:
     - app-arch/unzip
     - app-arch/zstd
     - app-crypt/gnupg
-    - app-crypt/openpgp-keys-gentoo-release
     - app-crypt/rhash
     - app-shells/bash
-    - net-dns/libidn2
-    - net-libs/gnutls
     - app-misc/ca-certificates
     - net-misc/iputils
     - net-misc/rsync
