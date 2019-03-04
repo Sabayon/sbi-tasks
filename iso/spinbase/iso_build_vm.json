@@ -7,8 +7,9 @@
    "sudo ACCEPT_LICENSE=* equo i --relaxed --norecursive mail-mta/postfix net-p2p/mktorrent-borg sys-fs/dosfstools dev-util/molecule dev-vcs/git app-misc/ca-certificates app-emulation/docker app-emulation/docker-companion sys-process/tini sys-boot/syslinux sys-fs/squashfs-tools app-cdr/cdrtools sys-fs/udftools",
    "sudo systemctl start docker",
    "sudo SABAYON_SKIP_UPGRADE=1 /sabayon_molecules.sh init",
-   "sudo MOLECULE_ISO_TITLE=SABAYON SABAYON_INSTALL_KERNEL=1 SYSTEMD=0 DRACUT=1 SABAYON_USE_IMG=0 SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh SABAYON_MOLECULES_SYSTEMD_MODE=0 /sabayon_molecules.sh run daily --image spinbase --skip-docker-rmi --skip-dev",
-   "sudo mv /sabayon/iso /vagrant/namespace" ],
+   "sudo MOLECULE_ISO_TITLE=SABAYON SABAYON_INSTALL_KERNEL=1 DRACUT=1 SABAYON_EXTRA_PKGS=sys-libs/pam /sabayon_molecules.sh run daily --image spinbase --skip-docker-rmi --skip-dev",
+   "sudo mv /sabayon/iso /vagrant/namespace"
+  ],
   "directory": "/",
   "type": "virtualbox_execute",
   "image": "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box",
@@ -20,6 +21,7 @@
   "environment": [
     "SYSTEMD=0",
     "DRACUT=1",
+    "SABAYON_EXTRA_PKGS=sys-libs/pam",
     "SABAYON_MOLECULES_SYSTEMD_SLEEP=20",
     "SABAYON_MOLECULES_SYSTEMD_MODE=0",
     "SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh",
