@@ -19,7 +19,8 @@
     "SABAYON_MOLECULES_GIT_OPTS=-b develop",
     "DRACUT=1",
     "SABAYON_INSTALL_KERNEL=1",
-    "MOLECULE_ISO_TITLE=SABAYON"
+    "MOLECULE_ISO_TITLE=SABAYON",
+    "SABAYON_EXTRA_PKGS=sys-libs/pam"
   ],
   "binds": [
     "/dev/loop-control:/dev/loop-control"
