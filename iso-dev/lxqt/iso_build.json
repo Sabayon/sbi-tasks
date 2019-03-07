@@ -1,27 +1,29 @@
 {
   "script": [
-    "/usr/bin/tini -s -- /sabayon-stuff/sabayon_molecules.sh run daily --image lxqt --skip-docker-rmi --only-dev"
+    "wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py",
+     "rm -rf /sabayon",
+     "eval 'rm namespace/build_*.log || true'",
+     "eval 'rm /usr/bin/docker-companion || true'",
+    "/sabayon_molecules.sh run daily --image lxqt --only-dev"
   ],
   "directory": "/",
-  "task": "docker_execute",
-  "image": "geaaru/isobuilder-amd64",
+  "type": "docker",
+  "name": "Sabayon LxQT Dev ISO",
+  "image": "sabayon/isobuilder-amd64",
   "storage": "8925468933589065900",
   "artefact_path": "namespace",
   "storage_path": "/confs",
   "namespace": "spinbase:iso-dev",
   "tag_namespace": "sabayon:iso-dev",
   "publish_mode": "append",
-  "queue": "iso",
   "retry": "5",
   "environment": [
-    "SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git",
-    "SABAYON_MOLECULES_SYSTEMD_SLEEP=20",
-    "SABAYON_MOLECULES_SYSTEMD_MODE=0",
-    "SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh",
-    "SABAYON_USE_IMG=0"
+    "SABAYON_MOLECULES_GIT_OPTS=-b develop",
+    "DRACUT=1",
+    "DRACUT_SQUASHFS=1",
+    "MOLECULE_ISO_TITLE=SABAYON"
   ],
   "binds": [
-    "/dev/loop-control:/dev/loop-control",
-    "/tmp:/run"
+    "/dev/loop-control:/dev/loop-control"
   ]
 }

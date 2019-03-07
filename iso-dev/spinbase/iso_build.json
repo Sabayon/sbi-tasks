@@ -24,5 +24,6 @@
   "binds": [
     "/dev/loop-control:/dev/loop-control"
   ],
-  "retry": "5"
+  "retry": "5",
+  "planned": "0 0 1 * * *"
 }

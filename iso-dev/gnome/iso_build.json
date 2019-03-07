@@ -19,12 +19,13 @@
   "retry": "5",
   "environment": [
     "SABAYON_MOLECULES_GIT_OPTS=-b develop",
+    "DRACUT=1",
     "DRACUT_SQUASHFS=1",
-    "SABAYON_INSTALL_KERNEL=1",
     "MOLECULE_ISO_TITLE=SABAYON"
   ],
   "binds": [
     "/dev/loop-control:/dev/loop-control"
   ],
+  "retry": "3",
   "planned": "0 0 3 * * *"
 }
