@@ -3,7 +3,7 @@
 # Update user fork
 rm -rf /root/repo || true
 git clone $FORK_REPO /root/repo
-cp storage/create_pr.sh /create_pr.sh
+cp scripts/create_pr.sh /create_pr.sh
 
 cd /root/repo
 git remote add upstream $UPSTREAM_REPO
