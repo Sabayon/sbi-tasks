@@ -1,7 +1,7 @@
 #!/bin/bash
 # Assumes master is aligned up to upstream, and develop contains your changes 
 
-cd /root/repo
+pushd /root/repo
 git checkout $WORK_BRANCH
 COMMITS=$(git cherry master | awk '{ print $2 }')
 for i in $COMMITS; do
@@ -13,4 +13,4 @@ for i in $COMMITS; do
     hub pull-request -m "$(git log -1 --pretty=%B)"
     git checkout $WORK_BRANCH
 done
- 
+popd
