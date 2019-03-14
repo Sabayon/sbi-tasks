@@ -1,0 +1,29 @@
+name: "Detect obsoletes in for-gentoo overlay"
+image: sabayon/builder-amd64
+type: docker
+directory: "/bots/detect-obsoletes"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+# Update user fork
+- bash -ex ../scripts/setup_git_repo.sh
+# Run the detect script
+- bash -ex scripts/detect.sh
+# Create PRs
+- bash -ex ../scripts/create_pr.sh
+
+storage: "7287247578967654972"
+environment:
+- ACCEPT_LICENSE=*
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:MarvinHatesOceans/for-gentoo.git
+- UPSTREAM_REPO=git@github.com:Sabayon/for-gentoo.git
+- WORK_BRANCH=obsoletes-develop
+- ARCH=amd64
+
+planned: "@weekly"
