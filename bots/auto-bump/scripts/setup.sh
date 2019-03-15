@@ -27,4 +27,13 @@ ebuild euscan-9999.ebuild digest
 ebuild euscan-9999.ebuild merge
 popd
 
-
+# Needed so euscan can look also on the overlay content
+pushd /root/repo
+REPONAME="$(cat /root/repo/profiles/repo_name)"
+cat << EOF > /etc/portage/repos.conf/override.conf
+[$REPONAME]
+location = /root/repo
+auto-sync = no
+priority = 10
+EOF
+popd

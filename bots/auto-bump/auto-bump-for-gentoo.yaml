@@ -7,9 +7,10 @@ source: "https://github.com/Sabayon/sbi-tasks"
 script:
 # Setup deps and ssh/GH access
 - bash -ex ../scripts/setup_ssh.sh
-- bash -ex ../scripts/setup.sh
 # Update user fork
 - bash -ex ../scripts/setup_git_repo.sh
+# Setup tools (and repos)
+- bash -ex scripts/setup.sh
 # Run the autobumper ( do work on cwd and create atomic commits)
 - bash -ex scripts/auto_bump.sh
 - bash -ex ../scripts/create_pr.sh
