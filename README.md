@@ -1,6 +1,8 @@
 # Build infrastructure tasks
 
-<center>![](https://media.giphy.com/media/l3vR6aasfs0Ae3qdG/giphy.gif)</center>
+<p align="center">
+  <img src="https://media.giphy.com/media/l3vR6aasfs0Ae3qdG/giphy.gif" alt=""/>
+</p>
 
 ## Repository content
 
