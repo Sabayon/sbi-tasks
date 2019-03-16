@@ -1,11 +1,7 @@
 script:
   - export LC_ALL=en_US.UTF-8
-  - eval "export SOURCE_DIR=$(pwd)"
-  - echo "SOURCE_DIR = ${SOURCE_DIR}"
   # Temporary workaround for delay on DHCP response
   - sleep 10
-  # - wget https://dispatcher.sabayon.org/sbi/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker
-  # - chmod a+x /usr/bin/pkgs-checker
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - chmod 755 /sbin/sark-functions.sh
   - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
@@ -15,15 +11,11 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
   - chmod a+x /usr/sbin/builder
   - chmod a+x ./sark-localbuild
-  # Avoid final emerge (temporary)
-  - emerge --unmerge dev-lang/go
   - eselect python set python3.6
   # Force py3.6 on eit
   - sed -e 's:python2.7:python:g' -i /usr/bin/eit
   # Create mask file of upstream packages
   - source /sbin/sark-functions.sh
-  # Temporary until we create a new builder image. Not needed with LXD
-  - rm -v /etc/portage/package.env/01-sabayon.package.env
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
