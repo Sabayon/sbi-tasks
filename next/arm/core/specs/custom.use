@@ -8,3 +8,5 @@ app-portage/gemato blake2 bzip2 gpg
 
 net-libs/gnutls cxx idn nls openssl seccomp tls-heartbeat zlib tools
 
+sys-apps/util-linux cramfs ncurses nls pam python readline static-libs suid systemd tty-helpers udev unicode caps
+
