@@ -19,32 +19,34 @@ script:
   - sed -e 's:python2.7:python:g' -i /usr/bin/eit
   # Create mask file of upstream packages
   - source /sbin/sark-functions.sh
+  # Temporary until we create a new builder image. Not needed with LXD
+  - rm -v /etc/portage/package.env/01-sabayon.package.env
+  # Required for update profile confs
+  - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
-  # Temporary until i fix image
-  - emerge --unmerge virtual/service-manager net-misc/netifrc
   - equo rescue spmsync
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/core-arm/core-arm
-  - equo update core-arm
   - equo upgrade
   - SAB_BUILDFILE=sys-libs.particle.yaml ./sark-localbuild
   # Avoid emerge-webrsync for every build. I already do that.
   - export SKIP_PORTAGE_SYNC=1
   - SAB_BUILDFILE=dev-lang.particle.yaml ./sark-localbuild
-  - SAB_BUILDFILE=dev-lang.stable.particle.yaml ./sark-localbuild
-  - SAB_BUILDFILE=dev-libs.particle.yaml ./sark-localbuild
+    #- SAB_BUILDFILE=dev-lang.stable.particle.yaml ./sark-localbuild
+    #- SAB_BUILDFILE=dev-libs.particle.yaml ./sark-localbuild
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=arm
-  - USE_EQUO=0
-  - REPOSITORY_NAME=core-arm
+  - ETP_NONINTERACTIVE=1
+  - REPOSITORY_NAME=base-arm
   - SKIP_COMMIT=1
   - SKIP_PULL=1
+  - SAB_PORTDIR=/etc/portage
+  - "ACCEPT_LICENSE=*"
 type: lxd
 name: "ARM Base Repo"
 artefact_path: artifacts
 image: sabayon/builder-arm
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
-queue: arm
+queue: arm_lxd
 #namespace: base-arm
 #tag_namespace: base-arm
