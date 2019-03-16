@@ -23,7 +23,6 @@ build:
     - dev-libs/beecrypt
     - dev-libs/bglibs
     - dev-libs/blitz
-    - dev-libs/boehm-gc
     - dev-libs/boost
     - dev-libs/botan
     - dev-libs/cdk
@@ -60,7 +59,6 @@ build:
     - dev-libs/gf2x
     - dev-libs/girara
     - dev-libs/gjs
-    - dev-libs/glib
     - dev-libs/gmime
     - dev-libs/gmp
     - dev-libs/gobject-introspection
@@ -87,10 +85,8 @@ build:
     - dev-libs/libaio
     - dev-libs/libassuan
     - dev-libs/libatasmart
-    - dev-libs/libatomic_ops
     - dev-libs/libax25
     - dev-libs/libbrahe
-    - dev-libs/libbsd
     - dev-libs/libbulletml
     - dev-libs/libburn
     - dev-libs/libcdio
@@ -149,7 +145,6 @@ build:
     - dev-libs/libowfat
     - dev-libs/libp11
     - dev-libs/libpeas
-    - dev-libs/libpipeline
     - dev-libs/libpqxx
     - dev-libs/libpthread-stubs
     - dev-libs/librep
@@ -186,10 +181,8 @@ build:
     - dev-libs/mpfr
     - dev-libs/nettle
     - dev-libs/newt
-    - dev-libs/nspr
     - dev-libs/nss
     - dev-libs/oniguruma
-    - dev-libs/openssl
     - dev-libs/ossp-uuid
     - dev-libs/pcc-libs
     - dev-libs/pcre++
