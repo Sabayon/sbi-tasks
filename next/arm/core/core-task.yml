@@ -28,6 +28,7 @@ script:
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
   - SAB_BUILDFILE=core-build.yml ./sark-localbuild
+  - eval 'rm artifacts/build_*.log || true'
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=arm
@@ -42,6 +43,11 @@ environment:
   # - SKIP_PORTAGE_SYNC=1
   - SKIP_CLEAN_PACKAGESDIR=1
   - SAB_PORTDIR=/etc/portage
+  # Clean old entropy packages
+  - REPO_CLEAN_EXPIRE=1
+  - REPO_CLEAN_EXPIRE_DAYS=45
+  # Clean obsolete packages .tgz under binhost directory
+  - REPO_BINHOST_CLEAN=1
 name: ARM Core
 artefact_path: artifacts
 image: sabayon/builder-arm
@@ -53,3 +59,5 @@ directory: "/next/arm/core"
 queue: arm
 namespace: core-arm
 tag_namespace: core-arm
+# Every 15 days
+planned: "every 360h"
