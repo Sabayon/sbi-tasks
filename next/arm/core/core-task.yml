@@ -42,10 +42,10 @@ environment:
   - REPO_BINHOST_CLEAN=1
 name: ARM Core
 artefact_path: artifacts
-image: sabayon/builder-arm
-type: lxd
-# image: geaaru/sabayon-builder-arm
-# type: docker
+#image: sabayon/builder-arm
+#type: lxd
+image: geaaru/sabayon-builder-arm
+type: docker
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/core"
 queue: arm
