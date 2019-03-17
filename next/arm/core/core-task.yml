@@ -19,6 +19,7 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
+  - equo up && equo upgrade
   - SAB_BUILDFILE=core-build.yml ./sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
 environment:
@@ -40,6 +41,7 @@ environment:
   - REPO_CLEAN_EXPIRE_DAYS=45
   # Clean obsolete packages .tgz under binhost directory
   - REPO_BINHOST_CLEAN=1
+  - "ACCEPT_LICENSE=*"
 name: ARM Core
 artefact_path: artifacts
 #image: sabayon/builder-arm
