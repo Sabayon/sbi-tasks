@@ -1,15 +1,12 @@
 
 script:
   - export LC_ALL=en_US.UTF-8
-  - eval "export SOURCE_DIR=$(pwd)"
-  - echo "SOURCE_DIR = ${SOURCE_DIR}"
   - wget https://dispatcher.sabayon.org/sbi/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker
   - chmod a+x /usr/bin/pkgs-checker
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - chmod 755 /sbin/sark-functions.sh
   - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
   - chmod 755 /etc/sark-functions
-  - echo '===> Preparing last step....'
   - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
   - chmod a+x /usr/sbin/builder
@@ -19,13 +16,10 @@ script:
   - sed -e 's:python2.7:python:g' -i /usr/bin/eit
   # Create mask file of upstream packages
   - source /sbin/sark-functions.sh
-  # Temporary until we create a new builder image. Not needed with LXD
-  - rm -v /etc/portage/package.env/01-sabayon.package.env
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
-  - equo rescue spmsync
-  - equo upgrade
+  - equo up && equo upgrade
   - SAB_BUILDFILE=sys-libs.particle.yaml ./sark-localbuild
   # Avoid emerge-webrsync for every build. I already do that.
   - export SKIP_PORTAGE_SYNC=1

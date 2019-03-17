@@ -1,17 +1,15 @@
 repository:
   description: Base ARM repository
 build:
-  equo:
-    repositories:
-      - https://dispatcher.sabayon.org/sbi/namespace/core-arm/core-arm
   qa_checks: 0
   emerge:
     # Set sabayon-arm profile
     profile: 79
     # Install each package separately
     split_install: 1
+    jobs: 3
     preserved_rebuild: 1
-    default_args: --accept-properties=-interactive -t --nospinner --oneshot --complete-graph --buildpkg -j 3
+    default_args: --accept-properties=-interactive -t --quiet --complete-graph --newuse --noreplace --deep --with-bdeps=y --buildpkg -u
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
   target:
     - sys-libs/zlib
