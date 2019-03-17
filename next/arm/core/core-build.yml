@@ -15,7 +15,8 @@ build:
     preserved_rebuild: 1
     # default_args: --accept-properties=-interactive -t --quiet --complete-graph --newuse --deep --with-bdeps=y -j --buildpkg
     # --newuse option implies --selective that exclude package already updated. We need force build of all packages when we have a new repo.
-    default_args: --accept-properties=-interactive -t --quiet --complete-graph --newuse --noreplace --deep --with-bdeps=y -j --buildpkg -u
+    jobs: 3
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --noreplace --deep --with-bdeps=y --buildpkg -u
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
   target:
     - app-crypt/gentoo-keys
