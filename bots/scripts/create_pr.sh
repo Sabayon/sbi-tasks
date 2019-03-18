@@ -8,7 +8,7 @@ for i in $COMMITS; do
     git checkout master
     git checkout -b "branch-$i"
     git cherry-pick "$i"
-    git push -v -u origin "branch-$i"
+    git push -v -f -u origin "branch-$i"
     # Branch is ready now to open PR
     hub pull-request -m "$(git log -1 --pretty=%B)"
     git checkout $WORK_BRANCH
