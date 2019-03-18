@@ -34,7 +34,7 @@ or, alternatively, if the task is defined in json, you can:
 
 #### Pipelines
 
-To run a task defined in this repository, is sufficient to:
+To run a pipeline defined in this repository, is sufficient to:
 
       mottainai-cli pipeline create --yaml <pipeline.yaml>
 
