@@ -42,6 +42,6 @@ dev-libs/libconfig cxx
 # sys-libs
 
 # minizip is required for dev-lang/R
-sys-libs/zlib minizip
+sys-libs/zlib minizip -static-libs
 
 app-text/poppler-base cjk cxx jpeg jpeg2k lcms png tiff utils
