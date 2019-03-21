@@ -16,6 +16,9 @@ script:
   - sed -e 's:python2.7:python:g' -i /usr/bin/eit
   # Create mask file of upstream packages
   - source /sbin/sark-functions.sh
+  # Temporary remove this files until new image is clean
+  - rm /etc/portage/package.use/00-gentoo-arm-stage3.package.use -v
+  - rm /etc/portage/package.keywords/00sabayon.accept_keywords -v
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
@@ -35,12 +38,15 @@ environment:
   - SKIP_PULL=1
   - SAB_PORTDIR=/etc/portage
   - "ACCEPT_LICENSE=*"
-type: lxd
+#type: lxd
+#queue: arm_lxd
+#image: sabayon/builder-arm
 name: "ARM Base Repo"
 artefact_path: artifacts
-image: sabayon/builder-arm
+image: geaaru/sabayon-builder-arm
+type: docker
+queue: arm
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
-queue: arm_lxd
 #namespace: base-arm
 #tag_namespace: base-arm
