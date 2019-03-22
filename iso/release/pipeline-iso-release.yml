@@ -45,7 +45,7 @@ tasks:
       - "MOLECULE_ISO_TITLE=SABAYON"
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
-      - "SABAYON_RELEASE=19.03RC3"
+      - "SABAYON_RELEASE=19.03"
       - "SABAYON_MOLECULES_TORRENT=1"
     namespace: spinbase:iso
     publish_mode: append
@@ -74,7 +74,7 @@ tasks:
       - "MOLECULE_ISO_TITLE=SABAYON"
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
-      - "SABAYON_RELEASE=19.03RC3"
+      - "SABAYON_RELEASE=19.03"
       - "SABAYON_MOLECULES_TORRENT=1"
     namespace: spinbase:iso
     publish_mode: append
@@ -104,7 +104,7 @@ tasks:
       - "MOLECULE_ISO_TITLE=SABAYON"
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
-      - "SABAYON_RELEASE=19.03RC3"
+      - "SABAYON_RELEASE=19.03"
       - "SABAYON_MOLECULES_TORRENT=1"
     namespace: spinbase:iso
     publish_mode: append
@@ -133,7 +133,7 @@ tasks:
       - "MOLECULE_ISO_TITLE=SABAYON"
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
-      - "SABAYON_RELEASE=19.03RC3"
+      - "SABAYON_RELEASE=19.03"
       - "SABAYON_MOLECULES_TORRENT=1"
     namespace: spinbase:iso
     publish_mode: append
@@ -162,7 +162,7 @@ tasks:
       - "MOLECULE_ISO_TITLE=SABAYON"
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
-      - "SABAYON_RELEASE=19.03RC3"
+      - "SABAYON_RELEASE=19.03"
       - "SABAYON_MOLECULES_TORRENT=1"
     namespace: spinbase:iso
     publish_mode: append
@@ -191,7 +191,7 @@ tasks:
       - "MOLECULE_ISO_TITLE=SABAYON"
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
-      - "SABAYON_RELEASE=19.03RC3"
+      - "SABAYON_RELEASE=19.03"
       - "SABAYON_MOLECULES_TORRENT=1"
     namespace: spinbase:iso
     publish_mode: append
@@ -220,7 +220,7 @@ tasks:
       - "MOLECULE_ISO_TITLE=SABAYON"
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
-      - "SABAYON_RELEASE=19.03RC3"
+      - "SABAYON_RELEASE=19.03"
       - "SABAYON_MOLECULES_TORRENT=1"
     namespace: spinbase:iso
     publish_mode: append
@@ -249,7 +249,7 @@ tasks:
       - "MOLECULE_ISO_TITLE=SABAYON"
       # Force use of daily spinbase image.
       - SABAYON_SOURCE_ISO=Sabayon_Linux_DAILY_amd64_SpinBase.iso
-      - "SABAYON_RELEASE=19.03RC3"
+      - "SABAYON_RELEASE=19.03"
       - "SABAYON_MOLECULES_TORRENT=1"
     namespace: spinbase:iso
     publish_mode: append
