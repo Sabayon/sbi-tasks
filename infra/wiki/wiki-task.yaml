@@ -1,6 +1,8 @@
 artefact_path: wiki
 directory: /infra/wiki
 environment:
+  - ETP_NONINTERACTIVE=1
+  - "ACCEPT_LICENSE=*"
   - REPOSITORY_NAME=wiki-tmp
   - LC_ALL=en_US.UTF-8
   - SKIP_COMMIT=1
