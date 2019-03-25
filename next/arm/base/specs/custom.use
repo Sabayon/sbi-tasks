@@ -12,7 +12,6 @@ dev-libs/apr urandom
 dev-libs/apr-util berkdb gdbm ldap openssl
 dev-libs/atk introspection
 dev-libs/beecrypt cxx python threads
-dev-libs/boehm-gc cxx thread
 dev-libs/boost context icu nls python threads
 dev-libs/botan ssl zlib bzip2
 dev-libs/cdk unicode
@@ -27,7 +26,6 @@ dev-libs/expat static-libs unicode
 dev-libs/fcgi html
 dev-libs/folks bluetooth eds telepathy
 dev-libs/gdl introspection
-dev-libs/glib dbus mime static-libs xattr
 
 # cxx is required for maude
 dev-libs/gmp cxx
