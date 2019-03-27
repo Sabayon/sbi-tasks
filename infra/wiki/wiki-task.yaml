@@ -1,5 +1,6 @@
 artefact_path: wiki
 directory: /infra/wiki
+storage: "7287247578967654972"
 environment:
   - ETP_NONINTERACTIVE=1
   - "ACCEPT_LICENSE=*"
@@ -7,24 +8,37 @@ environment:
   - LC_ALL=en_US.UTF-8
   - SKIP_COMMIT=1
   - SKIP_PULL=1
+  - GIT_AUTHOR_NAME=MarvinHatesOceans
+  - GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+  - GIT_COMMITTER_NAME=MarvinHatesOceans
+  - GIT_COMMITTER_EMAIL=github-bots@sabayon.com
 image: sabayon/builder-amd64
 script:
-  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-functions.sh -O /sbin/sark-functions.sh
-  - chmod 755 /sbin/sark-functions.sh
-  - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
-  - chmod 755 /etc/sark-functions
-  - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
-  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
-  - chmod a+x /usr/sbin/builder
-  - chmod a+x ./sark-localbuild
-  - equo up && equo upgrade
+  - equo up
+  - equo install enman
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+  - equo update geaaru
+  - equo upgrade
+  - equo install dev-python/mkdocs-material dev-python/mkdocs-cinder dev-python/pymdown-extensions www-servers/tornado-5.1
+  # Setup deps and ssh/GH access
+  - bash -ex ../../bots/scripts/setup_ssh.sh
   - eval "export WIKI_DIR=$(pwd)/wiki"
-  - SAB_BUILDFILE=build.yaml ./sark-localbuild
-  - git clone https://github.com/Sabayon/wiki-next.git
+  - git clone git@github.com:Sabayon/wiki-next.git
   - cd wiki-next
   - mkdocs build --verbose --clean --strict
   - cp -rvf site/* ${WIKI_DIR}
+  - git checkout gh-pages
+  - rm -rf ./*
+  - cp -rvf ${WIKI_DIR}/* .
+  - echo "====================== STATUS ====================="
+  - git status .
+  - echo "====================== ADD ====================="
+  - git add .
+  - echo "====================== COMMIT ====================="
+  - git commit -m "Update wiki-next gh-pages"
+  - git status .
+  - echo "====================== PUSH ====================="
+  - git push
 source: https://github.com/Sabayon/sbi-tasks
-tag_namespace: wiki-test
 type: docker
-name: "Test Wiki-Next"
+name: "Wiki-next: Update gh-pages"
