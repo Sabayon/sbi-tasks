@@ -1,6 +1,7 @@
-artefact_path: wiki
-directory: /infra/wiki
+artefact_path: ../wiki
+directory: /
 storage: "7287247578967654972"
+storage_path: ../storage
 environment:
   - ETP_NONINTERACTIVE=1
   - "ACCEPT_LICENSE=*"
@@ -19,12 +20,18 @@ script:
   - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
   - equo update geaaru
   - equo upgrade
-  - equo install dev-python/mkdocs-material dev-python/mkdocs-cinder dev-python/pymdown-extensions www-servers/tornado-5.1
+  - equo install dev-python/mkdocs-material dev-python/mkdocs-cinder dev-python/pymdown-extensions www-servers/tornado-5.1 hub
   # Setup deps and ssh/GH access
-  - bash -ex ../../bots/scripts/setup_ssh.sh
-  - eval "export WIKI_DIR=$(pwd)/wiki"
-  - git clone git@github.com:Sabayon/wiki-next.git
-  - cd wiki-next
+  - eval "rm -rfv /root/.ssh || true"
+  - eval "ln -s $(pwd)/../storage /root/.ssh"
+  - mkdir -p ~/.config/
+  - eval "rm -rfv /root/.config/hub || true"
+  - eval "ln -s $(pwd)/../storage/hub /root/.config/hub"
+  - chmod 700 ~/.ssh
+  - chmod 600 ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa.pub
+  - ssh-keyscan github.com >> ~/.ssh/known_hosts
+  - eval "export WIKI_DIR=$(pwd)/../wiki"
   - mkdocs build --verbose --clean --strict
   - cp -rvf site/* ${WIKI_DIR}
   - git checkout gh-pages
@@ -39,6 +46,7 @@ script:
   - git status .
   - echo "====================== PUSH ====================="
   - git push
-source: https://github.com/Sabayon/sbi-tasks
+  - echo "====================== ALL DONE ====================="
+source: https://github.com/Sabayon/wiki-next.git
 type: docker
 name: "Wiki-next: Update gh-pages"
