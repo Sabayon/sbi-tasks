@@ -49,4 +49,3 @@ build:
     - dev-lang/parrot
     - dev-lang/pcc
     - dev-lang/php
-    - dev-lang/python-exec
