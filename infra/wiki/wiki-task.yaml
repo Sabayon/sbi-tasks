@@ -47,7 +47,7 @@ script:
   - git commit -m "Update wiki-next gh-pages"
   - git status .
   - echo "====================== PUSH ====================="
-  - git remote set-url git@github.com:Sabayon/wiki-next.git
+  - git remote set-url origin git@github.com:Sabayon/wiki-next.git
   - git push
   - echo "====================== ALL DONE ====================="
 source: https://github.com/Sabayon/wiki-next.git
