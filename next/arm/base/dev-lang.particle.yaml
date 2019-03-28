@@ -18,7 +18,6 @@ build:
     - dev-lang/bff
     - dev-lang/c-intercal
     - dev-lang/cfortran
-    - dev-lang/cilk
     - dev-lang/cll1h
     - dev-lang/coffee-script
     - dev-lang/confluence
