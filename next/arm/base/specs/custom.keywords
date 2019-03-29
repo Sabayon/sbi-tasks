@@ -7,6 +7,7 @@
 <=dev-lang/confluence-0.10.6 **
 <=dev-libs/libf2c-20130927 **
 <=dev-lang/f2c-20100827 **
+<=dev-lang/fpc-3.0.4 **
 <=dev-lang/ferite-1.1.17-r1 **
 <=dev-libs/ffcall-2.1 **
 <=dev-lang/gforth-0.7.3-r1 **
@@ -37,3 +38,6 @@
 
 sys-devel/llvm ~arm
 sys-devel/clang ~arm
+
+# Required for dev-lang/gdl
+<==sci-libs/plplot-5.12.0-r1 **
