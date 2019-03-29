@@ -14,15 +14,12 @@ script:
   - sed -e 's:python2.7:python:g' -i /usr/bin/eit
   # Create mask file of upstream packages
   - source /sbin/sark-functions.sh
-  # Temporary remove this files until new image is clean
-  - rm /etc/portage/package.use/00-gentoo-arm-stage3.package.use -v
-  - rm /etc/portage/package.keywords/00sabayon.accept_keywords -v
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/base-arm/base-arm
   - equo up && equo upgrade
   - SAB_BUILDFILE=sys-libs.particle.yaml ./sark-localbuild
-  # Avoid emerge-webrsync for every build. I already do that.
   - export SKIP_PORTAGE_SYNC=1
   - SAB_BUILDFILE=dev-lang.particle.yaml ./sark-localbuild
     #- SAB_BUILDFILE=dev-lang.stable.particle.yaml ./sark-localbuild
@@ -39,15 +36,15 @@ environment:
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
-#type: lxd
-#queue: arm_lxd
-#image: sabayon/builder-arm
-name: "ARM Base Repo"
+type: lxd
+queue: arm_lxd
+image: sabayon/builder-arm
+#image: geaaru/sabayon-builder-arm
+#type: docker
+#queue: arm
 artefact_path: artifacts
-image: geaaru/sabayon-builder-arm
-type: docker
-queue: arm
+name: "ARM Base Repo"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
-#namespace: base-arm
-#tag_namespace: base-arm
+namespace: base-arm
+tag_namespace: base-arm
