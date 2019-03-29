@@ -4,7 +4,7 @@
 
 dev-lang/erlang -wxwidgets
 dev-lang/php acl apache2 bcmath berkdb bzip2 calendar cgi cjk cli crypt ctype curl exif fileinfo filter fpm ftp gd gdbm gmp hash iconv imap intl ipv6 json kerberos ldap mhash mysql mysqli nls odbc opcache pcntl pdo phar posix postgres readline session simplexml snmp soap sockets spell sqlite ssl systemd sysvipc tidy tokenizer truetype unicode wddx xml xmlreader xmlrpc xmlwriter xpm xslt zip zlib
-dev-lang/R jpeg nls openmp perl png readline tiff
+dev-lang/R -jpeg nls openmp perl -png readline -tiff
 
 # dev-libs
 
