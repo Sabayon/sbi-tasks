@@ -41,4 +41,4 @@ sys-devel/llvm ~arm
 sys-devel/clang ~arm
 
 # Required for dev-lang/gdl
-<==sci-libs/plplot-5.12.0-r1 **
+<=sci-libs/plplot-5.12.0-r1 **
