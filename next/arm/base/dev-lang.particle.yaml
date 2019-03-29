@@ -38,7 +38,8 @@ build:
     - dev-lang/lua
     - dev-lang/luajit
     - dev-lang/maude
-    - dev-lang/mmix
+    # Disabled: require mpfr-4.0
+    #- dev-lang/mmix
     - dev-lang/nasm
     - dev-lang/nqp
     - dev-lang/ocaml
