@@ -25,5 +25,6 @@
   ],
   "binds": [
     "/dev/loop-control:/dev/loop-control"
-  ]
+  ],
+  "planned": "0 0 3 * * *"
 }
