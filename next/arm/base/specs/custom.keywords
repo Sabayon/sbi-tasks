@@ -17,7 +17,7 @@
 <=dev-lang/xsb-3.7.0-r1 **
 <=dev-lang/interprolog-2.1.2 **
 <=dev-libs/openspecfun-0.5.1 **
-<=dev-lang/julia-1.0.3 **
+<=dev-lang/julia-1.1.0 **
 <=dev-util/patchelf-0.9_p20180129 **
 <=sci-libs/openlibm-0.5.4 **
 <=dev-lang/logtalk-3.18.0 **
