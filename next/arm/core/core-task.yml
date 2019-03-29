@@ -16,8 +16,6 @@ script:
   - sed -e 's:python2.7:python:g' -i /usr/bin/eit
   # Create mask file of upstream packages
   - source /sbin/sark-functions.sh
-  - rm /etc/portage/package.use/00-gentoo-arm-stage3.package.use -v
-  - rm /etc/portage/package.keywords/00sabayon.accept_keywords -v
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
