@@ -27,7 +27,6 @@ build:
     - dev-lang/gdl
     - dev-lang/gforth
     - dev-lang/go
-    - dev-lang/gprolog
     - dev-lang/icon
     - dev-lang/ifc
     - dev-lang/ispc
