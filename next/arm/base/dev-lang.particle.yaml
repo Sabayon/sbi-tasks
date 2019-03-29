@@ -28,7 +28,6 @@ build:
     - dev-lang/gforth
     - dev-lang/go
     - dev-lang/icon
-    - dev-lang/ifc
     - dev-lang/ispc
     - dev-lang/inform
     - dev-lang/interprolog
