@@ -2,6 +2,24 @@ repository:
   description: Base ARM repository
 build:
   qa_checks: 0
+  equo:
+    package:
+      unmask:
+        - dev-libs/ffcall
+        - sci-libs/buddy
+        - dev-lang/moarvm
+        - dev-lang/c-intercal
+        - dev-lang/bas
+        - dev-lang/nqp
+        - dev-lang/lisaac
+        - dev-lang/icon
+        - dev-lang/maude
+        - dev-lang/gforth
+        - dev-lang/R
+        - dev-lang/inform
+        - dev-lang/parrot
+        - dev-lang/nasm
+        - dev-lang/ferite
   emerge:
     # Set sabayon-arm profile
     profile: 79
