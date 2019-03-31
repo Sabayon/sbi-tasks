@@ -31,8 +31,9 @@ script:
   - chmod 600 ~/.ssh/id_rsa.pub
   - ssh-keyscan github.com >> ~/.ssh/known_hosts
   - echo "====================== SSH READY ====================="
-  - eval "export WWW_DIR=$(pwd)/../www"
+  - eval "export WWW_DIR=$(pwd)/../www/"
   - git checkout ${GIT_WWW_BRANCH}
+  - sed -i -e 's:baseurl.*:baseurl = "https\://dispatcher.sabayon.org/sbi/namespace/website-next/":g' config.toml
   - make build
   - cp -rvf public/* ${WWW_DIR}
   - echo "====================== ALL DONE ====================="
@@ -40,4 +41,5 @@ source: https://github.com/Sabayon/sabayon-website-next.git
 type: docker
 # Publish website under mottainai namespace
 # to validate output.
+tag_namespace: "website-next"
 name: "sabayon-website-next: Test site"
