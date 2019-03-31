@@ -20,6 +20,7 @@ build:
         - dev-lang/parrot
         - dev-lang/nasm
         - dev-lang/ferite
+        - dev-lang/gdl
   emerge:
     # Set sabayon-arm profile
     profile: 79
