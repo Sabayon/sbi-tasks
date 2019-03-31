@@ -22,7 +22,7 @@ script:
   - SAB_BUILDFILE=sys-libs.particle.yaml ./sark-localbuild
   - export SKIP_PORTAGE_SYNC=1
   - SAB_BUILDFILE=dev-lang.particle.yaml ./sark-localbuild
-    #- SAB_BUILDFILE=dev-lang.stable.particle.yaml ./sark-localbuild
+  - SAB_BUILDFILE=dev-lang.stable.particle.yaml ./sark-localbuild
     #- SAB_BUILDFILE=dev-libs.particle.yaml ./sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
 environment:
