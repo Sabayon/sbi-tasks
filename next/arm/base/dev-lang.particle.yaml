@@ -64,5 +64,4 @@ build:
     - dev-lang/ocaml
     - dev-lang/orc
     - dev-lang/parrot
-    - dev-lang/pcc
     - dev-lang/php
