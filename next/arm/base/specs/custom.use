@@ -9,6 +9,12 @@ dev-lang/R -jpeg nls openmp perl -png readline -tiff
 # Disable imagemagick to avoid inject of X and gtk stuff
 dev-lang/gdl eigen -imagemagick openmp python -fftw -graphicsmagick -grib -gshhs -hdf -hdf5 -netcdf -png -postscript -proj -static-libs -test -udunits -wxwidgets
 
+dev-java/icedtea-bin -gtk alsa -cups webstart -doc -examples -headless-awt -nsplugin -pulseaudio -source
+
+
+# Required for dev-lang/gdl
+sci-libs/plplot -dynamic
+
 # dev-libs
 
 dev-libs/apr urandom
