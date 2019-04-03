@@ -17,6 +17,8 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
+  # This command must be integrated with builder.
+  - mirrorselect -s3 -b10 -D
   - enman add https://dispatcher.sabayon.org/sbi/namespace/base-arm/base-arm
   - equo up && equo upgrade
   - SAB_BUILDFILE=sys-libs.particle.yaml ./sark-localbuild
