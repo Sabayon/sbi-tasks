@@ -11,7 +11,8 @@ build:
     # Install each package separately
     split_install: 1
     preserved_rebuild: 1
-    default_args: --accept-properties=-interactive -t --nospinner --oneshot --complete-graph --buildpkg -j 3
+    jobs: 2
+    default_args: --accept-properties=-interactive -t --nospinner --oneshot --complete-graph --buildpkg
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
   target:
     - dev-libs/389-adminutil
