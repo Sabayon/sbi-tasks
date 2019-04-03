@@ -21,6 +21,7 @@ build:
         - dev-lang/nasm
         - dev-lang/ferite
         - dev-lang/gdl
+        - dev-libs/libf2c
   emerge:
     # Set sabayon-arm profile
     profile: 79
@@ -51,7 +52,9 @@ build:
     - dev-lang/inform
     - dev-lang/interprolog
     - dev-lang/jimtcl
-    - dev-lang/julia
+    # Temporary disable for problems
+    # with openlibm
+    #- dev-lang/julia
     - dev-lang/lisaac
     - dev-lang/logtalk
     - dev-lang/lua
