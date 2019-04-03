@@ -1,6 +1,11 @@
 repository:
   description: Base ARM repository
 build:
+  equo:
+    package:
+      install:
+        # Avoid rebuild zlib dependency
+        - dev-lang/swig
   qa_checks: 0
   emerge:
     # Set sabayon-arm profile
