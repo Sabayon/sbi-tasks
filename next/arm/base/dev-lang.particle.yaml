@@ -43,7 +43,6 @@ build:
     - dev-lang/confluence
     - dev-lang/f2c
     - dev-lang/ferite
-    - dev-lang/fpc
     - dev-lang/gdl
     - dev-lang/gforth
     - dev-lang/go
