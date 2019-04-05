@@ -1,0 +1,15 @@
+repository:
+  description: Base ARM repository
+build:
+  qa_checks: 0
+  emerge:
+    # Set sabayon-arm profile
+    profile: 79
+   # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    default_args: --accept-properties=-interactive -t --nospinner --oneshot --complete-graph --buildpkg -j 3
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - www-servers/apache
+    - www-servers/nginx
