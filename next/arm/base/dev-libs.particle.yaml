@@ -201,7 +201,6 @@ build:
     - dev-libs/tntnet
     - dev-libs/totem-pl-parser
     - dev-libs/tre
-    - dev-libs/tvision
     - dev-libs/ucl
     - dev-libs/ucommon
     - dev-libs/udis86
