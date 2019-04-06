@@ -58,7 +58,6 @@ build:
     - dev-libs/g-wrap
     - dev-libs/geoip
     - dev-libs/gf2x
-    - dev-libs/gjs
     - dev-libs/gmime
     - dev-libs/gmp
     - dev-libs/gobject-introspection
