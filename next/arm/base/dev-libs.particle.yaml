@@ -124,7 +124,6 @@ build:
     - dev-libs/liblogging
     - dev-libs/liblognorm
     - dev-libs/libmaa
-    - dev-libs/libmateweather
     - dev-libs/libmba
     - dev-libs/libmcrypt
     - dev-libs/libmirage
