@@ -1,0 +1,30 @@
+repository:
+  description: Base ARM repository
+build:
+  qa_checks: 0
+  emerge:
+    # Set sabayon-arm profile
+    profile: 79
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    jobs: 2
+    default_args: --accept-properties=-interactive -t --nospinner --oneshot --complete-graph --buildpkg
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    # It seems that with lxd LLVM is not compilable.
+    #  * Unpacking parts of llvm-8.0.0.src.tar.xz ...
+    #  tar: llvm-8.0.0.src/utils/vim/README: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+    #  tar: llvm-8.0.0.src/utils/vim/indent/llvm.vim: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+    #  tar: llvm-8.0.0.src/utils/vim/indent: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+    #  tar: llvm-8.0.0.src/utils/vim/vimrc: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+    #  tar: llvm-8.0.0.src/utils/vim/ftplugin/llvm.vim: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+    #  tar: llvm-8.0.0.src/utils/vim/ftplugin/tablegen.vim: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+    #  tar: llvm-8.0.0.src/utils/vim/ftplugin: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+    #  tar: llvm-8.0.0.src/utils/vim/ftdetect/llvm-lit.vim: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+    #  ....
+    - sys-devel/llvm-common
+    - sys-devel/llvm
+
+
+
