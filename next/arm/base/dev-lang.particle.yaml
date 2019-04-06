@@ -20,7 +20,6 @@ build:
         - dev-lang/parrot
         - dev-lang/nasm
         - dev-lang/ferite
-        - dev-lang/gdl
         - dev-libs/libf2c
   emerge:
     # Set sabayon-arm profile
@@ -43,7 +42,10 @@ build:
     - dev-lang/confluence
     - dev-lang/f2c
     - dev-lang/ferite
-    - dev-lang/gdl
+    # Disable dev-lang/gdl for now:
+    # Error: error: rpc/rpc.h: No such file or directory
+    #  include <rpc/rpc.h>
+    # - dev-lang/gdl
     - dev-lang/gforth
     - dev-lang/go
     - dev-lang/icon
