@@ -74,7 +74,8 @@ build:
     - dev-libs/jthread
     - dev-libs/judy
     - dev-libs/keybinder
-    - dev-libs/klibc
+    # Temporary disable for error: make: *** No rule to make target 'include/config/auto.conf', needed by 'include/config/kernel.release'
+    # - dev-libs/klibc
     - dev-libs/kpathsea
     - dev-libs/legousbtower
     - dev-libs/leveldb
