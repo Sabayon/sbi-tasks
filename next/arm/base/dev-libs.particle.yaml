@@ -117,7 +117,6 @@ build:
     - dev-libs/libgusb
     - dev-libs/libhome
     - dev-libs/libical
-    - dev-libs/libindicator
     - dev-libs/libisoburn
     - dev-libs/libisofs
     - dev-libs/libksba
