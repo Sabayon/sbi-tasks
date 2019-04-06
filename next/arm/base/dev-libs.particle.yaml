@@ -56,7 +56,6 @@ build:
     - dev-libs/ffcall
     - dev-libs/fribidi
     - dev-libs/g-wrap
-    - dev-libs/gdl
     - dev-libs/geoip
     - dev-libs/gf2x
     - dev-libs/girara
