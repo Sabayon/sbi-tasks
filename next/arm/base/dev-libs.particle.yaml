@@ -115,7 +115,6 @@ build:
     - dev-libs/libgee
     - dev-libs/libgpg-error
     - dev-libs/libgusb
-    - dev-libs/libgweather
     - dev-libs/libhome
     - dev-libs/libical
     - dev-libs/libindicate
