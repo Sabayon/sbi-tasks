@@ -38,18 +38,19 @@ dev-libs/darts zlib
 dev-libs/elfutils bzip2 nls static-libs utils
 dev-libs/expat static-libs unicode
 dev-libs/fcgi html
-dev-libs/folks bluetooth eds telepathy
 dev-libs/gdl introspection
+
 
 # cxx is required for maude
 dev-libs/gmp cxx
 dev-libs/gobject-introspection cairo
 dev-libs/iksemel ssl
 dev-libs/json-glib introspection
-dev-libs/keybinder introspection python
+dev-libs/keybinder -introspection python
 dev-libs/leveldb tcmalloc snappy
 dev-libs/libcdio cxx
 dev-libs/libconfig cxx
+dev-libs/libunique -introspection
 
 # sys-libs
 
