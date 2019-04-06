@@ -12,11 +12,12 @@ build:
     split_install: 1
     preserved_rebuild: 1
     jobs: 2
-    default_args: --accept-properties=-interactive -t --nospinner --oneshot --complete-graph --buildpkg
+    default_args: --accept-properties=-interactive -t --nospinner --oneshot --complete-graph --buildpkg --update
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
   target:
     - dev-libs/389-adminutil
-    - dev-libs/ace
+    # Disabled for error: ACE_OS::_exit (errno);
+    # - dev-libs/ace
     - dev-libs/apr
     - dev-libs/apr-util
     - dev-libs/argtable
@@ -25,7 +26,8 @@ build:
     - dev-libs/bglibs
     - dev-libs/blitz
     - dev-libs/boost
-    - dev-libs/botan
+    # Disable temporary for error: ERROR: Unknown or unidentifiable processor "armv7a"
+    # - dev-libs/botan
     - dev-libs/cdk
     - dev-libs/cgicc
     - dev-libs/check
@@ -40,7 +42,8 @@ build:
     - dev-libs/darts
     - dev-libs/dbus-c++
     - dev-libs/dbus-glib
-    - dev-libs/dietlibc
+    # Disable temporary: require sys-devel/binutils-2.32
+    # - dev-libs/dietlibc
     - dev-libs/dotconf
     - dev-libs/eb
     - dev-libs/elfio
@@ -79,7 +82,6 @@ build:
     - dev-libs/keybinder
     - dev-libs/klibc
     - dev-libs/kpathsea
-    - dev-libs/kqoauth
     - dev-libs/legousbtower
     - dev-libs/leveldb
     - dev-libs/libIDL
@@ -97,7 +99,6 @@ build:
     - dev-libs/libcroco
     - dev-libs/libdaemon
     - dev-libs/libdbusmenu
-    - dev-libs/libdbusmenu-qt
     - dev-libs/libdivsufsort
     - dev-libs/libdnet
     - dev-libs/libdnsres
@@ -194,8 +195,6 @@ build:
     - dev-libs/pslib
     - dev-libs/ptexenc
     - dev-libs/pugixml
-    - dev-libs/qoauth
-    - dev-libs/qrosscore
     - dev-libs/quazip
     - dev-libs/rasqal
     - dev-libs/re2
