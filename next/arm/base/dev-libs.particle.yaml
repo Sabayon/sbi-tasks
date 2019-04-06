@@ -62,7 +62,6 @@ build:
     - dev-libs/gmp
     - dev-libs/gobject-introspection
     - dev-libs/gobject-introspection-common
-    - dev-libs/grantlee
     - dev-libs/http-fetcher
     - dev-libs/hyphen
     - dev-libs/iksemel
