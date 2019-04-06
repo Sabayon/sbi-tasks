@@ -213,7 +213,6 @@ build:
     - dev-libs/vanessa-adt
     - dev-libs/vanessa-logger
     - dev-libs/wayland
-    - dev-libs/wnn7sdk
     - dev-libs/xalan-c
     - dev-libs/xapian
     - dev-libs/xapian-bindings
