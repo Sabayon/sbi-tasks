@@ -150,7 +150,6 @@ build:
     - dev-libs/libtecla
     - dev-libs/libtommath
     - dev-libs/libunique
-    - dev-libs/libunique
     - dev-libs/libusb-compat
     - dev-libs/libverto
     - dev-libs/libvformat
@@ -176,16 +175,15 @@ build:
     - dev-libs/nss
     - dev-libs/oniguruma
     - dev-libs/ossp-uuid
-    - dev-libs/pcc-libs
     - dev-libs/pcre++
     - dev-libs/pkcs11-helper
-    - dev-libs/poco
+    # Temporary disable for conflict with new openssl lib
+    # - dev-libs/poco
     - dev-libs/popt
     - dev-libs/ppl
     - dev-libs/pslib
     - dev-libs/ptexenc
     - dev-libs/pugixml
-    - dev-libs/quazip
     - dev-libs/rasqal
     - dev-libs/re2
     - dev-libs/redland
