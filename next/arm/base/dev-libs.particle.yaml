@@ -137,7 +137,6 @@ build:
     - dev-libs/libotf
     - dev-libs/libowfat
     - dev-libs/libp11
-    - dev-libs/libpeas
     - dev-libs/libpqxx
     - dev-libs/libpthread-stubs
     - dev-libs/librep
