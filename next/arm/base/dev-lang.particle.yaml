@@ -49,9 +49,12 @@ build:
     - dev-lang/gforth
     - dev-lang/go
     - dev-lang/icon
+    # Require llvm
     - dev-lang/ispc
     - dev-lang/inform
-    - dev-lang/interprolog
+    # Require dev-lang/xsb (that require x11-misc/makedepend)
+    # Temporary disable. We want to maintain this on base-arm?
+    #- dev-lang/interprolog
     - dev-lang/jimtcl
     # Temporary disable for problems
     # with openlibm
