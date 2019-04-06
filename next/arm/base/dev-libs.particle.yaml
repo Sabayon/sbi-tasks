@@ -50,7 +50,6 @@ build:
     - dev-libs/elfutils
     - dev-libs/eventlog
     - dev-libs/expat
-    - dev-libs/fampp2
     - dev-libs/fcgi
     - dev-libs/fddl
     - dev-libs/ferrisloki
