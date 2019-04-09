@@ -1,0 +1,23 @@
+# Authors: Sabayon Team
+#          geaaru@sabayonlinux.org
+#
+# Description: Script for create images.json file for LXD Simplestreams protocol.
+
+image: sabayon/base-amd64
+script:
+  - source /etc/profile
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+  - equo up
+  - equo install dev-util/simplestreams-builder
+  - simplestreams-builder build-index -c tree-images.yaml -t ./images
+type: docker
+name: "Build LXD sabayon/builder image"
+environment:
+  - "ACCEPT_LICENSE=*"
+namespace: lxd-sabayon-builder
+artefact_path: images
+source: https://github.com/Sabayon/sbi-tasks.git
+directory: /lxd
+timeout: 0
+#planned: "0 0 1 * * *"
+
