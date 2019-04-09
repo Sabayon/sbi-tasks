@@ -1,0 +1,23 @@
+# Authors: Sabayon Team
+#          geaaru@sabayonlinux.org
+#
+# Description: Script for build LXD sabayon/builder image.
+
+image: sabayon/base-amd64
+script:
+  - source /etc/profile
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+  - equo up
+  - equo install dev-util/simplestreams-builder
+  - simplestreams-builder -c tree-images.yaml -s ./sabayon-builder -t images sabayon-builder:current:amd64:default --skip-lxc
+type: docker
+name: "Build LXD sabayon/builder image"
+environment:
+  - "ACCEPT_LICENSE=*"
+namespace: lxd-sabayon-builder
+artefact_path: images
+source: https://github.com/Sabayon/wiki-next.git
+directory: /lxd
+timeout: 0
+#planned: "0 0 1 * * *"
+
