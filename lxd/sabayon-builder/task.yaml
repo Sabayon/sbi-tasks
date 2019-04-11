@@ -6,14 +6,21 @@
 image: sabayon/base-amd64
 script:
   - source /etc/profile
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
   - equo up
-  - equo install dev-util/simplestreams-builder
-  - simplestreams-builder build-product -c tree-images.yaml -s ./sabayon-builder -t images sabayon-builder:current:amd64:default --skip-lxc
+  - equo install enman
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+  - equo up geaaru
+  - touch /etc/entropy/packages/package.unmask
+  - equo unmask dev-util/simplestreams-builder-9999
+  - equo install distrobuilder dev-util/simplestreams-builder
+  - mkdir ./images/sabayon-builder -p
+  - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images sabayon-builder:current:amd64:default --skip-lxc
+  - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p sabayon-builder:current:amd64:default
 type: docker
 name: "Build LXD sabayon/builder image"
 environment:
   - "ACCEPT_LICENSE=*"
+  - "SSBUILDER_PREFIX=../lxd-sabayon-builder/sabayon-builder"
 namespace: lxd-sabayon-builder
 artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
