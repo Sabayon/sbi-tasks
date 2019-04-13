@@ -6,18 +6,28 @@
 image: sabayon/base-amd64
 script:
   - source /etc/profile
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
   - equo up
-  - equo install dev-util/simplestreams-builder
+  - equo install enman
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+  - equo up geaaru
+  - touch /etc/entropy/packages/package.unmask
+  - equo unmask dev-util/simplestreams-builder-9999
+  - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools
   # Build index.json
   - simplestreams-builder build-index -c tree-images.yaml -t ./images
   # Build images.josn
-  - simplestreams-builder build-images-files -c tree-images.yaml -t ./images
+  - simplestreams-builder build-images-file -c tree-images.yaml -t ./images
+  # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
+  # by agent.
+  - chmod a+rwx -R images/
+  - find .
+  - eval 'rm images/build_*.log || true'
 type: docker
-name: "Build LXD sabayon/builder image"
+name: "Build LXD Simplestreams index files"
 environment:
   - "ACCEPT_LICENSE=*"
 namespace: lxd-images
+tag_namespace: lxd-images
 artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
