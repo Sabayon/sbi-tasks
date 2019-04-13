@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mottainai-cli task create --yaml image_build/docker/mottainai/server-amd64.yaml
+mottainai-cli task create --yaml image_build/docker/mottainai/agent-amd64.yaml
