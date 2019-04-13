@@ -28,7 +28,7 @@ main() {
 			exit 1;
 		}
 		cp "${conf}" ".config" || exit 1
-		make ARCH="${conf_arch}" oldconfig || exit 1 # interactive
+		make ARCH="${conf_arch}" olddefconfig || exit 1 # interactive
 		cp ".config" "${conf}" || exit 1
 	done
 }
