@@ -9,12 +9,15 @@ script:
   - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
   - equo up
   - equo install dev-util/simplestreams-builder
+  # Build index.json
   - simplestreams-builder build-index -c tree-images.yaml -t ./images
+  # Build images.josn
+  - simplestreams-builder build-images-files -c tree-images.yaml -t ./images
 type: docker
 name: "Build LXD sabayon/builder image"
 environment:
   - "ACCEPT_LICENSE=*"
-namespace: lxd-sabayon-builder
+namespace: lxd-images
 artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
