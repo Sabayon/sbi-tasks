@@ -1,0 +1,151 @@
+#!/bin/bash
+
+# Variables
+REPO_PATH=${1}
+PULL_REMOTE=${2}
+PUSH_REMOTE=${3}
+BRANCH=${4}
+PREFIX=${5}
+REGEX=${6}
+SCRIPT_DIR="${SCRIPT_DIR:-sabayon}"
+
+show_help() {
+    echo "${0} <repo path> <pull remote> <push remote> <branch> <push tag prefix> v<track regex>" >&2
+    echo "Example: ${0} ~/repos/kernel stable origin 3.12 sabayon- 3\.12\.[0-9999]" >&2
+}
+
+if [ ! -d "${REPO_PATH}" ]; then
+    show_help
+    exit 1
+fi
+
+if [ -z "${PULL_REMOTE}" ]; then
+    show_help
+    exit 1
+fi
+
+if [ -z "${PUSH_REMOTE}" ]; then
+    show_help
+    exit 1
+fi
+
+if [ -z "${BRANCH}" ]; then
+    show_help
+    exit 1
+fi
+
+if [ -z "${PREFIX}" ]; then
+    show_help
+    exit 1
+fi
+
+if [ -z "${REGEX}" ]; then
+    show_help
+    exit 1
+fi
+
+rollback() {
+    cd "${REPO_PATH}" || return 1
+    git rebase --abort 2> /dev/null || true
+    git reset --hard "${PUSH_REMOTE}/${BRANCH}" || return 1
+}
+
+start() {
+    cd "${REPO_PATH}" || return 1
+
+    echo "Fetching ${PULL_REMOTE}"
+    git fetch --quiet "${PULL_REMOTE}" || {
+        rollback
+        return 1;
+    }
+
+    echo "Fetching ${PUSH_REMOTE}"
+    git fetch --quiet "${PUSH_REMOTE}" || {
+        rollback
+        return 1;
+    }
+
+    local tags=$(git tag | grep -e "v${REGEX}")
+    echo "Tracking tags:"
+    echo -e "${tags}"
+    if [ -z "${tags}" ]; then
+        echo "No tags to track for: ${REGEX} in ${REPO_PATH}"
+        return 0
+    fi
+
+    local bumps=()
+    local tag= tracked_tag=
+    for tag in ${tags}; do
+        tracked_tag="${PREFIX}${tag/v}"
+        echo "Checking tag: ${tag}, ${tracked_tag}"
+        if ! git tag | grep -q -e "^${tracked_tag}$"; then
+            echo "Not tracked: ${tag}, ${tracked_tag}"
+            bumps+=( "${tag}" )
+        fi
+    done
+
+    if [ -z "${bumps[*]}" ]; then
+        echo "Nothing to do."
+        return 0
+    fi
+
+    if ! git show-branch "${BRANCH}" > /dev/null; then
+        echo "Creating branch: ${BRANCH}"
+        git checkout -q "${PUSH_REMOTE}/${BRANCH}" -b "${BRANCH}" || {
+            rollback
+            return 1;
+        }
+    else
+        echo "Checking out branch: ${BRANCH}"
+        git checkout -q "${BRANCH}" || {
+            rollback
+            return 1;
+        }
+    fi
+
+    echo "Updating branch"
+    git rebase --quiet "${PUSH_REMOTE}/${BRANCH}" || {
+        rollback
+        return 1;
+    }
+
+    for tag in "${bumps[@]}"; do
+        echo "Working on tag: ${tag}"
+        git merge --quiet "${tag}" -m "Automatic merge of tag ${PULL_REMOTE}/${tag}" || {
+            rollback
+            return 1;
+        }
+        bash "${SCRIPT_DIR}"/bump-configs.sh || {
+            rollback
+            return 1;
+        }
+
+        local changed=$(git ls-files -m -d -o --exclude-standard sabayon/config)
+        if [ -n "${changed}" ]; then
+            git commit --quiet sabayon/config -m "sabayon: bump configs" || {
+                rollback
+                return 1;
+            }
+        fi
+
+        git push --quiet || {
+            rollback
+            return 1;
+        }
+        git push --quiet --tags || {
+            rollback
+            return 1;
+        }
+
+        tracked_tag="${PREFIX}${tag/v}"
+        bash "${SCRIPT_DIR}"/tag-version.sh "${tracked_tag}" || {
+            rollback
+            return 1;
+        }
+
+        echo "Released ${tracked_tag}"
+    done
+}
+
+
+start

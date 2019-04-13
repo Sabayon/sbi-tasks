@@ -1,0 +1,14 @@
+#!/bin/bash
+
+. /etc/profile
+KERNEL_DIR="${KERNEL_DIR:-kernel}"
+cd $(dirname "${0}") || exit 1
+
+# Tracked kernels
+./kernel-autobump "${KERNEL_DIR}" stable origin 4.4 sabayon- "4\.4\.[0-9999]"
+./kernel-autobump "${KERNEL_DIR}" stable origin 4.9 sabayon- "4\.9\.[0-9999]"
+./kernel-autobump "${KERNEL_DIR}" stable origin 4.14 sabayon- "4\.14\.[0-9999]"
+./kernel-autobump "${KERNEL_DIR}" stable origin 4.16 sabayon- "4\.16\.[0-9999]"
+./kernel-autobump "${KERNEL_DIR}" stable origin 4.18 sabayon- "4\.18\.[0-9999]"
+./kernel-autobump "${KERNEL_DIR}" stable origin 4.19 sabayon- "4\.19\.[0-9999]"
+./kernel-autobump "${KERNEL_DIR}" stable origin 4.20 sabayon- "4\.20\.[0-9999]"
