@@ -27,6 +27,7 @@ echo "Making the tarballs..."
         xz > "${kernel_diff}" || exit 1
 
     mv "${kernel_diff}" "${DIFFSDIR}"/ || exit 1
+    cp -rfv ${kernel_diff} /usr/portage/distfiles/
 ) 9> /tmp/.kernel-tag-version-tarball.lock
 
 echo "Updating the overlay..."
