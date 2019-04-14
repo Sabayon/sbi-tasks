@@ -10,7 +10,7 @@ script:
   - mkdir -p /root/.config/
   - echo 'Sourcing storage file...'
   - eval '. $(pwd)/confs/mcli.keys'
-  - make deploy
+  - replicant -p sab-infra environment ensure
 type: docker_execute
 name: "Replicant job"
 storage: "8925468933589065900"

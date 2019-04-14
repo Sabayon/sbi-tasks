@@ -12,5 +12,5 @@ script:
   - eval '. $(pwd)/confs/mcli.keys'
   - replicant -p sab-infra validate repo
 type: docker_execute
-name: "Replicant job"
+name: "Replicant job (PR)"
 storage_path: "confs"
