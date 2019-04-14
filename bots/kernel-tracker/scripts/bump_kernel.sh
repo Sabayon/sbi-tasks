@@ -25,4 +25,5 @@ mkdir -p $DIFFSDIR || true
 bash $WORK/scripts/tag-version.sh sabayon-${KERNEL_VERSION_BUMP}
 pushd /root/repo
 git checkout $WORK_BRANCH
+git push -fv --set-upstream origin $WORK_BRANCH
 hub pull-request -m "Add new $KERNEL_VERSION_BUMP kernel"
