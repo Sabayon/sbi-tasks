@@ -39,7 +39,7 @@ tasks:
     artefact_path: namespace
     namespace: "spinbase:iso"
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     directory: /
     environment:
       - "DRACUT=1"
@@ -75,7 +75,7 @@ tasks:
     artefact_path: namespace
     namespace: "spinbase:iso"
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     directory: /
     environment:
       - "DRACUT=1"
@@ -111,7 +111,7 @@ tasks:
     artefact_path: namespace
     namespace: "spinbase:iso"
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     directory: /
     environment:
       - "DRACUT=1"
@@ -147,7 +147,7 @@ tasks:
     artefact_path: namespace
     namespace: "spinbase:iso"
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     directory: /
     environment:
       - "DRACUT=1"
@@ -183,7 +183,7 @@ tasks:
     artefact_path: namespace
     namespace: "spinbase:iso"
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     directory: /
     environment:
       - "DRACUT=1"
@@ -219,7 +219,7 @@ tasks:
     artefact_path: namespace
     namespace: "spinbase:iso"
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     directory: /
     environment:
       - "DRACUT=1"
@@ -255,7 +255,7 @@ tasks:
     artefact_path: namespace
     namespace: "spinbase:iso"
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     directory: /
     environment:
       - "DRACUT=1"

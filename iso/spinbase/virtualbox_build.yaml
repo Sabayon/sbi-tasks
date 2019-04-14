@@ -29,7 +29,7 @@ script:
   - sudo SABAYON_MOLECULES_ISO=/vagrant/namespace SABAYON_MOLECULES_SYSTEMD_MODE=0 SABAYON_USE_IMG=0 SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh
   - sudo SABAYON_MOLECULES_ISO=/vagrant/namespace SABAYON_MOLECULES_SYSTEMD_MODE=0 SABAYON_USE_IMG=0 SABAYON_MOLECULES_SCRIPT=/sabayon/scripts/sabayon_iso_build.sh SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git /sabayon_molecules.sh run daily --image spinbase --skip-docker-rmi --skip-dev
 storage: "8925468933589065900,6632034308897681895"
-storage_path: /confs
+storage_path: confs
 tag_namespace: spinbase:iso
 task: virtualbox_execute
 #planned: "0 0 22 * * *"

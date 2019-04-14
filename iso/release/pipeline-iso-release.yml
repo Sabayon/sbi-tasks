@@ -50,7 +50,7 @@ tasks:
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     tag_namespace: cocoon:iso:next-release
     timeout: 0
 
@@ -79,7 +79,7 @@ tasks:
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     tag_namespace: cocoon:iso:next-release
     timeout: 0
 
@@ -109,7 +109,7 @@ tasks:
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     tag_namespace: cocoon:iso:next-release
     timeout: 0
 
@@ -138,7 +138,7 @@ tasks:
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     tag_namespace: cocoon:iso:next-release
     timeout: 0
 
@@ -167,7 +167,7 @@ tasks:
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     tag_namespace: cocoon:iso:next-release
     timeout: 0
 
@@ -196,7 +196,7 @@ tasks:
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     tag_namespace: cocoon:iso:next-release
     timeout: 0
 
@@ -225,7 +225,7 @@ tasks:
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     tag_namespace: cocoon:iso:next-release
     timeout: 0
 
@@ -254,6 +254,6 @@ tasks:
     namespace: spinbase:iso
     publish_mode: append
     storage: "8925468933589065900,6632034308897681895"
-    storage_path: /confs
+    storage_path: confs
     tag_namespace: cocoon:iso:next-release
     timeout: 0
