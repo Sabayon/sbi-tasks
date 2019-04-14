@@ -1,0 +1,46 @@
+name: "Kernel tracker"
+image: sabayon/builder-amd64
+type: docker
+directory: "/bots/kernel-tracker"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+- set -x
+# Setup deps and ssh/GH access
+- export WORK=$(pwd)
+- bash -ex ../scripts/setup_ssh.sh
+- bash -ex ../scripts/setup_git_repo.sh
+- export KERNEL_DIR=$WORK/kernel
+- export OVERLAY=/root/repo
+- export DIFFSDIR=$WORK/patches/sys-kernel
+- export SCRIPT_DIR=$WORK/scripts
+- git clone $KERNEL_REPO kernel
+- pushd kernel
+- git remote add stable git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+- git fetch stable
+- mkdir -p $DIFFSDIR
+- pushd $WORK/scripts
+- bash kernel-autobump-tracker
+- pushd /root/repo
+- git checkout $WORK_BRANCH
+- git push -fv --set-upstream origin $WORK_BRANCH
+- hub pull-request -m "Track new kernels"
+
+
+artefact_path: patches
+storage: "7287247578967654972"
+tag_namespace: "distfiles"
+publish_mode: "append"
+environment:
+- ACCEPT_LICENSE=*
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:MarvinHatesOceans/sabayon-distro.git
+- KERNEL_REPO=git@github.com:Sabayon/kernel.git
+- UPSTREAM_REPO=git@github.com:Sabayon/sabayon-distro.git
+- WORK_BRANCH=develop-kernel-track
+- FEATURES=-userpriv
+planned: "@weekly"
+
