@@ -21,3 +21,9 @@ git add sabayon/config
 git commit -m 'sabayon: add configs'
 git push -fv --set-upstream origin ${KERNEL_VERSION_BUMP}
 
+mkdir -p $DIFFSDIR || true
+bash $WORK/scripts/tag-version.sh sabayon-${KERNEL_VERSION_BUMP}
+popd
+pushd /root/repo
+git checkout $WORK_BRANCH
+hub pull-request -m "Add new $KERNEL_VERSION_BUMP kernel"
