@@ -11,7 +11,7 @@ cp -rfv sabayon sabayon-${KERNEL_BASE}
 git checkout v${KERNEL_VERSION_BUMP}
 git checkout -b ${KERNEL_VERSION_BUMP}
 cp -rfv sabayon-${KERNEL_BASE} sabayon
-git am < sabayon/patches/*
+[ -d "sabayon/patches" ] && git am < sabayon/patches/*
 git add sabayon
 git commit -m 'sabayon: add distro stuff'
 cp sabayon/config/sabayon-amd64.config .config
