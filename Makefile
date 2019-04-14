@@ -5,3 +5,14 @@ all: docker-mottainai
 docker-mottainai:
 	make/docker-mottainai
 
+.PHONY: validate
+validate:
+	make/validate
+
+.PHONY: deploy
+deploy:
+	make/deploy
+
+.PHONY: webhooks
+webhooks:
+	make/webhooks

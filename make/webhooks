@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -x
+mottainai-cli webhook edit 2054040899540466073 filter refs/heads/master
+mottainai-cli webhook edit 6287889389352313297 filter pull_request
+mottainai-cli webhook update 6287889389352313297 task --yaml pull_request.yaml
+mottainai-cli webhook update 2054040899540466073 task --yaml replicant.yaml
