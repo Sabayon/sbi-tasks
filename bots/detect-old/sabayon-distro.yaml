@@ -1,0 +1,33 @@
+name: "Detect old versions in sabayon-distro"
+image: sabayon/builder-amd64
+type: docker
+directory: "/bots/detect-old"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+- export WORKDIR=$PWD
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+# Update user fork
+- bash -ex ../scripts/setup_git_repo.sh
+- equo i sabayon-sark
+- pushd /root/repo
+# Run the detection script
+- bash $WORKDIR/scripts/detect_old_ebuild_versions.sh
+- popd
+# Create PRs
+- bash -ex ../scripts/create_pr.sh
+
+storage: "7287247578967654972"
+environment:
+- FEATURES=-userpriv
+- ACCEPT_LICENSE=*
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:MarvinHatesOceans/sabayon-distro.git
+- UPSTREAM_REPO=git@github.com:Sabayon/sabayon-distro.git
+- WORK_BRANCH=obsoletes-ebuild-versions-develop
+- KEEP_PREVIOUS_VERSIONS=3
+planned: "@weekly"
