@@ -1,7 +1,7 @@
 # Authors: Sabayon Team
 #          geaaru@sabayonlinux.org
 #
-# Description: Script for build LXD sabayon/builder image.
+# Description: Script for build LXD sabayon/isobuilder image.
 
 script:
   - source /etc/profile
@@ -15,10 +15,10 @@ script:
   - equo unmask dev-util/simplestreams-builder-9999
   - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools
   # Temporary until replicator support .replicatorignore
-  - mv sabayon-builder/image.yaml.broken sabayon-builder/image.yaml
-  - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images sabayon-builder:current:amd64:default --skip-lxc
-  - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p sabayon-builder:current:amd64:default
-  - ls -ltr images/sabayon-builder/
+  - mv sabayon-isobuilder/image.yaml.broken sabayon-isobuilder/image.yaml
+  - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images sabayon-isobuilder:current:amd64:default --skip-lxc
+  - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p sabayon-isobuilder:current:amd64:default
+  - ls -ltr images/sabayon-isobuilder/
   # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
   # by agent.
   - chmod a+rwx -R images/
@@ -31,9 +31,9 @@ image: sabayon/base-amd64
 name: "Build LXD sabayon/builder image"
 environment:
   - "ACCEPT_LICENSE=*"
-  - "SSBUILDER_PREFIX=../lxd-sabayon-builder"
-namespace: lxd-sabayon-builder
-tag_namespace: lxd-sabayon-builder
+  - "SSBUILDER_PREFIX=../lxd-sabayon-isobuilder"
+namespace: lxd-sabayon-isobuilder
+tag_namespace: lxd-sabayon-isobuilder
 artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd

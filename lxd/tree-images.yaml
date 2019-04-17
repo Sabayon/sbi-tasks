@@ -23,7 +23,7 @@ products:
     arch: amd64
     release: current
     os: Sabayon
-    release_title: "Sabayon Builder"
+    release_title: "Builder"
     directory: sabayon-builder
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
@@ -31,5 +31,19 @@ products:
     days: 1
     aliases:
       - "sabayon/builder"
+
+  # Sabayon Builder rootfs
+  - name: sabayon-isobuilder:current:amd64:default
+    arch: amd64
+    release: current
+    os: Sabayon
+    release_title: "ISO Builder"
+    directory: sabayon-isobuilder
+    # Path where retrieve images informations and files.
+    # This option is used by build-images-file
+    prefix_path: "https://dispatcher.sabayon.org/sbi/namespace/lxd-sabayon-isobuilder"
+    days: 1
+    aliases:
+      - "sabayon/iso-builder"
 
 
