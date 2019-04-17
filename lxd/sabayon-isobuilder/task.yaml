@@ -28,7 +28,7 @@ type: docker
 image: sabayon/base-amd64
 #image: sabayon
 #type: lxd
-name: "Build LXD sabayon/builder image"
+name: "Build LXD sabayon/isobuilder image"
 environment:
   - "ACCEPT_LICENSE=*"
   - "SSBUILDER_PREFIX=../lxd-sabayon-isobuilder"
