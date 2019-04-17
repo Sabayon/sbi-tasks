@@ -12,7 +12,7 @@
   "image": "sabayon/isobuilder-amd64",
   "storage": "8925468933589065900",
   "artefact_path": "namespace",
-  "storage_path": "/confs",
+  "storage_path": "confs",
   "tag_namespace": "spinbase:iso-dev",
   "publish_mode": "append",
   "environment": [

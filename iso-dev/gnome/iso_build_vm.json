@@ -16,7 +16,7 @@
   "image": "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box",
   "storage": "8925468933589065900",
   "artefact_path": "namespace",
-  "storage_path": "/confs",
+  "storage_path": "confs",
   "publish_mode": "append",
   "namespace": "spinbase:iso-dev",
   "tag_namespace": "sabayon:iso-dev",

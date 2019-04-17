@@ -12,7 +12,7 @@
   "name": "Sabayon KDE Dev ISO",
   "storage": "8925468933589065900",
   "artefact_path": "namespace",
-  "storage_path": "/confs",
+  "storage_path": "confs",
   "namespace": "spinbase:iso-dev",
   "tag_namespace": "sabayon:iso-dev",
   "publish_mode": "append",
