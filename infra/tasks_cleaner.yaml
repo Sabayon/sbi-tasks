@@ -3,7 +3,7 @@
 name: "Maintenance"
 image: 'sabayon/base-amd64'
 storage: "8925468933589065900"
-storage_path: "/confs"
+storage_path: "confs"
 source: "https://github.com/Sabayon/sbi-tasks.git"
 directory: "/infra"
 script:
