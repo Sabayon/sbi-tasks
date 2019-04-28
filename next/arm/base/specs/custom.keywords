@@ -103,3 +103,5 @@ sys-devel/clang ~arm
 <dev-libs/xplc-9999 **
 <dev-libs/xqilla-9999 **
 <dev-libs/zthread-9999 **
+
+<app-eselect/eselect-php-9999 **

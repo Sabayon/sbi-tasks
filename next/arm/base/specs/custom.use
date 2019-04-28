@@ -14,7 +14,7 @@ dev-java/icedtea-bin -gtk alsa -cups webstart -doc -examples -headless-awt -nspl
 
 
 # wwww
-www-servers/apache gdbm ldap ssl suexec suexec-caps
+www-servers/apache gdbm ldap ssl suexec suexec-caps -threads
 www-servers/nginx http http-cache http2 ipv6 pcre ssl -aio -debug -libatomic -libressl -luajit -pcre-jit rtmp -selinux -threads -vim-syntax
 
 # Required for dev-lang/gdl
