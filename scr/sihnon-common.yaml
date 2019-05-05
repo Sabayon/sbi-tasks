@@ -18,6 +18,7 @@ script:
   - chmod 0755 /sbin/sark-functions.sh
   - chmod 0755 /usr/sbin/builder
   - chmod 0755 ./sark-localbuild
+  - chmod a+x ./sark-localcreaterepo
   - ln -s /usr/sbin/builder ./builder
   - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
   - cp -rfv /sbin/sark-functions.sh ./sark-functions.sh

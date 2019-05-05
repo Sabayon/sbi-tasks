@@ -13,6 +13,7 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localcreaterepo -O ./sark-localcreaterepo
   - chmod a+x /usr/sbin/builder
   - chmod a+x ./sark-localbuild
+  - chmod a+x ./sark-localcreaterepo
   - ./sark-localbuild
 environment:
   - "ACCEPT_LICENSE=*"
