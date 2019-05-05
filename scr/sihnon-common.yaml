@@ -14,6 +14,7 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localcreaterepo -O ./sark-localcreaterepo
   - chmod 0755 /sbin/sark-functions.sh
   - chmod 0755 /usr/sbin/builder
   - chmod 0755 ./sark-localbuild
@@ -22,6 +23,9 @@ script:
   - cp -rfv /sbin/sark-functions.sh ./sark-functions.sh
   - export PKGS_CHECKER_OPTS="-L WARN -c -v --ignore-errors"
   - ./sark-localbuild
+environment:
+  - "ACCEPT_LICENSE=*"
+  - "ETP_NONINTERACTIVE=1"
 storage: "202372093426954774"
 storage_path: confs
 type: docker_execute

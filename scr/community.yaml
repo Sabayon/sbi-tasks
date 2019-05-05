@@ -13,6 +13,7 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O ./sark-localbuild
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localcreaterepo -O ./sark-localcreaterepo
   - chmod 0755 /sbin/sark-functions.sh
   - chmod 0755 /usr/sbin/builder
   - chmod 0755 ./sark-localbuild
