@@ -1,5 +1,5 @@
 name: "Check latest kernel stable branch"
-image: sabayon/base-amd64
+image: sabayon/builder-amd64
 type: docker
 directory: "/bots/kernel-tracker"
 source: "https://github.com/Sabayon/sbi-tasks"
@@ -8,7 +8,7 @@ script:
 - export WORKDIR=$PWD
 - bash -ex ../scripts/setup_ssh.sh
 - bash -ex ../scripts/setup_git_repo.sh
-- equo i jq
+- equo i jq eix
 - pushd /root/repo
 - bash -e $WORKDIR/scripts/track_latest_stable_branch.sh
 - popd
