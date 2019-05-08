@@ -3,7 +3,7 @@
 set -x
 set -e
 
-git branch -D ${KERNEL_VERSION_BUMP} || true
+#git branch -D ${KERNEL_VERSION_BUMP} || true
 git remote add stable git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
 git fetch stable
 git checkout ${KERNEL_BASE}
