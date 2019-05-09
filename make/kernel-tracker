@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mottainai-cli task create --yaml bots/kernel-tracker/kernel-bump.yaml

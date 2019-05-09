@@ -16,3 +16,7 @@ deploy:
 .PHONY: webhooks
 webhooks:
 	make/webhooks
+
+.PHONY: kernel-tracker
+kernel-tracker:
+	make/kernel-tracker
