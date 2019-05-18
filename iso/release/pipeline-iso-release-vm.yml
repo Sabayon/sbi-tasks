@@ -53,7 +53,7 @@ tasks:
       - "CPU=4"
     publish_mode: append
     tag_namespace: "cocoon:iso:next-release"
-    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box"
+    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box"
     retry: "3"
     timeout: 0
 
@@ -89,7 +89,7 @@ tasks:
       - "CPU=4"
     publish_mode: append
     tag_namespace: "cocoon:iso:next-release"
-    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box"
+    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box"
     retry: "3"
     timeout: 0
 
@@ -125,7 +125,7 @@ tasks:
       - "CPU=4"
     publish_mode: append
     tag_namespace: "cocoon:iso:next-release"
-    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box"
+    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box"
     retry: "3"
     timeout: 0
 
@@ -161,7 +161,7 @@ tasks:
       - "CPU=4"
     publish_mode: append
     tag_namespace: "cocoon:iso:next-release"
-    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box"
+    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box"
     retry: "3"
     timeout: 0
 
@@ -197,7 +197,7 @@ tasks:
       - "CPU=4"
     publish_mode: append
     tag_namespace: "cocoon:iso:next-release"
-    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box"
+    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box"
     retry: "3"
     timeout: 0
 
@@ -233,7 +233,7 @@ tasks:
       - "CPU=4"
     publish_mode: append
     tag_namespace: "cocoon:iso:next-release"
-    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box"
+    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box"
     retry: "3"
     timeout: 0
 
@@ -269,6 +269,6 @@ tasks:
       - "CPU=4"
     publish_mode: append
     tag_namespace: "cocoon:iso:next-release"
-    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box"
+    image: "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box"
     retry: "3"
     timeout: 0

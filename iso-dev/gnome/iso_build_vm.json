@@ -13,7 +13,7 @@
    "sudo cp -rfv /sabayon/iso /vagrant/namespace" ],
   "directory": "/",
   "type": "virtualbox",
-  "image": "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box",
+  "image": "https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box",
   "storage": "8925468933589065900",
   "artefact_path": "namespace",
   "storage_path": "confs",

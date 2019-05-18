@@ -14,7 +14,7 @@ environment:
   - SABAYON_USE_IMG=0
   - SABAYON_MOLECULES_GITURL=https://github.com/Sabayon/molecules.git"
   - SABAYON_MOLECULES_ISO=/vagrant/namespace
-image: https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_SpinBase.box
+image: https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box
 publish_mode: append
 queue: virtualbox
 retry: "5"
