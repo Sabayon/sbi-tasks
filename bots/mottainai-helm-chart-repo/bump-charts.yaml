@@ -1,0 +1,39 @@
+name: "Bump Mottainai helm chart"
+image: sabayon/base-amd64
+type: docker
+directory: "/bots/mottainai-helm-chart-repo"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+- export WORKDIR=$PWD
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+# Update user fork
+- bash -ex ../scripts/setup_git_repo.sh
+- curl -L https://git.io/get_helm.sh | bash
+- git clone https://github.com/MottainaiCI/mottainai-server
+- pushd mottainai-server
+- HELM_CHART=/tmp/charts make helm-gen
+- popd
+- pushd /root/repo
+- helm init --client-only
+- helm package /tmp/charts/mottainai
+- helm repo index .
+- git add .
+- git commit -m 'New chart version'
+- popd
+# Create PRs
+- bash -ex ../scripts/create_pr.sh
+
+storage: "7287247578967654972"
+environment:
+- CHART_VERSION=0.0.1
+- APP_VERSION=0.0.1
+- ACCEPT_LICENSE=*
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:auto-maintainers/helm-repo.git
+- UPSTREAM_REPO=git@github.com:MottainaiCI/helm-repo.git
+- WORK_BRANCH=develop-bump-helm-charts
