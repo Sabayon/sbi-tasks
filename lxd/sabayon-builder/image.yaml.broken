@@ -137,6 +137,8 @@ actions:
   - trigger: post-packages
     action: |-
       #!/bin/bash
+      cd /etc/
+      rm -fi resolv.conf || true
       ln -s /run/systemd/resolve/resolv.conf resolv.conf
       systemctl enable systemd-resolved
 
