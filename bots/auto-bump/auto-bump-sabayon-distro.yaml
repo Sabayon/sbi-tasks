@@ -27,5 +27,4 @@ environment:
 - FORK_REPO=git@github.com:MarvinHatesOceans/sabayon-distro.git
 - UPSTREAM_REPO=git@github.com:Sabayon/sabayon-distro.git
 - WORK_BRANCH=autobump-develop
-cache_image: "yes"
 planned: "@weekly"

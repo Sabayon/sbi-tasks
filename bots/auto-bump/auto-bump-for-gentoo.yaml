@@ -26,6 +26,5 @@ environment:
 - FORK_REPO=git@github.com:MarvinHatesOceans/for-gentoo.git
 - UPSTREAM_REPO=git@github.com:Sabayon/for-gentoo.git
 - WORK_BRANCH=autobump-develop
-cache_image: "yes"
 planned: "@weekly"
 
