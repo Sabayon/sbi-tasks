@@ -125,14 +125,6 @@ actions:
       #!/bin/bash
       systemctl enable systemd-networkd
 
-  # Configure SystemD Resolve service for initialize
-  # resolv.conf with value from LXD dnsmasq service.
-  - trigger: post-packages
-    action: |-
-      #!/bin/bash
-      ln -s /run/systemd/resolve/resolv.conf resolv.conf
-      systemctl enable systemd-resolved
-
   # Workaround needed until I fix resolv.conf with distrobuider hook/generator
   - trigger: post-packages
     action: |-
