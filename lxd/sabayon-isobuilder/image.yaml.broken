@@ -133,6 +133,29 @@ actions:
       ln -s /run/systemd/resolve/resolv.conf resolv.conf
       systemctl enable systemd-resolved
 
+  # Workaround needed until I fix resolv.conf with distrobuider hook/generator
+  - trigger: post-packages
+    action: |-
+      #!/bin/bash
+      mkdir -p /etc/systemd/system/systemd-resolved.service.d || true
+      cat > /etc/systemd/system/systemd-resolved.service.d/00gentoo.conf << "EOF"
+      [Service]
+      DynamicUser=false
+      ExecStartPre=+/bin/chown systemd-resolve:systemd-resolve /run/systemd/resolve
+      ExecStartPre=+-/bin/rm -f /etc/resolv.conf
+      ExecStartPre=+/bin/ln -v -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+      EOF
+
+  # Configure SystemD Resolve service for initialize
+  # resolv.conf with value from LXD dnsmasq service.
+  # NOTE: currently distrobuilder mount /etc/resolv.conf
+  # and this doesn't permit to initialize correctly
+  # resolv.conf as a link to systemd-resolved file.
+  - trigger: post-packages
+    action: |-
+      #!/bin/bash
+      systemctl enable systemd-resolved
+
   # Clean journal directory (to avoid permission errors)
   - trigger: post-packages
     action: |-
