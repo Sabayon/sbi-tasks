@@ -9,6 +9,6 @@ script:
 queue: 'virtualbox'
 type: docker_execute
 name: "Build Vagrant Image"
-tag_namespace: "vagrant"
+tag_namespace: "vagrant-devel"
 publish_mode: "append"
 planned: "0 0 10 * * *"
