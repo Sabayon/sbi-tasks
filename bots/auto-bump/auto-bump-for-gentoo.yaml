@@ -19,6 +19,7 @@ storage: "7287247578967654972"
 environment:
 - ACCEPT_LICENSE=*
 - FEATURES=-userpriv
+- KEEP_GOING=0
 - GIT_AUTHOR_NAME=MarvinHatesOceans
 - GIT_AUTHOR_EMAIL=github-bots@sabayon.com
 - GIT_COMMITTER_NAME=MarvinHatesOceans

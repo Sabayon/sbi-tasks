@@ -5,8 +5,10 @@ equo i dev-perl/App-Nopaste dev-perl/App-CLI dev-perl/Child dev-perl/Carp-Always
 
 rm -rfv App-witchcraft || true
 git clone https://github.com/Spike-Pentesting/App-witchcraft.git
+cp -rfv plugins/Gentoo.pm App-witchcraft/lib/App/witchcraft/Plugin/Gentoo.pm
+cp -rfv plugins/Git.pm App-witchcraft/lib/App/witchcraft/Plugin/Git.pm
+cp -rfv plugins/UtilsGentoo.pm App-witchcraft/lib/App/witchcraft/Utils/Gentoo.pm
 pushd App-witchcraft
-sed -i 's|automatically added/updated by witchcraft|Version bump|g' lib/App/witchcraft/Plugin/Git.pm
 cpanm --installdeps -n . || true
 perl Build.PL
 ./Build
