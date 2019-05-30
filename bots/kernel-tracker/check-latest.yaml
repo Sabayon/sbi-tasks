@@ -27,5 +27,5 @@ environment:
 - UPSTREAM_REPO=git@github.com:Sabayon/sbi-tasks.git
 - WORK_BRANCH=develop-kernel-track
 - FEATURES=-userpriv
-planned: "@daily"
+planned: "@weekly"
 
