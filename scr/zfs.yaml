@@ -1,0 +1,25 @@
+name: "SCR ZFS"
+source: https://github.com/Sabayon/community-repositories
+directory: /zfs
+image: sabayon/builder-amd64
+namespace: zfs
+tag_namespace: zfs
+artefact_path: artifacts
+cache_image: "yes"
+script:
+  - export LC_ALL=en_US.UTF-8
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localcreaterepo -O /usr/sbin/sark-localcreaterepo
+  - chmod a+x /usr/sbin/builder
+  - chmod a+x ./sark-localbuild
+  - chmod a+x /usr/sbin/sark-localcreaterepo
+  - ./sark-localbuild
+environment:
+  - "ACCEPT_LICENSE=*"
+  - "ETP_NONINTERACTIVE=1"
+storage: "5988687295295902538"
+storage_path: confs
+type: docker_execute
+timeout: 64800
+planned: "@daily"
