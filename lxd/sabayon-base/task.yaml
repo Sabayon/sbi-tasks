@@ -15,7 +15,7 @@ script:
   - equo unmask dev-util/simplestreams-builder-9999
   - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools
   # Temporary until replicator support .replicatorignore
-  - mv sabayon-builder/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+  - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
   - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
   - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT
   - ls -ltr images/$LXD_IMAGEDIR/
