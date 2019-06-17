@@ -18,6 +18,18 @@ format: "products:1.0"
 # Define list of products
 products:
 
+  # Sabayon Base rootfs
+  - name: sabayon-base:current:amd64:default
+    arch: amd64
+    release: current
+    os: Sabayon
+    release_title: "Base"
+    directory: sabayon-base
+    prefix_path: "https://dispatcher.sabayon.org/sbi/namespace/lxd-sabayon-base"
+    days: 1
+    aliases:
+      - "sabayon/base"
+
   # Sabayon Builder rootfs
   - name: sabayon-builder:current:amd64:default
     arch: amd64
