@@ -8,6 +8,7 @@ artefact_path: artifacts
 cache_image: "yes"
 script:
   - source /etc/profile
+  - emerge --sync
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
 environment:
