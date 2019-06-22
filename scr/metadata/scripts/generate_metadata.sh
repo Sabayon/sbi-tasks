@@ -16,6 +16,7 @@ REPOS_TO_SYNC=(
     "sihnon-common"
     "sihnon-desktop"
     "sihnon-server"
+    "zfs"
 )
 export WORKSPACE="${WORKSPACE:-$PWD}"
 
