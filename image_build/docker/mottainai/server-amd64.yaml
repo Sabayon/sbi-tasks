@@ -1,5 +1,4 @@
 source: 'https://github.com/MottainaiCI/mottainai-server'
-commit: 'develop'
 directory: '/'
 image: 'sabayon/base-amd64'
 storage: '9317096982217158'
