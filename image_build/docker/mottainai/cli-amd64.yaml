@@ -1,0 +1,22 @@
+source: 'https://github.com/MottainaiCI/mottainai-cli'
+directory: '/'
+image: 'sabayon/base-amd64'
+storage: '9317096982217158'
+script:
+   - source storage/env
+   - equo up && ACCEPT_LICENSE=* equo i docker git
+   - git fetch --all
+   - git checkout develop
+   - mkdir -p $HOME/.docker
+   - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+   - docker build --no-cache --rm -t mottainaici/cli-amd64:latest .
+   - docker login -u $DOCKER_USER -p $DOCKER_PASS
+   - docker push mottainaici/cli-amd64:latest
+   - docker manifest create --amend mottainaici/cli:latest mottainaici/cli-amd64:latest
+   - docker manifest annotate mottainaici/cli:latest mottainaici/cli-amd64:latest --arch amd64 --os linux
+   - docker manifest inspect mottainaici/cli:latest
+   - docker manifest push --purge mottainaici/cli:latest
+
+type: docker_execute
+name: "Mottainai CLI Docker Image"
+planned: "@daily"
