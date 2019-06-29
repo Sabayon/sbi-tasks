@@ -1,5 +1,5 @@
 name: "Auto bumper bot for sabayon-distro"
-image: sabayon/builder-amd64
+image: sabayon/ci
 type: docker
 directory: "/bots/auto-bump"
 source: "https://github.com/Sabayon/sbi-tasks"

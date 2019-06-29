@@ -1,5 +1,5 @@
 name: "Detect obsoletes in for-gentoo overlay"
-image: sabayon/builder-amd64
+image: sabayon/ci
 type: docker
 directory: "/bots/detect-obsoletes"
 source: "https://github.com/Sabayon/sbi-tasks"

@@ -1,5 +1,5 @@
 name: "Detect old versions in for-gentoo"
-image: sabayon/builder-amd64
+image: sabayon/ci
 type: docker
 directory: "/bots/detect-old"
 source: "https://github.com/Sabayon/sbi-tasks"
@@ -10,7 +10,6 @@ script:
 - bash -ex ../scripts/setup_ssh.sh
 # Update user fork
 - bash -ex ../scripts/setup_git_repo.sh
-- equo i sabayon-sark
 - pushd /root/repo
 # Run the detection script
 - bash $WORKDIR/scripts/detect_old_ebuild_versions.sh

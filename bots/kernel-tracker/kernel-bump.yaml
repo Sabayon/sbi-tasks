@@ -1,5 +1,5 @@
 name: "Kernel Track (new major versions)"
-image: sabayon/builder-amd64
+image: sabayon/ci
 type: docker
 directory: "/bots/kernel-tracker"
 source: "https://github.com/Sabayon/sbi-tasks"
