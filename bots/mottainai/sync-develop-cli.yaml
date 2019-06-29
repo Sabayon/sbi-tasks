@@ -18,6 +18,7 @@ script:
 - cp -rfv Gopkg.develop.toml Gopkg.toml
 - pushd $GOPATH/src/github.com/MottainaiCI/mottainai-cli
 - rm -rf vendor/
+- dep ensure -update "github.com/MottainaiCI/mottainai-server"
 - dep ensure
 - go build
 - popd
