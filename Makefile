@@ -20,3 +20,7 @@ webhooks:
 .PHONY: kernel-tracker
 kernel-tracker:
 	make/kernel-tracker
+
+.PHONY: tasks
+tasks:
+	make/tasks

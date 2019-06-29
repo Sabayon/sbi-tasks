@@ -1,0 +1,43 @@
+name: "Sync {{.Component}} develop branch with mottainai-server"
+image: sabayon/ci
+type: docker
+directory: "/bots/auto-bump"
+source: "https://github.com/Sabayon/sbi-tasks"
+plan: "@daily"
+
+script:
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+# Update fork
+- bash -ex ../scripts/setup_git_repo.sh
+
+- pushd /root/repo
+- GOPATH=/root/go
+- mkdir -p $GOPATH/src/github.com/MottainaiCI
+- ln -s /root/repo $GOPATH/src/github.com/MottainaiCI/{{.Component}}
+- cp -rfv Gopkg.develop.toml Gopkg.toml
+- pushd $GOPATH/src/github.com/MottainaiCI/{{.Component}}
+- rm -rf vendor/
+- dep ensure
+- dep prune
+- go build
+- popd
+- git add vendor/
+- git commit -m "Update vendor (sync with develop)"
+- popd
+- bash -ex ../scripts/create_pr.sh
+
+storage: "7287247578967654972"
+environment:
+- ACCEPT_LICENSE=*
+- FEATURES=-userpriv
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:auto-maintainers/{{.Component}}.git
+- UPSTREAM_REPO=git@github.com:MottainaiCI/{{.Component}}.git
+- RESET_BRANCH=develop
+- ORIGIN_BRANCH=master
+- WORK_BRANCH=sync-develop
+- HUB_ARGS=-b develop

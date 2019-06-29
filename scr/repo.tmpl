@@ -1,0 +1,20 @@
+name: "SCR {{.SCRRepo}}"
+source: https://github.com/Sabayon/community-repositories
+directory: /{{.SCRRepo}}
+image: sabayon/builder-amd64
+namespace: {{.SCRRepo}}
+tag_namespace: {{.SCRRepo}}
+artefact_path: artifacts
+cache_image: "yes"
+script:
+- export LC_ALL=en_US.UTF-8
+- wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
+- wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
+- chmod a+x /usr/sbin/builder
+- chmod a+x ./sark-localbuild
+- ./sark-localbuild
+storage: "{{.Storage}}"
+storage_path: confs
+type: docker_execute
+timeout: 64800
+planned: "@daily"

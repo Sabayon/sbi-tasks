@@ -1,0 +1,43 @@
+#!/bin/bash
+set -ex
+
+# Docker images
+mottainai-cli task compile image_build/docker/multiarch.tmpl \
+                            -s SourceRepo=https://github.com/Sabayon/sbi-tasks.git \
+                            -s Arch=amd64 \
+                            -s Image=sabayon/ci \
+                            -s Directory=bots/ \
+                            -o bots/docker-image.yaml
+
+mottainai-cli task compile image_build/docker/multiarch.tmpl \
+                            -s SourceRepo=https://github.com/MottainaiCI/mottainai-server \
+                            -s Arch=amd64 \
+                            -s Image=mottainaici/server \
+                            -s Directory=/ \
+                            -o image_build/docker/mottainai/server-amd64.yaml
+
+mottainai-cli task compile image_build/docker/multiarch.tmpl \
+                            -s SourceRepo=https://github.com/MottainaiCI/mottainai-agent \
+                            -s Arch=amd64 \
+                            -s Image=mottainaici/agent \
+                            -s Directory=/ \
+                            -o image_build/docker/mottainai/agent-amd64.yaml
+
+mottainai-cli task compile image_build/docker/multiarch.tmpl \
+                            -s SourceRepo=https://github.com/MottainaiCI/mottainai-cli \
+                            -s Arch=amd64 \
+                            -s Image=mottainaici/cli \
+                            -s Directory=/ \
+                            -o image_build/docker/mottainai/cli-amd64.yaml
+
+# SCR 
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=mudler \
+                            -s Storage=3224462066628783553 \
+                            -o scr/mudler.yaml
+
+# Bots
+mottainai-cli task compile bots/mottainai/vendor-branch-sync.tmpl \
+                            -s Component=mottainai-agent \
+                            -o bots/mottainai/sync-develop-agent.yaml
