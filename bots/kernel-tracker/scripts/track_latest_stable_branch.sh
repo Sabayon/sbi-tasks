@@ -41,6 +41,12 @@ echo "Latest kernel stable (active) branches:" $KERNEL_VERSIONS
 
 for i in $KERNEL_VERSIONS
 do
+
+   if echo $i | grep "rc"
+   then
+    continue
+   fi
+   
    if containsElement $i $SAB_BRANCHES
    then
     echo "[OK] We have $i"
