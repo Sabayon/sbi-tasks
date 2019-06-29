@@ -13,12 +13,12 @@ script:
 - pushd /root/repo
 - git fetch --all
 - git checkout $WORK_BRANCH
-- git reset --hard origin/master
+- git reset --hard upstream/master
 - GOPATH=/root/go
 - mkdir -p $GOPATH/src/github.com/MottainaiCI
 - ln -s /root/repo $GOPATH/src/github.com/MottainaiCI/mottainai-cli
 - pushd $GOPATH/src/github.com/MottainaiCI/mottainai-cli
-- git merge --no-ff origin/develop -m 'Merge develop branch'
+- git merge upstream/develop
 - rm -rf vendor/
 
 - dep ensure -update "github.com/MottainaiCI/mottainai-server"
