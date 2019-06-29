@@ -20,7 +20,6 @@ script:
 - rm -rf vendor/
 - dep ensure -update "github.com/MottainaiCI/mottainai-server"
 - dep ensure
-- go build
 - popd
 - git add vendor/
 - git commit -m "Update vendor (sync with develop)"

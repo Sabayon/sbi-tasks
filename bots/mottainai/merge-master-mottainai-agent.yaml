@@ -1,0 +1,46 @@
+name: "Merge mottainai-agent's develop to its master and update vendors"
+image: sabayon/ci
+type: docker
+directory: "/bots/mottainai"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+# Update fork
+- bash -ex ../scripts/setup_git_repo.sh
+
+- pushd /root/repo
+- git fetch --all
+- git checkout $WORK_BRANCH
+- git reset --hard origin/master
+- GOPATH=/root/go
+- mkdir -p $GOPATH/src/github.com/MottainaiCI
+- ln -s /root/repo $GOPATH/src/github.com/MottainaiCI/mottainai-agent
+- pushd $GOPATH/src/github.com/MottainaiCI/mottainai-agent
+- git merge --no-ff origin/develop -m 'Merge develop branch'
+- rm -rf vendor/
+
+- dep ensure -update "github.com/MottainaiCI/mottainai-server"
+
+- dep ensure
+- popd
+- git add vendor/ Gopkg.lock
+- git commit -m "Update vendor/"
+- git push -fv
+- hub pull-request $HUB_ARGS -m "Merge develop branch and update vendors"
+
+storage: "7287247578967654972"
+environment:
+- ACCEPT_LICENSE=*
+- FEATURES=-userpriv
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:auto-maintainers/mottainai-agent.git
+- UPSTREAM_REPO=git@github.com:MottainaiCI/mottainai-agent.git
+- RESET_BRANCH=master
+- ORIGIN_BRANCH=master
+- WORK_BRANCH=merge-develop
+- HUB_ARGS=-b master

@@ -1,9 +1,8 @@
-name: "Sync {{.Component}} develop branch vendors with mottainai-server"
+name: "Merge {{.Component}}'s develop to its master and update vendors"
 image: sabayon/ci
 type: docker
 directory: "/bots/mottainai"
 source: "https://github.com/Sabayon/sbi-tasks"
-plan: "@daily"
 
 script:
 # Setup deps and ssh/GH access
@@ -12,19 +11,24 @@ script:
 - bash -ex ../scripts/setup_git_repo.sh
 
 - pushd /root/repo
+- git fetch --all
+- git checkout $WORK_BRANCH
+- git reset --hard origin/master
 - GOPATH=/root/go
 - mkdir -p $GOPATH/src/github.com/MottainaiCI
 - ln -s /root/repo $GOPATH/src/github.com/MottainaiCI/{{.Component}}
-- cp -rfv Gopkg.develop.toml Gopkg.toml
 - pushd $GOPATH/src/github.com/MottainaiCI/{{.Component}}
+- git merge --no-ff origin/develop -m 'Merge develop branch'
 - rm -rf vendor/
+{{if ne .Component "mottainai-server"}}
 - dep ensure -update "github.com/MottainaiCI/mottainai-server"
+{{end}}
 - dep ensure
 - popd
-- git add vendor/
-- git commit -m "Update vendor (sync with develop)"
-- popd
-- bash -ex ../scripts/create_pr.sh
+- git add vendor/ Gopkg.lock
+- git commit -m "Update vendor/"
+- git push -fv
+- hub pull-request $HUB_ARGS -m "Merge develop branch and update vendors"
 
 storage: "7287247578967654972"
 environment:
@@ -36,7 +40,7 @@ environment:
 - GIT_COMMITTER_EMAIL=github-bots@sabayon.com
 - FORK_REPO=git@github.com:auto-maintainers/{{.Component}}.git
 - UPSTREAM_REPO=git@github.com:MottainaiCI/{{.Component}}.git
-- RESET_BRANCH=develop
+- RESET_BRANCH=master
 - ORIGIN_BRANCH=master
-- WORK_BRANCH=sync-develop
-- HUB_ARGS=-b develop
+- WORK_BRANCH=merge-develop
+- HUB_ARGS=-b master

@@ -38,14 +38,17 @@ mottainai-cli task compile scr/repo.tmpl \
                             -o scr/mudler.yaml
 
 # Bots
-mottainai-cli task compile bots/mottainai/vendor-branch-sync.tmpl \
-                            -s Component=mottainai-agent \
-                            -o bots/mottainai/sync-develop-agent.yaml
+for i in "mottainai-cli" "mottainai-agent" "replicant"
+do
+    mottainai-cli task compile bots/mottainai/vendor-branch-sync.tmpl \
+                                -s Component="$i" \
+                                -o bots/mottainai/sync-develop-"$i".yaml
 
-mottainai-cli task compile bots/mottainai/vendor-branch-sync.tmpl \
-                            -s Component=mottainai-cli \
-                            -o bots/mottainai/sync-develop-cli.yaml
+    mottainai-cli task compile bots/mottainai/merge-master.tmpl \
+                                -s Component="$i" \
+                                -o bots/mottainai/merge-master-"$i".yaml
+done
 
-mottainai-cli task compile bots/mottainai/vendor-branch-sync.tmpl \
-                            -s Component=replicant \
-                            -o bots/mottainai/sync-develop-replicant.yaml
+mottainai-cli task compile bots/mottainai/merge-master.tmpl \
+                            -s Component=mottainai-server \
+                            -o bots/mottainai/merge-master-mottainai-server.yaml
