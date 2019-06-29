@@ -41,3 +41,11 @@ mottainai-cli task compile scr/repo.tmpl \
 mottainai-cli task compile bots/mottainai/vendor-branch-sync.tmpl \
                             -s Component=mottainai-agent \
                             -o bots/mottainai/sync-develop-agent.yaml
+
+mottainai-cli task compile bots/mottainai/vendor-branch-sync.tmpl \
+                            -s Component=mottainai-cli \
+                            -o bots/mottainai/sync-develop-cli.yaml
+
+mottainai-cli task compile bots/mottainai/vendor-branch-sync.tmpl \
+                            -s Component=replicant \
+                            -o bots/mottainai/sync-develop-replicant.yaml

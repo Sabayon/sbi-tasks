@@ -1,8 +1,9 @@
-name: "Sync mottainai-agent develop branch with mottainai-server"
+name: "Sync mottainai-agent develop branch vendors with mottainai-server"
 image: sabayon/ci
 type: docker
-directory: "/bots/auto-bump"
+directory: "/bots/mottainai"
 source: "https://github.com/Sabayon/sbi-tasks"
+plan: "@daily"
 
 script:
 # Setup deps and ssh/GH access
@@ -18,7 +19,6 @@ script:
 - pushd $GOPATH/src/github.com/MottainaiCI/mottainai-agent
 - rm -rf vendor/
 - dep ensure
-- dep prune
 - go build
 - popd
 - git add vendor/

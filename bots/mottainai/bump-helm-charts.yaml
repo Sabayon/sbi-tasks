@@ -1,7 +1,7 @@
 name: "Bump Mottainai helm chart"
 image: sabayon/base-amd64
 type: docker
-directory: "/bots/mottainai-helm-chart-repo"
+directory: "/bots/mottainai"
 source: "https://github.com/Sabayon/sbi-tasks"
 
 script:

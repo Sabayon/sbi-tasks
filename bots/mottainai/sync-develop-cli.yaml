@@ -1,4 +1,4 @@
-name: "Sync {{.Component}} develop branch vendors with mottainai-server"
+name: "Sync mottainai-cli develop branch vendors with mottainai-server"
 image: sabayon/ci
 type: docker
 directory: "/bots/mottainai"
@@ -14,9 +14,9 @@ script:
 - pushd /root/repo
 - GOPATH=/root/go
 - mkdir -p $GOPATH/src/github.com/MottainaiCI
-- ln -s /root/repo $GOPATH/src/github.com/MottainaiCI/{{.Component}}
+- ln -s /root/repo $GOPATH/src/github.com/MottainaiCI/mottainai-cli
 - cp -rfv Gopkg.develop.toml Gopkg.toml
-- pushd $GOPATH/src/github.com/MottainaiCI/{{.Component}}
+- pushd $GOPATH/src/github.com/MottainaiCI/mottainai-cli
 - rm -rf vendor/
 - dep ensure
 - go build
@@ -34,8 +34,8 @@ environment:
 - GIT_AUTHOR_EMAIL=github-bots@sabayon.com
 - GIT_COMMITTER_NAME=MarvinHatesOceans
 - GIT_COMMITTER_EMAIL=github-bots@sabayon.com
-- FORK_REPO=git@github.com:auto-maintainers/{{.Component}}.git
-- UPSTREAM_REPO=git@github.com:MottainaiCI/{{.Component}}.git
+- FORK_REPO=git@github.com:auto-maintainers/mottainai-cli.git
+- UPSTREAM_REPO=git@github.com:MottainaiCI/mottainai-cli.git
 - RESET_BRANCH=develop
 - ORIGIN_BRANCH=master
 - WORK_BRANCH=sync-develop
