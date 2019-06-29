@@ -2,9 +2,11 @@
 # Assumes master is aligned up to upstream, and develop contains your changes 
 
 ORIGIN_BRANCH="${ORIGIN_BRANCH:-master}"
+CHERRY_BRANCH="${CHERRY_BRANCH:-master}"
+
 pushd /root/repo
 git checkout $WORK_BRANCH
-COMMITS=$(git cherry $ORIGIN_BRANCH | awk '{ print $2 }')
+COMMITS=$(git cherry $CHERRY_BRANCH | awk '{ print $2 }')
 for i in $COMMITS; do
     git checkout $ORIGIN_BRANCH
     git checkout -b "branch-$i"
