@@ -5,7 +5,6 @@ directory: "/bots/auto-bump"
 source: "https://github.com/Sabayon/sbi-tasks"
 
 script:
-- eselect profile set 5
 # Setup deps and ssh/GH access
 - bash -ex ../scripts/setup_ssh.sh
 # Update user fork
@@ -19,6 +18,7 @@ script:
 
 storage: "7287247578967654972"
 environment:
+- BUILDER_PROFILE=5
 - ACCEPT_LICENSE=*
 - FEATURES=-userpriv
 - KEEP_GOING=0
