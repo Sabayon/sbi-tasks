@@ -25,5 +25,4 @@ environment:
 - UPSTREAM_REPO=git@github.com:Sabayon/sabayon-distro.git
 - WORK_BRANCH=obsoletes-develop
 - ARCH=amd64
-
-#planned: "@weekly"
+planned: ""
