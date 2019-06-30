@@ -52,3 +52,14 @@ done
 mottainai-cli task compile bots/mottainai/merge-master.tmpl \
                             -s Component=mottainai-server \
                             -o bots/mottainai/merge-master-mottainai-server.yaml
+
+
+## Auto Bump bots
+for i in "sabayon-distro" "for-gentoo"
+do
+mottainai-cli task compile bots/auto-bump/auto-bumper.tmpl \
+                            -s OverlayName=$i \
+                            -s Recurring=@weekly \
+                            -s UpstreamOrg=Sabayon \
+                            -o bots/auto-bump/auto-bump-$i.yaml
+done

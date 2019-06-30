@@ -1,18 +1,20 @@
-name: "Auto bumper bot for-gentoo"
+name: "Auto bumper bot for for-gentoo"
 image: sabayon/ci
 type: docker
 directory: "/bots/auto-bump"
 source: "https://github.com/Sabayon/sbi-tasks"
 
 script:
+- eselect profile set 5
 # Setup deps and ssh/GH access
 - bash -ex ../scripts/setup_ssh.sh
 # Update user fork
 - bash -ex ../scripts/setup_git_repo.sh
-# Setup tools (and repos)
+# Setup tools for the autobumper
 - bash -ex scripts/setup.sh
 # Run the autobumper ( do work on cwd and create atomic commits)
 - bash -ex scripts/auto_bump.sh
+# Create PRs
 - bash -ex ../scripts/create_pr.sh
 
 storage: "7287247578967654972"
@@ -28,4 +30,3 @@ environment:
 - UPSTREAM_REPO=git@github.com:Sabayon/for-gentoo.git
 - WORK_BRANCH=autobump-develop
 planned: "@weekly"
-
