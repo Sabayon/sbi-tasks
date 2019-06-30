@@ -15,4 +15,4 @@ script:
    - docker manifest push --purge mottainaici/agent:latest
 type: docker_execute
 name: "Build mottainaici/agent Docker image"
-planned: "@daily"
+planned: "0 0 16 * * *"

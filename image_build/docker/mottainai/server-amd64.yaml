@@ -15,4 +15,4 @@ script:
    - docker manifest push --purge mottainaici/server:latest
 type: docker_execute
 name: "Build mottainaici/server Docker image"
-planned: "@daily"
+planned: "0 0 16 * * *"

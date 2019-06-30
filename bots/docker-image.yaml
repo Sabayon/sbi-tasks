@@ -15,4 +15,4 @@ script:
    - docker manifest push --purge sabayon/ci:latest
 type: docker_execute
 name: "Build sabayon/ci Docker image"
-planned: "@daily"
+planned: "0 0 16 * * *"
