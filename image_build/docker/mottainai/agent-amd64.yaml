@@ -7,12 +7,14 @@ script:
    - mkdir -p $HOME/.docker
    - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
    - docker build --no-cache --rm -t mottainaici/agent-amd64:latest .
+
    - docker login -u $DOCKER_USER -p $DOCKER_PASS
    - docker push mottainaici/agent-amd64:latest
    - docker manifest create --amend mottainaici/agent:latest mottainaici/agent-amd64:latest
    - docker manifest annotate mottainaici/agent:latest mottainaici/agent-amd64:latest --arch amd64 --os linux
    - docker manifest inspect mottainaici/agent:latest
    - docker manifest push --purge mottainaici/agent:latest
-type: docker_execute
+type: docker
 name: "Build mottainaici/agent Docker image"
+
 planned: "0 0 16 * * *"

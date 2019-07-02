@@ -7,12 +7,14 @@ script:
    - mkdir -p $HOME/.docker
    - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
    - docker build --no-cache --rm -t mottainaici/cli-amd64:latest .
+
    - docker login -u $DOCKER_USER -p $DOCKER_PASS
    - docker push mottainaici/cli-amd64:latest
    - docker manifest create --amend mottainaici/cli:latest mottainaici/cli-amd64:latest
    - docker manifest annotate mottainaici/cli:latest mottainaici/cli-amd64:latest --arch amd64 --os linux
    - docker manifest inspect mottainaici/cli:latest
    - docker manifest push --purge mottainaici/cli:latest
-type: docker_execute
+type: docker
 name: "Build mottainaici/cli Docker image"
+
 planned: "0 0 16 * * *"

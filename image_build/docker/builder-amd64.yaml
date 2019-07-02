@@ -1,0 +1,22 @@
+source: 'https://github.com/Sabayon/docker-builder-amd64'
+directory: '/'
+image: 'sabayon/ci'
+storage: '9317096982217158'
+script:
+   - source storage/env
+   - mkdir -p $HOME/.docker
+   - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+   - docker build --no-cache --rm -t sabayon/builder-amd64:latest .
+
+   - docker-companion squash --remove sabayon/builder-amd64:latest
+
+   - docker login -u $DOCKER_USER -p $DOCKER_PASS
+   - docker push sabayon/builder-amd64:latest
+   - docker manifest create --amend sabayon/builder:latest sabayon/builder-amd64:latest
+   - docker manifest annotate sabayon/builder:latest sabayon/builder-amd64:latest --arch amd64 --os linux
+   - docker manifest inspect sabayon/builder:latest
+   - docker manifest push --purge sabayon/builder:latest
+type: docker
+name: "Build sabayon/builder Docker image"
+
+planned: "0 0 16 * * *"

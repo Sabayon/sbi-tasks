@@ -1,0 +1,20 @@
+source: 'https://github.com/Sabayon/docker-isobuilder-amd64'
+directory: '/'
+image: 'sabayon/ci'
+storage: '9317096982217158'
+script:
+   - source storage/env
+   - mkdir -p $HOME/.docker
+   - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+   - docker build --no-cache --rm -t sabayon/isobuilder-amd64:latest .
+
+   - docker login -u $DOCKER_USER -p $DOCKER_PASS
+   - docker push sabayon/isobuilder-amd64:latest
+   - docker manifest create --amend sabayon/isobuilder:latest sabayon/isobuilder-amd64:latest
+   - docker manifest annotate sabayon/isobuilder:latest sabayon/isobuilder-amd64:latest --arch amd64 --os linux
+   - docker manifest inspect sabayon/isobuilder:latest
+   - docker manifest push --purge sabayon/isobuilder:latest
+type: docker
+name: "Build sabayon/isobuilder Docker image"
+
+planned: "0 0 16 * * *"

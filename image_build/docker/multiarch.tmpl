@@ -7,12 +7,17 @@ script:
    - mkdir -p $HOME/.docker
    - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
    - docker build --no-cache --rm -t {{.Image}}-{{.Arch}}:latest .
+{{if .Squashed}}
+   - docker-companion squash --remove {{.Image}}-{{.Arch}}:latest
+{{end}}
    - docker login -u $DOCKER_USER -p $DOCKER_PASS
    - docker push {{.Image}}-{{.Arch}}:latest
    - docker manifest create --amend {{.Image}}:latest {{.Image}}-{{.Arch}}:latest
    - docker manifest annotate {{.Image}}:latest {{.Image}}-{{.Arch}}:latest --arch {{.Arch}} --os linux
    - docker manifest inspect {{.Image}}:latest
    - docker manifest push --purge {{.Image}}:latest
-type: docker_execute
+type: docker
 name: "Build {{.Image}} Docker image"
-planned: "0 0 16 * * *"
+{{if .Recurring}}
+planned: "{{.Recurring}}"
+{{end}}

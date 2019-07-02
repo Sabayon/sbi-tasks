@@ -1,10 +1,13 @@
 #!/bin/bash
 set -ex
 
+DOCKER_IMAGES="${DOCKER_IMAGES:-0 0 16 * * *}"
+
 # Docker images
 mottainai-cli task compile image_build/docker/multiarch.tmpl \
                             -s SourceRepo=https://github.com/Sabayon/sbi-tasks.git \
                             -s Arch=amd64 \
+                            -s Recurring="$DOCKER_IMAGES" \
                             -s Image=sabayon/ci \
                             -s Directory=bots/ \
                             -o bots/docker-image.yaml
@@ -14,12 +17,14 @@ mottainai-cli task compile image_build/docker/multiarch.tmpl \
                             -s Arch=amd64 \
                             -s Image=mottainaici/server \
                             -s Directory=/ \
+                            -s Recurring="$DOCKER_IMAGES" \
                             -o image_build/docker/mottainai/server-amd64.yaml
 
 mottainai-cli task compile image_build/docker/multiarch.tmpl \
                             -s SourceRepo=https://github.com/MottainaiCI/mottainai-agent \
                             -s Arch=amd64 \
                             -s Image=mottainaici/agent \
+                            -s Recurring="$DOCKER_IMAGES" \
                             -s Directory=/ \
                             -o image_build/docker/mottainai/agent-amd64.yaml
 
@@ -28,7 +33,51 @@ mottainai-cli task compile image_build/docker/multiarch.tmpl \
                             -s Arch=amd64 \
                             -s Image=mottainaici/cli \
                             -s Directory=/ \
+                            -s Recurring="$DOCKER_IMAGES" \
                             -o image_build/docker/mottainai/cli-amd64.yaml
+
+mottainai-cli task compile image_build/docker/multiarch.tmpl \
+                            -s SourceRepo=https://github.com/Sabayon/docker-spinbase-amd64 \
+                            -s Arch=amd64 \
+                            -s Squashed=true \
+                            -s Image=sabayon/spinbase \
+                            -s Recurring="0 0 20 * * *" \
+                            -s Directory=/ \
+                            -o image_build/docker/spinbase-amd64.yaml
+
+mottainai-cli task compile image_build/docker/multiarch.tmpl \
+                            -s SourceRepo=https://github.com/Sabayon/docker-base-amd64 \
+                            -s Arch=amd64 \
+                            -s Squashed=true \
+                            -s Recurring="$DOCKER_IMAGES" \
+                            -s Image=sabayon/base \
+                            -s Directory=/ \
+                            -o image_build/docker/base-amd64.yaml
+
+mottainai-cli task compile image_build/docker/multiarch.tmpl \
+                            -s SourceRepo=https://github.com/Sabayon/docker-isobuilder-amd64 \
+                            -s Arch=amd64 \
+                            -s Recurring="$DOCKER_IMAGES" \
+                            -s Image=sabayon/isobuilder \
+                            -s Directory=/ \
+                            -o image_build/docker/isobuilder-amd64.yaml
+
+mottainai-cli task compile image_build/docker/multiarch.tmpl \
+                            -s SourceRepo=https://github.com/Sabayon/docker-builder-amd64 \
+                            -s Arch=amd64 \
+                            -s Squashed=true \
+                            -s Recurring="$DOCKER_IMAGES" \
+                            -s Image=sabayon/builder \
+                            -s Directory=/ \
+                            -o image_build/docker/builder-amd64.yaml
+
+mottainai-cli task compile image_build/docker/multiarch.tmpl \
+                            -s SourceRepo=https://github.com/Sabayon/packer-templates \
+                            -s Arch=amd64 \
+                            -s Recurring="@monthly" \
+                            -s Image=sabayon/packer \
+                            -s Directory=/ \
+                            -o image_build/docker/packer-amd64.yaml
 
 # SCR 
 
