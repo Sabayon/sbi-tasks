@@ -29,5 +29,5 @@ pushd $OVERLAY_DIR
 		diff -Naurp $WORKDIR/gentoo/$SRC $OVERLAY_DIR/$SRC > $WORKDIR/diff.patch || true 
 	fi
 	package=$(dirname $WORKDIR/gentoo/$SRC)
-	cp -rfv $package/files/*  $(dirname $OVERLAY_DIR/$TARGET)/files
+	[ -d $package/files ] && cp -rfv $package/files  $(dirname $OVERLAY_DIR/$TARGET)
 	patch -u $OVERLAY_DIR/$TARGET -p1 -i $WORKDIR/diff.patch -f --merge
