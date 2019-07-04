@@ -1,0 +1,35 @@
+name: "Scan forked ebuilds for {{.OverlayName}}"
+image: sabayon/ci
+type: docker
+directory: "/bots/ebuild-maint"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+# Update user fork
+- bash -ex ../scripts/setup_git_repo.sh
+- emerge-webrsync
+- eix-update || true
+- git clone https://github.com/gentoo/gentoo
+- bash -x maint.sh
+# Create PRs
+- bash -ex ../scripts/create_pr.sh
+
+storage: "7287247578967654972"
+environment:
+- BUILDER_PROFILE=5
+- ACCEPT_LICENSE=*
+- FEATURES=-userpriv
+- KEEP_GOING=0
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:MarvinHatesOceans/{{.OverlayName}}.git
+- UPSTREAM_REPO=git@github.com:{{.UpstreamOrg}}/{{.OverlayName}}.git
+- WORK_BRANCH=fork-maint
+- OVERLAY_DIR=/root/repo
+{{ if .Recurring }}
+planned: "{{.Recurring}}"
+{{end}}

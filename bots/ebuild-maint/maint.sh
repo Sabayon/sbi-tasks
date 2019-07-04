@@ -5,8 +5,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 OVERLAY_DIR="${OVERLAY_DIR:-/var/lib/layman/sabayon-distro}"
 WORKDIR="${WORKDIR:-$DIR}"
 
-#eix-webrsync
-#eix-update
 
 function tryPatch {
 	local SRC=$1
@@ -38,10 +36,12 @@ function tryPatch {
 export KEEP_PREVIOUS_VERSIONS=1
 export OUTPUT_REMOVED=0
 
+[[ ! -d "$WORKDIR/gentoo" ]] && git clone https://github.com/gentoo/gentoo $WORKDIR/gentoo
+
 for c in $WORKDIR/gentoo/*; do
     [ -d "$c" ] || continue
     CAT=$(basename $c)
-	
+
     [ $CAT == "profiles" ] && continue
 
     for p in $c/*; do
