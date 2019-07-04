@@ -11,8 +11,11 @@ WORKDIR=${WORKDIR:-$PWD}
 [[ ! -d "$WORKDIR/gentoo" ]] && git clone https://github.com/gentoo/gentoo $WORKDIR/gentoo
 
 pushd $WORKDIR/gentoo
-	COMMIT=$(git rev-list -n 1 HEAD -- $SRC)
-	git checkout $COMMIT^ -- $SRC
+	if [ ! -e "$WORKDIR/gentoo/$SRC" ];
+	then
+		COMMIT=$(git rev-list -n 1 HEAD -- $SRC)
+		git checkout $COMMIT^ -- $SRC
+	fi
 	if [ $STRATEGY -eq 1 ]
 	then
 		diff -Naurp $SRC $TARGET > $WORKDIR/diff.patch || true 
