@@ -1,0 +1,32 @@
+name: "Auto bumper bot for {{.OverlayName}}"
+image: sabayon/ci
+type: docker
+directory: "/bots/auto-bump"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+# Update user fork
+- bash -ex ../scripts/setup_git_repo.sh
+# Setup tools for the autobumper
+- bash -ex scripts/setup.sh
+# Run the autobumper ( do work on cwd and create atomic commits)
+- bash -ex scripts/auto_bump.sh
+# Create PRs
+- bash -ex ../scripts/create_pr.sh
+
+storage: "7287247578967654972"
+environment:
+- BUILDER_PROFILE=5
+- ACCEPT_LICENSE=*
+- FEATURES=-userpriv
+- KEEP_GOING=0
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:MarvinHatesOceans/{{.OverlayName}}.git
+- UPSTREAM_REPO=git@github.com:{{.UpstreamOrg}}/{{.OverlayName}}.git
+- WORK_BRANCH=autobump-develop
+planned: "{{.Recurring}}"

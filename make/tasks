@@ -84,8 +84,52 @@ mottainai-cli task compile image_build/docker/multiarch.tmpl \
 mottainai-cli task compile scr/repo.tmpl \
                             -s SCRRepo=mudler \
                             -s Storage=3224462066628783553 \
+                            -s Recurring="@daily" \
                             -o scr/mudler.yaml
 
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=community \
+                            -s Storage=2154014966644308953 \
+                            -s Recurring="@daily" \
+                            -o scr/community.yaml
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=devel \
+                            -s Storage=7853977132774944695 \
+                            -s Recurring="@daily" \
+                            -o scr/devel.yaml
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=sihnon-common \
+                            -s Storage=202372093426954774 \
+                            -s Recurring="@daily" \
+                            -o scr/sihnon-common.yaml
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=sihnon-desktop \
+                            -s Storage=9042214114607668711 \
+                            -s Recurring="@daily" \
+                            -o scr/sihnon-desktop.yaml
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=sihnon-server \
+                            -s Storage=5710408089339313973 \
+                            -s Recurring="@daily" \
+                            -o scr/sihnon-server.yaml
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=zfs \
+                            -s Storage=5988687295295902538 \
+                            -s Recurring="@daily" \
+                            -o scr/zfs.yaml
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=rust \
+                            -s Storage=3637167958871677979 \
+                            -s Recurring="@daily" \
+                            -o scr/rust.yaml
+
+                            
 # Bots
 for i in "mottainai-cli" "mottainai-agent" "replicant"
 do
@@ -118,3 +162,14 @@ mottainai-cli task compile bots/auto-bump/auto-bumper.tmpl \
                             -s UpstreamOrg=Sabayon \
                             -o bots/auto-bump/auto-bump-$i.yaml
 done
+
+mottainai-cli task compile bots/ebuild-maint/scan-forked.tmpl \
+                            -s OverlayName=sabayon-distro \
+                            -s UpstreamOrg=Sabayon \
+                            -o bots/ebuild-maint/scan-forked-sabayon-distro.yaml
+
+
+mottainai-cli task compile bots/ebuild-maint/scan-forked.tmpl \
+                            -s OverlayName=for-gentoo \
+                            -s UpstreamOrg=Sabayon \
+                            -o bots/ebuild-maint/scan-forked-for-gentoo.yaml
