@@ -1,0 +1,23 @@
+image: sabayon/builder-amd64
+script:
+  - source /etc/profile
+  - equo up && equo install enman
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+  - equo update && equo install mottainai-cli
+  # Temporary workaround for issee https://github.com/MottainaiCI/mottainai-cli/issues/9
+  - mkdir /root/.config -p
+  - source /storage/mcli.keys
+  - echo "=================================================================="
+  - echo "Create pipeline:"
+  - MOTTAINAI_CLI_PROFILE=sab-infra mottainai-cli pipeline create --yaml lxd-pipeline.yaml
+  - echo "=================================================================="
+storage: "geaaru"
+storage_path: /storage
+source: https://github.com/Sabayon/sbi-tasks
+directory: /lxd
+environment:
+  - "ACCEPT_LICENSE=*"
+type: docker
+name: "LXD: Run Image Pipeline"
+timeout: 64800
+planned: "@weekly"
