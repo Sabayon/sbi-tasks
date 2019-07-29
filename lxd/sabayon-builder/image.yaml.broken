@@ -1,7 +1,7 @@
 image:
   distribution: sabayon
   decription: Sabayon
-  expiry: 30d
+  expiry: 10d
   architecture: amd64
 
 source:
