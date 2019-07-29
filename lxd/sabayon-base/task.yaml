@@ -1,8 +1,7 @@
 # Authors: Daniele Rondina
 #          geaaru@sabayonlinux.org
 #
-# Description: Script for build LXD sabayon/base.
-
+# Description: Script for build LXD sabayon/base
 script:
   - source /etc/profile
   # temporary: Sleep for LXD
@@ -17,7 +16,7 @@ script:
   # Temporary until replicator support .replicatorignore
   - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
   - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
-  - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT
+  - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
   - ls -ltr images/$LXD_IMAGEDIR/
   # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
   # by agent.
@@ -26,14 +25,12 @@ script:
   - eval 'rm images/build_*.log || true'
 type: docker
 image: sabayon/base-amd64
-#image: sabayon/builder
-#type: lxd
 name: "Build LXD sabayon/base image"
 environment:
   - "LXD_PRODUCT=sabayon-base:current:amd64:default"
   - "LXD_IMAGEDIR=sabayon-base"
-  - "ACCEPT_LICENSE=*"
   - "SSBUILDER_PREFIX=../lxd-sabayon-base"
+  - "ACCEPT_LICENSE=*"
 namespace: lxd-sabayon-base
 tag_namespace: lxd-sabayon-base
 artefact_path: images

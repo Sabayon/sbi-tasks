@@ -129,7 +129,7 @@ mottainai-cli task compile scr/repo.tmpl \
                             -s Recurring="@daily" \
                             -o scr/rust.yaml
 
-                            
+
 # Bots
 for i in "mottainai-cli" "mottainai-agent" "replicant"
 do
@@ -173,3 +173,15 @@ mottainai-cli task compile bots/ebuild-maint/scan-forked.tmpl \
                             -s OverlayName=for-gentoo \
                             -s UpstreamOrg=Sabayon \
                             -o bots/ebuild-maint/scan-forked-for-gentoo.yaml
+
+# LXD tasks
+for i in "sabayon-base" "sabayon-builder" "sabayon-isobuilder"
+do
+  mottainai-cli task compile lxd/lxd-image.tmpl \
+                            -s Image=${i/-/\/} \
+                            -s ImageProduct="$i:current:amd64:default" \
+                            -s ImageDir=$i \
+                            -s LxdImageNamespace=lxd-$i \
+                            -o lxd/$i/task.yaml
+done
+

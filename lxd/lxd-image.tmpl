@@ -1,7 +1,7 @@
 # Authors: Daniele Rondina
 #          geaaru@sabayonlinux.org
 #
-# Description: Script for build LXD sabayon/builder
+# Description: Script for build LXD {{.Image}}
 script:
   - source /etc/profile
   # temporary: Sleep for LXD
@@ -25,14 +25,14 @@ script:
   - eval 'rm images/build_*.log || true'
 type: docker
 image: sabayon/base-amd64
-name: "Build LXD sabayon/builder image"
+name: "Build LXD {{.Image}} image"
 environment:
-  - "LXD_PRODUCT=sabayon-builder:current:amd64:default"
-  - "LXD_IMAGEDIR=sabayon-builder"
-  - "SSBUILDER_PREFIX=../lxd-sabayon-builder"
+  - "LXD_PRODUCT={{.ImageProduct}}"
+  - "LXD_IMAGEDIR={{.ImageDir}}"
+  - "SSBUILDER_PREFIX=../{{.LxdImageNamespace}}"
   - "ACCEPT_LICENSE=*"
-namespace: lxd-sabayon-builder
-tag_namespace: lxd-sabayon-builder
+namespace: {{.LxdImageNamespace}}
+tag_namespace: {{.LxdImageNamespace}}
 artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd

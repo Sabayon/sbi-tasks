@@ -1,8 +1,7 @@
-# Authors: Sabayon Team
+# Authors: Daniele Rondina
 #          geaaru@sabayonlinux.org
 #
-# Description: Script for build LXD sabayon/isobuilder image.
-
+# Description: Script for build LXD sabayon/isobuilder
 script:
   - source /etc/profile
   # temporary: Sleep for LXD
@@ -15,10 +14,10 @@ script:
   - equo unmask dev-util/simplestreams-builder-9999
   - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools
   # Temporary until replicator support .replicatorignore
-  - mv sabayon-isobuilder/image.yaml.broken sabayon-isobuilder/image.yaml
-  - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images sabayon-isobuilder:current:amd64:default --skip-lxc
-  - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p sabayon-isobuilder:current:amd64:default
-  - ls -ltr images/sabayon-isobuilder/
+  - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+  - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
+  - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
+  - ls -ltr images/$LXD_IMAGEDIR/
   # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
   # by agent.
   - chmod a+rwx -R images/
@@ -26,17 +25,15 @@ script:
   - eval 'rm images/build_*.log || true'
 type: docker
 image: sabayon/base-amd64
-#image: sabayon
-#type: lxd
 name: "Build LXD sabayon/isobuilder image"
 environment:
-  - "ACCEPT_LICENSE=*"
+  - "LXD_PRODUCT=sabayon-isobuilder:current:amd64:default"
+  - "LXD_IMAGEDIR=sabayon-isobuilder"
   - "SSBUILDER_PREFIX=../lxd-sabayon-isobuilder"
+  - "ACCEPT_LICENSE=*"
 namespace: lxd-sabayon-isobuilder
 tag_namespace: lxd-sabayon-isobuilder
 artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
 timeout: 0
-#planned: "0 0 1 * * *"
-
