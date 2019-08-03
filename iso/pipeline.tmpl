@@ -5,7 +5,7 @@
 # Note: Molecules use /dev/loopX device for mount .ISO file so we
 #       need from host device access to loop controller and a free
 #       loop device
-
+{{ $isodev := .IsoDev }}
 pipeline_name: "Sabayon ISO {{ if .IsoDev }}Dev {{ end }}Build Pipeline"
 concurrency: 3
 
@@ -14,7 +14,6 @@ group:
 {{end}}
 chord:
   - gen-html
-
 tasks:
 {{range $iso , $data := .isos }}
   {{ $iso }}:
@@ -23,9 +22,9 @@ tasks:
       - rm -rf /sabayon
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
-      - /sabayon_molecules.sh run daily --image {{ $iso }}{{ if .IsoDev }} --only-dev {{ else }} --skip-dev {{ end }}
+      - /sabayon_molecules.sh run daily --image {{ $iso }}{{ if $isodev }} --only-dev {{ else }} --skip-dev {{ end }}
     type: {{ .TaskType }}
-    name: "{{ index $data "name" }} ISO {{ if .IsoDev }}Dev {{ end }}Daily ({{ .TaskType }})"
+    name: "{{ index $data "name" }} ISO {{ if $isodev }}Dev {{ end }}Daily ({{ .TaskType }})"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -38,8 +37,8 @@ tasks:
     binds:
       - "/dev/loop-control:/dev/loop-control"
     retry: "5"
-    tag_namespace: "sabayon:iso{{ if .IsoDev }}-dev{{ end }}"
-    namespace: "spinbase:iso{{ if .IsoDev }}-dev{{ end }}"
+    tag_namespace: "sabayon:iso{{ if $isodev }}-dev{{ end }}"
+    namespace: "spinbase:iso{{ if $isodev }}-dev{{ end }}"
 {{ end }}
 
   gen-html:
@@ -60,8 +59,8 @@ tasks:
     environment:
       - SAB_GENHTML_DUMP_HTML=0
       - SAB_GENHTML_REMOVE_ISO=1
-      - BASE_URL=https://dispatcher.sabayon.org/sbi/namespace/sabayon%3Aiso{{ if .IsoDev }}-dev{{ end }}/iso/
-      tag_namespace: sabayon:iso{{ if .IsoDev }}-dev{{ end }}
+      - BASE_URL=https://dispatcher.sabayon.org/sbi/namespace/sabayon%3Aiso{{ if $isodev }}-dev{{ end }}/iso/
+      tag_namespace: sabayon:iso{{ if $isodev }}-dev{{ end }}
     publish_mode: append
     timeout: 0
     retry: "3"

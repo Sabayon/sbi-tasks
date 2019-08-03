@@ -6,7 +6,7 @@
 #       need from host device access to loop controller and a free
 #       loop device
 
-pipeline_name: "Sabayon ISO Build Pipeline"
+pipeline_name: "Sabayon ISO Dev Build Pipeline"
 concurrency: 3
 
 group:
@@ -29,9 +29,9 @@ tasks:
       - rm -rf /sabayon
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
-      - /sabayon_molecules.sh run daily --image gnome --skip-dev 
+      - /sabayon_molecules.sh run daily --image gnome --only-dev 
     type: <no value>
-    name: "Gnome ISO Daily (<no value>)"
+    name: "Gnome ISO Dev Daily (<no value>)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -44,8 +44,8 @@ tasks:
     binds:
       - "/dev/loop-control:/dev/loop-control"
     retry: "5"
-    tag_namespace: "sabayon:iso"
-    namespace: "spinbase:iso"
+    tag_namespace: "sabayon:iso-dev"
+    namespace: "spinbase:iso-dev"
 
   kde:
     script:
@@ -53,9 +53,9 @@ tasks:
       - rm -rf /sabayon
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
-      - /sabayon_molecules.sh run daily --image kde --skip-dev 
+      - /sabayon_molecules.sh run daily --image kde --only-dev 
     type: <no value>
-    name: "KDE ISO Daily (<no value>)"
+    name: "KDE ISO Dev Daily (<no value>)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -68,8 +68,8 @@ tasks:
     binds:
       - "/dev/loop-control:/dev/loop-control"
     retry: "5"
-    tag_namespace: "sabayon:iso"
-    namespace: "spinbase:iso"
+    tag_namespace: "sabayon:iso-dev"
+    namespace: "spinbase:iso-dev"
 
   lxqt:
     script:
@@ -77,9 +77,9 @@ tasks:
       - rm -rf /sabayon
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
-      - /sabayon_molecules.sh run daily --image lxqt --skip-dev 
+      - /sabayon_molecules.sh run daily --image lxqt --only-dev 
     type: <no value>
-    name: "LxQT ISO Daily (<no value>)"
+    name: "LxQT ISO Dev Daily (<no value>)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -92,8 +92,8 @@ tasks:
     binds:
       - "/dev/loop-control:/dev/loop-control"
     retry: "5"
-    tag_namespace: "sabayon:iso"
-    namespace: "spinbase:iso"
+    tag_namespace: "sabayon:iso-dev"
+    namespace: "spinbase:iso-dev"
 
   mate:
     script:
@@ -101,9 +101,9 @@ tasks:
       - rm -rf /sabayon
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
-      - /sabayon_molecules.sh run daily --image mate --skip-dev 
+      - /sabayon_molecules.sh run daily --image mate --only-dev 
     type: <no value>
-    name: "Mate ISO Daily (<no value>)"
+    name: "Mate ISO Dev Daily (<no value>)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -116,8 +116,8 @@ tasks:
     binds:
       - "/dev/loop-control:/dev/loop-control"
     retry: "5"
-    tag_namespace: "sabayon:iso"
-    namespace: "spinbase:iso"
+    tag_namespace: "sabayon:iso-dev"
+    namespace: "spinbase:iso-dev"
 
   minimal:
     script:
@@ -125,9 +125,9 @@ tasks:
       - rm -rf /sabayon
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
-      - /sabayon_molecules.sh run daily --image minimal --skip-dev 
+      - /sabayon_molecules.sh run daily --image minimal --only-dev 
     type: <no value>
-    name: "Minimal ISO Daily (<no value>)"
+    name: "Minimal ISO Dev Daily (<no value>)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -140,8 +140,8 @@ tasks:
     binds:
       - "/dev/loop-control:/dev/loop-control"
     retry: "5"
-    tag_namespace: "sabayon:iso"
-    namespace: "spinbase:iso"
+    tag_namespace: "sabayon:iso-dev"
+    namespace: "spinbase:iso-dev"
 
   server:
     script:
@@ -149,9 +149,9 @@ tasks:
       - rm -rf /sabayon
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
-      - /sabayon_molecules.sh run daily --image server --skip-dev 
+      - /sabayon_molecules.sh run daily --image server --only-dev 
     type: <no value>
-    name: "Server ISO Daily (<no value>)"
+    name: "Server ISO Dev Daily (<no value>)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -164,8 +164,8 @@ tasks:
     binds:
       - "/dev/loop-control:/dev/loop-control"
     retry: "5"
-    tag_namespace: "sabayon:iso"
-    namespace: "spinbase:iso"
+    tag_namespace: "sabayon:iso-dev"
+    namespace: "spinbase:iso-dev"
 
   tarball:
     script:
@@ -173,9 +173,9 @@ tasks:
       - rm -rf /sabayon
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
-      - /sabayon_molecules.sh run daily --image tarball --skip-dev 
+      - /sabayon_molecules.sh run daily --image tarball --only-dev 
     type: <no value>
-    name: "Tarball ISO Daily (<no value>)"
+    name: "Tarball ISO Dev Daily (<no value>)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -188,8 +188,8 @@ tasks:
     binds:
       - "/dev/loop-control:/dev/loop-control"
     retry: "5"
-    tag_namespace: "sabayon:iso"
-    namespace: "spinbase:iso"
+    tag_namespace: "sabayon:iso-dev"
+    namespace: "spinbase:iso-dev"
 
   xfce:
     script:
@@ -197,9 +197,9 @@ tasks:
       - rm -rf /sabayon
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
-      - /sabayon_molecules.sh run daily --image xfce --skip-dev 
+      - /sabayon_molecules.sh run daily --image xfce --only-dev 
     type: <no value>
-    name: "XFCE ISO Daily (<no value>)"
+    name: "XFCE ISO Dev Daily (<no value>)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -212,8 +212,8 @@ tasks:
     binds:
       - "/dev/loop-control:/dev/loop-control"
     retry: "5"
-    tag_namespace: "sabayon:iso"
-    namespace: "spinbase:iso"
+    tag_namespace: "sabayon:iso-dev"
+    namespace: "spinbase:iso-dev"
 
 
   gen-html:
@@ -234,8 +234,8 @@ tasks:
     environment:
       - SAB_GENHTML_DUMP_HTML=0
       - SAB_GENHTML_REMOVE_ISO=1
-      - BASE_URL=https://dispatcher.sabayon.org/sbi/namespace/sabayon%3Aiso/iso/
-      tag_namespace: sabayon:iso
+      - BASE_URL=https://dispatcher.sabayon.org/sbi/namespace/sabayon%3Aiso-dev/iso/
+      tag_namespace: sabayon:iso-dev
     publish_mode: append
     timeout: 0
     retry: "3"
