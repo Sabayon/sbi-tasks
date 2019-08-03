@@ -1,0 +1,31 @@
+# Authors: Sabayon Team
+#
+# Description: Sabayon ISO mate task.
+
+script:
+  - wget 'https://raw.githubusercontent.com/Sabayon/molecule-core/099563dd9d77d5de15d349e3914c1bd1ce4de6e2/molecule/settings.py' -O /usr/lib/molecule/molecule/settings.py
+  - rm -rf /sabayon
+  - eval 'rm namespace/build_*.log || true'
+  - eval 'rm /usr/bin/docker-companion || true'
+  - /sabayon_molecules.sh run daily --image mate  --skip-dev 
+directory: /
+type: docker
+name: Mate ISO Daily (docker)
+image: sabayon/isobuilder-amd64
+storage: "geaaru,secureboot-key"
+artefact_path: namespace
+storage_path: confs
+publish_mode: append
+environment:
+
+  - "DRACUT_SQUASHFS=1"
+  - "DRACUT=1"
+  - "MOLECULE_ISO_TITLE=SABAYON"
+binds:
+  - "/dev/loop-control:/dev/loop-control"
+retry: 5
+
+tag_namespace: "sabayon:iso"
+namespace: "spinbase:iso"
+planned: "0 0 3 * * *"
+
