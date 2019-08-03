@@ -129,7 +129,46 @@ mottainai-cli task compile scr/repo.tmpl \
                             -s Recurring="@daily" \
                             -o scr/rust.yaml
 
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=science \
+                            -s Storage=2076548926821985834 \
+                            -s Recurring="@daily" \
+                            -o scr/science.yaml
 
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=perl \
+                            -s Storage=2154014966644308953 \
+                            -s Recurring="@daily" \
+                            -o scr/perl.yaml
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=pantheon-desktop \
+                            -s Storage=2154014966644308953 \
+                            -s Recurring="@daily" \
+                            -o scr/pantheon-desktop.yaml
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=haskell \
+                            -s Storage=1438512952321344034 \
+                            -s Recurring="@daily" \
+                            -o scr/haskell.yaml
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=gaming-live \
+                            -s Storage=4305828396602493158 \
+                            -s Recurring="@daily" \
+                            -o scr/gaming-live.yaml
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=devel-9999 \
+                            -s Storage=7853977132774944695 \
+                            -s Recurring="@daily" \
+                            -o scr/devel-9999.yaml
+
+mottainai-cli task compile scr/repo.tmpl \
+                            -s SCRRepo=devel-kernel \
+                            -s Recurring="@daily" \
+                            -o scr/devel-kernel.yaml
 # Bots
 for i in "mottainai-cli" "mottainai-agent" "replicant"
 do
