@@ -6,6 +6,7 @@
 #       need from host device access to loop controller and a free
 #       loop device
 {{ $isodev := .IsoDev }}
+{{ $type := .TaskType }}
 pipeline_name: "Sabayon ISO {{ if .IsoDev }}Dev {{ end }}Build Pipeline"
 concurrency: 3
 
@@ -23,8 +24,8 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
       - /sabayon_molecules.sh run daily --image {{ $iso }}{{ if $isodev }} --only-dev {{ else }} --skip-dev {{ end }}
-    type: {{ .TaskType }}
-    name: "{{ index $data "name" }} ISO {{ if $isodev }}Dev {{ end }}Daily ({{ .TaskType }})"
+    type: {{ $type }}
+    name: "{{ index $data "name" }} ISO {{ if $isodev }}Dev {{ end }}Daily ({{ $type }})"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -53,7 +54,7 @@ tasks:
       - /bin/bash ./scripts/gen_html/gen-iso-html.sh --dir ./namespace/iso/
       - /bin/date -u > ./namespace/iso/RELEASE_DATE_DAILY
       - chmod a+rw -R ./namespace/iso
-    type: docker_execute
+    type: {{ $type }}
     artefact_path: namespace
     directory: /
     environment:

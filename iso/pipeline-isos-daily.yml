@@ -6,6 +6,7 @@
 #       need from host device access to loop controller and a free
 #       loop device
 
+
 pipeline_name: "Sabayon ISO Build Pipeline"
 concurrency: 3
 
@@ -30,8 +31,8 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
       - /sabayon_molecules.sh run daily --image gnome --skip-dev 
-    type: <no value>
-    name: "Gnome ISO Daily (<no value>)"
+    type: docker
+    name: "Gnome ISO Daily (docker)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -54,8 +55,8 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
       - /sabayon_molecules.sh run daily --image kde --skip-dev 
-    type: <no value>
-    name: "KDE ISO Daily (<no value>)"
+    type: docker
+    name: "KDE ISO Daily (docker)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -78,8 +79,8 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
       - /sabayon_molecules.sh run daily --image lxqt --skip-dev 
-    type: <no value>
-    name: "LxQT ISO Daily (<no value>)"
+    type: docker
+    name: "LxQT ISO Daily (docker)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -102,8 +103,8 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
       - /sabayon_molecules.sh run daily --image mate --skip-dev 
-    type: <no value>
-    name: "Mate ISO Daily (<no value>)"
+    type: docker
+    name: "Mate ISO Daily (docker)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -126,8 +127,8 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
       - /sabayon_molecules.sh run daily --image minimal --skip-dev 
-    type: <no value>
-    name: "Minimal ISO Daily (<no value>)"
+    type: docker
+    name: "Minimal ISO Daily (docker)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -150,8 +151,8 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
       - /sabayon_molecules.sh run daily --image server --skip-dev 
-    type: <no value>
-    name: "Server ISO Daily (<no value>)"
+    type: docker
+    name: "Server ISO Daily (docker)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -174,8 +175,8 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
       - /sabayon_molecules.sh run daily --image tarball --skip-dev 
-    type: <no value>
-    name: "Tarball ISO Daily (<no value>)"
+    type: docker
+    name: "Tarball ISO Daily (docker)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -198,8 +199,8 @@ tasks:
       - eval 'rm namespace/build_*.log || true'
       - eval 'rm /usr/bin/docker-companion || true'
       - /sabayon_molecules.sh run daily --image xfce --skip-dev 
-    type: <no value>
-    name: "XFCE ISO Daily (<no value>)"
+    type: docker
+    name: "XFCE ISO Daily (docker)"
     image: sabayon/isobuilder-amd64
     storage: "geaaru,secureboot-key"
     artefact_path: namespace
@@ -228,7 +229,7 @@ tasks:
       - /bin/bash ./scripts/gen_html/gen-iso-html.sh --dir ./namespace/iso/
       - /bin/date -u > ./namespace/iso/RELEASE_DATE_DAILY
       - chmod a+rw -R ./namespace/iso
-    type: docker_execute
+    type: docker
     artefact_path: namespace
     directory: /
     environment:
