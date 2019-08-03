@@ -216,3 +216,7 @@ mottainai-cli task compile iso/iso_build.tmpl \
 
 done
 
+# ISO Daily Pipeline
+# mottainai-cli task compile iso/pipeline.tmpl \
+#                            -l iso/iso-images.tmpl.values \
+#                            -o iso/pipeline-isos-daily.yml
