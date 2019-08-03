@@ -1,0 +1,15 @@
+# List of images insert in pipeline
+values:
+  images:
+    sabayon-base:
+        namespace: "lxd-sabayon-base"
+        name: "sabayon/base"
+        directory: "sabayon-base"
+    sabayon-builder:
+        namespace: "lxd-sabayon-builder"
+        name: "sabayon/builder"
+        directory: "sabayon-builder"
+    sabayon-isobuilder:
+        namespace: "lxd-sabayon-isobuilder"
+        name: "sabayon/isobuilder"
+        directory: "sabayon-isobuilder"

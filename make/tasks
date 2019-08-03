@@ -185,3 +185,9 @@ do
                             -o lxd/$i/task.yaml
 done
 
+# Create LXD Pipeline file
+# Temporary disable until mottainai-cli is tagged.
+# mottainai-cli task compile lxd/lxd-pipeline.tmpl \
+#                            -l lxd/lxd-images.tmpl.values \
+#                            -o lxd/lxd-pipeline.yaml
+

@@ -1,0 +1,88 @@
+# Authors: Sabayon Team
+#          geaaru@sabayonlinux.org
+#
+# Description: Pipeline for build LXD images exposed from Sabayon
+
+pipeline_name: "LXD Build Images Pipeline"
+
+concurrency: 2
+
+group:
+{{range $index, $val := .images }}  - {{ $index }}
+{{end}}
+chord:
+  - build-tree
+
+tasks:
+{{range $img , $data := .images }}
+  {{ $img }}:
+    script:
+      - source /etc/profile
+      # temporary: Sleep for LXD
+      - sleep 4
+      - equo up
+      - equo install enman
+      - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+      - equo up geaaru
+      - touch /etc/entropy/packages/package.unmask
+      - equo unmask dev-util/simplestreams-builder-9999
+      - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools
+      # Temporary until replicator support .replicatorignore
+      - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+      - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
+      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
+      - ls -ltr images/$LXD_IMAGEDIR/
+      # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
+      # by agent.
+      - chmod a+rwx -R images/
+      - find .
+      - eval 'rm images/build_*.log || true'
+    type: docker
+    image: sabayon/base-amd64
+    name: "Build LXD {{ index $data "name" }} image"
+    environment:
+      - "LXD_PRODUCT={{ $img }}:current:amd64:default"
+      - "LXD_IMAGEDIR={{ index $data "directory" }}"
+      - "SSBUILDER_PREFIX=../{{ index $data "namespace" }}"
+      - "ACCEPT_LICENSE=*"
+    namespace: {{ index $data "namespace" }}
+    tag_namespace: {{ index $data "namespace" }}
+    artefact_path: images
+    source: https://github.com/Sabayon/sbi-tasks.git
+    directory: /lxd
+    timeout: 0
+{{end}}
+
+  build-tree:
+    image: sabayon/base-amd64
+    script:
+      - source /etc/profile
+      - equo up
+      - equo install enman
+      - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+      - equo up geaaru
+      - touch /etc/entropy/packages/package.unmask
+      - equo unmask dev-util/simplestreams-builder-9999
+      - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools
+      # To fix on simplestreams-builder
+      - eval 'rm -rf images/streams || true'
+      # Build index.json
+      - simplestreams-builder build-index -c tree-images.yaml -t ./images
+      # Build images.josn
+      - simplestreams-builder build-images-file -c tree-images.yaml -t ./images
+      # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
+      # by agent.
+      - chmod a+rwx -R images/
+      - find .
+      - eval 'rm images/build_*.log || true'
+    type: docker
+    name: "Build LXD Simplestreams index files"
+    environment:
+      - "ACCEPT_LICENSE=*"
+    namespace: lxd-images
+    tag_namespace: lxd-images
+    artefact_path: images
+    source: https://github.com/Sabayon/sbi-tasks.git
+    directory: /lxd
+    timeout: 0
+

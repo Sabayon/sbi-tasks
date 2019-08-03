@@ -8,15 +8,16 @@ pipeline_name: "LXD Build Images Pipeline"
 concurrency: 2
 
 group:
-  - sabayon-isobuilder
-  - sabayon-builder
   - sabayon-base
+  - sabayon-builder
+  - sabayon-isobuilder
+
 chord:
   - build-tree
 
 tasks:
 
-  sabayon-isobuilder:
+  sabayon-base:
     script:
       - source /etc/profile
       # temporary: Sleep for LXD
@@ -29,10 +30,10 @@ tasks:
       - equo unmask dev-util/simplestreams-builder-9999
       - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools
       # Temporary until replicator support .replicatorignore
-      - mv sabayon-isobuilder/image.yaml.broken sabayon-isobuilder/image.yaml
-      - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images sabayon-isobuilder:current:amd64:default --skip-lxc
-      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p sabayon-isobuilder:current:amd64:default
-      - ls -ltr images/sabayon-isobuilder/
+      - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+      - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
+      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
+      - ls -ltr images/$LXD_IMAGEDIR/
       # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
       # by agent.
       - chmod a+rwx -R images/
@@ -40,12 +41,14 @@ tasks:
       - eval 'rm images/build_*.log || true'
     type: docker
     image: sabayon/base-amd64
-    name: "Build LXD sabayon/isobuilder image"
+    name: "Build LXD sabayon/base image"
     environment:
+      - "LXD_PRODUCT=sabayon-base:current:amd64:default"
+      - "LXD_IMAGEDIR=sabayon-base"
+      - "SSBUILDER_PREFIX=../lxd-sabayon-base"
       - "ACCEPT_LICENSE=*"
-      - "SSBUILDER_PREFIX=../lxd-sabayon-isobuilder"
-    namespace: lxd-sabayon-isobuilder
-    tag_namespace: lxd-sabayon-isobuilder
+    namespace: lxd-sabayon-base
+    tag_namespace: lxd-sabayon-base
     artefact_path: images
     source: https://github.com/Sabayon/sbi-tasks.git
     directory: /lxd
@@ -64,10 +67,10 @@ tasks:
       - equo unmask dev-util/simplestreams-builder-9999
       - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools
       # Temporary until replicator support .replicatorignore
-      - mv sabayon-builder/image.yaml.broken sabayon-builder/image.yaml
-      - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images sabayon-builder:current:amd64:default --skip-lxc
-      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p sabayon-builder:current:amd64:default
-      - ls -ltr images/sabayon-builder/
+      - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+      - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
+      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
+      - ls -ltr images/$LXD_IMAGEDIR/
       # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
       # by agent.
       - chmod a+rwx -R images/
@@ -77,8 +80,10 @@ tasks:
     image: sabayon/base-amd64
     name: "Build LXD sabayon/builder image"
     environment:
-      - "ACCEPT_LICENSE=*"
+      - "LXD_PRODUCT=sabayon-builder:current:amd64:default"
+      - "LXD_IMAGEDIR=sabayon-builder"
       - "SSBUILDER_PREFIX=../lxd-sabayon-builder"
+      - "ACCEPT_LICENSE=*"
     namespace: lxd-sabayon-builder
     tag_namespace: lxd-sabayon-builder
     artefact_path: images
@@ -86,9 +91,11 @@ tasks:
     directory: /lxd
     timeout: 0
 
-  sabayon-base:
+  sabayon-isobuilder:
     script:
       - source /etc/profile
+      # temporary: Sleep for LXD
+      - sleep 4
       - equo up
       - equo install enman
       - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
@@ -97,9 +104,9 @@ tasks:
       - equo unmask dev-util/simplestreams-builder-9999
       - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools
       # Temporary until replicator support .replicatorignore
-      - mv sabayon-builder/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+      - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
       - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
-      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT
+      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
       - ls -ltr images/$LXD_IMAGEDIR/
       # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
       # by agent.
@@ -108,20 +115,19 @@ tasks:
       - eval 'rm images/build_*.log || true'
     type: docker
     image: sabayon/base-amd64
-    #image: sabayon/builder
-    #type: lxd
-    name: "Build LXD sabayon/base image"
+    name: "Build LXD sabayon/isobuilder image"
     environment:
-      - "LXD_PRODUCT=sabayon-base:current:amd64:default"
-      - "LXD_IMAGEDIR=sabayon-base"
+      - "LXD_PRODUCT=sabayon-isobuilder:current:amd64:default"
+      - "LXD_IMAGEDIR=sabayon-isobuilder"
+      - "SSBUILDER_PREFIX=../lxd-sabayon-isobuilder"
       - "ACCEPT_LICENSE=*"
-      - "SSBUILDER_PREFIX=../lxd-sabayon-base"
-    namespace: lxd-sabayon-base
-    tag_namespace: lxd-sabayon-base
+    namespace: lxd-sabayon-isobuilder
+    tag_namespace: lxd-sabayon-isobuilder
     artefact_path: images
     source: https://github.com/Sabayon/sbi-tasks.git
     directory: /lxd
     timeout: 0
+
 
   build-tree:
     image: sabayon/base-amd64
@@ -154,3 +160,5 @@ tasks:
     artefact_path: images
     source: https://github.com/Sabayon/sbi-tasks.git
     directory: /lxd
+    timeout: 0
+
