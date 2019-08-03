@@ -1,0 +1,13 @@
+# Author: Sabayon Dev Team
+# Description: This task create files for check mirrors sync.
+
+name: "Infra: Mirrors Sync Status"
+image: sabayon/base-amd64
+tag_namespace: "mirrors-status"
+artefact_path: /mirrors
+directory: /infra
+source: "https://github.com/Sabayon/sbi-tasks.git"
+type: docker
+script:
+  - scripts/mirrors_checker.sh
+planned: "@hourly"
