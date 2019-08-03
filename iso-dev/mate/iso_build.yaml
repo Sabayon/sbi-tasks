@@ -20,6 +20,7 @@ environment:
   - "DRACUT_SQUASHFS=1"
   - "DRACUT=1"
   - "MOLECULE_ISO_TITLE=SABAYON"
+  - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
 binds:
   - "/dev/loop-control:/dev/loop-control"
 retry: "5"

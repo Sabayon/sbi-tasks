@@ -17,11 +17,11 @@ storage_path: confs
 publish_mode: append
 environment:
 
-  # - SABAYON_MOLECULES_GIT_OPTS=-b develop"
   - "SABAYON_INSTALL_KERNEL=1"
   - "SABAYON_EXTRA_PKGS=sys-libs/pam"
   - "DRACUT=1"
   - "MOLECULE_ISO_TITLE=SABAYON"
+  - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
 binds:
   - "/dev/loop-control:/dev/loop-control"
 retry: "5"
