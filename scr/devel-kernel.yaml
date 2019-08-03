@@ -1,23 +1,17 @@
 name: "SCR devel-kernel"
 source: https://github.com/Sabayon/community-repositories
 directory: /devel-kernel
-image: sabayon/builder-amd64
+image: sabayon/builder
 namespace: devel-kernel
 tag_namespace: devel-kernel
 artefact_path: artifacts
 cache_image: "yes"
 script:
-- export LC_ALL=en_US.UTF-8
-- wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
-- wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
-- wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
-- wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-functions.sh -O /sbin/sark-functions.sh
-- chmod 0755 /sbin/sark-functions.sh
-- cp -rfv /sbin/sark-functions.sh /etc/sark-functions
-- cp -rfv /sbin/sark-functions.sh ./sark-functions.sh
-- chmod a+x /usr/sbin/builder
-- chmod a+x ./sark-localbuild
-- ./sark-localbuild
-storage_path: confs
-type: docker_execute
+- sark-localbuild
+- eval 'rm artifacts/build_*.log || true'
+
+type: docker
+timeout: 64800
+
 planned: "@daily"
+

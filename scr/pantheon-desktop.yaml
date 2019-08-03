@@ -1,20 +1,20 @@
 name: "SCR pantheon-desktop"
 source: https://github.com/Sabayon/community-repositories
 directory: /pantheon-desktop
-image: sabayon/builder-amd64
+image: sabayon/builder
 namespace: pantheon-desktop
 tag_namespace: pantheon-desktop
 artefact_path: artifacts
 cache_image: "yes"
 script:
-- export LC_ALL=en_US.UTF-8
-- wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
-- wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
-- chmod a+x /usr/sbin/builder
-- chmod a+x ./sark-localbuild
-- ./sark-localbuild
+- sark-localbuild
+- eval 'rm artifacts/build_*.log || true'
+
 storage: "2154014966644308953"
 storage_path: confs
-type: docker_execute
+
+type: docker
 timeout: 64800
+
 planned: "@daily"
+

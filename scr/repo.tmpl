@@ -13,7 +13,7 @@ script:
 storage: "{{.Storage}}"
 storage_path: confs
 {{end}}
-type: docker_execute
+type: docker
 timeout: 64800
 {{if .Recurring}}
 planned: "{{.Recurring}}"

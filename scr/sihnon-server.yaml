@@ -1,25 +1,20 @@
 name: "SCR sihnon-server"
 source: https://github.com/Sabayon/community-repositories
 directory: /sihnon-server
-image: sabayon/builder-amd64
+image: sabayon/builder
 namespace: sihnon-server
 tag_namespace: sihnon-server
 artefact_path: artifacts
 cache_image: "yes"
 script:
-  - export LC_ALL=en_US.UTF-8
-  - wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
-  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
-  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localcreaterepo -O /usr/sbin/sark-localcreaterepo
-  - chmod a+x /usr/sbin/builder
-  - chmod a+x ./sark-localbuild
-  - chmod a+x /usr/sbin/sark-localcreaterepo
-  - ./sark-localbuild
-environment:
-  - "ACCEPT_LICENSE=*"
-  - "ETP_NONINTERACTIVE=1"
+- sark-localbuild
+- eval 'rm artifacts/build_*.log || true'
+
 storage: "5710408089339313973"
 storage_path: confs
-type: docker_execute
+
+type: docker
 timeout: 64800
+
 planned: "@daily"
+
