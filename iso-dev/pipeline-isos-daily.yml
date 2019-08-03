@@ -235,7 +235,7 @@ tasks:
       - SAB_GENHTML_DUMP_HTML=0
       - SAB_GENHTML_REMOVE_ISO=1
       - BASE_URL=https://dispatcher.sabayon.org/sbi/namespace/sabayon%3Aiso-dev/iso/
-      tag_namespace: sabayon:iso-dev
+    tag_namespace: sabayon:iso-dev
     publish_mode: append
     timeout: 0
     retry: "3"
