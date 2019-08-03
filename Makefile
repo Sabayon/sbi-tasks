@@ -13,6 +13,10 @@ docker-mottainai:
 validate:
 	make/validate
 
+.PHONY: clean-nodes
+clean-nodes:
+	make/clean-nodes
+
 .PHONY: deploy
 deploy:
 	make/deploy
@@ -46,6 +50,18 @@ bump-atom:
                             -s TargetEbuild=$(TARGET) \
                             -s Version=$(TARGETVERSION)  \
                             -s Atom=$(ATOM) \
+                            -o ..task.yaml
+	$(CLI) task create --yaml ..task.yaml
+	rm -rf ..task.yaml
+
+.PHONY: tag-server
+tag-server:
+	$(CLI) task compile bots/mottainai/release.tmpl \
+                            -s OverlayName=$(OVERLAY) \
+                            -s UpstreamOrg=$(ORG) \
+                            -s Version=0.1  \
+                            -s Component=mottainai-server \
+			    -s TargetTag=master \
                             -o ..task.yaml
 	$(CLI) task create --yaml ..task.yaml
 	rm -rf ..task.yaml
