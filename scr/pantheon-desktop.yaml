@@ -2,8 +2,12 @@ name: "SCR pantheon-desktop"
 source: https://github.com/Sabayon/community-repositories
 directory: /pantheon-desktop
 image: sabayon/builder
+
+
 namespace: pantheon-desktop
 tag_namespace: pantheon-desktop
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

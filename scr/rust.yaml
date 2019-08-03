@@ -2,8 +2,12 @@ name: "SCR rust"
 source: https://github.com/Sabayon/community-repositories
 directory: /rust
 image: sabayon/builder
+
+
 namespace: rust
 tag_namespace: rust
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

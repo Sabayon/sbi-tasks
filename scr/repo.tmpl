@@ -2,8 +2,14 @@ name: "SCR {{.SCRRepo}}"
 source: https://github.com/Sabayon/community-repositories
 directory: /{{.SCRRepo}}
 image: sabayon/builder
+
+{{if .Snapshot}}
+tag_namespace: {{.SCRRepo}}
+{{else}}
 namespace: {{.SCRRepo}}
 tag_namespace: {{.SCRRepo}}
+{{end}}
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

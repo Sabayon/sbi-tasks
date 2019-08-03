@@ -2,8 +2,12 @@ name: "SCR mudler"
 source: https://github.com/Sabayon/community-repositories
 directory: /mudler
 image: sabayon/builder
+
+
 namespace: mudler
 tag_namespace: mudler
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

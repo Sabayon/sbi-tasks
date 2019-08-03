@@ -2,8 +2,12 @@ name: "SCR zfs"
 source: https://github.com/Sabayon/community-repositories
 directory: /zfs
 image: sabayon/builder
+
+
 namespace: zfs
 tag_namespace: zfs
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

@@ -2,8 +2,12 @@ name: "SCR community"
 source: https://github.com/Sabayon/community-repositories
 directory: /community
 image: sabayon/builder
+
+
 namespace: community
 tag_namespace: community
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

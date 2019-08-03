@@ -2,8 +2,12 @@ name: "SCR sihnon-server"
 source: https://github.com/Sabayon/community-repositories
 directory: /sihnon-server
 image: sabayon/builder
+
+
 namespace: sihnon-server
 tag_namespace: sihnon-server
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

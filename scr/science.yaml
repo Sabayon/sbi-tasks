@@ -2,8 +2,12 @@ name: "SCR science"
 source: https://github.com/Sabayon/community-repositories
 directory: /science
 image: sabayon/builder
+
+
 namespace: science
 tag_namespace: science
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

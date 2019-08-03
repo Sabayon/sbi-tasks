@@ -2,8 +2,12 @@ name: "SCR sihnon-desktop"
 source: https://github.com/Sabayon/community-repositories
 directory: /sihnon-desktop
 image: sabayon/builder
+
+
 namespace: sihnon-desktop
 tag_namespace: sihnon-desktop
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

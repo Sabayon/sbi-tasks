@@ -2,8 +2,12 @@ name: "SCR perl"
 source: https://github.com/Sabayon/community-repositories
 directory: /perl
 image: sabayon/builder
+
+
 namespace: perl
 tag_namespace: perl
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

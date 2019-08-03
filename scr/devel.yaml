@@ -2,8 +2,11 @@ name: "SCR devel"
 source: https://github.com/Sabayon/community-repositories
 directory: /devel
 image: sabayon/builder
-namespace: devel
+
+
 tag_namespace: devel
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

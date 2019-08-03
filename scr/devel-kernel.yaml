@@ -2,8 +2,12 @@ name: "SCR devel-kernel"
 source: https://github.com/Sabayon/community-repositories
 directory: /devel-kernel
 image: sabayon/builder
+
+
 namespace: devel-kernel
 tag_namespace: devel-kernel
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

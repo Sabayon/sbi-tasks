@@ -2,8 +2,12 @@ name: "SCR haskell"
 source: https://github.com/Sabayon/community-repositories
 directory: /haskell
 image: sabayon/builder
+
+
 namespace: haskell
 tag_namespace: haskell
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

@@ -2,8 +2,12 @@ name: "SCR gaming-live"
 source: https://github.com/Sabayon/community-repositories
 directory: /gaming-live
 image: sabayon/builder
+
+
 namespace: gaming-live
 tag_namespace: gaming-live
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:

@@ -2,8 +2,12 @@ name: "SCR devel-9999"
 source: https://github.com/Sabayon/community-repositories
 directory: /devel-9999
 image: sabayon/builder
+
+
 namespace: devel-9999
 tag_namespace: devel-9999
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:
