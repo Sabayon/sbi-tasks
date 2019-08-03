@@ -1,0 +1,30 @@
+name: "Bump mottainai-* from devel"
+image: sabayon/ci
+type: docker
+directory: "/bots/mottainai"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+- export WORKDIR=$PWD
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+# Update user fork
+- bash -ex ../scripts/setup_git_repo.sh
+- pushd /root/repo
+- bash scripts/bump.sh
+- popd
+# Create PRs
+- bash -ex ../scripts/create_pr.sh
+
+storage: "7287247578967654972"
+environment:
+- FEATURES=-userpriv
+- ACCEPT_LICENSE=*
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:auto-maintainers/gentoo-overlay-1.git
+- UPSTREAM_REPO=git@github.com:MottainaiCI/gentoo-overlay.git
+- WORK_BRANCH=tag-develop
+planned: "@weekly"

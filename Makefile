@@ -29,6 +29,10 @@ kernel-tracker:
 tasks:
 	make/tasks
 
+.PHONY: mottainai-ebuild-tag
+mottainai-ebuild-tag:
+	$(CLI) task create --yaml bots/mottainai/overlay-devel-tag.yaml
+
 .PHONY: bump-atom
 bump-atom:
 	# TARGET sys-devel/gcc/gcc-8.2.0-r6.ebuild
