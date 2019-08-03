@@ -8,9 +8,8 @@ script:
   - eval 'rm namespace/build_*.log || true'
   - eval 'rm /usr/bin/docker-companion || true'
   - /sabayon_molecules.sh run daily --image tarball  --only-dev 
-directory: /
 type: docker
-name: Tarball ISO Dev Daily (docker)
+name: "Tarball ISO Dev Daily (docker)"
 image: sabayon/isobuilder-amd64
 storage: "geaaru,secureboot-key"
 artefact_path: namespace
@@ -23,7 +22,7 @@ environment:
   - "MOLECULE_ISO_TITLE=SABAYON"
 binds:
   - "/dev/loop-control:/dev/loop-control"
-retry: 5
+retry: "5"
 
 tag_namespace: "sabayon:iso-dev"
 namespace: "spinbase:iso-dev"

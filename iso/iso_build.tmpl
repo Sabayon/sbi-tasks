@@ -8,9 +8,8 @@ script:
   - eval 'rm namespace/build_*.log || true'
   - eval 'rm /usr/bin/docker-companion || true'
   - /sabayon_molecules.sh run daily --image {{ .IsoImage }} {{ if eq .IsoDev "true" }} --only-dev {{ else }} --skip-dev {{ end }}
-directory: /
 type: {{ .TaskType }}
-name: {{ .IsoName }} ISO {{ if eq .IsoDev "true" }}Dev {{ end }}Daily ({{ .TaskType }})
+name: "{{ .IsoName }} ISO {{ if eq .IsoDev "true" }}Dev {{ end }}Daily ({{ .TaskType }})"
 image: sabayon/isobuilder-amd64
 storage: "geaaru,secureboot-key"
 artefact_path: namespace
@@ -26,7 +25,7 @@ environment:
   - "MOLECULE_ISO_TITLE=SABAYON"
 binds:
   - "/dev/loop-control:/dev/loop-control"
-retry: 5
+retry: "5"
 {{ if eq .IsoImage "spinbase" }}
 planned: "0 0 1 * * *"
 tag_namespace: "{{ .IsoImage }}:iso{{ if eq .IsoDev "true" }}-dev{{ end }}"
