@@ -17,12 +17,12 @@ storage_path: confs
 publish_mode: append
 environment:
 {{ if eq .IsoImage "spinbase" }}
-  # - SABAYON_MOLECULES_GIT_OPTS=-b develop"
   - "SABAYON_INSTALL_KERNEL=1"
   - "SABAYON_EXTRA_PKGS=sys-libs/pam"{{ else }}
   - "DRACUT_SQUASHFS=1"{{ end }}
   - "DRACUT=1"
   - "MOLECULE_ISO_TITLE=SABAYON"
+{{ if eq .IsoDev "true" }}  - "SABAYON_MOLECULES_GIT_OPTS=-b develop"{{ end }}
 binds:
   - "/dev/loop-control:/dev/loop-control"
 retry: "5"
