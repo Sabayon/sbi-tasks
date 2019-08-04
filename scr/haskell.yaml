@@ -1,20 +1,24 @@
 name: "SCR haskell"
 source: https://github.com/Sabayon/community-repositories
 directory: /haskell
-image: sabayon/builder-amd64
+image: sabayon/builder
+
+
 namespace: haskell
 tag_namespace: haskell
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:
-- export LC_ALL=en_US.UTF-8
-- wget https://raw.githubusercontent.com/Sabayon/devkit/master/builder -O /usr/sbin/builder
-- wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/master/sark-localbuild -O ./sark-localbuild
-- chmod a+x /usr/sbin/builder
-- chmod a+x ./sark-localbuild
-- ./sark-localbuild
+- sark-localbuild
+- eval 'rm artifacts/build_*.log || true'
+
 storage: "1438512952321344034"
 storage_path: confs
-type: docker_execute
+
+type: docker
 timeout: 64800
+
 planned: "@daily"
+

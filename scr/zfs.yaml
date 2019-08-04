@@ -1,20 +1,24 @@
-name: "SCR ZFS"
+name: "SCR zfs"
 source: https://github.com/Sabayon/community-repositories
 directory: /zfs
-image: sabayon/builder-amd64
+image: sabayon/builder
+
+
 namespace: zfs
 tag_namespace: zfs
+
+
 artefact_path: artifacts
 cache_image: "yes"
 script:
-  - source /etc/profile
-  - sark-localbuild
-  - eval 'rm artifacts/build_*.log || true'
-environment:
-  - "ACCEPT_LICENSE=*"
-  - "ETP_NONINTERACTIVE=1"
+- sark-localbuild
+- eval 'rm artifacts/build_*.log || true'
+
 storage: "5988687295295902538"
 storage_path: confs
-type: docker_execute
+
+type: docker
 timeout: 64800
+
 planned: "@daily"
+

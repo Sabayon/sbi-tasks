@@ -95,6 +95,7 @@ mottainai-cli task compile scr/repo.tmpl \
 
 mottainai-cli task compile scr/repo.tmpl \
                             -s SCRRepo=devel \
+                            -s Snapshot=true \
                             -s Storage=7853977132774944695 \
                             -s Recurring="@daily" \
                             -o scr/devel.yaml
