@@ -5,23 +5,77 @@ set -e
 
 MIRROR_NAMESPACE="${MIRROR_NAMESPACE:-/sbi/mirrors-status}"
 NAMESPACE_PATH="${NAMESPACE_PATH:-/mirrors}"
+STATUS_FILE="${STATUS_FILE:-${NAMESPACE_PATH}/mirrors-status.json}"
+ORIGIN_NODE="${ORIGIN_NODE:-https://dispatcher.sabayon.org/sbi/namespace}"
+
+log () {
+  echo "========================================================="
+  echo "$@"
+  echo "========================================================="
+}
 
 create_report_file () {
   # Retrieve list of our mirrors
   local mirrors=`cat /etc/entropy/repositories.conf.d/entropy_sabayon-weekly  | grep ^pkg | awk '{ print $3 }'`
   local mirror=""
+  local mirror_status=""
+  local mirror_ts=""
+  local origin_ts=""
+  local i=0
+  declare -g -A measures
+  measures=()
 
+  # Retrieve origin date
+  wget -T 10 -t 5 -O /tmp/mirror-origin ${ORIGIN_NODE}/mirrors-status/MIRROR_DATETIME
+  origin_ts=$(cat /tmp/mirror-origin)
+  log "Origin $ORIGIN_NODE with timestamp $origin_ts"
+
+  echo "MIRRORS: $mirrors"
   for mirror in $mirrors ; do
-    if mirror = "http://pkg.sabayon.org" ; then
+    if [ "$mirror" = "http://pkg.sabayon.org" ] ; then
+      echo "skip $mirror"
       continue
     fi
 
+    if [ "$mirror" = "http://dl.sabayon.org" ] ; then
+      # This is skipped because redirect over mirrors
+      echo "skip $mirror"
+      continue
+    fi
+
+    mirror_status="OUTSYNC"
     mirror="${mirror/\/entropy//}"
 
-    echo $mirror
+    log "Elaborate Mirror: $mirror"
+
     # Fetch MIRROR_NAMESPACE from every node and create datasource for web client.
-    # TODO
+    rm -f /tmp/mirror-timestamp || true
+    wget -T 10 -t 5 -O /tmp/mirror-timestamp ${mirror}sbi/mirrors-status/MIRROR_DATETIME || {
+      log "ERROR: Mirror Out of sync."
+      measures[$i]="{ \"mirror\": \"$mirror\", \"status\": \"$mirror_status\" }"
+      let i++ || true
+      continue
+    }
+
+    mirror_ts=$(cat /tmp/mirror-timestamp)
+    log "Mirror $mirror with timestamp $mirror_ts"
+
+    measures[$i]="{ \"mirror\": \"$mirror\", \"status\": \"$mirror_ts\" }"
+    let i++ || true
   done
+
+
+  echo "{ \"origin\": \"${origin_ts}\", \"mirrors\": [ " > ${STATUS_FILE}
+  local n_measures=${#measures[@]}
+  for ((i=0;i<${n_measures};i++)) ; do
+    if [ $i -lt $((n_measures-1)) ] ; then
+      echo "${measures[${i}]}," >> ${STATUS_FILE}
+    else
+      echo "${measures[${i}]}" >> ${STATUS_FILE}
+    fi
+
+  done
+  echo "] }" >> ${STATUS_FILE}
 
 }
 
@@ -32,7 +86,9 @@ main() {
   # Sync date
   echo "$nowdate" > ${NAMESPACE_PATH}/MIRROR_DATETIME
 
-  # create_report_file
+  log "Register mirror date: $nowdate"
+
+  create_report_file
 
 }
 
