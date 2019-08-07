@@ -16,6 +16,9 @@ script:
 
 storage: "1438512952321344034"
 storage_path: confs
+environment:
+  - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+  - "PORTAGE_GIT_BRANCH=master"
 
 type: docker
 timeout: 64800
