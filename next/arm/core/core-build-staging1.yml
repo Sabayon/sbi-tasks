@@ -1,14 +1,8 @@
-repository:
-  description: Core Arm repo
-  maintenance:
-    remove:
-      # We want this on base or other repo
-      - dev-perl/TermReadKey
 build:
   qa_checks: 0
   emerge:
     # Set sabayon-arm profile
-    profile: 79
+    profile: "sabayon-distro:default/linux/arm/17.0/armv7a/sabayon"
 
     # Install each package separately
     split_install: 1
