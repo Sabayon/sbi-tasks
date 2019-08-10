@@ -24,7 +24,7 @@ script:
   - equo up && equo upgrade
   # Temporary force build
   #  - sed -e 's/--update//g' base-build-staging2.yml -i
-    sark-localbuild
+  - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
   - mkdir artifacts/staging1
   - mv artifacts/base-arm-binhost/ artifacts/staging1/
@@ -42,7 +42,7 @@ environment:
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
-  - SAB_BUILDFILE=base-build-staging1.yml
+  - "SAB_BUILDFILE=base-build-staging1.yml"
 name: "ARM Base (Staging1)"
 artefact_path: artifacts
 image: sabayon/builder-arm
