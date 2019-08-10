@@ -1,0 +1,17 @@
+build:
+  qa_checks: 0
+  emerge:
+    # Set sabayon-arm profile
+    profile: "sabayon-distro:default/linux/arm/17.0/armv7a/sabayon"
+
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    jobs: 3
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --noreplace --deep --with-bdeps=y --buildpkg --update
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+  target:
+    - sys-libs/db:5.3
+    - sys-libs/db:6.0
+    - dev-lang/perl
+

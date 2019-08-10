@@ -23,11 +23,11 @@ script:
   - sabayon_mask_upstream_pkgs
   - equo up && equo upgrade
   # Temporary force build
-  - sed -e 's/--update//g' base-build-staging2.yml -i
-  - SAB_BUILDFILE=base-build-staging2.yml sark-localbuild
+  #  - sed -e 's/--update//g' base-build-staging2.yml -i
+    sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
-  - mkdir artifacts/staging2
-  - mv artifacts/base-arm-binhost/ artifacts/staging2/
+  - mkdir artifacts/staging1
+  - mv artifacts/base-arm-binhost/ artifacts/staging1/
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=arm
@@ -42,7 +42,8 @@ environment:
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
-name: "ARM Base (Staging2)"
+  - SAB_BUILDFILE=base-build-staging1.yml
+name: "ARM Base (Staging1)"
 artefact_path: artifacts
 image: sabayon/builder-arm
 type: lxd
@@ -51,4 +52,4 @@ type: lxd
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
 queue: arm_lxd
-tag_namespace: base-arm-staging2
+tag_namespace: base-arm-staging1

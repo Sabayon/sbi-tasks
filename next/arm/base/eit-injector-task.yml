@@ -20,8 +20,6 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
-  # This command must be integrated with builder.
-  - mirrorselect -s3 -b10 -D
   - enman add https://dispatcher.sabayon.org/sbi/namespace/base-arm/base-arm
   - equo up && equo upgrade
   - sark-localinjector
@@ -38,9 +36,11 @@ environment:
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
   - "REPOSITORY_DESCRIPTION=Base ARM Sabayon Repository"
-  - "SAB_STAGING_DIRS=staging1"
+  - "SAB_STAGING_DIRS=staging1 staging2"
   - REPO_BINHOST_CLEAN=1
   - SAB_BUILDFILE=dev-lang.particle.yaml
+  # Skip errors on process existing broken tarballs
+  - "PKGS_CHECKER_OPTS=-L ERROR -c -v --ignore-errors"
 type: lxd
 queue: arm_lxd
 image: sabayon/builder-arm
@@ -51,5 +51,5 @@ artefact_path: artifacts
 name: "ARM Base Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
-namespace: "base-arm,arm-staging1"
+namespace: "base-arm,base-arm-staging1,base-arm-staging2"
 tag_namespace: base-arm
