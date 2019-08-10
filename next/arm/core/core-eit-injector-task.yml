@@ -50,6 +50,6 @@ image: sabayon/builder-arm
 artefact_path: artifacts
 name: "ARM Core Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
-directory: "/next/arm/base"
+directory: "/next/arm/core"
 namespace: "core-arm,core-staging1,core-staging2"
 tag_namespace: core-arm
