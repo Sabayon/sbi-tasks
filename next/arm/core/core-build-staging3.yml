@@ -14,40 +14,30 @@ build:
 
   target:
     
-    - app-crypt/gentoo-keys
+    - virtual/dev-manager
     
-    - app-crypt/openpgp-keys-gentoo-release
+    - virtual/editor
     
-    - dev-util/cmake
+    - virtual/libc
     
-    - sys-libs/cracklib
+    - virtual/man
     
-    - sys-apps/file
+    - virtual/modutils
     
-    - sys-apps/sandbox
+    - virtual/os-headers
     
-    - app-misc/pax-utils
+    - virtual/package-manager
     
-    - sys-apps/debianutils
+    - virtual/pager
     
-    - sys-apps/dbus
+    - virtual/pkgconfig
     
-    - sys-apps/systemd
+    - virtual/service-manager
     
-    - net-dns/libidn2
+    - virtual/shadow
     
-    - net-libs/gnutls
+    - virtual/ssh
     
-    - dev-libs/mpc
-    
-    - dev-libs/cloog
-    
-    - sys-devel/gcc::sabayon-distro
-    
-    - sys-devel/base-gcc::sabayon-distro
-    
-    - sys-devel/libtool
-    
-    - dev-db/sqlite
+    - app-portage/gemato
     
 

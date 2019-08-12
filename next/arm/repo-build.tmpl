@@ -10,44 +10,10 @@ build:
     jobs: 3
     default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
-
-
+{{ $staging := index .stagings .StagingPhase }}
+{{ $target := index $staging "target" }}
   target:
-    
-    - app-crypt/gentoo-keys
-    
-    - app-crypt/openpgp-keys-gentoo-release
-    
-    - dev-util/cmake
-    
-    - sys-libs/cracklib
-    
-    - sys-apps/file
-    
-    - sys-apps/sandbox
-    
-    - app-misc/pax-utils
-    
-    - sys-apps/debianutils
-    
-    - sys-apps/dbus
-    
-    - sys-apps/systemd
-    
-    - net-dns/libidn2
-    
-    - net-libs/gnutls
-    
-    - dev-libs/mpc
-    
-    - dev-libs/cloog
-    
-    - sys-devel/gcc::sabayon-distro
-    
-    - sys-devel/base-gcc::sabayon-distro
-    
-    - sys-devel/libtool
-    
-    - dev-db/sqlite
-    
+    {{ range $index, $t := $target }}
+    - {{ $t }}
+    {{ end }}
 
