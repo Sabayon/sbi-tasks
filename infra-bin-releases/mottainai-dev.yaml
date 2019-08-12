@@ -1,0 +1,12 @@
+name: "infra-stack-crossplatform"
+source: 'https://github.com/Sabayon/sbi-tasks.git'
+directory: '/infra-bin-releases'
+environment:
+- LC_ALL=en_US.UTF-8
+- PROJECT_BRANCH=develop
+image: sabayon/builder-amd64
+script:
+  - bash build.sh
+tag_namespace: mottainai-dev-cross-bin
+type: docker_execute
+planned: "@daily"
