@@ -32,7 +32,7 @@ environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=arm
   - REPOSITORY_NAME=core-arm
-  - SAB_BUILDFILE=core-build-staging3
+  - SAB_BUILDFILE=core-build-staging3.yml
   - ETP_NONINTERACTIVE=1
   # I need call emerge-webrsync at begin to retrive data for active profile.
   # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
