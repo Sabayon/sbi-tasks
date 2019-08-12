@@ -29,6 +29,8 @@ environment:
   - SABAYON_ARCH=arm
   - ETP_NONINTERACTIVE=1
   - REPOSITORY_NAME={{ .TargetRepo }}
+  - REPO_CLEAN_EXPIRE=1
+  - REPO_CLEAN_EXPIRE_DAYS={{ .ExpireDays }}
   - SKIP_COMMIT=1
   - SKIP_PULL=1
   - SAB_PORTDIR=/etc/portage

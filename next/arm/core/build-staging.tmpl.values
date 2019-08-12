@@ -2,6 +2,7 @@
 values:
   TargetRepo: "core-arm"
   TargetPrefixRepo: "core"
+  ExpireDays: 10
   stagings:
     staging1:
       target:
