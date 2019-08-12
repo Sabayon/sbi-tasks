@@ -1,4 +1,42 @@
 build:
+
+  equo:
+    package:
+      unmask:
+
+        - dev-libs/ffcall
+
+        - sci-libs/buddy
+
+        - dev-lang/moarvm
+
+        - dev-lang/c-intercal
+
+        - dev-lang/bas
+
+        - dev-lang/nqp
+
+        - dev-lang/lisaac
+
+        - dev-lang/icon
+
+        - dev-lang/maude
+
+        - dev-lang/gforth
+
+        - dev-lang/R
+
+        - dev-lang/inform
+
+        - dev-lang/parrot
+
+        - dev-lang/nasm
+
+        - dev-lang/ferite
+
+        - dev-libs/libf2c
+
+
   qa_checks: 0
   emerge:
     # Set sabayon-arm profile
@@ -8,11 +46,12 @@ build:
     split_install: 1
     preserved_rebuild: 1
     jobs: 3
-    default_args: --accept-properties=-interactive -t --complete-graph --newuse --noreplace --deep --with-bdeps=y --buildpkg --update
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+
+
   target:
-    - dev-libs/libunistring
-    - dev-libs/npth
-    - dev-python/six
-    - dev-python/bz2file
+    
+    - dev-lang/erlang
+    
 

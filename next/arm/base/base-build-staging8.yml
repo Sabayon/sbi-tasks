@@ -1,12 +1,42 @@
 build:
-{{ if .EquoPackageUnmask }}
+
   equo:
     package:
       unmask:
-{{ range $index, $p := .EquoPackageUnmask }}
-        - {{ $p }}
-{{ end }}
-{{ end }}
+
+        - dev-libs/ffcall
+
+        - sci-libs/buddy
+
+        - dev-lang/moarvm
+
+        - dev-lang/c-intercal
+
+        - dev-lang/bas
+
+        - dev-lang/nqp
+
+        - dev-lang/lisaac
+
+        - dev-lang/icon
+
+        - dev-lang/maude
+
+        - dev-lang/gforth
+
+        - dev-lang/R
+
+        - dev-lang/inform
+
+        - dev-lang/parrot
+
+        - dev-lang/nasm
+
+        - dev-lang/ferite
+
+        - dev-libs/libf2c
+
+
   qa_checks: 0
   emerge:
     # Set sabayon-arm profile
@@ -18,10 +48,10 @@ build:
     jobs: 3
     default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
-{{ $staging := index .stagings .StagingPhase }}
-{{ $target := index $staging "target" }}
+
+
   target:
-    {{ range $index, $t := $target }}
-    - {{ $t }}
-    {{ end }}
+    
+    - dev-lang/go
+    
 

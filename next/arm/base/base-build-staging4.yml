@@ -1,0 +1,345 @@
+build:
+
+  equo:
+    package:
+      unmask:
+
+        - dev-libs/ffcall
+
+        - sci-libs/buddy
+
+        - dev-lang/moarvm
+
+        - dev-lang/c-intercal
+
+        - dev-lang/bas
+
+        - dev-lang/nqp
+
+        - dev-lang/lisaac
+
+        - dev-lang/icon
+
+        - dev-lang/maude
+
+        - dev-lang/gforth
+
+        - dev-lang/R
+
+        - dev-lang/inform
+
+        - dev-lang/parrot
+
+        - dev-lang/nasm
+
+        - dev-lang/ferite
+
+        - dev-libs/libf2c
+
+
+  qa_checks: 0
+  emerge:
+    # Set sabayon-arm profile
+    profile: "sabayon-distro:default/linux/arm/17.0/armv7a/sabayon"
+
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    jobs: 3
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+
+
+  target:
+    
+    - dev-libs/libIDL
+    
+    - dev-libs/libaio
+    
+    - dev-libs/libassuan
+    
+    - dev-libs/libatasmart
+    
+    - dev-libs/libax25
+    
+    - dev-libs/libbrahe
+    
+    - dev-libs/libbulletml
+    
+    - dev-libs/libburn
+    
+    - dev-libs/libcdio
+    
+    - dev-libs/libcitadel
+    
+    - dev-libs/libconfig
+    
+    - dev-libs/libcoyotl
+    
+    - dev-libs/libcroco
+    
+    - dev-libs/libdaemon
+    
+    - dev-libs/libdbusmenu
+    
+    - dev-libs/libdivsufsort
+    
+    - dev-libs/libdnet
+    
+    - dev-libs/libdnsres
+    
+    - dev-libs/libdshconfig
+    
+    - dev-libs/libebml
+    
+    - dev-libs/libedit
+    
+    - dev-libs/libee
+    
+    - dev-libs/libestr
+    
+    - dev-libs/libev
+    
+    - dev-libs/libevocosm
+    
+    - dev-libs/libezV24
+    
+    - dev-libs/libf2c
+    
+    - dev-libs/libffi
+    
+    - dev-libs/libg15
+    
+    - dev-libs/libg15render
+    
+    - dev-libs/libgamin
+    
+    - dev-libs/libgcrypt
+    
+    - dev-libs/libgdata
+    
+    - dev-libs/libgee
+    
+    - dev-libs/libgpg-error
+    
+    - dev-libs/libgusb
+    
+    - dev-libs/libhome
+    
+    - dev-libs/libical
+    
+    - dev-libs/libisoburn
+    
+    - dev-libs/libisofs
+    
+    - dev-libs/libksba
+    
+    - dev-libs/liblazy
+    
+    - dev-libs/liblogging
+    
+    - dev-libs/liblognorm
+    
+    - dev-libs/libmaa
+    
+    - dev-libs/libmba
+    
+    - dev-libs/libmcrypt
+    
+    - dev-libs/libmirage
+    
+    - dev-libs/libmix
+    
+    - dev-libs/libmoe
+    
+    - dev-libs/libmowgli
+    
+    - dev-libs/libnatspec
+    
+    - dev-libs/libofx
+    
+    - dev-libs/liboil
+    
+    - dev-libs/liboobs
+    
+    - dev-libs/libotf
+    
+    - dev-libs/libowfat
+    
+    - dev-libs/libp11
+    
+    - dev-libs/libpqxx
+    
+    - dev-libs/libpthread-stubs
+    
+    - dev-libs/librep
+    
+    - dev-libs/libsigc++
+    
+    - dev-libs/libsigsegv
+    
+    - dev-libs/libsodium
+    
+    - dev-libs/libstroke
+    
+    - dev-libs/libsuinput
+    
+    - dev-libs/libtar
+    
+    - dev-libs/libtasn1
+    
+    - dev-libs/libtecla
+    
+    - dev-libs/libtommath
+    
+    - dev-libs/libunique
+    
+    - dev-libs/libusb-compat
+    
+    - dev-libs/libverto
+    
+    - dev-libs/libvformat
+    
+    - dev-libs/libwbxml
+    
+    - dev-libs/libx86
+    
+    - dev-libs/libx86emu
+    
+    - dev-libs/libxdg-basedir
+    
+    - dev-libs/libxslt
+    
+    - dev-libs/libyaml
+    
+    - dev-libs/libzip
+    
+    - dev-libs/link-grammar
+    
+    - dev-libs/lockdev
+    
+    - dev-libs/log4cpp
+    
+    - dev-libs/log4cxx
+    
+    - dev-libs/lzo
+    
+    - dev-libs/m17n-lib
+    
+    - dev-libs/maloc
+    
+    - dev-libs/mxml
+    
+    - dev-libs/mongo-c-driver
+    
+    - dev-libs/mpfr
+    
+    - dev-libs/nettle
+    
+    - dev-libs/newt
+    
+    - dev-libs/nss
+    
+    - dev-libs/oniguruma
+    
+    - dev-libs/ossp-uuid
+    
+    - dev-libs/pcre++
+    
+    - dev-libs/pkcs11-helper
+    
+    - dev-libs/popt
+    
+    - dev-libs/ppl
+    
+    - dev-libs/pslib
+    
+    - dev-libs/ptexenc
+    
+    - dev-libs/pugixml
+    
+    - dev-libs/rasqal
+    
+    - dev-libs/re2
+    
+    - dev-libs/redland
+    
+    - dev-libs/rlog
+    
+    - dev-libs/rremove
+    
+    - dev-libs/serd
+    
+    - dev-libs/shhopt
+    
+    - dev-libs/skalibs
+    
+    - dev-libs/snowball-stemmer
+    
+    - dev-libs/sord
+    
+    - dev-libs/stfl
+    
+    - dev-libs/svrcore
+    
+    - dev-libs/tinyxml
+    
+    - dev-libs/tinyxml2
+    
+    - dev-libs/tntnet
+    
+    - dev-libs/totem-pl-parser
+    
+    - dev-libs/tre
+    
+    - dev-libs/ucl
+    
+    - dev-libs/ucommon
+    
+    - dev-libs/udis86
+    
+    - dev-libs/uriparser
+    
+    - dev-libs/userspace-rcu
+    
+    - dev-libs/ustr
+    
+    - dev-libs/uthash
+    
+    - dev-libs/uulib
+    
+    - dev-libs/vala-common
+    
+    - dev-libs/vanessa-adt
+    
+    - dev-libs/vanessa-logger
+    
+    - dev-libs/wayland
+    
+    - dev-libs/xalan-c
+    
+    - dev-libs/xapian
+    
+    - dev-libs/xapian-bindings
+    
+    - dev-libs/xerces-c
+    
+    - dev-libs/xmlrpc-c
+    
+    - dev-libs/xmlrpc-epi
+    
+    - dev-libs/xmlsec
+    
+    - dev-libs/xplc
+    
+    - dev-libs/xqilla
+    
+    - dev-libs/yajl
+    
+    - dev-libs/yaz
+    
+    - dev-libs/zthread
+    
+    - dev-libs/zziplib
+    
+

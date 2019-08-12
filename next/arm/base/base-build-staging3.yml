@@ -1,0 +1,167 @@
+build:
+
+  equo:
+    package:
+      unmask:
+
+        - dev-libs/ffcall
+
+        - sci-libs/buddy
+
+        - dev-lang/moarvm
+
+        - dev-lang/c-intercal
+
+        - dev-lang/bas
+
+        - dev-lang/nqp
+
+        - dev-lang/lisaac
+
+        - dev-lang/icon
+
+        - dev-lang/maude
+
+        - dev-lang/gforth
+
+        - dev-lang/R
+
+        - dev-lang/inform
+
+        - dev-lang/parrot
+
+        - dev-lang/nasm
+
+        - dev-lang/ferite
+
+        - dev-libs/libf2c
+
+
+  qa_checks: 0
+  emerge:
+    # Set sabayon-arm profile
+    profile: "sabayon-distro:default/linux/arm/17.0/armv7a/sabayon"
+
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    jobs: 3
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+
+
+  target:
+    
+    - dev-libs/389-adminutil
+    
+    - dev-libs/apr
+    
+    - dev-libs/apr-util
+    
+    - dev-libs/argtable
+    
+    - dev-libs/atk
+    
+    - dev-libs/beecrypt
+    
+    - dev-libs/bglibs
+    
+    - dev-libs/blitz
+    
+    - dev-libs/boost
+    
+    - dev-libs/cdk
+    
+    - dev-libs/cgicc
+    
+    - dev-libs/check
+    
+    - dev-libs/chmlib
+    
+    - dev-libs/confuse
+    
+    - dev-libs/crypto++
+    
+    - dev-libs/cvector
+    
+    - dev-libs/cxxtools
+    
+    - dev-libs/cyberjack
+    
+    - dev-libs/cyrus-sasl
+    
+    - dev-libs/d0_blind_id
+    
+    - dev-libs/darts
+    
+    - dev-libs/dbus-c++
+    
+    - dev-libs/dbus-glib
+    
+    - dev-libs/dotconf
+    
+    - dev-libs/eb
+    
+    - dev-libs/elfio
+    
+    - dev-libs/elfutils
+    
+    - dev-libs/eventlog
+    
+    - dev-libs/expat
+    
+    - dev-libs/fcgi
+    
+    - dev-libs/fddl
+    
+    - dev-libs/ferrisloki
+    
+    - dev-libs/ffcall
+    
+    - dev-libs/fribidi
+    
+    - dev-libs/g-wrap
+    
+    - dev-libs/geoip
+    
+    - dev-libs/gf2x
+    
+    - dev-libs/gmime
+    
+    - dev-libs/gmp
+    
+    - dev-libs/gobject-introspection
+    
+    - dev-libs/gobject-introspection-common
+    
+    - dev-libs/http-fetcher
+    
+    - dev-libs/hyphen
+    
+    - dev-libs/iksemel
+    
+    - dev-libs/ilbc-rfc3951
+    
+    - dev-libs/iniparser
+    
+    - dev-libs/jemalloc
+    
+    - dev-libs/json-c
+    
+    - dev-libs/json-glib
+    
+    - dev-libs/jsoncpp
+    
+    - dev-libs/jthread
+    
+    - dev-libs/judy
+    
+    - dev-libs/keybinder
+    
+    - dev-libs/kpathsea
+    
+    - dev-libs/legousbtower
+    
+    - dev-libs/leveldb
+    
+

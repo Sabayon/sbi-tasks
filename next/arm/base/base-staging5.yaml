@@ -1,17 +1,18 @@
 script:
   - source /etc/profile
+  # Temporary workaround for delay on DHCP response
+  - sleep 4
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - chmod 755 /sbin/sark-functions.sh
   - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
   - chmod 755 /etc/sark-functions
+  - echo '===> Preparing last step....'
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
-  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localinjector -O /usr/bin/sark-localinjector
   - chmod a+x /usr/sbin/builder
   - chmod a+x /usr/bin/sark-localcreaterepo
   - chmod a+x /usr/bin/sark-localbuild
-  - chmod a+x /usr/bin/sark-localinjector
   - eselect python set python3.6
   # Force py3.6 on eit
   - sed -e 's:python2.7:python:g' -i /usr/bin/eit
@@ -20,36 +21,35 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/core-arm/core-arm
   - equo up && equo upgrade
-  - sark-localinjector
+  # Temporary force build
+  # - sed -e 's/--update//g' base-build-staging5.yml -i
+  - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
+  - mkdir artifacts/staging5
+  - mv artifacts/base-arm-binhost/ artifacts/staging5/
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=arm
+  - REPOSITORY_NAME=base-arm
+  - SAB_BUILDFILE=base-build-staging5
   - ETP_NONINTERACTIVE=1
-  - REPOSITORY_NAME=core-arm
-  - REPO_CLEAN_EXPIRE=1
-  - REPO_CLEAN_EXPIRE_DAYS=10
-  - SKIP_COMMIT=1
-  - SKIP_PULL=1
+  # I need call emerge-webrsync at begin to retrive data for active profile.
+  # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
+  # - SKIP_PORTAGE_SYNC=1
+  - SKIP_CLEAN_PACKAGESDIR=1
   - SAB_PORTDIR=/etc/portage
+  - "CREATEREPO_PHASE=false"
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
-  - "REPOSITORY_DESCRIPTION=Core ARM Sabayon Repository"
-  - "SAB_STAGING_DIRS=staging1 staging2 staging3 staging4"
-  - REPO_BINHOST_CLEAN=1
-  - SAB_BUILDFILE=core-build-staging1.yml
-  # Skip errors on process existing broken tarballs
-  - "PKGS_CHECKER_OPTS=-L ERROR -c -v --ignore-errors"
+name: "ARM Base (Staging5)"
+artefact_path: artifacts
 
 image: sabayon/builder-arm
 type: lxd
 
-artefact_path: artifacts
-name: "ARM Core Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
-directory: "/next/arm/core"
-namespace: "core-arm,,core-arm-staging1,core-arm-staging2,core-arm-staging3,core-arm-staging4"
-tag_namespace: core-arm
+directory: "/next/arm/base"
+queue: arm_lxd
+tag_namespace: base-arm-staging5

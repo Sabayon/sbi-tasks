@@ -20,7 +20,7 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/core-arm/core-arm
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/base-arm/base-arm
   - equo up && equo upgrade
   - sark-localinjector
   - eval 'rm artifacts/build_*.log || true'
@@ -28,19 +28,19 @@ environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=arm
   - ETP_NONINTERACTIVE=1
-  - REPOSITORY_NAME=core-arm
+  - REPOSITORY_NAME=base-arm
   - REPO_CLEAN_EXPIRE=1
-  - REPO_CLEAN_EXPIRE_DAYS=10
+  - REPO_CLEAN_EXPIRE_DAYS=5
   - SKIP_COMMIT=1
   - SKIP_PULL=1
   - SAB_PORTDIR=/etc/portage
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
-  - "REPOSITORY_DESCRIPTION=Core ARM Sabayon Repository"
-  - "SAB_STAGING_DIRS=staging1 staging2 staging3 staging4"
+  - "REPOSITORY_DESCRIPTION=Base ARM Sabayon Repository"
+  - "SAB_STAGING_DIRS=staging1 staging2 staging3 staging4 staging5 staging6 staging7 staging8"
   - REPO_BINHOST_CLEAN=1
-  - SAB_BUILDFILE=core-build-staging1.yml
+  - SAB_BUILDFILE=base-build-staging1.yml
   # Skip errors on process existing broken tarballs
   - "PKGS_CHECKER_OPTS=-L ERROR -c -v --ignore-errors"
 
@@ -48,8 +48,8 @@ image: sabayon/builder-arm
 type: lxd
 
 artefact_path: artifacts
-name: "ARM Core Repo (injector)"
+name: "ARM Base Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
-directory: "/next/arm/core"
-namespace: "core-arm,,core-arm-staging1,core-arm-staging2,core-arm-staging3,core-arm-staging4"
-tag_namespace: core-arm
+directory: "/next/arm/base"
+namespace: "base-arm,,base-arm-staging1,base-arm-staging2,base-arm-staging3,base-arm-staging4,base-arm-staging5,base-arm-staging6,base-arm-staging7,base-arm-staging8"
+tag_namespace: base-arm

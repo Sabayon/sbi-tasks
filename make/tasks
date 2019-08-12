@@ -269,7 +269,7 @@ done
 core_arm_stages=4
 core_injector_sources="core-arm,"
 core_staging_list=""
-for ((i=1;i<=4;i++)) ; do
+for ((i=1;i<=${core_arm_stages};i++)) ; do
   staging="staging${i}"
   if [ $i -eq 1 ] ; then
     core_staging_list="${staging}"
@@ -302,4 +302,43 @@ mottainai-cli task compile next/arm/repo-injector.tmpl \
     -s StagingDirs="${core_staging_list}" \
     -s InjectorSources="${core_injector_sources}" \
     -o next/arm/core/core-eit-injector-task.yaml
+
+# Base ARM Repository
+# TODO: read number of staging from files with shyml
+base_arm_stages=8
+base_injector_sources="base-arm,"
+base_staging_list=""
+for ((i=1;i<=${base_arm_stages};i++)) ; do
+  staging="staging${i}"
+  if [ $i -eq 1 ] ; then
+    base_staging_list="${staging}"
+  else
+    base_staging_list="${base_staging_list} ${staging}"
+  fi
+  # Create SARK build file.
+  mottainai-cli task compile next/arm/repo-build.tmpl \
+    -l next/arm/base/repo.tmpl.values \
+    -s StagingPhase="${staging}" \
+    -o next/arm/base/base-build-${staging}.yml
+  base_injector_sources="${base_injector_sources},base-arm-${staging}"
+
+  # Create Mottainai task
+  mottainai-cli task compile next/arm/repo-staging.tmpl \
+    -l next/arm/base/repo.tmpl.values \
+    -s TaskTarget="${staging^}" \
+    -s TargetRepoName="Base" \
+    -s StagingPhase="${staging}" \
+    -s LxdType=true \
+    -o next/arm/base/base-${staging}.yaml
+done
+
+# Base ARM Injector task
+mottainai-cli task compile next/arm/repo-injector.tmpl \
+    -l next/arm/base/repo.tmpl.values \
+    -s LxdType=true \
+    -s TargetRepoName="Base" \
+    -s StagingPhase="staging1" \
+    -s StagingDirs="${base_staging_list}" \
+    -s InjectorSources="${base_injector_sources}" \
+    -o next/arm/base/base-eit-injector-task.yaml
 

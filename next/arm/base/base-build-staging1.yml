@@ -1,4 +1,42 @@
 build:
+
+  equo:
+    package:
+      unmask:
+
+        - dev-libs/ffcall
+
+        - sci-libs/buddy
+
+        - dev-lang/moarvm
+
+        - dev-lang/c-intercal
+
+        - dev-lang/bas
+
+        - dev-lang/nqp
+
+        - dev-lang/lisaac
+
+        - dev-lang/icon
+
+        - dev-lang/maude
+
+        - dev-lang/gforth
+
+        - dev-lang/R
+
+        - dev-lang/inform
+
+        - dev-lang/parrot
+
+        - dev-lang/nasm
+
+        - dev-lang/ferite
+
+        - dev-libs/libf2c
+
+
   qa_checks: 0
   emerge:
     # Set sabayon-arm profile
@@ -8,11 +46,66 @@ build:
     split_install: 1
     preserved_rebuild: 1
     jobs: 3
-    default_args: --accept-properties=-interactive -t --complete-graph --newuse --noreplace --deep --with-bdeps=y --buildpkg --oneshot
-    #default_args: --accept-properties=-interactive -t --complete-graph --newuse --noreplace --deep --with-bdeps=y --buildpkg --update
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+
+
   target:
-    - sys-libs/db:5.3
-    - sys-libs/db:6.0
-    - dev-lang/perl
+    
+    - dev-lang/R
+    
+    - dev-lang/bas
+    
+    - dev-lang/bashforth
+    
+    - dev-lang/bff
+    
+    - dev-lang/c-intercal
+    
+    - dev-lang/cfortran
+    
+    - dev-lang/cll1h
+    
+    - dev-lang/coffee-script
+    
+    - dev-lang/confluence
+    
+    - dev-lang/f2c
+    
+    - dev-lang/ferite
+    
+    - dev-lang/gforth
+    
+    - dev-lang/go
+    
+    - dev-lang/icon
+    
+    - dev-lang/ispc
+    
+    - dev-lang/inform
+    
+    - dev-lang/jimtcl
+    
+    - dev-lang/lisaac
+    
+    - dev-lang/logtalk
+    
+    - dev-lang/lua
+    
+    - dev-lang/luajit
+    
+    - dev-lang/maude
+    
+    - dev-lang/nasm
+    
+    - dev-lang/nqp
+    
+    - dev-lang/ocaml
+    
+    - dev-lang/orc
+    
+    - dev-lang/parrot
+    
+    - dev-lang/php
+    
 

@@ -23,16 +23,17 @@ script:
   - sabayon_mask_upstream_pkgs
   - equo up && equo upgrade
   # Temporary force build
-  - sed -e 's/--update//g' base-build-staging2.yml -i
-  - SAB_BUILDFILE=base-build-staging2.yml sark-localbuild
+  # - sed -e 's/--update//g' base-build-staging8.yml -i
+  - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
-  - mkdir artifacts/staging2
-  - mv artifacts/base-arm-binhost/ artifacts/staging2/
+  - mkdir artifacts/staging8
+  - mv artifacts/base-arm-binhost/ artifacts/staging8/
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=arm
-  - ETP_NONINTERACTIVE=1
   - REPOSITORY_NAME=base-arm
+  - SAB_BUILDFILE=base-build-staging8
+  - ETP_NONINTERACTIVE=1
   # I need call emerge-webrsync at begin to retrive data for active profile.
   # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
   # - SKIP_PORTAGE_SYNC=1
@@ -42,13 +43,13 @@ environment:
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
-name: "ARM Base (Staging2)"
+name: "ARM Base (Staging8)"
 artefact_path: artifacts
+
 image: sabayon/builder-arm
 type: lxd
-#image: geaaru/sabayon-builder-arm
-#type: docker
+
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
 queue: arm_lxd
-tag_namespace: base-arm-staging2
+tag_namespace: base-arm-staging8

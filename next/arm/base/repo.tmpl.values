@@ -1,0 +1,322 @@
+# Base ARM Repository packages (splitted in staging tasks)
+values:
+  TargetRepo: "base-arm"
+  TargetPrefixRepo: "base"
+  ExpireDays: 5
+  EquoPackageUnmask:
+    - dev-libs/ffcall
+    - sci-libs/buddy
+    - dev-lang/moarvm
+    - dev-lang/c-intercal
+    - dev-lang/bas
+    - dev-lang/nqp
+    - dev-lang/lisaac
+    - dev-lang/icon
+    - dev-lang/maude
+    - dev-lang/gforth
+    - dev-lang/R
+    - dev-lang/inform
+    - dev-lang/parrot
+    - dev-lang/nasm
+    - dev-lang/ferite
+    - dev-libs/libf2c
+
+  stagings:
+    staging1:
+      target:
+        - dev-lang/R
+        - dev-lang/bas
+        - dev-lang/bashforth
+        - dev-lang/bff
+        - dev-lang/c-intercal
+        - dev-lang/cfortran
+        - dev-lang/cll1h
+        - dev-lang/coffee-script
+        - dev-lang/confluence
+        - dev-lang/f2c
+        - dev-lang/ferite
+        # Disable dev-lang/gdl for now:
+        # Error: error: rpc/rpc.h: No such file or directory
+        #  include <rpc/rpc.h>
+        # - dev-lang/gdl
+        - dev-lang/gforth
+        - dev-lang/go
+        - dev-lang/icon
+        # Require llvm
+        - dev-lang/ispc
+        - dev-lang/inform
+        # Require dev-lang/xsb (that require x11-misc/makedepend)
+        # Temporary disable. We want to maintain this on base-arm?
+        #- dev-lang/interprolog
+        - dev-lang/jimtcl
+        # Temporary disable for problems
+        # with openlibm
+        #- dev-lang/julia
+        - dev-lang/lisaac
+        - dev-lang/logtalk
+        - dev-lang/lua
+        - dev-lang/luajit
+        - dev-lang/maude
+        # Disabled: require mpfr-4.0
+        #- dev-lang/mmix
+        - dev-lang/nasm
+        - dev-lang/nqp
+        - dev-lang/ocaml
+        - dev-lang/orc
+        - dev-lang/parrot
+        - dev-lang/php
+    staging2:
+      target:
+        - dev-lang/erlang
+    staging3:
+      target:
+        - dev-libs/389-adminutil
+        # Disabled for error: ACE_OS::_exit (errno);
+        # - dev-libs/ace
+        - dev-libs/apr
+        - dev-libs/apr-util
+        - dev-libs/argtable
+        - dev-libs/atk
+        - dev-libs/beecrypt
+        - dev-libs/bglibs
+        - dev-libs/blitz
+        - dev-libs/boost
+        # Disable temporary for error: ERROR: Unknown or unidentifiable processor "armv7a"
+        # - dev-libs/botan
+        - dev-libs/cdk
+        - dev-libs/cgicc
+        - dev-libs/check
+        - dev-libs/chmlib
+        - dev-libs/confuse
+        - dev-libs/crypto++
+        - dev-libs/cvector
+        - dev-libs/cxxtools
+        - dev-libs/cyberjack
+        - dev-libs/cyrus-sasl
+        - dev-libs/d0_blind_id
+        - dev-libs/darts
+        - dev-libs/dbus-c++
+        - dev-libs/dbus-glib
+        # Disable temporary: require sys-devel/binutils-2.32
+        # - dev-libs/dietlibc
+        - dev-libs/dotconf
+        - dev-libs/eb
+        - dev-libs/elfio
+        - dev-libs/elfutils
+        - dev-libs/eventlog
+        - dev-libs/expat
+        - dev-libs/fcgi
+        - dev-libs/fddl
+        - dev-libs/ferrisloki
+        - dev-libs/ffcall
+        - dev-libs/fribidi
+        - dev-libs/g-wrap
+        - dev-libs/geoip
+        - dev-libs/gf2x
+        - dev-libs/gmime
+        - dev-libs/gmp
+        - dev-libs/gobject-introspection
+        - dev-libs/gobject-introspection-common
+        - dev-libs/http-fetcher
+        - dev-libs/hyphen
+        - dev-libs/iksemel
+        - dev-libs/ilbc-rfc3951
+        - dev-libs/iniparser
+        - dev-libs/jemalloc
+        - dev-libs/json-c
+        - dev-libs/json-glib
+        - dev-libs/jsoncpp
+        - dev-libs/jthread
+        - dev-libs/judy
+        - dev-libs/keybinder
+        # Temporary disable for error: make: *** No rule to make target 'include/config/auto.conf', needed by 'include/config/kernel.release'
+        # - dev-libs/klibc
+        - dev-libs/kpathsea
+        - dev-libs/legousbtower
+        - dev-libs/leveldb
+    staging4:
+      target:
+        - dev-libs/libIDL
+        - dev-libs/libaio
+        - dev-libs/libassuan
+        - dev-libs/libatasmart
+        - dev-libs/libax25
+        - dev-libs/libbrahe
+        - dev-libs/libbulletml
+        - dev-libs/libburn
+        - dev-libs/libcdio
+        - dev-libs/libcitadel
+        - dev-libs/libconfig
+        - dev-libs/libcoyotl
+        - dev-libs/libcroco
+        - dev-libs/libdaemon
+        - dev-libs/libdbusmenu
+        - dev-libs/libdivsufsort
+        - dev-libs/libdnet
+        - dev-libs/libdnsres
+        - dev-libs/libdshconfig
+        - dev-libs/libebml
+        - dev-libs/libedit
+        - dev-libs/libee
+        - dev-libs/libestr
+        - dev-libs/libev
+        - dev-libs/libevocosm
+        - dev-libs/libezV24
+        - dev-libs/libf2c
+        - dev-libs/libffi
+        - dev-libs/libg15
+        - dev-libs/libg15render
+        - dev-libs/libgamin
+        - dev-libs/libgcrypt
+        - dev-libs/libgdata
+        - dev-libs/libgee
+        - dev-libs/libgpg-error
+        - dev-libs/libgusb
+        - dev-libs/libhome
+        - dev-libs/libical
+        - dev-libs/libisoburn
+        - dev-libs/libisofs
+        - dev-libs/libksba
+        - dev-libs/liblazy
+        - dev-libs/liblogging
+        - dev-libs/liblognorm
+        - dev-libs/libmaa
+        - dev-libs/libmba
+        - dev-libs/libmcrypt
+        - dev-libs/libmirage
+        - dev-libs/libmix
+        - dev-libs/libmoe
+        - dev-libs/libmowgli
+        - dev-libs/libnatspec
+        - dev-libs/libofx
+        - dev-libs/liboil
+        - dev-libs/liboobs
+        - dev-libs/libotf
+        - dev-libs/libowfat
+        - dev-libs/libp11
+        - dev-libs/libpqxx
+        - dev-libs/libpthread-stubs
+        - dev-libs/librep
+        - dev-libs/libsigc++
+        - dev-libs/libsigsegv
+        - dev-libs/libsodium
+        - dev-libs/libstroke
+        - dev-libs/libsuinput
+        - dev-libs/libtar
+        - dev-libs/libtasn1
+        - dev-libs/libtecla
+        - dev-libs/libtommath
+        - dev-libs/libunique
+        - dev-libs/libusb-compat
+        - dev-libs/libverto
+        - dev-libs/libvformat
+        - dev-libs/libwbxml
+        - dev-libs/libx86
+        - dev-libs/libx86emu
+        - dev-libs/libxdg-basedir
+        - dev-libs/libxslt
+        - dev-libs/libyaml
+        - dev-libs/libzip
+        - dev-libs/link-grammar
+        - dev-libs/lockdev
+        - dev-libs/log4cpp
+        - dev-libs/log4cxx
+        - dev-libs/lzo
+        - dev-libs/m17n-lib
+        - dev-libs/maloc
+        - dev-libs/mxml
+        - dev-libs/mongo-c-driver
+        - dev-libs/mpfr
+        - dev-libs/nettle
+        - dev-libs/newt
+        - dev-libs/nss
+        - dev-libs/oniguruma
+        - dev-libs/ossp-uuid
+        - dev-libs/pcre++
+        - dev-libs/pkcs11-helper
+        # Temporary disable for conflict with new openssl lib
+        # - dev-libs/poco
+        - dev-libs/popt
+        - dev-libs/ppl
+        - dev-libs/pslib
+        - dev-libs/ptexenc
+        - dev-libs/pugixml
+        - dev-libs/rasqal
+        - dev-libs/re2
+        - dev-libs/redland
+        - dev-libs/rlog
+        - dev-libs/rremove
+        - dev-libs/serd
+        - dev-libs/shhopt
+        - dev-libs/skalibs
+        - dev-libs/snowball-stemmer
+        - dev-libs/sord
+        - dev-libs/stfl
+        - dev-libs/svrcore
+        - dev-libs/tinyxml
+        - dev-libs/tinyxml2
+        - dev-libs/tntnet
+        - dev-libs/totem-pl-parser
+        - dev-libs/tre
+        - dev-libs/ucl
+        - dev-libs/ucommon
+        - dev-libs/udis86
+        - dev-libs/uriparser
+        - dev-libs/userspace-rcu
+        - dev-libs/ustr
+        - dev-libs/uthash
+        - dev-libs/uulib
+        - dev-libs/vala-common
+        - dev-libs/vanessa-adt
+        - dev-libs/vanessa-logger
+        - dev-libs/wayland
+        - dev-libs/xalan-c
+        - dev-libs/xapian
+        - dev-libs/xapian-bindings
+        - dev-libs/xerces-c
+        - dev-libs/xmlrpc-c
+        - dev-libs/xmlrpc-epi
+        - dev-libs/xmlsec
+        - dev-libs/xplc
+        - dev-libs/xqilla
+        - dev-libs/yajl
+        - dev-libs/yaz
+        - dev-libs/zthread
+        - dev-libs/zziplib
+    staging5:
+      target:
+        # It seems that with lxd LLVM is not compilable.
+        #  * Unpacking parts of llvm-8.0.0.src.tar.xz ...
+        #  tar: llvm-8.0.0.src/utils/vim/README: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+        #  tar: llvm-8.0.0.src/utils/vim/indent/llvm.vim: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+        #  tar: llvm-8.0.0.src/utils/vim/indent: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+        #  tar: llvm-8.0.0.src/utils/vim/vimrc: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+        #  tar: llvm-8.0.0.src/utils/vim/ftplugin/llvm.vim: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+        #  tar: llvm-8.0.0.src/utils/vim/ftplugin/tablegen.vim: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+        #  tar: llvm-8.0.0.src/utils/vim/ftplugin: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+        #  tar: llvm-8.0.0.src/utils/vim/ftdetect/llvm-lit.vim: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+        #  ....
+        - sys-devel/llvm-common
+        - sys-devel/llvm
+
+        # Same issue for clang and LXD
+        # tar: cfe-8.0.0.src/include/clang/Parse/RAIIObjectsForParser.h: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+        # tar: cfe-8.0.0.src/include/clang/Parse/Parser.h: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+        # tar: cfe-8.0.0.src/include/clang/Parse/LoopHint.h: Cannot change ownership to uid 107418, gid 89939: Invalid argument
+        - sys-devel/clang-common
+        - sys-devel/clang
+        - sys-devel/clang-runtime
+
+    staging6:
+      target:
+        - sys-libs/zlib
+    staging7:
+      target:
+        - www-servers/apache
+        - www-servers/nginx
+    staging8:
+      target:
+        # It seems that revdep-rebuild match
+        # always golang package. For now i run this
+        # to a single task (on-demand).
+        - dev-lang/go

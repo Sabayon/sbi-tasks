@@ -1,4 +1,5 @@
 build:
+
   qa_checks: 0
   emerge:
     # Set sabayon-arm profile
