@@ -44,13 +44,13 @@ environment:
   # Skip errors on process existing broken tarballs
   - "PKGS_CHECKER_OPTS=-L ERROR -c -v --ignore-errors"
 
-image: sabayon/builder-arm
-type: lxd
+image: geaaru/sabayon-builder-arm
+type: docker
 
 artefact_path: artifacts
-queue: arm_lxd
+queue: arm_injector
 name: "ARM Base Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
-namespace: "base-arm,,base-arm-staging1,base-arm-staging2,base-arm-staging3,base-arm-staging4,base-arm-staging5,base-arm-staging6,base-arm-staging7,base-arm-staging8"
+namespace: "base-arm,base-arm-staging1,base-arm-staging2,base-arm-staging3,base-arm-staging4,base-arm-staging5,base-arm-staging6,base-arm-staging7,base-arm-staging8"
 tag_namespace: base-arm

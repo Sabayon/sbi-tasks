@@ -267,7 +267,7 @@ done
 # Core ARM Repository
 # TODO: read number of staging from files with shyml
 core_arm_stages=4
-core_injector_sources="core-arm,"
+core_injector_sources="core-arm"
 core_staging_list=""
 for ((i=1;i<=${core_arm_stages};i++)) ; do
   staging="staging${i}"
@@ -296,9 +296,9 @@ done
 # Core ARM Injector task
 mottainai-cli task compile next/arm/repo-injector.tmpl \
     -l next/arm/core/build-staging.tmpl.values \
-    -s LxdType=true \
     -s TargetRepoName="Core" \
     -s StagingPhase="staging1" \
+    -s ArmQueue="arm_injector" \
     -s StagingDirs="${core_staging_list}" \
     -s InjectorSources="${core_injector_sources}" \
     -o next/arm/core/core-eit-injector-task.yaml
@@ -306,7 +306,7 @@ mottainai-cli task compile next/arm/repo-injector.tmpl \
 # Base ARM Repository
 # TODO: read number of staging from files with shyml
 base_arm_stages=8
-base_injector_sources="base-arm,"
+base_injector_sources="base-arm"
 base_staging_list=""
 for ((i=1;i<=${base_arm_stages};i++)) ; do
   staging="staging${i}"
@@ -335,7 +335,7 @@ done
 # Base ARM Injector task
 mottainai-cli task compile next/arm/repo-injector.tmpl \
     -l next/arm/base/repo.tmpl.values \
-    -s LxdType=true \
+    -s ArmQueue="arm_injector" \
     -s TargetRepoName="Base" \
     -s StagingPhase="staging1" \
     -s StagingDirs="${base_staging_list}" \
