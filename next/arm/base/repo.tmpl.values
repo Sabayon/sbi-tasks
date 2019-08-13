@@ -177,7 +177,6 @@ values:
         - dev-libs/libisoburn
         - dev-libs/libisofs
         - dev-libs/libksba
-        - dev-libs/liblazy
         - dev-libs/liblogging
         - dev-libs/liblognorm
         - dev-libs/libmaa
