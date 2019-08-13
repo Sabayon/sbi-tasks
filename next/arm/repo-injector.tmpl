@@ -51,6 +51,7 @@ image: geaaru/sabayon-builder-arm
 type: docker
 {{ end }}
 artefact_path: artifacts
+queue: {{ if .ArmQueue }}{{ .ArmQueue }}{{ else }}arm_lxd{{ end }}
 name: "ARM {{ .TargetRepoName }} Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/{{ .TargetPrefixRepo }}"

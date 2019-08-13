@@ -48,6 +48,7 @@ image: sabayon/builder-arm
 type: lxd
 
 artefact_path: artifacts
+queue: arm_lxd
 name: "ARM Core Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/core"
