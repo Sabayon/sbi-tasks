@@ -139,3 +139,4 @@ values:
         - sys-libs/db:5.3
         - sys-libs/db:6.0
         - dev-lang/perl
+        - dev-python/bz2file
