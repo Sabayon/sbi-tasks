@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: Daniele Rondina, geaaru@sabayonlinux.org
-# Description: Clean old tasks from Mottainai Server
+# Description: Clean old tasks and pipeline from Mottainai Server
 
 set -e
 
@@ -8,19 +8,55 @@ DEBUG=${DEBUG:-0}
 # Define retention period in days. Default 120 days
 RETENTION_PERIOD=${RETENTION_PERIOD:-120}
 
-main () {
+clean_pipelines () {
+  # NOTE: tasks of pipeline are removed directly
+  local l=0
+  local pipelineid=""
+  local pdate=""
+  local days=""
+  local nowdate=$(date +"%Y-%m-%d")
+  local removed=0
 
+  echo "Searching for old pipeline to remove..."
+  local pipeline_list=$(mottainai-cli pipeline list | awk -F "|" '{str = sprintf("%s_%s", $4, $2)} { print str }' | awk '{str = sprintf("%s_%s", $1, $6)} { print str }')
+
+  for i in ${pipeline_list} ; do
+    pipelineid=""
+    pdate=""
+    days=""
+
+    let l++ || true
+    if [ $l -lt 3 ] ; then
+      # Skip header
+      continue
+    fi
+
+    pipelineid=$(echo $i | sed -e 's:.*_::g')
+    pdate=$(echo $i | sed -e 's:_.*::g')
+    days=$(python -c "from datetime import datetime; print ((datetime.strptime('$nowdate', '%Y-%m-%d')-datetime.strptime('$pdate', '%Y-%m-%d')).days)")
+
+    if [ "$DEBUG" = 1 ] ; then
+      echo "Check pipeline ${pipelineid} with date ${pdate}: days $days"
+    fi
+
+    if [ $days -gt ${RETENTION_PERIOD} ] ; then
+      echo "Removing pipeline $pipelineid ($tdate - $days)"
+      mottainai-cli pipelineid remove $pipelineid
+      let removed++ || true
+    fi
+
+  done
+
+  echo "Removed pipeline: $removed."
+}
+
+clean_tasks () {
   local l=0
   local removed=0
-  local  nowdate=$(date +"%Y-%m-%d")
+  local nowdate=$(date +"%Y-%m-%d")
   local taskid=""
   local tdate=""
   local days=""
-
-  if [ -z "${MOTTAINAI_CLI_PROFILE}" ] ; then
-    echo "No mottainai profile defined!!"
-    exit 1
-  fi
 
   echo "Searching for old task to remove..."
   local tasks_list=$(mottainai-cli task list | grep -w "success\|failed\|error" --color=none | awk -F "|" '{str = sprintf("%s_%s", $8, $2)} { print str }' | awk '{str = sprintf("%s_%s", $1, $6)} { print str }')
@@ -49,7 +85,22 @@ main () {
     fi
   done
 
-  echo "All done. Removed tasks: $removed."
+  echo "Removed tasks: $removed."
+}
+
+main () {
+
+  if [ -z "${MOTTAINAI_CLI_PROFILE}" ] ; then
+    echo "No mottainai profile defined!!"
+    exit 1
+  fi
+
+  clean_tasks
+
+  # Temporary if until mottainai-cli is updated
+  if [ -n "${REMOVE_PIPELINES}" ] ; then
+    clean_pipelines
+  fi
 
   exit 0
 }
