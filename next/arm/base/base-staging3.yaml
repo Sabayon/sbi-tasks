@@ -23,7 +23,7 @@ script:
   - sabayon_mask_upstream_pkgs
   - equo up && equo upgrade
   # Temporary force build
-  # - sed -e 's/--update//g' base-build-staging3.yml -i
+  # - sed -e 's/--update//g' -s 's/--newuse//g' base-build-staging3.yml -i
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
   - mkdir artifacts/staging3
@@ -43,6 +43,8 @@ environment:
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
+  # Override list of targets for compile specific packages.
+  # - OVERRIDE_BUILD_TARGET="app/foo"
 name: "ARM Base (Staging3)"
 artefact_path: artifacts
 
