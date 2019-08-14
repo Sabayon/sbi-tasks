@@ -179,6 +179,7 @@ values:
         - dev-libs/libksba
         - dev-libs/liblogging
         - dev-libs/liblognorm
+        - dev-libs/libunistring
         - dev-libs/libmaa
         - dev-libs/libmba
         - dev-libs/libmcrypt
@@ -229,6 +230,7 @@ values:
         - dev-libs/nettle
         - dev-libs/newt
         - dev-libs/nss
+        - dev-libs/npth
         - dev-libs/oniguruma
         - dev-libs/ossp-uuid
         - dev-libs/pcre++

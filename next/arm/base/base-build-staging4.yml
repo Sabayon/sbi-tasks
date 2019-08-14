@@ -138,6 +138,8 @@ build:
     
     - dev-libs/liblognorm
     
+    - dev-libs/libunistring
+    
     - dev-libs/libmaa
     
     - dev-libs/libmba
@@ -237,6 +239,8 @@ build:
     - dev-libs/newt
     
     - dev-libs/nss
+    
+    - dev-libs/npth
     
     - dev-libs/oniguruma
     
