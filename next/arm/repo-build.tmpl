@@ -1,9 +1,15 @@
 build:
-{{ if .EquoPackageUnmask }}
   equo:
     package:
+{{ if .EquoPackageUnmask }}
       unmask:
 {{ range $index, $p := .EquoPackageUnmask }}
+        - {{ $p }}
+{{ end }}
+{{ end }}
+{{ if .EquoPackagesInstall }}
+      install:
+{{ range $index, $p := .EquoPackagesInstall }}
         - {{ $p }}
 {{ end }}
 {{ end }}

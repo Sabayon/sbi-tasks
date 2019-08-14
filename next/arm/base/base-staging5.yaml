@@ -23,7 +23,7 @@ script:
   - sabayon_mask_upstream_pkgs
   - equo up && equo upgrade
   # Temporary force build
-  # - sed -e 's/--update//g' -s 's/--newuse//g' base-build-staging5.yml -i
+  # - sed -e 's/--update//g' -e 's/--newuse//g' base-build-staging5.yml -i
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
   - mkdir artifacts/staging5

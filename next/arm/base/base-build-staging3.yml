@@ -1,7 +1,7 @@
 build:
-
   equo:
     package:
+
       unmask:
 
         - dev-libs/ffcall
@@ -35,6 +35,12 @@ build:
         - dev-lang/ferite
 
         - dev-libs/libf2c
+
+
+
+      install:
+
+        - dev-lang/swig
 
 
   qa_checks: 0

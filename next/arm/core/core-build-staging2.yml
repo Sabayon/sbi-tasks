@@ -1,4 +1,7 @@
 build:
+  equo:
+    package:
+
 
   qa_checks: 0
   emerge:
