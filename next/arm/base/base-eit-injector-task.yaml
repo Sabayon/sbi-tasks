@@ -42,7 +42,9 @@ environment:
   - REPO_BINHOST_CLEAN=1
   - SAB_BUILDFILE=base-build-staging1.yml
   # Skip errors on process existing broken tarballs
-  - "PKGS_CHECKER_OPTS=-L ERROR -c -v --ignore-errors"
+  #- "PKGS_CHECKER_OPTS=-L ERROR -c -v --ignore-errors"
+  # # Disable temporary concurrency for pthread_create failed: Resource temporarily unavailable
+  - "PKGS_CHECKER_OPTS=-L ERROR -v --ignore-errors"
 
 image: geaaru/sabayon-builder-arm
 type: docker
