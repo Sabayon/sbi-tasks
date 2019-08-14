@@ -1,0 +1,57 @@
+script:
+  - source /etc/profile
+  # Temporary workaround for delay on DHCP response
+  - sleep 4
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+  - chmod 755 /sbin/sark-functions.sh
+  - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+  - chmod 755 /etc/sark-functions
+  - echo '===> Preparing last step....'
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+  - chmod a+x /usr/sbin/builder
+  - chmod a+x /usr/bin/sark-localcreaterepo
+  - chmod a+x /usr/bin/sark-localbuild
+  - eselect python set python3.6
+  # Force py3.6 on eit
+  - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+  # Create mask file of upstream packages
+  - source /sbin/sark-functions.sh
+  # Required for update profile confs
+  - layman -s sabayon-distro
+  - sabayon_mask_upstream_pkgs
+  - equo up && equo upgrade
+  # Temporary force build
+  # - sed -e 's/--update//g' -e 's/--newuse//g' net-build-staging1.yml -i
+  - sark-localbuild
+  - eval 'rm artifacts/build_*.log || true'
+  - mkdir artifacts/staging1
+  - mv artifacts/net-arm-binhost/ artifacts/staging1/
+environment:
+  - SHELL=/bin/bash
+  - SABAYON_ARCH=arm
+  - REPOSITORY_NAME=net-arm
+  - SAB_BUILDFILE=net-build-staging1.yml
+  - ETP_NONINTERACTIVE=1
+  # I need call emerge-webrsync at begin to retrive data for active profile.
+  # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
+  # - SKIP_PORTAGE_SYNC=1
+  - SKIP_CLEAN_PACKAGESDIR=1
+  - SAB_PORTDIR=/etc/portage
+  - "CREATEREPO_PHASE=false"
+  - "ACCEPT_LICENSE=*"
+  - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+  - "PORTAGE_GIT_BRANCH=arm"
+  # Override list of targets for compile specific packages.
+  # - OVERRIDE_BUILD_TARGET="app/foo"
+name: "ARM Net (Staging1)"
+artefact_path: artifacts
+
+image: sabayon/builder-arm
+type: lxd
+
+source: https://github.com/Sabayon/sbi-tasks
+directory: "/next/arm/net"
+queue: arm_lxd
+tag_namespace: net-arm-staging1

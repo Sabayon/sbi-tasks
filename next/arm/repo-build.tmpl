@@ -1,3 +1,6 @@
+{{ $staging := index .stagings .StagingPhase }}
+{{ $overlays := index $staging "overlays" }}
+{{ $remote_overlays := index $staging "remote_overlay" }}
 build:
   equo:
     package:
@@ -24,7 +27,21 @@ build:
     jobs: 3
     default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
-{{ $staging := index .stagings .StagingPhase }}
+
+{{ if $remote_overlays }}
+    remote_overlay:
+      {{ range $index, $ro := $remote_overlays }}
+      - {{ $ro }}
+      {{ end }}
+{{ end }}
+
+{{ if $overlays }}
+  overlays:
+    {{ range $index, $o := $overlays }}
+    - {{ $o }}
+    {{ end }}
+{{ end }}
+
 {{ $target := index $staging "target" }}
   target:
     {{ range $index, $t := $target }}

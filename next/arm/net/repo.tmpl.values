@@ -1,0 +1,41 @@
+# Net ARM Repository packages (splitted in staging tasks)
+values:
+  TargetRepo: "net-arm"
+  TargetPrefixRepo: "net"
+  ExpireDays: 5
+  EquoPackagesInstall:
+    # Avoid recompilation
+    - dev-lang/swig
+
+  stagings:
+    staging1:
+      target:
+        - net-dns/dnsmasq
+        - net-dns/bind-tools
+        - net-dns/bind
+        - net-nds/rpcbind
+        - app-emulation/containerd
+        - app-emulation/cri-o
+    staging2:
+      target:
+        - app-emulation/docker
+        - app-emulation/docker-compose
+        - app-emulation/docker-proxy
+        - app-emulation/docker-registry
+        - app-emulation/docker-swarm
+        - dev-python/docker-py
+        - dev-python/docker-pycreds
+        - dev-python/dockerpty
+    staging3:
+      target:
+        - sys-process/criu
+        - sys-fs/lxcfs
+        - app-emulation/lxc-templates
+        - app-emulation/lxc
+        - app-emulation/lxd
+        - dev-python/python3-lxc
+    staging4:
+      target:
+        - sys-cluster/glusterfs
+        - sys-cluster/ceph
+        - sys-cluster/swift

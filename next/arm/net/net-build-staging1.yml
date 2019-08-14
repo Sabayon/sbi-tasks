@@ -5,41 +5,6 @@ build:
   equo:
     package:
 
-      unmask:
-
-        - dev-libs/ffcall
-
-        - sci-libs/buddy
-
-        - dev-lang/moarvm
-
-        - dev-lang/c-intercal
-
-        - dev-lang/bas
-
-        - dev-lang/nqp
-
-        - dev-lang/lisaac
-
-        - dev-lang/icon
-
-        - dev-lang/maude
-
-        - dev-lang/gforth
-
-        - dev-lang/R
-
-        - dev-lang/inform
-
-        - dev-lang/parrot
-
-        - dev-lang/nasm
-
-        - dev-lang/ferite
-
-        - dev-libs/libf2c
-
-
 
       install:
 
@@ -65,6 +30,16 @@ build:
 
   target:
     
-    - dev-lang/go
+    - net-dns/dnsmasq
+    
+    - net-dns/bind-tools
+    
+    - net-dns/bind
+    
+    - net-nds/rpcbind
+    
+    - app-emulation/containerd
+    
+    - app-emulation/cri-o
     
 

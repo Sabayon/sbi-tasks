@@ -1,0 +1,10 @@
+net-dns/dnsmasq conntrack dbus dhcp dhcp-tools dnssec dumpfile inotify ipv6 nls script tftp
+net-dns/bind-tools gssapi ipv6 readline seccomp ssl xml
+net-dns/bind berkdb caps dlz ipv6 ldap python ssl threads xml zlib
+net-nds/rpcbind systemd tcpd warmstarts
+app-emulation/containerd btrfs cri seccomp
+app-emulation/cri-o btrfs device-mapper ostree seccomp systemd
+app-emulation/docker apparmor aufs btrfs container-init overlay seccomp
+app-emulation/lxc doc examples pam python seccomp templates
+app-emulation/lxd daemon dnsmasq ipv6 nls
+sys-process/criu python setproctitle
