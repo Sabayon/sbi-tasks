@@ -7,8 +7,6 @@ concurrency: 3
 
 
 
-
-
 group:
 
   - staging1
@@ -18,7 +16,6 @@ group:
 
 chord:
   - injector
-
 tasks:
 
   staging1:
@@ -259,6 +256,11 @@ tasks:
 
 
   injector:
+
+
+
+
+
     script:
       - source /etc/profile
       - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh

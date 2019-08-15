@@ -7,15 +7,12 @@ concurrency: 3
 {{ $target_prefix_repo := .TargetPrefixRepo }}
 {{ $target_repo_name := .TargetRepoName }}
 {{ $target_repo := .TargetRepo }}
-{{ $injector_sources := .InjectorSources }}
-{{ $staging_dirs := .StagingDirs }}
 group:
 {{ range $index, $staging := .stagings }}
   - {{ $index }}{{ end }}
 
 chord:
   - injector
-
 tasks:
 {{ range $index, $staging := .stagings }}
   {{ $index }}:
@@ -82,6 +79,11 @@ tasks:
 {{ end }}
 
   injector:
+{{ $keys := getKeys .stagings | sort }}
+{{ $namespace_prefix := printf "%s%s" $target_repo "-" }}
+{{ $staging_namespaces := joinWithPrefix $keys "," $namespace_prefix }}
+{{ $injector_sources := printf "%s,%s" $target_repo $staging_namespaces }}
+{{ $keys := join $keys " " }}
     script:
       - source /etc/profile
       - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
@@ -122,7 +124,7 @@ tasks:
       - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
       - "PORTAGE_GIT_BRANCH=arm"
       - "REPOSITORY_DESCRIPTION={{ $target_repo_name }} ARM Sabayon Repository"
-      - "SAB_STAGING_DIRS={{ .StagingDirs }}"
+      - "SAB_STAGING_DIRS={{ $keys }}"
       - REPO_BINHOST_CLEAN=1
       - SAB_BUILDFILE={{ .TargetPrefixRepo }}-build-staging1.yml
       # Skip errors on process existing broken tarballs

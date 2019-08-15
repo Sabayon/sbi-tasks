@@ -1,3 +1,9 @@
+{{ $target_repo := .TargetRepo }}
+{{ $keys := getKeys .stagings | sort }}
+{{ $namespace_prefix := printf "%s%s" $target_repo "-" }}
+{{ $staging_namespaces := joinWithPrefix $keys "," $namespace_prefix }}
+{{ $injector_sources := printf "%s,%s" $target_repo $staging_namespaces }}
+{{ $keys := join $keys " " }}
 script:
   - source /etc/profile
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
@@ -38,7 +44,7 @@ environment:
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
   - "REPOSITORY_DESCRIPTION={{ .TargetRepoName }} ARM Sabayon Repository"
-  - "SAB_STAGING_DIRS={{ .StagingDirs }}"
+  - "SAB_STAGING_DIRS={{ $keys }}"
   - REPO_BINHOST_CLEAN=1
   - SAB_BUILDFILE={{ .TargetPrefixRepo }}-build-{{ .StagingPhase }}.yml
   # Skip errors on process existing broken tarballs
@@ -57,5 +63,5 @@ queue: {{ if .ArmQueue }}{{ .ArmQueue }}{{ else }}arm_lxd{{ end }}
 name: "ARM {{ .TargetRepoName }} Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/{{ .TargetPrefixRepo }}"
-namespace: "{{ .InjectorSources }}"
+namespace: "{{ $injector_sources }}"
 tag_namespace: {{ .TargetRepo }}

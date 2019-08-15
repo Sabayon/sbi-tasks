@@ -1,9 +1,7 @@
 # Authors: Sabayon Team
 #          geaaru@sabayonlinux.org
-pipeline_name: "Repository ARM <no value> Pipeline"
+pipeline_name: "Repository ARM Net Pipeline"
 concurrency: 3
-
-
 
 
 
@@ -18,7 +16,6 @@ group:
 
 chord:
   - injector
-
 tasks:
 
   staging1:
@@ -69,7 +66,7 @@ tasks:
       - "PORTAGE_GIT_BRANCH=arm"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "ARM <no value> (Staging1)"
+    name: "ARM Net (Staging1)"
     artefact_path: artifacts
     
     image: sabayon/builder-arm
@@ -128,7 +125,7 @@ tasks:
       - "PORTAGE_GIT_BRANCH=arm"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "ARM <no value> (Staging2)"
+    name: "ARM Net (Staging2)"
     artefact_path: artifacts
     
     image: sabayon/builder-arm
@@ -187,7 +184,7 @@ tasks:
       - "PORTAGE_GIT_BRANCH=arm"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "ARM <no value> (Staging3)"
+    name: "ARM Net (Staging3)"
     artefact_path: artifacts
     
     image: sabayon/builder-arm
@@ -246,7 +243,7 @@ tasks:
       - "PORTAGE_GIT_BRANCH=arm"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "ARM <no value> (Staging4)"
+    name: "ARM Net (Staging4)"
     artefact_path: artifacts
     
     image: sabayon/builder-arm
@@ -259,6 +256,11 @@ tasks:
 
 
   injector:
+
+
+
+
+
     script:
       - source /etc/profile
       - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
@@ -298,7 +300,7 @@ tasks:
       - "ACCEPT_LICENSE=*"
       - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
       - "PORTAGE_GIT_BRANCH=arm"
-      - "REPOSITORY_DESCRIPTION=<no value> ARM Sabayon Repository"
+      - "REPOSITORY_DESCRIPTION=Net ARM Sabayon Repository"
       - "SAB_STAGING_DIRS=staging1 staging2 staging3 staging4"
       - REPO_BINHOST_CLEAN=1
       - SAB_BUILDFILE=net-build-staging1.yml
@@ -314,7 +316,7 @@ tasks:
     
     artefact_path: artifacts
     queue: arm_injector
-    name: "ARM <no value> Repo (injector)"
+    name: "ARM Net Repo (injector)"
     source: https://github.com/Sabayon/sbi-tasks
     directory: "/next/arm/net"
     namespace: "net-arm,net-arm-staging1,net-arm-staging2,net-arm-staging3,net-arm-staging4"
