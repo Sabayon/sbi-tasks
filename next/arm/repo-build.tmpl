@@ -1,7 +1,16 @@
 {{ $staging := index .stagings .StagingPhase }}
 {{ $overlays := index $staging "overlays" }}
 {{ $remote_overlays := index $staging "remote_overlay" }}
+{{ $script_pre := index $staging "script_pre" }}
 build:
+{{ if $script_pre }}
+  script:
+    pre:
+      {{ range $index, $s := $script_pre }}
+      - {{ $s }}
+      {{ end }}
+{{ end }}
+
   equo:
     package:
 {{ if .EquoPackageUnmask }}
