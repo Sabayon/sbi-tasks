@@ -18,3 +18,8 @@ values:
         - =sys-apps/entropy-server-9999
         - =sys-apps/entropy-9999
         - =app-admin/equo-9999
+    staging2:
+      target:
+        - app-misc/sabayon-skel
+        - app-misc/sabayon-version
+        - app-misc/sabayon-live
