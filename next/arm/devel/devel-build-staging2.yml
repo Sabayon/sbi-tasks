@@ -1,0 +1,48 @@
+
+
+
+
+build:
+
+
+  equo:
+    package:
+
+
+      install:
+
+        - dev-lang/swig
+
+
+  qa_checks: 0
+  emerge:
+    # Set sabayon-arm profile
+    profile: "sabayon-distro:default/linux/arm/17.0/armv7a/sabayon"
+
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    jobs: 3
+
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
+
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+
+
+
+
+
+
+  target:
+    
+    - dev-util/mottainai-agent[lxd]
+    
+    - dev-util/mottainai-cli[lxd]
+    
+    - dev-util/mottainai-server[lxd]
+    
+    - dev-util/replicant
+    
+    - dev-util/simplestreams-builder
+    
+

@@ -302,13 +302,9 @@ create_repo_arm_files () {
       -o next/arm/${dir_repo}/${dir_repo}-pipeline.yaml
 }
 
-# Core ARM Repository
-# TODO: read number of staging from files with shyml
-core_arm_stages=4
-
 create_repo_arm_files "core" "next/arm/core/build-staging.tmpl.values"
 create_repo_arm_files "base" "next/arm/base/repo.tmpl.values"
 create_repo_arm_files "net" "next/arm/net/repo.tmpl.values"
 create_repo_arm_files "sabayon" "next/arm/sabayon/repo.tmpl.values"
 create_repo_arm_files "xorg-core" "next/arm/xorg-core/repo.tmpl.values"
-
+create_repo_arm_files "devel" "next/arm/devel/repo.tmpl.values"

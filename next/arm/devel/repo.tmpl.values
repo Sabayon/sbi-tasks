@@ -1,0 +1,24 @@
+# Devel ARM Repository packages (splitted in staging tasks)
+values:
+  TargetRepo: "devel-arm"
+  TargetRepoName: "Devel"
+  TargetPrefixRepo: "devel"
+  ExpireDays: 5
+  EquoPackagesInstall:
+    # Avoid recompilation
+    - dev-lang/swig
+  stagings:
+    staging1:
+      target:
+        - dev-util/pkgs-checker
+        - app-misc/sabayon-sark
+        - app-misc/sabayon-devkit
+        - app-emulation/docker-companion
+        - app-emulation/distrobuilder
+    staging2:
+      target:
+        - dev-util/mottainai-agent[lxd]
+        - dev-util/mottainai-cli[lxd]
+        - dev-util/mottainai-server[lxd]
+        - dev-util/replicant
+        - dev-util/simplestreams-builder
