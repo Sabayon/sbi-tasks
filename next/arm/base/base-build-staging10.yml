@@ -1,0 +1,87 @@
+
+
+
+
+build:
+
+
+  equo:
+    package:
+
+      unmask:
+
+        - dev-libs/ffcall
+
+        - sci-libs/buddy
+
+        - dev-lang/moarvm
+
+        - dev-lang/c-intercal
+
+        - dev-lang/bas
+
+        - dev-lang/nqp
+
+        - dev-lang/lisaac
+
+        - dev-lang/icon
+
+        - dev-lang/maude
+
+        - dev-lang/gforth
+
+        - dev-lang/R
+
+        - dev-lang/inform
+
+        - dev-lang/parrot
+
+        - dev-lang/nasm
+
+        - dev-lang/ferite
+
+        - dev-libs/libf2c
+
+
+
+      install:
+
+        - dev-lang/swig
+
+
+  qa_checks: 0
+  emerge:
+    # Set sabayon-arm profile
+    profile: "sabayon-distro:default/linux/arm/17.0/armv7a/sabayon"
+
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    jobs: 3
+
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
+
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+
+
+
+
+
+
+  target:
+    
+    - app-editors/vim-core
+    
+    - app-editors/vim
+    
+    - app-editors/neovim
+    
+    - app-editors/nano
+    
+    - app-editors/xemacs
+    
+    - app-vim/salt-vim
+    
+    - app-vim/vimpython
+    
+

@@ -337,4 +337,12 @@ values:
         - app-text/poppler::sabayon-distro
         - virtual/perl-Archive-Tar
         - sys-process/vixie-cron
-
+    staging10:
+      target:
+        - app-editors/vim-core
+        - app-editors/vim
+        - app-editors/neovim
+        - app-editors/nano
+        - app-editors/xemacs
+        - app-vim/salt-vim
+        - app-vim/vimpython
