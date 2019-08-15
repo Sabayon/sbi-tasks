@@ -1,6 +1,7 @@
 # Base ARM Repository packages (splitted in staging tasks)
 values:
   TargetRepo: "base-arm"
+  TargetRepoName: "Base"
   TargetPrefixRepo: "base"
   ExpireDays: 5
   EquoPackagesInstall:

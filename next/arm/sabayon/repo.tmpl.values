@@ -1,6 +1,7 @@
 # Sabayon ARM Repository packages (splitted in staging tasks)
 values:
   TargetRepo: "sabayon-arm"
+  TargetRepoName: "Sabayon"
   TargetPrefixRepo: "sabayon"
   ExpireDays: 5
   EquoPackagesInstall:

@@ -1,6 +1,7 @@
 # Core ARM Repository packages (splitted in staging tasks)
 values:
   TargetRepo: "core-arm"
+  TargetRepoName: "Core"
   TargetPrefixRepo: "core"
   ExpireDays: 10
   stagings:

@@ -1,0 +1,147 @@
+# Authors: Sabayon Team
+#          geaaru@sabayonlinux.org
+pipeline_name: "Repository ARM {{ .TargetRepoName }} Pipeline"
+concurrency: 3
+{{ $arm_queue_staging := .ArmQueueStaging }}
+{{ $task_type_staging := .LxdTypeStaging }}
+{{ $target_prefix_repo := .TargetPrefixRepo }}
+{{ $target_repo_name := .TargetRepoName }}
+{{ $target_repo := .TargetRepo }}
+{{ $injector_sources := .InjectorSources }}
+{{ $staging_dirs := .StagingDirs }}
+group:
+{{ range $index, $staging := .stagings }}
+  - {{ $index }}{{ end }}
+
+chord:
+  - injector
+
+tasks:
+{{ range $index, $staging := .stagings }}
+  {{ $index }}:
+    script:
+      - source /etc/profile
+      # Temporary workaround for delay on DHCP response
+      - sleep 4
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+      - chmod 755 /sbin/sark-functions.sh
+      - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+      - chmod 755 /etc/sark-functions
+      - echo '===> Preparing last step....'
+      - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/sbin/builder
+      - chmod a+x /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/bin/sark-localbuild
+      - eselect python set python3.6
+      # Force py3.6 on eit
+      - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+      # Create mask file of upstream packages
+      - source /sbin/sark-functions.sh
+      # Required for update profile confs
+      - layman -s sabayon-distro
+      - sabayon_mask_upstream_pkgs
+      - equo up && equo upgrade
+      # Temporary force build
+      # - sed -e 's/--update//g' -e 's/--newuse//g' {{ $target_prefix_repo }}-build-{{ $index }}.yml -i
+      - sark-localbuild
+      - eval 'rm artifacts/build_*.log || true'
+      - mkdir artifacts/{{ $index }}
+      - mv artifacts/{{ $target_repo }}-binhost/ artifacts/{{ $index }}/
+    environment:
+      - SHELL=/bin/bash
+      - SABAYON_ARCH=arm
+      - REPOSITORY_NAME={{ $target_repo }}
+      - SAB_BUILDFILE={{ $target_prefix_repo }}-build-{{ $index }}.yml
+      - ETP_NONINTERACTIVE=1
+      # I need call emerge-webrsync at begin to retrive data for active profile.
+      # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
+      # - SKIP_PORTAGE_SYNC=1
+      - SKIP_CLEAN_PACKAGESDIR=1
+      - SAB_PORTDIR=/etc/portage
+      - "CREATEREPO_PHASE=false"
+      - "ACCEPT_LICENSE=*"
+      - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+      - "PORTAGE_GIT_BRANCH=arm"
+      # Override list of targets for compile specific packages.
+      # - OVERRIDE_BUILD_TARGET="app/foo"
+    name: "ARM {{ $target_repo_name }} ({{ replaceAll $index "s" "S" }})"
+    artefact_path: artifacts
+    {{ if $task_type_staging }}
+    image: sabayon/builder-arm
+    type: lxd
+    {{ else }}
+    image: geaaru/sabayon-builder-arm
+    type: docker
+    {{ end }}
+    source: https://github.com/Sabayon/sbi-tasks
+    directory: "/next/arm/{{ $target_prefix_repo }}"
+    queue: {{ if $arm_queue_staging }}{{ $arm_queue_staging }}{{ else }}arm_lxd{{ end }}
+    tag_namespace: {{ $target_repo }}-{{ $index }}
+{{ end }}
+
+  injector:
+    script:
+      - source /etc/profile
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+      - chmod 755 /sbin/sark-functions.sh
+      - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+      - chmod 755 /etc/sark-functions
+      - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localinjector -O /usr/bin/sark-localinjector
+      - chmod a+x /usr/sbin/builder
+      - chmod a+x /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/bin/sark-localbuild
+      - chmod a+x /usr/bin/sark-localinjector
+      - eselect python set python3.6
+      # Force py3.6 on eit
+      - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+      # Create mask file of upstream packages
+      - source /sbin/sark-functions.sh
+      # Required for update profile confs
+      - layman -s sabayon-distro
+      - sabayon_mask_upstream_pkgs
+      - enman add https://dispatcher.sabayon.org/sbi/namespace/{{ $target_repo }}/{{ $target_repo }}
+      - equo up && equo upgrade
+      - sark-localinjector
+      - eval 'rm artifacts/build_*.log || true'
+    environment:
+      - SHELL=/bin/bash
+      - SABAYON_ARCH=arm
+      - ETP_NONINTERACTIVE=1
+      - REPOSITORY_NAME={{ $target_repo }}
+      - REPO_CLEAN_EXPIRE=1
+      - REPO_CLEAN_EXPIRE_DAYS={{ .ExpireDays }}
+      - SKIP_COMMIT=1
+      - SKIP_PULL=1
+      - SAB_PORTDIR=/etc/portage
+      - "ACCEPT_LICENSE=*"
+      - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+      - "PORTAGE_GIT_BRANCH=arm"
+      - "REPOSITORY_DESCRIPTION={{ $target_repo_name }} ARM Sabayon Repository"
+      - "SAB_STAGING_DIRS={{ .StagingDirs }}"
+      - REPO_BINHOST_CLEAN=1
+      - SAB_BUILDFILE={{ .TargetPrefixRepo }}-build-staging1.yml
+      # Skip errors on process existing broken tarballs
+      #- "PKGS_CHECKER_OPTS=-L ERROR -c -v --ignore-errors"
+      # # Disable temporary concurrency for pthread_create failed: Resource temporarily unavailable
+      - "PKGS_CHECKER_OPTS=-L ERROR -v --ignore-errors"
+      # For bootstrap repo reset packages revision to 0
+      # - "EIT_INJECT_OPTS=--reset-revision"
+    {{ if .LxdType }}
+    image: sabayon/builder-arm
+    type: lxd
+    {{ else }}
+    image: geaaru/sabayon-builder-arm
+    type: docker
+    {{ end }}
+    artefact_path: artifacts
+    queue: {{ if .ArmQueueInjector }}{{ .ArmQueueInjector }}{{ else }}arm_lxd{{ end }}
+    name: "ARM {{ .TargetRepoName }} Repo (injector)"
+    source: https://github.com/Sabayon/sbi-tasks
+    directory: "/next/arm/{{ .TargetPrefixRepo }}"
+    namespace: "{{ $injector_sources }}"
+    tag_namespace: {{ .TargetRepo }}

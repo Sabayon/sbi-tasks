@@ -1,7 +1,10 @@
 
 
 
+
 build:
+
+
   equo:
     package:
 
@@ -20,7 +23,9 @@ build:
     split_install: 1
     preserved_rebuild: 1
     jobs: 3
+
     default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
+
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
 
 

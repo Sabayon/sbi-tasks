@@ -287,7 +287,6 @@ for ((i=1;i<=${core_arm_stages};i++)) ; do
   mottainai-cli task compile next/arm/repo-staging.tmpl \
     -l next/arm/core/build-staging.tmpl.values \
     -s TaskTarget="${staging^}" \
-    -s TargetRepoName="Core" \
     -s StagingPhase="${staging}" \
     -s LxdType=true \
     -o next/arm/core/core-${staging}.yaml
@@ -296,12 +295,20 @@ done
 # Core ARM Injector task
 mottainai-cli task compile next/arm/repo-injector.tmpl \
     -l next/arm/core/build-staging.tmpl.values \
-    -s TargetRepoName="Core" \
     -s StagingPhase="staging1" \
     -s ArmQueue="arm_injector" \
     -s StagingDirs="${core_staging_list}" \
     -s InjectorSources="${core_injector_sources}" \
     -o next/arm/core/core-eit-injector-task.yaml
+
+# Core ARM Pipeline
+mottainai-cli task compile next/arm/pipeline.tmpl \
+    -l next/arm/core/build-staging.tmpl.values \
+    -s ArmQueueInjector="arm_injector" \
+    -s LxdTypeStaging=true \
+    -s StagingDirs="${core_staging_list}" \
+    -s InjectorSources="${core_injector_sources}" \
+    -o next/arm/core/core-pipeline.yaml
 
 # Base ARM Repository
 # TODO: read number of staging from files with shyml
@@ -342,6 +349,14 @@ mottainai-cli task compile next/arm/repo-injector.tmpl \
     -s InjectorSources="${base_injector_sources}" \
     -o next/arm/base/base-eit-injector-task.yaml
 
+# Base ARM Pipeline
+mottainai-cli task compile next/arm/pipeline.tmpl \
+    -l next/arm/base/repo.tmpl.values \
+    -s ArmQueueInjector="arm_injector" \
+    -s LxdTypeStaging=true \
+    -s StagingDirs="${base_staging_list}" \
+    -s InjectorSources="${base_injector_sources}" \
+    -o next/arm/base/base-pipeline.yaml
 
 # Net ARM Repository
 # TODO: read number of staging from files with shyml
@@ -382,6 +397,15 @@ mottainai-cli task compile next/arm/repo-injector.tmpl \
     -s InjectorSources="${net_injector_sources}" \
     -o next/arm/net/net-eit-injector-task.yaml
 
+# Net ARM Pipeline
+mottainai-cli task compile next/arm/pipeline.tmpl \
+    -l next/arm/net/repo.tmpl.values \
+    -s ArmQueueInjector="arm_injector" \
+    -s LxdTypeStaging=true \
+    -s StagingDirs="${net_staging_list}" \
+    -s InjectorSources="${net_injector_sources}" \
+    -o next/arm/net/net-pipeline.yaml
+
 # Sabayon ARM Repository
 # TODO: read number of staging from files with shyml
 sabayon_arm_stages=1
@@ -420,3 +444,13 @@ mottainai-cli task compile next/arm/repo-injector.tmpl \
     -s StagingDirs="${sabayon_staging_list}" \
     -s InjectorSources="${sabayon_injector_sources}" \
     -o next/arm/sabayon/sabayon-eit-injector-task.yaml
+
+# Sabayon ARM Pipeline
+mottainai-cli task compile next/arm/pipeline.tmpl \
+    -l next/arm/sabayon/repo.tmpl.values \
+    -s ArmQueueInjector="arm_injector" \
+    -s LxdTypeStaging=true \
+    -s StagingDirs="${sabayon_staging_list}" \
+    -s InjectorSources="${sabayon_injector_sources}" \
+    -o next/arm/sabayon/sabayon-pipeline.yaml
+
