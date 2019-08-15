@@ -1,0 +1,143 @@
+# Authors: Sabayon Team
+#          geaaru@sabayonlinux.org
+pipeline_name: "Repository ARM Xorg-Core Pipeline"
+concurrency: 3
+
+
+
+
+
+group:
+
+  - staging1
+
+chord:
+  - injector
+tasks:
+
+  staging1:
+    script:
+      - source /etc/profile
+      # Temporary workaround for delay on DHCP response
+      - sleep 4
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+      - chmod 755 /sbin/sark-functions.sh
+      - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+      - chmod 755 /etc/sark-functions
+      - echo '===> Preparing last step....'
+      - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/sbin/builder
+      - chmod a+x /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/bin/sark-localbuild
+      - eselect python set python3.6
+      # Force py3.6 on eit
+      - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+      # Create mask file of upstream packages
+      - source /sbin/sark-functions.sh
+      # Required for update profile confs
+      - layman -s sabayon-distro
+      - sabayon_mask_upstream_pkgs
+      - equo up && equo upgrade
+      # Temporary force build
+      # - sed -e 's/--update//g' -e 's/--newuse//g' xorg-core-build-staging1.yml -i
+      - sark-localbuild
+      - eval 'rm artifacts/build_*.log || true'
+      - mkdir artifacts/staging1
+      - mv artifacts/xorg-core-arm-binhost/ artifacts/staging1/
+    environment:
+      - SHELL=/bin/bash
+      - SABAYON_ARCH=arm
+      - REPOSITORY_NAME=xorg-core-arm
+      - SAB_BUILDFILE=xorg-core-build-staging1.yml
+      - ETP_NONINTERACTIVE=1
+      # I need call emerge-webrsync at begin to retrive data for active profile.
+      # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
+      # - SKIP_PORTAGE_SYNC=1
+      - SKIP_CLEAN_PACKAGESDIR=1
+      - SAB_PORTDIR=/etc/portage
+      - "CREATEREPO_PHASE=false"
+      - "ACCEPT_LICENSE=*"
+      - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+      - "PORTAGE_GIT_BRANCH=arm"
+      # Override list of targets for compile specific packages.
+      # - OVERRIDE_BUILD_TARGET="app/foo"
+    name: "ARM Xorg-Core (Staging1)"
+    artefact_path: artifacts
+    
+    image: sabayon/builder-arm
+    type: lxd
+    
+    source: https://github.com/Sabayon/sbi-tasks
+    directory: "/next/arm/xorg-core"
+    queue: arm_lxd
+    tag_namespace: xorg-core-arm-staging1
+
+
+  injector:
+
+
+
+
+
+    script:
+      - source /etc/profile
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+      - chmod 755 /sbin/sark-functions.sh
+      - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+      - chmod 755 /etc/sark-functions
+      - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localinjector -O /usr/bin/sark-localinjector
+      - chmod a+x /usr/sbin/builder
+      - chmod a+x /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/bin/sark-localbuild
+      - chmod a+x /usr/bin/sark-localinjector
+      - eselect python set python3.6
+      # Force py3.6 on eit
+      - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+      # Create mask file of upstream packages
+      - source /sbin/sark-functions.sh
+      # Required for update profile confs
+      - layman -s sabayon-distro
+      - sabayon_mask_upstream_pkgs
+      - enman add https://dispatcher.sabayon.org/sbi/namespace/xorg-core-arm/xorg-core-arm
+      - equo up && equo upgrade
+      - sark-localinjector
+      - eval 'rm artifacts/build_*.log || true'
+    environment:
+      - SHELL=/bin/bash
+      - SABAYON_ARCH=arm
+      - ETP_NONINTERACTIVE=1
+      - REPOSITORY_NAME=xorg-core-arm
+      - REPO_CLEAN_EXPIRE=1
+      - REPO_CLEAN_EXPIRE_DAYS=5
+      - SKIP_COMMIT=1
+      - SKIP_PULL=1
+      - SAB_PORTDIR=/etc/portage
+      - "ACCEPT_LICENSE=*"
+      - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+      - "PORTAGE_GIT_BRANCH=arm"
+      - "REPOSITORY_DESCRIPTION=Xorg-Core ARM Sabayon Repository"
+      - "SAB_STAGING_DIRS=staging1"
+      - REPO_BINHOST_CLEAN=1
+      - SAB_BUILDFILE=xorg-core-build-staging1.yml
+      # Skip errors on process existing broken tarballs
+      #- "PKGS_CHECKER_OPTS=-L ERROR -c -v --ignore-errors"
+      # # Disable temporary concurrency for pthread_create failed: Resource temporarily unavailable
+      - "PKGS_CHECKER_OPTS=-L ERROR -v --ignore-errors"
+      # For bootstrap repo reset packages revision to 0
+      # - "EIT_INJECT_OPTS=--reset-revision"
+    
+    image: geaaru/sabayon-builder-arm
+    type: docker
+    
+    artefact_path: artifacts
+    queue: arm_injector
+    name: "ARM Xorg-Core Repo (injector)"
+    source: https://github.com/Sabayon/sbi-tasks
+    directory: "/next/arm/xorg-core"
+    namespace: "xorg-core-arm,xorg-core-arm-staging1"
+    tag_namespace: xorg-core-arm

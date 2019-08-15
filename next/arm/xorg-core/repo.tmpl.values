@@ -1,0 +1,20 @@
+# Xorg Core ARM Repository packages (splitted in staging tasks)
+values:
+  TargetRepo: "xorg-core-arm"
+  TargetRepoName: "Xorg-Core"
+  TargetPrefixRepo: "xorg-core"
+  ExpireDays: 5
+  EquoPackagesInstall:
+    # Avoid recompilation
+    - dev-lang/swig
+
+  stagings:
+    staging1:
+      target:
+        - x11-libs/libdrm
+        - x11-libs/libXxf86vm
+        - x11-libs/libxshmfence
+        - media-fonts/encodings
+        - app-eselect/eselect-mesa
+        - x11-apps/mkfontdir
+        - x11-apps/xauth
