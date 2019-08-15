@@ -40,3 +40,11 @@ values:
         - sys-cluster/glusterfs
         - sys-cluster/ceph
         - sys-cluster/swift
+    staging5:
+      target:
+        - net-misc/ntp
+        - net-misc/networkmanager
+    staging6:
+      target:
+        - www-client/links
+
