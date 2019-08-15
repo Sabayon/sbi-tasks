@@ -382,3 +382,41 @@ mottainai-cli task compile next/arm/repo-injector.tmpl \
     -s InjectorSources="${net_injector_sources}" \
     -o next/arm/net/net-eit-injector-task.yaml
 
+# Sabayon ARM Repository
+# TODO: read number of staging from files with shyml
+sabayon_arm_stages=1
+sabayon_injector_sources="sabayon-arm"
+sabayon_staging_list=""
+for ((i=1;i<=${sabayon_arm_stages};i++)) ; do
+  staging="staging${i}"
+  if [ $i -eq 1 ] ; then
+    sabayon_staging_list="${staging}"
+  else
+    sabayon_staging_list="${sabayon_staging_list} ${staging}"
+  fi
+  # Create SARK build file.
+  mottainai-cli task compile next/arm/repo-build.tmpl \
+    -l next/arm/sabayon/repo.tmpl.values \
+    -s StagingPhase="${staging}" \
+    -o next/arm/sabayon/sabayon-build-${staging}.yml
+  sabayon_injector_sources="${sabayon_injector_sources},sabayon-arm-${staging}"
+
+  # Create Mottainai task
+  mottainai-cli task compile next/arm/repo-staging.tmpl \
+    -l next/arm/sabayon/repo.tmpl.values \
+    -s TaskTarget="${staging^}" \
+    -s TargetRepoName="Sabayon" \
+    -s StagingPhase="${staging}" \
+    -s LxdType=true \
+    -o next/arm/sabayon/sabayon-${staging}.yaml
+done
+
+# Sabayon ARM Injector task
+mottainai-cli task compile next/arm/repo-injector.tmpl \
+    -l next/arm/sabayon/repo.tmpl.values \
+    -s ArmQueue="arm_injector" \
+    -s TargetRepoName="Sabayon" \
+    -s StagingPhase="staging1" \
+    -s StagingDirs="${sabayon_staging_list}" \
+    -s InjectorSources="${sabayon_injector_sources}" \
+    -o next/arm/sabayon/sabayon-eit-injector-task.yaml

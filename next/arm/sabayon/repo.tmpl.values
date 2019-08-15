@@ -1,0 +1,19 @@
+# Sabayon ARM Repository packages (splitted in staging tasks)
+values:
+  TargetRepo: "sabayon-arm"
+  TargetPrefixRepo: "sabayon"
+  ExpireDays: 5
+  EquoPackagesInstall:
+    # Avoid recompilation
+    - dev-lang/swig
+
+  EquoPackageUnmask:
+    - sys-apps/entropy-server-9999
+    - sys-apps/entropy-9999
+    - sys-apps/equo-9999
+  stagings:
+    staging1:
+      target:
+        - =sys-apps/entropy-server-9999
+        - =sys-apps/entropy-9999
+        - =app-admin/equo-9999
