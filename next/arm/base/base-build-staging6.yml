@@ -72,4 +72,6 @@ build:
     
     - sys-libs/zlib
     
+    - sys-libs/ncurses
+    
 

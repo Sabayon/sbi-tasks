@@ -72,8 +72,6 @@ build:
     
     - sys-block/thin-provisioning-tools
     
-    - dev-libs/pth
-    
     - app-portage/layman
     
     - app-admin/sudo

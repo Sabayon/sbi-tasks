@@ -317,6 +317,7 @@ values:
     staging6:
       target:
         - sys-libs/zlib
+        - sys-libs/ncurses
     staging7:
       target:
         - www-servers/apache
@@ -330,7 +331,6 @@ values:
     staging9:
       target:
         - sys-block/thin-provisioning-tools
-        - dev-libs/pth
         - app-portage/layman
         - app-admin/sudo
         - app-admin/python-updater
