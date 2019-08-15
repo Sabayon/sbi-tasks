@@ -70,64 +70,20 @@ build:
 
   target:
     
-    - dev-lang/R
+    - sys-block/thin-provisioning-tools
     
-    - dev-lang/bas
+    - dev-libs/pth
     
-    - dev-lang/bashforth
+    - app-portage/layman
     
-    - dev-lang/bff
+    - app-admin/sudo
     
-    - dev-lang/c-intercal
+    - app-admin/python-updater
     
-    - dev-lang/cfortran
+    - app-text/poppler::sabayon-distro
     
-    - dev-lang/cll1h
+    - virtual/perl-Archive-Tar
     
-    - dev-lang/coffee-script
-    
-    - dev-lang/confluence
-    
-    - dev-lang/f2c
-    
-    - dev-lang/ferite
-    
-    - dev-lang/gforth
-    
-    - dev-lang/go
-    
-    - dev-lang/icon
-    
-    - dev-lang/ispc
-    
-    - dev-lang/inform
-    
-    - dev-lang/jimtcl
-    
-    - dev-lang/lisaac
-    
-    - dev-lang/logtalk
-    
-    - dev-lang/lua
-    
-    - dev-lang/luajit
-    
-    - dev-lang/maude
-    
-    - dev-lang/nasm
-    
-    - dev-lang/nqp
-    
-    - dev-lang/ocaml
-    
-    - dev-lang/orc
-    
-    - dev-lang/parrot
-    
-    - dev-lang/php
-    
-    - dev-lang/tk
-    
-    - dev-tcltk/expect
+    - sys-process/vixie-cron
     
 

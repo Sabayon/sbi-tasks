@@ -69,6 +69,8 @@ values:
         - dev-lang/orc
         - dev-lang/parrot
         - dev-lang/php
+        - dev-lang/tk
+        - dev-tcltk/expect
     staging2:
       target:
         - dev-lang/erlang
@@ -325,3 +327,14 @@ values:
         # always golang package. For now i run this
         # to a single task (on-demand).
         - dev-lang/go
+    staging9:
+      target:
+        - sys-block/thin-provisioning-tools
+        - dev-libs/pth
+        - app-portage/layman
+        - app-admin/sudo
+        - app-admin/python-updater
+        - app-text/poppler::sabayon-distro
+        - virtual/perl-Archive-Tar
+        - sys-process/vixie-cron
+
