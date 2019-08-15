@@ -6,7 +6,7 @@ values:
   EquoPackagesInstall:
     # Avoid recompilation
     - dev-lang/swig
-
+  EmergeDefaultArgs: "--accept-properties=-interactive -t --complete-graph --deep --with-bdeps=y --buildpkg"
   EquoPackageUnmask:
     - sys-apps/entropy-server-9999
     - sys-apps/entropy-9999
