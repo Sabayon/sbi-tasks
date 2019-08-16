@@ -44,13 +44,14 @@ environment:
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
   - "REPOSITORY_DESCRIPTION=Base ARM Sabayon Repository"
-  - "SAB_STAGING_DIRS=staging1 staging10 staging2 staging3 staging4 staging5 staging6 staging7 staging8 staging9"
+  - "SAB_STAGING_DIRS=staging1 staging10 staging11 staging2 staging3 staging4 staging5 staging6 staging7 staging8 staging9"
   - REPO_BINHOST_CLEAN=1
   - SAB_BUILDFILE=base-build-staging1.yml
   # Skip errors on process existing broken tarballs
   #- "PKGS_CHECKER_OPTS=-L ERROR -c -v --ignore-errors"
   # # Disable temporary concurrency for pthread_create failed: Resource temporarily unavailable
   - "PKGS_CHECKER_OPTS=-L ERROR -v --ignore-errors"
+  - "PKGS_CHECKER_MAXCONCURRENCY=3"
 
 image: geaaru/sabayon-builder-arm
 type: docker
@@ -60,5 +61,5 @@ queue: arm_injector
 name: "ARM Base Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
-namespace: "base-arm,base-arm-staging1,base-arm-staging10,base-arm-staging2,base-arm-staging3,base-arm-staging4,base-arm-staging5,base-arm-staging6,base-arm-staging7,base-arm-staging8,base-arm-staging9"
+namespace: "base-arm,base-arm-staging1,base-arm-staging10,base-arm-staging11,base-arm-staging2,base-arm-staging3,base-arm-staging4,base-arm-staging5,base-arm-staging6,base-arm-staging7,base-arm-staging8,base-arm-staging9"
 tag_namespace: base-arm

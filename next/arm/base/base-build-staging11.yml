@@ -70,28 +70,10 @@ build:
 
   target:
     
-    - dev-util/ctags
+    - sys-apps/dmidecode
     
-    - app-eselect/eselect-ctags
+    - sys-apps/keyboard-configuration-helpers
     
-    - app-editors/vim-core
-    
-    - app-editors/vim
-    
-    - app-eselect/eselect-vi
-    
-    - app-editors/nano
-    
-    - media-libs/audiofile
-    
-    - app-xemacs/xemacs-base
-    
-    - app-editors/xemacs
-    
-    - app-eselect/eselect
-    
-    - app-vim/salt-vim
-    
-    - app-vim/vimpython
+    - sys-apps/pciutils
     
 

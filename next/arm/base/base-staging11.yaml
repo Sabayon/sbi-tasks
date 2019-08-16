@@ -23,16 +23,16 @@ script:
   - sabayon_mask_upstream_pkgs
   - equo up && equo upgrade
   # Temporary force build
-  # - sed -e 's/--update//g' -e 's/--newuse//g' base-build-staging10.yml -i
+  # - sed -e 's/--update//g' -e 's/--newuse//g' base-build-staging11.yml -i
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
-  - mkdir artifacts/staging10
-  - mv artifacts/base-arm-binhost/ artifacts/staging10/
+  - mkdir artifacts/staging11
+  - mv artifacts/base-arm-binhost/ artifacts/staging11/
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=arm
   - REPOSITORY_NAME=base-arm
-  - SAB_BUILDFILE=base-build-staging10.yml
+  - SAB_BUILDFILE=base-build-staging11.yml
   - ETP_NONINTERACTIVE=1
   # I need call emerge-webrsync at begin to retrive data for active profile.
   # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
@@ -45,7 +45,7 @@ environment:
   - "PORTAGE_GIT_BRANCH=arm"
   # Override list of targets for compile specific packages.
   # - "OVERRIDE_BUILD_TARGET=app/foo"
-name: "ARM Base (Staging10)"
+name: "ARM Base (Staging11)"
 artefact_path: artifacts
 
 image: sabayon/builder-arm
@@ -54,4 +54,4 @@ type: lxd
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
 queue: arm_lxd
-tag_namespace: base-arm-staging10
+tag_namespace: base-arm-staging11

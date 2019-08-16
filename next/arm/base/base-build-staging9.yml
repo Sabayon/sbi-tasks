@@ -72,13 +72,17 @@ build:
     
     - sys-block/thin-provisioning-tools
     
+    - dev-python/ssl-fetch
+    
     - app-portage/layman
+    
+    - virtual/tmpfiles
     
     - app-admin/sudo
     
-    - app-admin/python-updater
-    
     - app-text/poppler::sabayon-distro
+    
+    - app-text/poppler-base::sabayon-distro
     
     - virtual/perl-Archive-Tar
     
