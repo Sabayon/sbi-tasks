@@ -23,3 +23,7 @@ values:
         - app-misc/sabayon-skel
         - app-misc/sabayon-version
         - app-misc/sabayon-live
+    staging3:
+      target:
+        # TODO: verify if maintains all perl dependencies here.
+        - app-admin/enman
