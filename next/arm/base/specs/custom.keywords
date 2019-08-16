@@ -105,3 +105,6 @@ sys-devel/clang ~arm
 <dev-libs/zthread-9999 **
 
 <app-eselect/eselect-php-9999 **
+
+<=app-text/poppler-0.77.0 **
+<=app-text/poppler-base-0.77.0 **

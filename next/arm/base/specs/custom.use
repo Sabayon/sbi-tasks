@@ -58,3 +58,10 @@ dev-libs/libunique -introspection
 sys-libs/zlib minizip -static-libs
 
 app-text/poppler-base cjk cxx jpeg jpeg2k lcms png tiff utils
+
+# app-editors
+app-editors/vim acl cscope gpm lua nls perl python ruby vim-pager
+app-editors/neovim python remote
+
+app-text/poppler cxx introspection jpeg jpeg2k lcms utils -cairo -cjk -curl -debug -doc -nss png -qt5 tiff
+app-text/poppler-base cjk cxx jpeg jpeg2k lcms utils -curl -debug -doc -nss png tiff
