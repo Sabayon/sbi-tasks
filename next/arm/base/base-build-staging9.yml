@@ -72,6 +72,8 @@ build:
     
     - sys-block/thin-provisioning-tools
     
+    - dev-python/requests
+    
     - dev-python/ssl-fetch
     
     - app-portage/layman

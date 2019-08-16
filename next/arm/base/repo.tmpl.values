@@ -332,6 +332,7 @@ values:
       target:
         - sys-block/thin-provisioning-tools
         # ssl-fetch required for layman
+        - dev-python/requests
         - dev-python/ssl-fetch
         - app-portage/layman
         - virtual/tmpfiles
