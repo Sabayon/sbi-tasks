@@ -44,7 +44,7 @@ environment:
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
   # Override list of targets for compile specific packages.
-  # - OVERRIDE_BUILD_TARGET="app/foo"
+  # - "OVERRIDE_BUILD_TARGET=app/foo"
 name: "ARM Net (Staging2)"
 artefact_path: artifacts
 
