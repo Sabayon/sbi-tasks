@@ -76,7 +76,33 @@ build:
     
     - dev-python/ssl-fetch
     
+    - dev-python/cffi
+    
+    - dev-python/pycparser
+    
+    - dev-python/ply
+    
+    - dev-python/ans1crypto
+    
+    - dev-python/chardet
+    
+    - dev-python/idna
+    
+    - dev-python/urllib3
+    
+    - dev-python/pyopenssl
+    
+    - dev-python/cryptography
+    
+    - dev-python/python-ipaddress
+    
+    - dev-python/PySocks
+    
+    - dev-python/cryptography
+    
     - app-portage/layman
+    
+    - virtual/python-ipaddress
     
     - virtual/tmpfiles
     
