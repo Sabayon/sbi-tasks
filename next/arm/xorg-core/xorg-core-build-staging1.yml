@@ -49,4 +49,54 @@ build:
     
     - x11-apps/xauth
     
+    - x11-apps/mesa-progs
+    
+    - app-eselect/eselect-opengl
+    
+    - x11-apps/iceauth
+    
+    - x11-apps/rgb
+    
+    - x11-apps/xkbcomp
+    
+    - x11-libs/libpciaccess
+    
+    - x11-libs/libXau
+    
+    - x11-libs/libXdmcp
+    
+    - x11-libs/libXfont2
+    
+    - x11-libs/libxkbfile
+    
+    - x11-libs/libxshmfence
+    
+    - x11-libs/pixman
+    
+    - x11-libs/xtrans
+    
+    - x11-misc/xbitmaps
+    
+    - x11-misc/xkeyboard-config
+    
+    - media-libs/libepoxy[X]
+    
+    - media-libs/mesa-18[egl,gbm]
+    
+    - x11-libs/libXext
+    
+    - x11-libs/libXv
+    
+    - x11-libs/libX11
+    
+    - dev-libs/wayland
+    
+    - dev-libs/wayland-protocols
+    
+    - x11-apps/xinit
+    
+    - x11-base/xorg-proto
+    
+    - x11-base/xorg-server
+    
 
