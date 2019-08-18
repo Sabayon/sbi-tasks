@@ -4,21 +4,30 @@ values:
   TargetRepoName: "Devel"
   TargetPrefixRepo: "devel"
   ExpireDays: 5
+  EquoPackageUnmask:
+    - app-emulation/distrobuilder-9999
+    - dev-util/simplestreams-builder-9999
   EquoPackagesInstall:
     # Avoid recompilation
     - dev-lang/swig
   stagings:
+
     staging1:
+      remote_overlay:
+        - geaaru|git|https://github.com/geaaru/geaaru_overlay
       target:
         - dev-util/pkgs-checker
         - app-misc/sabayon-sark
         - app-misc/sabayon-devkit
         - app-emulation/docker-companion
-        - app-emulation/distrobuilder
+        - =app-emulation/distrobuilder-9999::geaaru
+
     staging2:
+      remote_overlay:
+        - mottainai|git|https://github.com/MottainaiCI/gentoo-overlay
       target:
         - dev-util/mottainai-agent[lxd]
         - dev-util/mottainai-cli[lxd]
         - dev-util/mottainai-server[lxd]
         - dev-util/replicant
-        - dev-util/simplestreams-builder
+        - =dev-util/simplestreams-builder-9999::mottainai

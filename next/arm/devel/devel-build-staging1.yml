@@ -8,6 +8,13 @@ build:
   equo:
     package:
 
+      unmask:
+
+        - app-emulation/distrobuilder-9999
+
+        - dev-util/simplestreams-builder-9999
+
+
 
       install:
 
@@ -29,6 +36,11 @@ build:
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
 
 
+    remote_overlay:
+      
+      - geaaru|git|https://github.com/geaaru/geaaru_overlay
+      
+
 
 
 
@@ -43,6 +55,6 @@ build:
     
     - app-emulation/docker-companion
     
-    - app-emulation/distrobuilder
+    - =app-emulation/distrobuilder-9999::geaaru
     
 
