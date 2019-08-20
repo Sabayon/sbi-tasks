@@ -43,8 +43,6 @@ build:
     
     - media-fonts/encodings
     
-    - app-eselect/eselect-mesa
-    
     - x11-apps/mkfontdir
     
     - x11-apps/xauth

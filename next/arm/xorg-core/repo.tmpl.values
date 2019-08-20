@@ -15,7 +15,6 @@ values:
         - x11-libs/libXxf86vm
         - x11-libs/libxshmfence
         - media-fonts/encodings
-        - app-eselect/eselect-mesa
         - x11-apps/mkfontdir
         - x11-apps/xauth
         - x11-apps/mesa-progs
