@@ -151,3 +151,4 @@ values:
         - sys-fs/udev-init-scripts
         - sys-fs/multipath-tools
         - sys-fs/udftools
+        - sys-fs/fuse

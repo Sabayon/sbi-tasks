@@ -54,4 +54,6 @@ build:
     
     - sys-fs/udftools
     
+    - sys-fs/fuse
+    
 
