@@ -74,6 +74,8 @@ build:
     
     - sys-devel/llvm
     
+    - sys-devel/llvm:6
+    
     - sys-devel/clang-common
     
     - sys-devel/clang

@@ -305,6 +305,7 @@ values:
         #  ....
         - sys-devel/llvm-common
         - sys-devel/llvm
+        - sys-devel/llvm:6
 
         # Same issue for clang and LXD
         # tar: cfe-8.0.0.src/include/clang/Parse/RAIIObjectsForParser.h: Cannot change ownership to uid 107418, gid 89939: Invalid argument
@@ -373,3 +374,6 @@ values:
         - sys-apps/dmidecode
         - sys-apps/keyboard-configuration-helpers
         - sys-apps/pciutils
+    staging11:
+      target:
+        - dev-go/go-md2man
