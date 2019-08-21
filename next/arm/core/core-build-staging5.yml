@@ -1,0 +1,57 @@
+
+
+
+
+build:
+
+
+  equo:
+    package:
+
+
+  qa_checks: 0
+  emerge:
+    # Set sabayon-arm profile
+    profile: "sabayon-distro:default/linux/arm/17.0/armv7a/sabayon"
+
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    jobs: 3
+
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
+
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+
+
+
+
+
+
+  target:
+    
+    - sys-fs/e2fsprogs
+    
+    - sys-fs/btrfs-progs
+    
+    - sys-fs/reiserfsprogs
+    
+    - sys-fs/squashfs-tools
+    
+    - sys-fs/xfsprogs
+    
+    - sys-fs/yaffs2-utils
+    
+    - sys-fs/mtd-utils
+    
+    - sys-fs/cryptsetup
+    
+    - sys-fs/lvm2
+    
+    - sys-fs/udev-init-scripts
+    
+    - sys-fs/multipath-tools
+    
+    - sys-fs/udftools
+    
+

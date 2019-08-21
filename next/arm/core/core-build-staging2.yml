@@ -194,14 +194,6 @@ build:
     
     - sys-libs/timezone-data
     
-    - sys-fs/e2fsprogs
-    
-    - sys-fs/cryptsetup
-    
-    - sys-fs/lvm2
-    
-    - sys-fs/udev-init-scripts
-    
     - sys-process/procps
     
     - sys-process/psmisc

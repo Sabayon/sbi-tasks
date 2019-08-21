@@ -113,10 +113,6 @@ values:
         - sys-libs/libseccomp
         - sys-libs/readline
         - sys-libs/timezone-data
-        - sys-fs/e2fsprogs
-        - sys-fs/cryptsetup
-        - sys-fs/lvm2
-        - sys-fs/udev-init-scripts
         - sys-process/procps
         - sys-process/psmisc
         - sys-kernel/linux-headers
@@ -141,3 +137,17 @@ values:
         - sys-libs/db:6.0
         - dev-lang/perl
         - dev-python/bz2file
+    staging5:
+      target:
+        - sys-fs/e2fsprogs
+        - sys-fs/btrfs-progs
+        - sys-fs/reiserfsprogs
+        - sys-fs/squashfs-tools
+        - sys-fs/xfsprogs
+        - sys-fs/yaffs2-utils
+        - sys-fs/mtd-utils
+        - sys-fs/cryptsetup
+        - sys-fs/lvm2
+        - sys-fs/udev-init-scripts
+        - sys-fs/multipath-tools
+        - sys-fs/udftools
