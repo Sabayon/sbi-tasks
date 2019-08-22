@@ -1,0 +1,26 @@
+# Author: Sabayon Dev Team
+# Task Buildlog Cleaner
+name: "Maintenance (buildlog)"
+image: 'sabayon/base-amd64'
+storage: "geaaru"
+storage_path: "confs"
+source: "https://github.com/Sabayon/sbi-tasks.git"
+directory: "/infra"
+script:
+  - source /etc/profile
+  - equo up && equo install enman
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+  - equo up
+  - equo install dev-util/mottainai-cli
+  - mkdir -p /root/.config/
+  - echo 'Sourcing storage file...'
+  - eval '. $(pwd)/confs/mcli.keys'
+  - echo "=================================================================="
+  - export MOTTAINAI_CLI_PROFILE=sab-infra
+  - scripts/buildlog_cleaner.sh
+  - echo "=================================================================="
+planned: "@weekly"
+environment:
+  - "ACCEPT_LICENSE=*"
+  - "NAMESPACES_LIST=sabayon:iso-dev sabayon:iso spinbase:iso spinbase:iso-dev"
+type: docker
