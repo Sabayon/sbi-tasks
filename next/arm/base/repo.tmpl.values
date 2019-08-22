@@ -330,9 +330,11 @@ values:
         - dev-lang/go
     staging9:
       target:
+        - dev-vcs/git
         - sys-block/thin-provisioning-tools
         # ssl-fetch required for layman
         - dev-python/requests
+        - dev-python/ndg-httpsclient
         - dev-python/ssl-fetch
         - dev-python/cffi
         - dev-python/pycparser
@@ -346,6 +348,7 @@ values:
         - dev-python/python-ipaddress
         - dev-python/PySocks
         - dev-python/cryptography
+        - dev-python/pyasn1
         - app-portage/layman
         - virtual/python-ipaddress
         - virtual/tmpfiles

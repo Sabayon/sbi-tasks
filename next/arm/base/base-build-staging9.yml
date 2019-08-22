@@ -70,9 +70,13 @@ build:
 
   target:
     
+    - dev-vcs/git
+    
     - sys-block/thin-provisioning-tools
     
     - dev-python/requests
+    
+    - dev-python/ndg-httpsclient
     
     - dev-python/ssl-fetch
     
@@ -99,6 +103,8 @@ build:
     - dev-python/PySocks
     
     - dev-python/cryptography
+    
+    - dev-python/pyasn1
     
     - app-portage/layman
     
