@@ -88,8 +88,6 @@ build:
     
     - dev-libs/libcdio
     
-    - dev-libs/libcitadel
-    
     - dev-libs/libconfig
     
     - dev-libs/libcoyotl

@@ -151,7 +151,6 @@ values:
         - dev-libs/libbulletml
         - dev-libs/libburn
         - dev-libs/libcdio
-        - dev-libs/libcitadel
         - dev-libs/libconfig
         - dev-libs/libcoyotl
         - dev-libs/libcroco
