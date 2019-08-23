@@ -116,3 +116,6 @@ sys-devel/clang ~arm
 
 <=dev-libs/shhopt-1.1.7-r3 **
 <=dev-libs/xmlrpc-epi-0.54.2 **
+
+<=dev-python/cached-property-1.5.1 **
+<=dev-python/texttable-0.9.1 **

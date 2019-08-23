@@ -106,6 +106,28 @@ build:
     
     - dev-python/pyasn1
     
+    - dev-python/jsonschema
+    
+    - dev-python/vcversioner
+    
+    - dev-python/webcolors
+    
+    - dev-python/rfc3987
+    
+    - dev-python/docopt
+    
+    - dev-python/regex
+    
+    - dev-python/functools32
+    
+    - dev-python/strict-rfc3339
+    
+    - dev-python/pyyaml
+    
+    - dev-python/cached-property
+    
+    - dev-python/texttable
+    
     - app-portage/layman
     
     - virtual/python-ipaddress
