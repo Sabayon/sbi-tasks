@@ -9,5 +9,6 @@ app-emulation/lxc doc examples pam python seccomp templates
 app-emulation/lxd daemon dnsmasq ipv6 nls
 sys-process/criu python setproctitle
 
+net-misc/modemmanager -introspection policykit qmi systemd udev -mbim -vala
 # Drop introspection for avoid injection of pygobject and pycairo
 net-misc/networkmanager dhclient -introspection modemmanager ncurses nss policykit ppp systemd wext wifi bluetooth connection-sharing -dhcpcd -gnutls -json -ofono -ovs -resolvconf -teamd -test -vala
