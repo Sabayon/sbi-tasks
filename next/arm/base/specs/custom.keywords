@@ -113,3 +113,6 @@ sys-devel/clang ~arm
 <=app-vim/salt-vim-20151119 **
 <=app-xemacs/xemacs-base-2.46 **
 <=app-editors/xemacs-21.5.34-r4 **
+
+<=dev-libs/shhopt-1.1.7-r3 **
+<=dev-libs/xmlrpc-epi-0.54.2 **
