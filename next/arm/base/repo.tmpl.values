@@ -211,7 +211,6 @@ values:
         - dev-libs/libtasn1
         - dev-libs/libtecla
         - dev-libs/libtommath
-        - dev-libs/libunique
         - dev-libs/libusb-compat
         - dev-libs/libverto
         - dev-libs/libvformat
