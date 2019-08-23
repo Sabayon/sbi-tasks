@@ -3,7 +3,7 @@
 <=dev-python/docker-py-3.6.0 **
 <=dev-python/websocket-client-0.48.0 **
 
-<==app-emulation/docker-compose-1.23.2 **
+<=app-emulation/docker-compose-1.23.2 **
 <=app-emulation/docker-swarm-1.2.5 **
 <=app-emulation/docker-registry-2.7.1 **
 
