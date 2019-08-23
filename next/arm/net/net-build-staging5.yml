@@ -35,7 +35,21 @@ build:
 
   target:
     
+    - net-misc/dhcp
+    
     - net-misc/ntp
+    
+    - net-wireless/wpa_supplicant
+    
+    - net-wireless/wireless-regdb
+    
+    - net-wireless/crda
+    
+    - net-dialup/ppp
+    
+    - net-dialup/ppp-scripts
+    
+    - net-misc/modemmanager
     
     - net-misc/networkmanager
     

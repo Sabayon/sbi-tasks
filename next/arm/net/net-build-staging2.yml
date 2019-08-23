@@ -35,6 +35,8 @@ build:
 
   target:
     
+    - app-emulation/runc
+    
     - app-emulation/docker
     
     - app-emulation/docker-compose
@@ -44,6 +46,8 @@ build:
     - app-emulation/docker-registry
     
     - app-emulation/docker-swarm
+    
+    - dev-python/websocket-client
     
     - dev-python/docker-py
     

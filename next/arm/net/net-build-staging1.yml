@@ -43,7 +43,23 @@ build:
     
     - net-nds/rpcbind
     
+    - dev-util/ostree
+    
     - app-emulation/containerd
+    
+    - dev-libs/libnl
+    
+    - net-libs/libnetfilter_cthelper
+    
+    - net-libs/libnetfilter_cttimeout
+    
+    - net-libs/libnetfilter_queue
+    
+    - net-firewall/conntrack-tools
+    
+    - net-misc/socat
+    
+    - net-misc/cni-plugins
     
     - app-emulation/cri-o
     

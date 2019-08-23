@@ -7,7 +7,6 @@ values:
   EquoPackagesInstall:
     # Avoid recompilation
     - dev-lang/swig
-
   stagings:
     staging1:
       target:
@@ -15,15 +14,25 @@ values:
         - net-dns/bind-tools
         - net-dns/bind
         - net-nds/rpcbind
+        - dev-util/ostree
         - app-emulation/containerd
+        - dev-libs/libnl
+        - net-libs/libnetfilter_cthelper
+        - net-libs/libnetfilter_cttimeout
+        - net-libs/libnetfilter_queue
+        - net-firewall/conntrack-tools
+        - net-misc/socat
+        - net-misc/cni-plugins
         - app-emulation/cri-o
     staging2:
       target:
+        - app-emulation/runc
         - app-emulation/docker
         - app-emulation/docker-compose
         - app-emulation/docker-proxy
         - app-emulation/docker-registry
         - app-emulation/docker-swarm
+        - dev-python/websocket-client
         - dev-python/docker-py
         - dev-python/docker-pycreds
         - dev-python/dockerpty
@@ -42,7 +51,14 @@ values:
         - sys-cluster/swift
     staging5:
       target:
+        - net-misc/dhcp
         - net-misc/ntp
+        - net-wireless/wpa_supplicant
+        - net-wireless/wireless-regdb
+        - net-wireless/crda
+        - net-dialup/ppp
+        - net-dialup/ppp-scripts
+        - net-misc/modemmanager
         - net-misc/networkmanager
     staging6:
       target:
