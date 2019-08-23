@@ -52,6 +52,8 @@ environment:
   # # Disable temporary concurrency for pthread_create failed: Resource temporarily unavailable
   - "PKGS_CHECKER_OPTS=-L ERROR -v --ignore-errors"
   - "PKGS_CHECKER_MAXCONCURRENCY=3"
+  # For bootstrap repo reset packages revision to 0
+  # - "EIT_INJECT_OPTS=--reset-revision"
 {{ if .LxdType }}
 image: sabayon/builder-arm
 type: lxd
