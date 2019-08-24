@@ -7,6 +7,20 @@ values:
   EquoPackagesInstall:
     # Avoid recompilation
     - dev-lang/swig
+  EquoPackageUnmask:
+    - dev-util/xdelta
+    - dev-util/ostree
+    - net-misc/cni-plugins
+    - net-firewall/conntrack-tools
+    - app-emulation/lxd
+    - app-emulation/cri-o
+    - app-emulation/docker-swarm
+    - app-emulation/docker-registry
+    - app-emulation/docker-compose
+    - dev-python/dockerpty
+    - dev-python/docker-pycreds
+    - dev-python/docker-py
+    - dev-python/websocket-client
   stagings:
     staging1:
       target:
@@ -37,12 +51,16 @@ values:
         - dev-python/docker-pycreds
         - dev-python/dockerpty
     staging3:
+      remote_overlay:
+        - geaaru|git|https://github.com/geaaru/geaaru_overlay
       target:
         - sys-process/criu
         - sys-fs/lxcfs
         - app-emulation/lxc-templates
-        - app-emulation/lxc
-        - app-emulation/lxd
+        - app-emulation/lxc::geaaru
+        # Required by LXD
+        - dev-util/xdelta[lzma]
+        - app-emulation/lxd::geaaru
         - dev-python/python3-lxc
     staging4:
       target:

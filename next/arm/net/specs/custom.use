@@ -5,8 +5,12 @@ net-nds/rpcbind systemd tcpd warmstarts
 app-emulation/containerd btrfs cri seccomp
 app-emulation/cri-o btrfs device-mapper ostree seccomp systemd
 app-emulation/docker apparmor aufs btrfs container-init overlay seccomp
-app-emulation/lxc doc examples pam python seccomp templates
+
+# lxc: -python required to avoid circular dep with python3-lxc
+app-emulation/lxc doc examples pam -python seccomp templates
 app-emulation/lxd daemon dnsmasq ipv6 nls
+dev-util/xdelta lzma
+
 sys-process/criu python setproctitle
 
 net-misc/modemmanager -introspection policykit qmi systemd udev -mbim -vala

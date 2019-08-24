@@ -12,3 +12,5 @@
 =dev-util/ostree-2018.9 **
 =net-firewall/conntrack-tools-1.4.5 **
 
+=dev-util/xdelta-3.0.11 **
+=app-emulation/lxd-3.14-r1 **

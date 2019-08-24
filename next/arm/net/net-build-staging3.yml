@@ -8,6 +8,35 @@ build:
   equo:
     package:
 
+      unmask:
+
+        - dev-util/xdelta
+
+        - dev-util/ostree
+
+        - net-misc/cni-plugins
+
+        - net-firewall/conntrack-tools
+
+        - app-emulation/lxd
+
+        - app-emulation/cri-o
+
+        - app-emulation/docker-swarm
+
+        - app-emulation/docker-registry
+
+        - app-emulation/docker-compose
+
+        - dev-python/dockerpty
+
+        - dev-python/docker-pycreds
+
+        - dev-python/docker-py
+
+        - dev-python/websocket-client
+
+
 
       install:
 
@@ -29,6 +58,11 @@ build:
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
 
 
+    remote_overlay:
+      
+      - geaaru|git|https://github.com/geaaru/geaaru_overlay
+      
+
 
 
 
@@ -41,9 +75,11 @@ build:
     
     - app-emulation/lxc-templates
     
-    - app-emulation/lxc
+    - app-emulation/lxc::geaaru
     
-    - app-emulation/lxd
+    - dev-util/xdelta[lzma]
+    
+    - app-emulation/lxd::geaaru
     
     - dev-python/python3-lxc
     

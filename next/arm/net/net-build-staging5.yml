@@ -8,6 +8,35 @@ build:
   equo:
     package:
 
+      unmask:
+
+        - dev-util/xdelta
+
+        - dev-util/ostree
+
+        - net-misc/cni-plugins
+
+        - net-firewall/conntrack-tools
+
+        - app-emulation/lxd
+
+        - app-emulation/cri-o
+
+        - app-emulation/docker-swarm
+
+        - app-emulation/docker-registry
+
+        - app-emulation/docker-compose
+
+        - dev-python/dockerpty
+
+        - dev-python/docker-pycreds
+
+        - dev-python/docker-py
+
+        - dev-python/websocket-client
+
+
 
       install:
 
