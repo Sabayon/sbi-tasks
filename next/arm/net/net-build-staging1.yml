@@ -84,6 +84,12 @@ build:
     
     - net-libs/libnetfilter_queue
     
+    - net-libs/libnetfilter_conntrack
+    
+    - net-libs/libnetfilter_acct
+    
+    - net-libs/libnetfilter_log
+    
     - net-firewall/conntrack-tools
     
     - net-misc/socat

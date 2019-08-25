@@ -34,6 +34,9 @@ values:
         - net-libs/libnetfilter_cthelper
         - net-libs/libnetfilter_cttimeout
         - net-libs/libnetfilter_queue
+        - net-libs/libnetfilter_conntrack
+        - net-libs/libnetfilter_acct
+        - net-libs/libnetfilter_log
         - net-firewall/conntrack-tools
         - net-misc/socat
         - net-misc/cni-plugins
