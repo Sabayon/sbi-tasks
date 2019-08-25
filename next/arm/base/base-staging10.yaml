@@ -43,6 +43,10 @@ environment:
   - "PORTAGE_GIT_BRANCH=arm"
   # Override list of targets for compile specific packages.
   # - "OVERRIDE_BUILD_TARGET=app/foo"
+  # Force remove of packages from repository before injection
+  # - "TOREMOVE_BEFORE=app/foo"
+  # Force remove of packages from repository after injection
+  # - "TOREMOVE=app/foo"
 name: "ARM Base (Staging10)"
 artefact_path: artifacts
 
