@@ -70,10 +70,6 @@ build:
 
   target:
     
-    - sys-apps/dmidecode
-    
-    - sys-apps/keyboard-configuration-helpers
-    
-    - sys-apps/pciutils
+    - dev-go/go-md2man
     
 

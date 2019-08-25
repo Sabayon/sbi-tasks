@@ -70,10 +70,26 @@ build:
 
   target:
     
-    - sys-apps/dmidecode
+    - app-text/docbook-sgml-utils
     
-    - sys-apps/keyboard-configuration-helpers
+    - app-text/docbook-xml-simple-dtd:1.0
     
-    - sys-apps/pciutils
+    - app-text/docbook-xml-simple-dtd:0
+    
+    - app-text/openjade
+    
+    - app-text/docbook-sgml-dtd:3.0
+    
+    - app-text/docbook-sgml-dtd:3.1
+    
+    - app-text/docbook-sgml-dtd:4.0
+    
+    - app-text/docbook-sgml-dtd:4.1
+    
+    - app-text/docbook-sgml-dtd:4.2
+    
+    - app-text/docbook-sgml-dtd:4.4
+    
+    - app-text/docbook-dsssl-stylesheets
     
 
