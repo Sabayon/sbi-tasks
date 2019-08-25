@@ -18,6 +18,7 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/{{ .TargetRepo }}/{{ .TargetRepo }}
   - equo up && equo upgrade
   # Temporary force build
   # - sed -e 's/--update//g' -e 's/--newuse//g' {{ .TargetPrefixRepo }}-build-{{ .StagingPhase }}.yml -i
@@ -42,6 +43,10 @@ environment:
   - "PORTAGE_GIT_BRANCH=arm"
   # Override list of targets for compile specific packages.
   # - "OVERRIDE_BUILD_TARGET=app/foo"
+  # Force remove of packages from repository before injection
+  # - "TOREMOVE_BEFORE=app/foo"
+  # Force remove of packages from repository after injection
+  # - "TOREMOVE=app/foo"
 name: "ARM {{ .TargetRepoName }} ({{ .TaskTarget }})"
 artefact_path: artifacts
 {{ if .LxdType }}

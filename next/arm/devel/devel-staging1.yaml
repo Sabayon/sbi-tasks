@@ -18,6 +18,7 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel-arm/devel-arm
   - equo up && equo upgrade
   # Temporary force build
   # - sed -e 's/--update//g' -e 's/--newuse//g' devel-build-staging1.yml -i
