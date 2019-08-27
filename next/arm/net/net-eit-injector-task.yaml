@@ -38,6 +38,7 @@ environment:
   - REPO_CLEAN_EXPIRE=1
   - REPO_CLEAN_EXPIRE_DAYS=5
   - SKIP_COMMIT=1
+  # Pull is required for remove packages from repository. (SKIP_PULL=0)
   - SKIP_PULL=1
   - SAB_PORTDIR=/etc/portage
   - "ACCEPT_LICENSE=*"
@@ -54,6 +55,10 @@ environment:
   - "PKGS_CHECKER_MAXCONCURRENCY=3"
   # For bootstrap repo reset packages revision to 0
   # - "EIT_INJECT_OPTS=--reset-revision"
+  # Force remove of packages from repository before injection
+  # - "TOREMOVE_BEFORE=app/foo"
+  # Force remove of packages from repository after injection
+  # - "TOREMOVE=app/foo"
 
 image: geaaru/sabayon-builder-arm
 type: docker
