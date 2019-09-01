@@ -13,6 +13,6 @@ dev-util/xdelta lzma
 
 sys-process/criu python setproctitle
 
-net-misc/modemmanager -introspection policykit qmi systemd udev -mbim -vala
+net-misc/modemmanager -introspection -policykit qmi systemd udev -mbim -vala
 # Drop introspection for avoid injection of pygobject and pycairo
 net-misc/networkmanager dhclient -introspection modemmanager ncurses nss policykit ppp systemd wext wifi bluetooth connection-sharing -dhcpcd -gnutls -json -ofono -ovs -resolvconf -teamd -test -vala
