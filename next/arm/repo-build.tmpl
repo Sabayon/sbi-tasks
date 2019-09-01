@@ -12,6 +12,12 @@ build:
 {{ end }}
 
   equo:
+    dependency_install:
+      enable: 1
+      install_atoms: 1
+      # It seems that sometime dependencies calculation
+      # doesn't catch all packages. I will investigate
+      # split_install: 1
     package:
 {{ if .EquoPackageUnmask }}
       unmask:
