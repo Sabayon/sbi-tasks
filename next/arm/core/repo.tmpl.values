@@ -30,9 +30,12 @@ values:
         - dev-db/sqlite
     staging2:
       target:
-        - dev-lang/python
+        - dev-lang/python:2.7
+        - dev-lang/python:3.6
         - dev-lang/python-exec
         - dev-lang/spidermonkey
+        # Required by polkit
+        - dev-lang/spidermonkey:52
         - dev-lang/swig
         - dev-libs/boehm-gc
         - dev-libs/glib
@@ -87,7 +90,6 @@ values:
         - sys-apps/iproute2
         - sys-apps/kbd
         - sys-apps/less
-        - sys-apps/man-pages
         - sys-apps/net-tools
         - sys-apps/kmod
         - sys-apps/sed
@@ -101,6 +103,7 @@ values:
         - sys-apps/portage
         - sys-auth/polkit
         - sys-devel/binutils
+        - sys-devel/binutils-config
         - sys-devel/gnuconfig
         - sys-devel/make
         - sys-devel/autogen

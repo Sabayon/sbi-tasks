@@ -6,6 +6,12 @@ build:
 
 
   equo:
+    dependency_install:
+      enable: 1
+      install_atoms: 1
+      # It seems that sometime dependencies calculation
+      # doesn't catch all packages. I will investigate
+      # split_install: 1
     package:
 
 
@@ -30,11 +36,15 @@ build:
 
   target:
     
-    - dev-lang/python
+    - dev-lang/python:2.7
+    
+    - dev-lang/python:3.6
     
     - dev-lang/python-exec
     
     - dev-lang/spidermonkey
+    
+    - dev-lang/spidermonkey:52
     
     - dev-lang/swig
     
@@ -142,8 +152,6 @@ build:
     
     - sys-apps/less
     
-    - sys-apps/man-pages
-    
     - sys-apps/net-tools
     
     - sys-apps/kmod
@@ -169,6 +177,8 @@ build:
     - sys-auth/polkit
     
     - sys-devel/binutils
+    
+    - sys-devel/binutils-config
     
     - sys-devel/gnuconfig
     
