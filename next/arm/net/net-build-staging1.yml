@@ -98,6 +98,8 @@ build:
     
     - net-libs/libnetfilter_log
     
+    - net-libs/libnfnetlink
+    
     - net-firewall/conntrack-tools
     
     - net-misc/socat
