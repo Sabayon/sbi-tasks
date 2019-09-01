@@ -4,9 +4,6 @@ values:
   TargetRepoName: "Base"
   TargetPrefixRepo: "base"
   ExpireDays: 5
-  EquoPackagesInstall:
-    # Avoid recompilation
-    - dev-lang/swig
   EquoPackageUnmask:
     - dev-libs/ffcall
     - sci-libs/buddy
