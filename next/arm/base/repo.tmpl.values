@@ -41,7 +41,6 @@ values:
         #  include <rpc/rpc.h>
         # - dev-lang/gdl
         - dev-lang/gforth
-        - dev-lang/go
         - dev-lang/icon
         # Require llvm
         - dev-lang/ispc
@@ -120,6 +119,8 @@ values:
         - dev-libs/gmp
         - dev-libs/gobject-introspection
         - dev-libs/gobject-introspection-common
+        - dev-libs/libgudev
+        - virtual/libgudev
         - dev-libs/http-fetcher
         - dev-libs/hyphen
         - dev-libs/iksemel
@@ -285,6 +286,7 @@ values:
         - dev-libs/yaz
         - dev-libs/zthread
         - dev-libs/zziplib
+        - dev-libs/ell
     staging5:
       target:
         # It seems that with lxd LLVM is not compilable.
@@ -314,6 +316,7 @@ values:
       target:
         - sys-libs/zlib
         - sys-libs/ncurses
+        - sys-libs/slang
     staging7:
       target:
         - www-servers/apache
@@ -399,3 +402,8 @@ values:
         - app-text/docbook-sgml-dtd:4.2
         - app-text/docbook-sgml-dtd:4.4
         - app-text/docbook-dsssl-stylesheets
+    staging14:
+      target:
+        - dev-util/pkgconfig
+        - app-misc/screen
+

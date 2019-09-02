@@ -359,4 +359,6 @@ build:
     
     - dev-libs/zziplib
     
+    - dev-libs/ell
+    
 

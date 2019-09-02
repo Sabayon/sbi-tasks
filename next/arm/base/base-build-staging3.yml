@@ -153,6 +153,10 @@ build:
     
     - dev-libs/gobject-introspection-common
     
+    - dev-libs/libgudev
+    
+    - virtual/libgudev
+    
     - dev-libs/http-fetcher
     
     - dev-libs/hyphen

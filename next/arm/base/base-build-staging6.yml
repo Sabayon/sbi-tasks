@@ -75,4 +75,6 @@ build:
     
     - sys-libs/ncurses
     
+    - sys-libs/slang
+    
 
