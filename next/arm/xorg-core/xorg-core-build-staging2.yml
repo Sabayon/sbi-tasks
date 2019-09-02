@@ -1,0 +1,80 @@
+
+
+
+
+build:
+
+
+  equo:
+    dependency_install:
+      enable: 1
+      install_atoms: 1
+      # It seems that sometime dependencies calculation
+      # doesn't catch all packages. I will investigate
+      # split_install: 1
+    package:
+
+
+      install:
+
+        - dev-lang/swig
+
+
+  qa_checks: 0
+  emerge:
+    # Set sabayon-arm profile
+    profile: "sabayon-distro:default/linux/arm/17.0/armv7a/sabayon"
+
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    jobs: 3
+
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
+
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+
+
+
+
+
+
+  target:
+    
+    - x11-proto/inputproto
+    
+    - x11-proto/dri3proto
+    
+    - x11-proto/videoproto
+    
+    - x11-proto/xproto
+    
+    - x11-proto/glproto
+    
+    - x11-proto/randrproto
+    
+    - x11-proto/xf86driproto
+    
+    - x11-proto/xf86vidmodeproto
+    
+    - x11-proto/damageproto
+    
+    - x11-proto/renderproto
+    
+    - x11-proto/fixesproto
+    
+    - x11-proto/dri2proto
+    
+    - x11-proto/compositeproto
+    
+    - x11-proto/xf86bigfontproto
+    
+    - x11-proto/presentproto
+    
+    - x11-proto/kbproto
+    
+    - x11-proto/recordproto
+    
+    - x11-proto/xextproto
+    
+
