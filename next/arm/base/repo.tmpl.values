@@ -5,7 +5,6 @@ values:
   TargetPrefixRepo: "base"
   ExpireDays: 5
   EquoPackageUnmask:
-    - dev-libs/ffcall
     - sci-libs/buddy
     - dev-lang/moarvm
     - dev-lang/c-intercal
@@ -20,7 +19,13 @@ values:
     - dev-lang/parrot
     - dev-lang/nasm
     - dev-lang/ferite
+    - dev-libs/ffcall
     - dev-libs/libf2c
+    - dev-libs/libbrahe
+    - dev-libs/libg15
+    - dev-libs/libbson
+    - dev-libs/cxxtools
+    - dev-libs/vanessa-logger
 
   stagings:
     staging1:
@@ -366,7 +371,6 @@ values:
         - app-text/poppler::sabayon-distro
         - app-text/poppler-base::sabayon-distro
         - virtual/perl-Archive-Tar
-        - sys-process/vixie-cron
     staging10:
       target:
         - dev-util/ctags
@@ -405,5 +409,21 @@ values:
     staging14:
       target:
         - dev-util/pkgconfig
+        - sys-process/cronbase
+        - sys-process/cronie
+        - sys-process/cronutils
+        - sys-process/ctop
+        - sys-process/daemontools
+        - sys-process/dcron
+        - sys-process/ftop
+        - sys-process/htop
+        - sys-process/iotop
+        - sys-process/lsof
+        - sys-process/memwatch
+        - sys-process/parallel
+        - sys-process/vixie-cron
+        - sys-process/tini
+        - sys-process/tiptop
+        - virtual/daemontools
         - app-misc/screen
 

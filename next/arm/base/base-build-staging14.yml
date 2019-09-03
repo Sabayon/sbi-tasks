@@ -16,8 +16,6 @@ build:
 
       unmask:
 
-        - dev-libs/ffcall
-
         - sci-libs/buddy
 
         - dev-lang/moarvm
@@ -46,7 +44,19 @@ build:
 
         - dev-lang/ferite
 
+        - dev-libs/ffcall
+
         - dev-libs/libf2c
+
+        - dev-libs/libbrahe
+
+        - dev-libs/libg15
+
+        - dev-libs/libbson
+
+        - dev-libs/cxxtools
+
+        - dev-libs/vanessa-logger
 
 
 
@@ -72,6 +82,38 @@ build:
   target:
     
     - dev-util/pkgconfig
+    
+    - sys-process/cronbase
+    
+    - sys-process/cronie
+    
+    - sys-process/cronutils
+    
+    - sys-process/ctop
+    
+    - sys-process/daemontools
+    
+    - sys-process/dcron
+    
+    - sys-process/ftop
+    
+    - sys-process/htop
+    
+    - sys-process/iotop
+    
+    - sys-process/lsof
+    
+    - sys-process/memwatch
+    
+    - sys-process/parallel
+    
+    - sys-process/vixie-cron
+    
+    - sys-process/tini
+    
+    - sys-process/tiptop
+    
+    - virtual/daemontools
     
     - app-misc/screen
     

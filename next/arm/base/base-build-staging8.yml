@@ -16,8 +16,6 @@ build:
 
       unmask:
 
-        - dev-libs/ffcall
-
         - sci-libs/buddy
 
         - dev-lang/moarvm
@@ -46,7 +44,19 @@ build:
 
         - dev-lang/ferite
 
+        - dev-libs/ffcall
+
         - dev-libs/libf2c
+
+        - dev-libs/libbrahe
+
+        - dev-libs/libg15
+
+        - dev-libs/libbson
+
+        - dev-libs/cxxtools
+
+        - dev-libs/vanessa-logger
 
 
 
