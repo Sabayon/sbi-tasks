@@ -22,5 +22,3 @@ environment:
 type: docker
 timeout: 64800
 
-planned: "@daily"
-
