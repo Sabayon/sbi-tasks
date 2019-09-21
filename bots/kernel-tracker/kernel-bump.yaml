@@ -25,9 +25,9 @@ storage: "7287247578967654972"
 tag_namespace: "distfiles"
 publish_mode: "append"
 environment:
-- FIRMWARE_VER=20190717
-- KERNEL_VERSION_BUMP=5.2
-- KERNEL_BASE=5.1
+- FIRMWARE_VER=20190904
+- KERNEL_VERSION_BUMP=5.3
+- KERNEL_BASE=5.2
 - ACCEPT_LICENSE=*
 - GIT_AUTHOR_NAME=MarvinHatesOceans
 - GIT_AUTHOR_EMAIL=github-bots@sabayon.com
