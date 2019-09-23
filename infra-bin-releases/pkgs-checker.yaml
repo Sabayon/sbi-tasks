@@ -1,7 +1,9 @@
 environment:
-- LC_ALL=en_US.UTF-8
+  - ETP_NONINTERACTIVE=1
+  - "ACCEPT_LICENSE=*"
 image: sabayon/builder-amd64
 script:
+  - source /etc/profile
   - equo up && equo i dev-lang/go
   - mkdir go
   - export GOPATH=$PWD/go
@@ -10,8 +12,11 @@ script:
   - mkdir -p go/src/github.com/Sabayon
   - git clone https://github.com/Sabayon/pkgs-checker go/src/github.com/Sabayon/pkgs-checker
   - pushd go/src/github.com/Sabayon/pkgs-checker
-  - go build
-  - mv pkgs-checker $WORKDIR/artefacts/pkgs-checker-amd64
+  - make multiarch-build-dev
+  - for i in release/pkgs-checker-* ; do arch=$(echo $i | cut -d'-' -f 5) ; ln -s $(basename $i) release/pkgs-checker-latest-linux-${arch}  ; done
+  - cp release/* $WORKDIR/artefacts/
   - popd
 tag_namespace: pkgs-checker-cross-bin
-task: docker_execute
+name: "Pkgs-checker devel dump"
+type: docker
+planned: "@weekly"
