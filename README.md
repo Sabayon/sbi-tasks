@@ -18,6 +18,45 @@ They are triggered automatically from the build infrastructure, used typically t
 
 This repository is parsed by [Replicant](https://github.com/MottainaiCI/replicant) which deploys the master branch to the main Sabayon Build Infrastructure automatically.
 
+### Tasks from Makefile
+
+```bash
+$# make help
+=====================================================================
+ Sabayon Infra Tasks
+=====================================================================
+docker-mottainai      Create tasks for build Mottainai Docker images.
+validate              Run replicant validation.
+deploy                Run replicant ensure.
+webhooks              Update Mottainai WebHooks.
+kernel-tracker        Create task for Kernel bumps.
+tasks                 Create all tasks YAML files (from templates).
+mottainai-ebuild-tag  Create Mottainai ebuild tags from develop.
+bump-atom             Bump atom to our overlay. Default sabayon-distro.
+tag-server            TBD
+repo-remove-pkgs      Create task for remove packages from a specific
+                      repository. (Only ARM for now).
+```
+
+#### Drop packages from a repository
+
+```bash
+REPOSITORY=base PKGS="dev-lang/spidermonkey-52.9.1_pre1" make repo-remove-pkgs
+
+
+$ REPOSITORY=base PKGS="dev-lang/spidermonkey-52.9.1_pre1" make repo-remove-pkgs 
+Removing pkgs dev-lang/spidermonkey-52.9.1_pre1 from repo base (arm)...
+wrote 3220 bytes
+-------------------------
+Task 2667161879618085149 has been created
+-------------------------
+Live log:  mottainai-cli task attach 2667161879618085149
+Information:  mottainai-cli task show 2667161879618085149
+URL:  https://mottainai.sabayon.org/tasks/display/2667161879618085149
+Build Log:  https://mottainai.sabayon.org/artefact/2667161879618085149/build_2667161879618085149.log
+-------------------------
+```
+
 ### How to start tasks/pipelines
 
 To run any task inside of this repository, [refer to the documentation](https://mottainaici.github.io/docs/usage/tasksandpipelines/), but it boils down to:
