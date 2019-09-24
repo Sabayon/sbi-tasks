@@ -3,7 +3,22 @@ OVERLAY ?= sabayon-distro
 CLI ?= mottainai-cli
 
 .PHONY: all
-all: docker-mottainai
+all: help
+
+.PHONY: help
+help:
+	@echo "====================================================================="
+	@echo " Sabayon Infra Tasks"
+	@echo "====================================================================="
+	@echo "docker-mottainai      Create tasks for build Mottainai Docker images."
+	@echo "validate              Run replicant validation."
+	@echo "deploy                Run replicant ensure."
+	@echo "webhooks              Update Mottainai WebHooks."
+	@echo "kernel-tracker        Create task for Kernel bumps."
+	@echo "tasks                 Create all tasks YAML files (from templates)."
+	@echo "mottainai-ebuild-tag  Create Mottainai ebuild tags from develop."
+	@echo "bump-atom             TBD"
+	@echo "tag-server            TBD"
 
 .PHONY: docker-mottainai
 docker-mottainai:
@@ -61,7 +76,7 @@ tag-server:
                             -s UpstreamOrg=$(ORG) \
                             -s Version=0.1  \
                             -s Component=mottainai-server \
-			    -s TargetTag=master \
+                            -s TargetTag=master \
                             -o ..task.yaml
 	$(CLI) task create --yaml ..task.yaml
 	rm -rf ..task.yaml
