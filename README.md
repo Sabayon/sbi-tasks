@@ -41,10 +41,8 @@ repo-remove-pkgs      Create task for remove packages from a specific
 #### Drop packages from a repository
 
 ```bash
-REPOSITORY=base PKGS="dev-lang/spidermonkey-52.9.1_pre1" make repo-remove-pkgs
 
-
-$ REPOSITORY=base PKGS="dev-lang/spidermonkey-52.9.1_pre1" make repo-remove-pkgs 
+$# REPOSITORY=base PKGS="dev-lang/spidermonkey-52.9.1_pre1" make repo-remove-pkgs 
 Removing pkgs dev-lang/spidermonkey-52.9.1_pre1 from repo base (arm)...
 wrote 3220 bytes
 -------------------------
