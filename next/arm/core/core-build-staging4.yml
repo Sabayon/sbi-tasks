@@ -14,6 +14,19 @@ build:
       # split_install: 1
     package:
 
+      unmask:
+
+        - dev-libs/libbrahe
+
+        - dev-libs/libg15
+
+        - dev-libs/libbson
+
+        - dev-libs/cxxtools
+
+        - dev-libs/vanessa-logger
+
+
 
   qa_checks: 0
   emerge:

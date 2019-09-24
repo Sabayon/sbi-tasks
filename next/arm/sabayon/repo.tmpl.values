@@ -12,6 +12,12 @@ values:
     - sys-apps/entropy-server-9999
     - sys-apps/entropy-9999
     - sys-apps/equo-9999
+  FilterType: "whitelist"
+  FilterRules:
+    files:
+      - sabayon-build-staging1.yml
+      - sabayon-build-staging2.yml
+      - sabayon-build-staging3.yml
   stagings:
     staging1:
       target:

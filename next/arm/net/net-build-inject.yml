@@ -1,0 +1,70 @@
+
+
+build:
+  equo:
+    package:
+
+      unmask:
+
+        - dev-util/xdelta
+
+        - dev-util/ostree
+
+        - net-misc/cni-plugins
+
+        - net-firewall/conntrack-tools
+
+        - app-emulation/lxd
+
+        - app-emulation/cri-o
+
+        - app-emulation/docker-swarm
+
+        - app-emulation/docker-registry
+
+        - app-emulation/docker-compose
+
+        - dev-python/dockerpty
+
+        - dev-python/docker-pycreds
+
+        - dev-python/docker-py
+
+        - dev-python/websocket-client
+
+        - net-libs/libnetfilter_log
+
+
+
+      install:
+
+        - dev-lang/swig
+
+
+
+
+injector:
+  filter:
+    type: whitelist
+    rules:
+    
+    
+      - description: "Net ARM Filter Files"
+        files:
+        
+          - net-build-staging1.yml
+        
+          - net-build-staging2.yml
+        
+          - net-build-staging3.yml
+        
+          - net-build-staging4.yml
+        
+          - net-build-staging5.yml
+        
+          - net-build-staging6.yml
+        
+    
+    
+    
+

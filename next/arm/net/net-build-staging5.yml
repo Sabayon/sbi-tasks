@@ -86,6 +86,8 @@ build:
     
     - net-dialup/ppp-scripts
     
+    - net-dialup/rp-pppoe
+    
     - net-misc/modemmanager
     
     - net-misc/networkmanager

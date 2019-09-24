@@ -1,0 +1,42 @@
+
+
+build:
+  equo:
+    package:
+
+      unmask:
+
+        - sys-apps/entropy-server-9999
+
+        - sys-apps/entropy-9999
+
+        - sys-apps/equo-9999
+
+
+
+      install:
+
+        - dev-lang/swig
+
+
+
+
+injector:
+  filter:
+    type: whitelist
+    rules:
+    
+    
+      - description: "Sabayon ARM Filter Files"
+        files:
+        
+          - sabayon-build-staging1.yml
+        
+          - sabayon-build-staging2.yml
+        
+          - sabayon-build-staging3.yml
+        
+    
+    
+    
+

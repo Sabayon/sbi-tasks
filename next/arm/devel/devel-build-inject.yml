@@ -1,0 +1,38 @@
+
+
+build:
+  equo:
+    package:
+
+      unmask:
+
+        - app-emulation/distrobuilder-9999
+
+        - dev-util/simplestreams-builder-9999
+
+
+
+      install:
+
+        - dev-lang/swig
+
+
+
+
+injector:
+  filter:
+    type: whitelist
+    rules:
+    
+    
+      - description: "Devel ARM Filter Files"
+        files:
+        
+          - devel-build-staging1.yml
+        
+          - devel-build-staging2.yml
+        
+    
+    
+    
+

@@ -7,6 +7,15 @@ values:
   EquoPackagesInstall:
     # Avoid recompilation
     - dev-lang/swig
+  FilterType: "whitelist"
+  FilterRules:
+    files:
+      - net-build-staging1.yml
+      - net-build-staging2.yml
+      - net-build-staging3.yml
+      - net-build-staging4.yml
+      - net-build-staging5.yml
+      - net-build-staging6.yml
   EquoPackageUnmask:
     - dev-util/xdelta
     - dev-util/ostree
@@ -81,6 +90,7 @@ values:
         - net-wireless/crda
         - net-dialup/ppp
         - net-dialup/ppp-scripts
+        - net-dialup/rp-pppoe
         - net-misc/modemmanager
         - net-misc/networkmanager
     staging6:

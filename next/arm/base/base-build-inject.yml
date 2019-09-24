@@ -1,0 +1,95 @@
+
+
+build:
+  equo:
+    package:
+
+      unmask:
+
+        - sci-libs/buddy
+
+        - dev-lang/moarvm
+
+        - dev-lang/c-intercal
+
+        - dev-lang/bas
+
+        - dev-lang/nqp
+
+        - dev-lang/lisaac
+
+        - dev-lang/icon
+
+        - dev-lang/maude
+
+        - dev-lang/gforth
+
+        - dev-lang/R
+
+        - dev-lang/inform
+
+        - dev-lang/parrot
+
+        - dev-lang/nasm
+
+        - dev-lang/ferite
+
+        - dev-libs/ffcall
+
+        - dev-libs/libf2c
+
+        - dev-libs/libbrahe
+
+        - dev-libs/libg15
+
+        - dev-libs/libbson
+
+        - dev-libs/cxxtools
+
+        - dev-libs/vanessa-logger
+
+
+
+
+
+injector:
+  filter:
+    type: whitelist
+    rules:
+    
+    
+      - description: "Base ARM Filter Files"
+        files:
+        
+          - base-build-staging1.yml
+        
+          - base-build-staging2.yml
+        
+          - base-build-staging3.yml
+        
+          - base-build-staging4.yml
+        
+          - base-build-staging5.yml
+        
+          - base-build-staging6.yml
+        
+          - base-build-staging7.yml
+        
+          - base-build-staging8.yml
+        
+          - base-build-staging9.yml
+        
+          - base-build-staging10.yml
+        
+          - base-build-staging11.yml
+        
+          - base-build-staging12.yml
+        
+          - base-build-staging13.yml
+        
+          - base-build-staging14.yml
+        
+    
+    
+    
+

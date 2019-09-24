@@ -4,6 +4,20 @@ values:
   TargetRepoName: "Core"
   TargetPrefixRepo: "core"
   ExpireDays: 10
+  FilterType: "whitelist"
+  FilterRules:
+    files:
+      - core-build-staging1.yml
+      - core-build-staging2.yml
+      - core-build-staging3.yml
+      - core-build-staging4.yml
+      - core-build-staging5.yml
+  EquoPackageUnmask:
+    - dev-libs/libbrahe
+    - dev-libs/libg15
+    - dev-libs/libbson
+    - dev-libs/cxxtools
+    - dev-libs/vanessa-logger
   stagings:
     staging1:
       target:

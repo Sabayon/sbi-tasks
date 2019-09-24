@@ -4,6 +4,23 @@ values:
   TargetRepoName: "Base"
   TargetPrefixRepo: "base"
   ExpireDays: 5
+  FilterType: "whitelist"
+  FilterRules:
+    files:
+      - base-build-staging1.yml
+      - base-build-staging2.yml
+      - base-build-staging3.yml
+      - base-build-staging4.yml
+      - base-build-staging5.yml
+      - base-build-staging6.yml
+      - base-build-staging7.yml
+      - base-build-staging8.yml
+      - base-build-staging9.yml
+      - base-build-staging10.yml
+      - base-build-staging11.yml
+      - base-build-staging12.yml
+      - base-build-staging13.yml
+      - base-build-staging14.yml
   EquoPackageUnmask:
     - sci-libs/buddy
     - dev-lang/moarvm

@@ -1,0 +1,31 @@
+
+
+build:
+  equo:
+    package:
+
+
+      install:
+
+        - dev-lang/swig
+
+
+
+
+injector:
+  filter:
+    type: whitelist
+    rules:
+    
+    
+      - description: "Xorg-Core ARM Filter Files"
+        files:
+        
+          - xorg-core-build-staging1.yml
+        
+          - xorg-core-build-staging2.yml
+        
+    
+    
+    
+

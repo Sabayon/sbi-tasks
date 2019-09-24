@@ -7,7 +7,11 @@ values:
   EquoPackagesInstall:
     # Avoid recompilation
     - dev-lang/swig
-
+  FilterType: "whitelist"
+  FilterRules:
+    files:
+      - xorg-core-build-staging1.yml
+      - xorg-core-build-staging2.yml
   stagings:
     staging1:
       target:

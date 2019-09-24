@@ -288,10 +288,14 @@ create_repo_arm_files () {
       -o next/arm/${dir_repo}/${dir_repo}-${staging}.yaml
   done
 
+  # ARM Injector buildfile
+  mottainai-cli task compile next/arm/repo-inject-build.tmpl \
+      -l ${conf} \
+      -o next/arm/${dir_repo}/${dir_repo}-build-inject.yml
+
   # ARM Injector task
   mottainai-cli task compile next/arm/repo-injector.tmpl \
       -l ${conf} \
-      -s StagingPhase="staging1" \
       -s ArmQueue="arm_injector" \
       -o next/arm/${dir_repo}/${dir_repo}-eit-injector-task.yaml
 
