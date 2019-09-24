@@ -42,7 +42,9 @@ environment:
   - SKIP_COMMIT=1
   # Pull is required for remove packages from repository. (SKIP_PULL=0)
   - SKIP_PULL=0
+
   - SKIP_INJECT=0
+
   - SAB_PORTDIR=/etc/portage
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
@@ -63,6 +65,7 @@ environment:
   - "EIT_REMOVE_OPTS=--quick --nodeps"
   # Force remove of packages from repository before injection
   # - "TOREMOVE_BEFORE=app/foo"
+
   # Force remove of packages from repository after injection
   # - "TOREMOVE=app/foo"
 
@@ -74,5 +77,7 @@ queue: arm_injector
 name: "ARM Xorg-Core Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/xorg-core"
+
 namespace: "xorg-core-arm,xorg-core-arm-staging1,xorg-core-arm-staging2"
+
 tag_namespace: xorg-core-arm

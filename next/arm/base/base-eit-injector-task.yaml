@@ -42,7 +42,9 @@ environment:
   - SKIP_COMMIT=1
   # Pull is required for remove packages from repository. (SKIP_PULL=0)
   - SKIP_PULL=0
+
   - SKIP_INJECT=0
+
   - SAB_PORTDIR=/etc/portage
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
@@ -63,6 +65,7 @@ environment:
   - "EIT_REMOVE_OPTS=--quick --nodeps"
   # Force remove of packages from repository before injection
   # - "TOREMOVE_BEFORE=app/foo"
+
   # Force remove of packages from repository after injection
   # - "TOREMOVE=app/foo"
 
@@ -74,5 +77,7 @@ queue: arm_injector
 name: "ARM Base Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
+
 namespace: "base-arm,base-arm-staging1,base-arm-staging10,base-arm-staging11,base-arm-staging12,base-arm-staging13,base-arm-staging14,base-arm-staging2,base-arm-staging3,base-arm-staging4,base-arm-staging5,base-arm-staging6,base-arm-staging7,base-arm-staging8,base-arm-staging9"
+
 tag_namespace: base-arm
