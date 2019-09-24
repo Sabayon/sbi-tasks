@@ -17,8 +17,14 @@ help:
 	@echo "kernel-tracker        Create task for Kernel bumps."
 	@echo "tasks                 Create all tasks YAML files (from templates)."
 	@echo "mottainai-ebuild-tag  Create Mottainai ebuild tags from develop."
-	@echo "bump-atom             TBD"
+	@echo "bump-atom             Bump atom to our overlay. Default sabayon-distro."
 	@echo "tag-server            TBD"
+	@echo "repo-remove-pkgs      Create task for remove packages from a specific"
+	@echo "                      repository. (Only ARM for now)."
+
+.PHONY: repo-remove-pkgs
+repo-remove-pkgs:
+	@make/repo-remove-pkgs.sh
 
 .PHONY: docker-mottainai
 docker-mottainai:

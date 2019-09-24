@@ -42,7 +42,11 @@ environment:
   - SKIP_COMMIT=1
   # Pull is required for remove packages from repository. (SKIP_PULL=0)
   - SKIP_PULL=0
+{{ if .SkipInject }}
+  - SKIP_INJECT=1
+{{ else }}
   - SKIP_INJECT=0
+{{ end }}
   - SAB_PORTDIR=/etc/portage
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
@@ -63,6 +67,9 @@ environment:
   - "EIT_REMOVE_OPTS=--quick --nodeps"
   # Force remove of packages from repository before injection
   # - "TOREMOVE_BEFORE=app/foo"
+{{ if .PkgsToRemove }}
+  - "TOREMOVE_BEFORE={{ .PkgsToRemove }}"
+{{ end }}
   # Force remove of packages from repository after injection
   # - "TOREMOVE=app/foo"
 {{ if .LxdType }}
@@ -77,5 +84,9 @@ queue: {{ if .ArmQueue }}{{ .ArmQueue }}{{ else }}arm_lxd{{ end }}
 name: "ARM {{ .TargetRepoName }} Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/{{ .TargetPrefixRepo }}"
+{{ if .PkgsToRemove }}
+namespace: "{{ .TargetRepo }}"
+{{ else }}
 namespace: "{{ $injector_sources }}"
+{{ end }}
 tag_namespace: {{ .TargetRepo }}
