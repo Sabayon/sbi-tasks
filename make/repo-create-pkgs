@@ -1,0 +1,66 @@
+#!/bin/bash
+# Author: Daniele Rondina, geaaru@sabayonlinux.org
+
+set -x
+
+REPO_ARCH="${REPO_ARCH:-arm}"
+TASK_LXD="${TASK_LXD:-1}"
+TASK_QUEUE="${TASK_QUEUE:-}"
+MCLI="${MCLI:-mottainai-cli}"
+
+main () {
+  [ -n "${MOTTAINAI_CLI_PROFILE}" ] || {
+    echo "Missing MOTTAINAI_CLI_PROFILE variable"
+    return 1
+  }
+
+  [ -n "${REPOSITORY}" ] || {
+    echo "Missing REPOSITORY variable"
+    return 1
+  }
+
+  [ -n "${STAGING_PHASE}" ] || {
+    echo "Missing STAGING_PHASE variable"
+    return 1
+  }
+
+  [ -n "${PKGS}" ] || {
+    echo "Missing PKGS variable"
+    return 1
+  }
+
+  local conf="next/${REPO_ARCH}/${REPOSITORY}/repo.tmpl.values"
+  local tmp_task="/tmp/${REPOSITORY}-${STAGING_PHASE}-task.yaml"
+  local mcli_opts="-l ${conf}"
+
+  if [ "$TASK_LXD" = 1 ] ; then
+    mcli_opts="${mcli_opts} -s LxdType=true"
+  fi
+  if [ -n "${TASK_QUEUE}" ] ; then
+    mcli_opts="${mcli_opts} -s ArmQueue=\"${TASK_QUEUE}\""
+  fi
+
+  echo "Force compilation of pkgs ${PKGS} to repo ${REPOSITORY} (${REPO_ARCH}-${STAGING_PHASE})..."
+
+  ${MCLI} task compile next/${REPO_ARCH}/repo-staging.tmpl \
+        ${mcli_opts} \
+        -s TaskTarget="${STAGING_PHASE^}" \
+        -s StagingPhase="${STAGING_PHASE}" \
+        -s ForcedPkgs="${PKGS}" \
+        -o ${tmp_task} || return 1
+
+  if [ -z "$SKIP_FIRE" ] ; then
+    ${MCLI} task create --yaml ${tmp_task} || return 1
+  fi
+
+  if [ -z "$SKIP_REMOVE" ] ; then
+    rm ${tmp_task} || true
+  fi
+
+  return 0
+}
+
+main $@
+exit $?
+
+# vim: ts=2 sw=2 expandtab filetype=sh

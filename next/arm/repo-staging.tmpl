@@ -20,8 +20,10 @@ script:
   - sabayon_mask_upstream_pkgs
   - enman add https://dispatcher.sabayon.org/sbi/namespace/{{ .TargetRepo }}/{{ .TargetRepo }}
   - equo up && equo upgrade
+{{ if .ForcedPkgs }}
   # Temporary force build
-  # - sed -e 's/--update//g' -e 's/--newuse//g' {{ .TargetPrefixRepo }}-build-{{ .StagingPhase }}.yml -i
+  - sed -e 's/--update//g' -e 's/--newuse//g' {{ .TargetPrefixRepo }}-build-{{ .StagingPhase }}.yml -i
+{{ end }}
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
   - mkdir artifacts/{{ .StagingPhase }}
@@ -37,17 +39,15 @@ environment:
   # - SKIP_PORTAGE_SYNC=1
   - SKIP_CLEAN_PACKAGESDIR=1
   - SAB_PORTDIR=/etc/portage
-  - "CREATEREPO_PHASE=false"
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
-  # Override list of targets for compile specific packages.
-  # - "OVERRIDE_BUILD_TARGET=app/foo"
-  # Force remove of packages from repository before injection
-  # - "TOREMOVE_BEFORE=app/foo"
-  # Force remove of packages from repository after injection
-  # - "TOREMOVE=app/foo"
+{{ if .ForcedPkgs }}
+  - "OVERRIDE_BUILD_TARGET={{ .ForcedPkgs }}"
+name: "ARM {{ .TargetRepoName }} ({{ .TaskTarget }} - forced)"
+{{ else }}
 name: "ARM {{ .TargetRepoName }} ({{ .TaskTarget }})"
+{{ end }}
 artefact_path: artifacts
 {{ if .LxdType }}
 image: sabayon/builder-arm

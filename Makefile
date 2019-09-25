@@ -21,6 +21,13 @@ help:
 	@echo "tag-server            TBD"
 	@echo "repo-remove-pkgs      Create task for remove packages from a specific"
 	@echo "                      repository. (Only ARM for now)."
+	@echo "repo-create-pkgs      Create task for force compilation of the packages"
+	@echo "                      related to a specific stage and repo."
+	@echo "                      (Only ARM for now)."
+
+.PHONY: repo-create-pkgs
+repo-create-pkgs:
+	@make/repo-create-pkgs
 
 .PHONY: repo-remove-pkgs
 repo-remove-pkgs:
