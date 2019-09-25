@@ -1,8 +1,6 @@
 #!/bin/bash
 # Author: Daniele Rondina, geaaru@sabayonlinux.org
 
-set -x
-
 REPO_ARCH="${REPO_ARCH:-arm}"
 TASK_LXD="${TASK_LXD:-1}"
 TASK_QUEUE="${TASK_QUEUE:-}"
