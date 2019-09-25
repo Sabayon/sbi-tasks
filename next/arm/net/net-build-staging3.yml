@@ -85,6 +85,10 @@ build:
     
     - app-emulation/lxc::geaaru
     
+    - net-misc/ethertypes
+    
+    - net-libs/libnsl
+    
     - dev-util/xdelta[lzma]
     
     - app-emulation/lxd::geaaru

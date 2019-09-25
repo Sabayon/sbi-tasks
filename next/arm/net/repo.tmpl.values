@@ -73,6 +73,8 @@ values:
         - app-emulation/lxc-templates
         - app-emulation/lxc::geaaru
         # Required by LXD
+        - net-misc/ethertypes
+        - net-libs/libnsl
         - dev-util/xdelta[lzma]
         - app-emulation/lxd::geaaru
         - dev-python/python3-lxc
