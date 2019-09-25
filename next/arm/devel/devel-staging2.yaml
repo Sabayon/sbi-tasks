@@ -20,8 +20,7 @@ script:
   - sabayon_mask_upstream_pkgs
   - enman add https://dispatcher.sabayon.org/sbi/namespace/devel-arm/devel-arm
   - equo up && equo upgrade
-  # Temporary force build
-  # - sed -e 's/--update//g' -e 's/--newuse//g' devel-build-staging2.yml -i
+
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
   - mkdir artifacts/staging2
@@ -37,17 +36,12 @@ environment:
   # - SKIP_PORTAGE_SYNC=1
   - SKIP_CLEAN_PACKAGESDIR=1
   - SAB_PORTDIR=/etc/portage
-  - "CREATEREPO_PHASE=false"
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
-  # Override list of targets for compile specific packages.
-  # - "OVERRIDE_BUILD_TARGET=app/foo"
-  # Force remove of packages from repository before injection
-  # - "TOREMOVE_BEFORE=app/foo"
-  # Force remove of packages from repository after injection
-  # - "TOREMOVE=app/foo"
+
 name: "ARM Devel (Staging2)"
+
 artefact_path: artifacts
 
 image: sabayon/builder-arm
