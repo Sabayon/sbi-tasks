@@ -36,6 +36,9 @@ bump-atom             Bump atom to our overlay. Default sabayon-distro.
 tag-server            TBD
 repo-remove-pkgs      Create task for remove packages from a specific
                       repository. (Only ARM for now).
+repo-create-pkgs      Create task for force compilation of the packages
+                      related to a specific stage and repo.
+                      (Only ARM for now).
 ```
 
 #### Drop packages from a repository
@@ -53,6 +56,14 @@ Information:  mottainai-cli task show 2667161879618085149
 URL:  https://mottainai.sabayon.org/tasks/display/2667161879618085149
 Build Log:  https://mottainai.sabayon.org/artefact/2667161879618085149/build_2667161879618085149.log
 -------------------------
+```
+
+### Force compilation of a list of packages for a repository
+
+```bash
+$# REPOSITORY=core PKGS=sys-devel/gcc STAGING_PHASE=staging1 make repo-create-pkgs
+Force compilation of pkgs sys-devel/gcc to repo core (arm-staging1)...
+wrote 2123 bytes
 ```
 
 ### How to start tasks/pipelines
