@@ -1,0 +1,2 @@
+# Mask unstable
+>sys-fs/squashfs-tools-4.3_p7
