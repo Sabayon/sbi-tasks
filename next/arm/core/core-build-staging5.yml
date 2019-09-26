@@ -59,7 +59,7 @@ build:
     
     - sys-fs/xfsprogs
     
-    - sys-fs/yaffs2-utils
+    - sys-fs/yaffs2utils
     
     - sys-fs/mtd-utils
     
