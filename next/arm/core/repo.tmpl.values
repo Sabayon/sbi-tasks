@@ -161,7 +161,7 @@ values:
         - sys-fs/reiserfsprogs
         - sys-fs/squashfs-tools
         - sys-fs/xfsprogs
-        - sys-fs/yaffs2-utils
+        - sys-fs/yaffs2utils
         - sys-fs/mtd-utils
         - sys-fs/cryptsetup
         - sys-fs/lvm2
