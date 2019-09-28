@@ -29,6 +29,9 @@ main () {
   if [ "$TASK_LXD" = 1 ] ; then
     mcli_opts="${mcli_opts} -s LxdType=1"
   fi
+  if [ -n "${FILTER_BINHOST_ARTEFACTS}" ] ; then
+    mcli_opts="${mcli_opts} -s FilterBinHost=1"
+  fi
 
   echo "Removing pkgs ${PKGS} from repo ${REPOSITORY} (${REPO_ARCH})..."
 
