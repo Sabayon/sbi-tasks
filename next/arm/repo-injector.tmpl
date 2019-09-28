@@ -62,8 +62,10 @@ environment:
   - "PKGS_CHECKER_MAXCONCURRENCY=3"
   # Override pkgs-checker filter options
   # - "PKGS_CHECKER_FILTER_OPTS=-L INFO -v"
+{{ if .FilterBinHost }}
   # Override pkgs-checker filter options for final artefacts binhost directory.
-  # - "PKGS_CHECKER_FILTER_ARTEFACTS_OPTS=-v -L INFO -r ${OUTPUT_DIR}/${REPOSITORY_NAME} -f ${SAB_BUILDFILE} --dry-run"
+  # - "PKGS_CHECKER_FILTER_ARTEFACTS_OPTS=-v -L INFO"
+{{ end }}
 {{ if .ResetRevision }}
   # For bootstrap repo reset packages revision to 0
   # - "EIT_INJECT_OPTS=--reset-revision"
