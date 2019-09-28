@@ -60,13 +60,9 @@ environment:
   - "PKGS_CHECKER_MAXCONCURRENCY=3"
   # Override pkgs-checker filter options
   # - "PKGS_CHECKER_FILTER_OPTS=-L INFO -v"
-  # Override pkgs-checker filter options for final artefacts binhost directory.
-  # - "PKGS_CHECKER_FILTER_ARTEFACTS_OPTS=-v -L INFO -r ${OUTPUT_DIR}/${REPOSITORY_NAME} -f ${SAB_BUILDFILE} --dry-run"
-  # For bootstrap repo reset packages revision to 0
-  # - "EIT_INJECT_OPTS=--reset-revision"
+
+
   - "EIT_REMOVE_OPTS=--quick --nodeps"
-  # Force remove of packages from repository before injection
-  # - "TOREMOVE_BEFORE=app/foo"
 
   # Force remove of packages from repository after injection
   # - "TOREMOVE=app/foo"
