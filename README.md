@@ -57,6 +57,12 @@ URL:  https://mottainai.sabayon.org/tasks/display/2667161879618085149
 Build Log:  https://mottainai.sabayon.org/artefact/2667161879618085149/build_2667161879618085149.log
 -------------------------
 ```
+| Env Variable | Default | Description |
+|--------------|---------|-------------|
+| TASK_LXD | 1 | Run task inside LXD executor |
+| TASK_QUEUE | - | Override default Task Queue. For example for run task to a specific node. |
+| FILTER_BINHOST_ARTEFACTS | - | Clean repository binhost directory and remove packages filtered. By default only report is created. |
+| REPO_ARCH | arm | Choice architecture of the task. |
 
 ### Force compilation of a list of packages for a repository
 
@@ -65,6 +71,15 @@ $# REPOSITORY=core PKGS=sys-devel/gcc STAGING_PHASE=staging1 make repo-create-pk
 Force compilation of pkgs sys-devel/gcc to repo core (arm-staging1)...
 wrote 2123 bytes
 ```
+
+There are additional options available:
+
+| Env Variable | Default | Description |
+|--------------|---------|-------------|
+| TASK_LXD | 1 | Run task inside LXD executor |
+| TASK_QUEUE | - | Override default Task Queue. For example for run task to a specific node. |
+| OVERRIDE_BUILDER_JOBS | - | Permit to override sark `jobs` option. For task where compilation is very long you need override default value to 1 to disable quiet mode. |
+| STAGING_PHASE | - | Choice target staging namespace. |
 
 ### How to start tasks/pipelines
 
