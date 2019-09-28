@@ -68,7 +68,7 @@ environment:
 {{ end }}
 {{ if .ResetRevision }}
   # For bootstrap repo reset packages revision to 0
-  # - "EIT_INJECT_OPTS=--reset-revision"
+  - "EIT_INJECT_OPTS=--reset-revision"
 {{ end }}
   - "EIT_REMOVE_OPTS=--quick --nodeps"
 {{ if .PkgsToRemove }}
