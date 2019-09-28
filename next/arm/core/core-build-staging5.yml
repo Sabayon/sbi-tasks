@@ -75,4 +75,6 @@ build:
     
     - sys-fs/fuse
     
+    - sys-fs/fuse-common
+    
 

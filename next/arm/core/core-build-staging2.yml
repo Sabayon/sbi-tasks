@@ -99,6 +99,8 @@ build:
     
     - dev-python/setuptools
     
+    - dev-python/pyelftools
+    
     - dev-scheme/guile
     
     - app-admin/perl-cleaner

@@ -70,6 +70,7 @@ values:
         - dev-python/pyblake2
         - dev-python/pyxattr
         - dev-python/setuptools
+        - dev-python/pyelftools
         # Not sure if this must be insert to core-arm. I will drop later if not.
         - dev-scheme/guile
         - app-admin/perl-cleaner
@@ -153,6 +154,7 @@ values:
         - sys-libs/db:5.3
         - sys-libs/db:6.0
         - dev-lang/perl
+        - dev-perl/TermReadKey
         - dev-python/bz2file
     staging5:
       target:
@@ -169,3 +171,4 @@ values:
         - sys-fs/multipath-tools
         - sys-fs/udftools
         - sys-fs/fuse
+        - sys-fs/fuse-common

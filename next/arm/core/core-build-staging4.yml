@@ -55,6 +55,8 @@ build:
     
     - dev-lang/perl
     
+    - dev-perl/TermReadKey
+    
     - dev-python/bz2file
     
 
