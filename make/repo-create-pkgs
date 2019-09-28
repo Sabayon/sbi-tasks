@@ -35,7 +35,10 @@ main () {
     mcli_opts="${mcli_opts} -s LxdType=true"
   fi
   if [ -n "${TASK_QUEUE}" ] ; then
-    mcli_opts="${mcli_opts} -s ArmQueue=\"${TASK_QUEUE}\""
+    mcli_opts="${mcli_opts} -s ArmQueue='${TASK_QUEUE}'"
+  fi
+  if [ -n "${OVERRIDE_BUILDER_JOBS}" ] ; then
+    mcli_opts="${mcli_opts} -s ForceBuilderJobs=${OVERRIDE_BUILDER_JOBS}"
   fi
 
   echo "Force compilation of pkgs ${PKGS} to repo ${REPOSITORY} (${REPO_ARCH}-${STAGING_PHASE})..."
