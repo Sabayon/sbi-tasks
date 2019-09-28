@@ -43,6 +43,9 @@ environment:
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
+{{ if .ForceBuilderJobs }}
+  - "OVERRIDE_BUILDER_JOBS={{ .ForceBuilderJobs }}"
+{{ end }}
 {{ if .ForcedPkgs }}
   - "OVERRIDE_BUILD_TARGET={{ .ForcedPkgs }}"
 name: "ARM {{ .TargetRepoName }} ({{ .TaskTarget }} - forced)"
