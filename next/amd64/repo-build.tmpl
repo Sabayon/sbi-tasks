@@ -1,0 +1,74 @@
+{{ $staging := index .stagings .StagingPhase }}
+{{ $overlays := index $staging "overlays" }}
+{{ $remote_overlays := index $staging "remote_overlay" }}
+{{ $script_pre := index $staging "script_pre" }}
+build:
+{{ if $script_pre }}
+  script:
+    pre:
+      {{ range $index, $s := $script_pre }}
+      - {{ $s }}
+      {{ end }}
+{{ end }}
+
+  equo:
+    dependency_install:
+      enable: 1
+      install_atoms: 1
+      # It seems that sometime dependencies calculation
+      # doesn't catch all packages. I will investigate
+      # split_install: 1
+    package:
+{{ if .EquoPackageUnmask }}
+      unmask:
+{{ range $index, $p := .EquoPackageUnmask }}
+        - {{ $p }}
+{{ end }}
+{{ end }}
+{{ if .EquoPackagesInstall }}
+      install:
+{{ range $index, $p := .EquoPackagesInstall }}
+        - {{ $p }}
+{{ end }}
+{{ end }}
+{{ if .EquoPackagesRemove }}
+      remove:
+{{ range $index, $p := .EquoPackagesRemove }}
+        - {{ $p }}
+{{ end }}
+{{ end }}
+  qa_checks: 0
+  emerge:
+    profile: "default/linux/amd64/17.0/desktop"
+
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    jobs: 3
+{{ if .EmergeDefaultArgs }}
+    default_args: {{ .EmergeDefaultArgs }}
+{{ else }}
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
+{{ end }}
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+
+{{ if $remote_overlays }}
+    remote_overlay:
+      {{ range $index, $ro := $remote_overlays }}
+      - {{ $ro }}
+      {{ end }}
+{{ end }}
+
+{{ if $overlays }}
+  overlays:
+    {{ range $index, $o := $overlays }}
+    - {{ $o }}
+    {{ end }}
+{{ end }}
+
+{{ $target := index $staging "target" }}
+  target:
+    {{ range $index, $t := $target }}
+    - {{ $t }}
+    {{ end }}
+

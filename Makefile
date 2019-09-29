@@ -24,6 +24,12 @@ help:
 	@echo "repo-create-pkgs      Create task for force compilation of the packages"
 	@echo "                      related to a specific stage and repo."
 	@echo "                      (Only ARM for now)."
+	@echo "scr-tasks             Create all tasks YAML files (from templates) for "
+	@echo "                      SCR repos."
+
+.PHONY: scr-tasks
+scr-tasks:
+	@make/scr-tasks
 
 .PHONY: repo-create-pkgs
 repo-create-pkgs:

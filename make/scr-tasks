@@ -1,0 +1,53 @@
+#!/bin/bash
+# Author: Daniele Rondina, geaaru@sabayonlinux.org
+
+set -x
+
+COMMUNITY_REPO=${COMMUNITY_REPO:-../community-repositories}
+
+create_repo_amd64_files () {
+  local dir_repo=$1
+  local conf=$2
+  local taskdir=scr/${dir_repo}
+
+  local n_stages=$(cat $conf | shyaml -y get-length values.stagings)
+
+  mkdir -p ${taskdir} || true
+
+  for ((i=1;i<=${n_stages};i++)) ; do
+    staging="staging${i}"
+    # Create SARK build file.
+    mottainai-cli task compile next/amd64/repo-build.tmpl \
+      -l ${conf} \
+      -s StagingPhase="${staging}" \
+      -o ${COMMUNITY_REPO}/${dir_repo}/${dir_repo}-build-${staging}.yml
+
+    # Create Mottainai task
+    mottainai-cli task compile next/amd64/repo-staging.tmpl \
+      -l ${conf} \
+      -s TaskTarget="${staging^}" \
+      -s StagingPhase="${staging}" \
+      -o ${taskdir}/${dir_repo}-${staging}.yaml
+  done
+
+  # AMD64 Injector buildfile
+  mottainai-cli task compile next/amd64/repo-inject-build.tmpl \
+      -l ${conf} \
+      -o ${COMMUNITY_REPO}/${dir_repo}/${dir_repo}-build-inject.yml
+
+  # AMD64 Injector task
+  mottainai-cli task compile next/amd64/repo-injector.tmpl \
+      -l ${conf} \
+      -o ${taskdir}/${dir_repo}-eit-injector-task.yaml
+
+  # AMD64 Pipeline
+#  mottainai-cli task compile next/amd64/pipeline.tmpl \
+#      -l ${conf} \
+#      -s ArmQueueInjector="amd64_injector" \
+#      -s LxdTypeStaging=true \
+#      -o next/amd64/${dir_repo}/${dir_repo}-pipeline.yaml
+}
+
+create_repo_amd64_files "sihnon-common" "${COMMUNITY_REPO}/sihnon-common/repo.tmpl.values"
+
+# vim: ts=2 sw=2 filetype=sh expandtab

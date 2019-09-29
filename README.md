@@ -39,6 +39,9 @@ repo-remove-pkgs      Create task for remove packages from a specific
 repo-create-pkgs      Create task for force compilation of the packages
                       related to a specific stage and repo.
                       (Only ARM for now).
+scr-tasks             Create all tasks YAML files (from templates) for 
+                      SCR repos.
+
 ```
 
 #### Drop packages from a repository
