@@ -1,0 +1,22 @@
+name: "Sync Gentoo internal mirror (ARM)"
+image: sabayon/ci
+type: docker
+directory: "/bots/mirror-sync"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+# Update user fork
+- bash -ex ../scripts/setup_git_repo.sh
+
+storage: "marvinkeys"
+environment:
+- ACCEPT_LICENSE=*
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:Sabayon/gentoo-mirror.git
+- UPSTREAM_REPO=git@github.com:gentoo/gentoo.git
+- WORK_BRANCH=arm
