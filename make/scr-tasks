@@ -10,6 +10,9 @@ create_repo_amd64_files () {
   local conf=$2
   local taskdir=scr/${dir_repo}
 
+  local sourcegit="https://github.com/Sabayon/community-repositories/"
+  local sourcedir="/${dir_repo}"
+
   local n_stages=$(cat $conf | shyaml -y get-length values.stagings)
 
   mkdir -p ${taskdir} || true
@@ -27,6 +30,8 @@ create_repo_amd64_files () {
       -l ${conf} \
       -s TaskTarget="${staging^}" \
       -s StagingPhase="${staging}" \
+      -s SourceGit="${sourcegit}" \
+      -s SourceDir="${dir_repo}" \
       -o ${taskdir}/${dir_repo}-${staging}.yaml
   done
 
@@ -38,6 +43,8 @@ create_repo_amd64_files () {
   # AMD64 Injector task
   mottainai-cli task compile next/amd64/repo-injector.tmpl \
       -l ${conf} \
+      -s SourceGit="${sourcegit}" \
+      -s SourceDir="${dir_repo}" \
       -o ${taskdir}/${dir_repo}-eit-injector-task.yaml
 
   # AMD64 Pipeline

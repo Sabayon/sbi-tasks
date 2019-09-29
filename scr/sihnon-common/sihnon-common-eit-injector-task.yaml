@@ -64,8 +64,8 @@ type: docker
 
 artefact_path: artifacts
 name: "AMD64 Sihnon Common Repo (injector)"
-source: https://github.com/Sabayon/sbi-tasks
-directory: "/next/amd64/sihnon-common"
+source: https://github.com/Sabayon/community-repositories/
+directory: sihnon-common
 
 namespace: "sihnon-common,sihnon-common-staging1,sihnon-common-staging2,sihnon-common-staging3"
 

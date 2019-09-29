@@ -46,7 +46,7 @@ artefact_path: artifacts
 image: sabayon/builder
 type: docker
 
-source: https://github.com/Sabayon/sbi-tasks
-directory: "/next/amd64/sihnon-common"
+source: https://github.com/Sabayon/community-repositories/
+directory: sihnon-common
 queue: ""
 tag_namespace: sihnon-common-staging2
