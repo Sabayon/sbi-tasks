@@ -1,0 +1,160 @@
+# Authors: Sabayon Team
+#          geaaru@sabayonlinux.org
+pipeline_name: "Repository AMD64 {{ .TargetRepoName }} Pipeline"
+concurrency: 3
+{{ $amd64_queue_staging := .Amd64QueueStaging }}
+{{ $amd64_queue_injector := .Amd64QueueInjector }}
+{{ $task_type_staging := .LxdTypeStaging }}
+{{ $task_type_injector := .LxdTypeInjector }}
+{{ $target_prefix_repo := .TargetPrefixRepo }}
+{{ $target_repo_name := .TargetRepoName }}
+{{ $target_repo := .TargetRepo }}
+group:
+{{ range $index, $staging := .stagings }}
+  - {{ $index }}{{ end }}
+
+chord:
+  - injector
+tasks:
+{{ range $index, $staging := .stagings }}
+  {{ $index }}:
+    script:
+      - source /etc/profile
+      # Temporary workaround for delay on DHCP response
+      - sleep 4
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+      - chmod 755 /sbin/sark-functions.sh
+      - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+      - chmod 755 /etc/sark-functions
+      - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+      - wget https://dispatcher.sabayon.org/sbi/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
+      - chmod a+x /usr/sbin/builder
+      - chmod a+x /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/bin/sark-localbuild
+      - chmod a+x /usr/bin/pkgs-checker
+      - eselect python set python3.6
+      - enman add https://dispatcher.sabayon.org/sbi/namespace/{{ $target_prefix_repo }}/{{ $target_repo }}
+      - equo up && equo upgrade
+      - sark-localbuild
+      - eval 'rm artifacts/build_*.log || true'
+      - mkdir artifacts/{{ $index }}
+      - mv artifacts/{{ $target_repo }}-binhost/ artifacts/{{ $index }}/
+    environment:
+      - SHELL=/bin/bash
+      - SABAYON_ARCH=amd64
+      - REPOSITORY_NAME={{ $target_repo }}
+      - SAB_BUILDFILE={{ $target_prefix_repo }}-build-{{ $index }}.yml
+      - ETP_NONINTERACTIVE=1
+      # I need call emerge-webrsync at begin to retrive data for active profile.
+      # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
+      # - SKIP_PORTAGE_SYNC=1
+      - SKIP_CLEAN_PACKAGESDIR=1
+      - SAB_PORTDIR=/etc/portage
+      - "CREATEREPO_PHASE=false"
+      - "ACCEPT_LICENSE=*"
+      - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+      - "PORTAGE_GIT_BRANCH=master"
+      # Override list of targets for compile specific packages.
+      # - OVERRIDE_BUILD_TARGET="app/foo"
+    name: "ARM {{ $target_repo_name }} ({{ replaceAll $index "s" "S" }})"
+    artefact_path: artifacts
+    image: sabayon/builder
+    {{ if $task_type_staging }}
+    type: lxd
+    {{ else }}
+    type: docker
+    {{ end }}
+    source: https://github.com/Sabayon/sbi-tasks
+    directory: "/next/amd64/{{ $target_prefix_repo }}"
+    queue: {{ if $amd64_queue_staging }}{{ $amd64_queue_staging }}{{ else }}""{{ end }}
+    tag_namespace: {{ $target_repo }}-{{ $index }}
+{{ end }}
+
+  injector:
+{{ $keys := getKeys .stagings | sort }}
+{{ $namespace_prefix := printf "%s%s" $target_repo "-" }}
+{{ $staging_namespaces := joinWithPrefix $keys "," $namespace_prefix }}
+{{ $injector_sources := printf "%s,%s" $target_repo $staging_namespaces }}
+{{ $keys := join $keys " " }}
+    script:
+      - source /etc/profile
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+      - chmod 755 /sbin/sark-functions.sh
+      - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+      - chmod 755 /etc/sark-functions
+      - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localinjector -O /usr/bin/sark-localinjector
+      - wget https://dispatcher.sabayon.org/sbi/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
+      - chmod a+x /usr/sbin/builder
+      - chmod a+x /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/bin/sark-localbuild
+      - chmod a+x /usr/bin/sark-localinjector
+      - chmod a+x /usr/bin/pkgs-checker
+      - eselect python set python3.6
+      # Force py3.6 on eit
+      - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+      - enman add https://dispatcher.sabayon.org/sbi/namespace/{{ $target_repo }}/{{ $target_repo }}
+      - equo up && equo upgrade
+      - sark-localinjector
+      - eval 'rm artifacts/build_*.log || true'
+    environment:
+      - SHELL=/bin/bash
+      - SABAYON_ARCH=amd64
+      - ETP_NONINTERACTIVE=1
+      - REPOSITORY_NAME={{ $target_repo }}
+      - REPO_CLEAN_EXPIRE=1
+      - REPO_CLEAN_EXPIRE_DAYS={{ .ExpireDays }}
+      - SKIP_COMMIT=1
+      # Pull is required for remove packages from repository. (SKIP_PULL=0)
+      - SKIP_PULL=0
+    {{ if .SkipInject }}
+      - SKIP_INJECT=1
+    {{ else }}
+      - SKIP_INJECT=0
+    {{ end }}
+      - SAB_PORTDIR=/etc/portage
+      - "ACCEPT_LICENSE=*"
+      - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+      - "PORTAGE_GIT_BRANCH=master"
+      - "REPOSITORY_DESCRIPTION={{ .TargetRepoName }} AMD64 Sabayon Repository"
+      - "SAB_STAGING_DIRS={{ $keys }}"
+      - REPO_BINHOST_CLEAN=1
+      - SAB_BUILDFILE={{ $target_prefix_repo }}-build-inject.yml
+      # Skip errors on process existing broken tarballs
+      #- "PKGS_CHECKER_MAXCONCURRENCY=3"
+      # Override pkgs-checker filter options
+      # - "PKGS_CHECKER_FILTER_OPTS=-L INFO -v"
+    {{ if .FilterBinHost }}
+      # Override pkgs-checker filter options for final artefacts binhost directory.
+      # - "PKGS_CHECKER_FILTER_ARTEFACTS_OPTS=-v -L INFO"
+    {{ end }}
+    {{ if .ResetRevision }}
+      # For bootstrap repo reset packages revision to 0
+      - "EIT_INJECT_OPTS=--reset-revision"
+    {{ end }}
+      - "EIT_REMOVE_OPTS=--quick --nodeps"
+    {{ if .PkgsToRemove }}
+      # Force remove of packages from repository before injection
+      - "TOREMOVE_BEFORE={{ .PkgsToRemove }}"
+      # Disable hashing of packages because we are on clean task.
+      - "CHECK_BUILD_DIFFS=0"
+    {{ end }}
+      # Force remove of packages from repository after injection
+      # - "TOREMOVE=app/foo"
+    image: sabayon/builder
+    {{ if .LxdType }}
+    type: lxd
+    {{ else }}
+    type: docker
+    {{ end }}
+    artefact_path: artifacts
+    queue: {{ if $amd64_queue_injector }}{{ $amd64_queue_injector }}{{ else }}amd64_lxd{{ end }}
+    name: "AMD64 {{ .TargetRepoName }} Repo (injector)"
+    source: https://github.com/Sabayon/sbi-tasks
+    directory: "/next/arm/{{ $target_prefix_repo }}"
+    namespace: "{{ $injector_sources }}"
+    tag_namespace: {{ $target_repo }}

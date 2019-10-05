@@ -48,11 +48,11 @@ create_repo_amd64_files () {
       -o ${taskdir}/${dir_repo}-eit-injector-task.yaml
 
   # AMD64 Pipeline
-#  mottainai-cli task compile next/amd64/pipeline.tmpl \
-#      -l ${conf} \
-#      -s ArmQueueInjector="amd64_injector" \
-#      -s LxdTypeStaging=true \
-#      -o next/amd64/${dir_repo}/${dir_repo}-pipeline.yaml
+  mottainai-cli task compile next/amd64/pipeline.tmpl \
+      -l ${conf} \
+      -s Amd64QueueInjector="amd64_injector" \
+      -o ${COMMUNITY_REPO}/${dir_repo}/${dir_repo}-pipeline.yml
+      #-s LxdTypeStaging=true \
 }
 
 create_repo_amd64_files "sihnon-common" "${COMMUNITY_REPO}/sihnon-common/repo.tmpl.values"
