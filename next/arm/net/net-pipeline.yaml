@@ -415,7 +415,11 @@ tasks:
       - REPO_CLEAN_EXPIRE=1
       - REPO_CLEAN_EXPIRE_DAYS=5
       - SKIP_COMMIT=1
-      - SKIP_PULL=1
+      # Pull is required for remove packages from repository. (SKIP_PULL=0)
+      - SKIP_PULL=0
+    
+      - SKIP_INJECT=0
+    
       - SAB_PORTDIR=/etc/portage
       - "ACCEPT_LICENSE=*"
       - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
@@ -423,13 +427,20 @@ tasks:
       - "REPOSITORY_DESCRIPTION=Net ARM Sabayon Repository"
       - "SAB_STAGING_DIRS=staging1 staging2 staging3 staging4 staging5 staging6"
       - REPO_BINHOST_CLEAN=1
-      - SAB_BUILDFILE=net-build-staging1.yml
+      - SAB_BUILDFILE=net-build-inject.yml
       # Skip errors on process existing broken tarballs
       #- "PKGS_CHECKER_OPTS=-L ERROR -c -v --ignore-errors"
-      # # Disable temporary concurrency for pthread_create failed: Resource temporarily unavailable
+      # Disable temporary concurrency for pthread_create failed: Resource temporarily unavailable
       - "PKGS_CHECKER_OPTS=-L ERROR -v --ignore-errors"
-      # For bootstrap repo reset packages revision to 0
-      # - "EIT_INJECT_OPTS=--reset-revision"
+      - "PKGS_CHECKER_MAXCONCURRENCY=3"
+      # Override pkgs-checker filter options
+      # - "PKGS_CHECKER_FILTER_OPTS=-L INFO -v"
+    
+    
+      - "EIT_REMOVE_OPTS=--quick --nodeps"
+    
+      # Force remove of packages from repository after injection
+      # - "TOREMOVE=app/foo"
     
     image: geaaru/sabayon-builder-arm
     type: docker
