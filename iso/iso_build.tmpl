@@ -23,6 +23,7 @@ environment:
   - "DRACUT=1"
   - "MOLECULE_ISO_TITLE=SABAYON"
 {{ if eq .IsoDev "true" }}  - "SABAYON_MOLECULES_GIT_OPTS=-b develop"{{ end }}
+{{ if .SabayonKernelVersion }}  - "SABAYON_KERNEL_VERSION={{ .SabayonKernelVersion }}"{{ end }}
 binds:
   - "/dev/loop-control:/dev/loop-control"
 retry: "5"
