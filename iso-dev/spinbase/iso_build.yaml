@@ -22,6 +22,7 @@ environment:
   - "DRACUT=1"
   - "MOLECULE_ISO_TITLE=SABAYON"
   - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
+  - "SABAYON_KERNEL_VERSION=5.3"
 binds:
   - "/dev/loop-control:/dev/loop-control"
 retry: "5"
