@@ -21,6 +21,10 @@ script:
   # Temporary force build
   - sed -e 's/--update//g' -e 's/--newuse//g' {{ .TargetPrefixRepo }}-build-{{ .StagingPhase }}.yml -i
 {{ end }}
+{{ if .PreCommands }}
+{{ range $cmd := .PreCommands }}
+  - {{ $cmd }}{{ end }}
+{{ end }}
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
   - mkdir artifacts/{{ .StagingPhase }}
