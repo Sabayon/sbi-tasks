@@ -19,9 +19,15 @@ build:
       # doesn't catch all packages. I will investigate
       # split_install: 1
     package:
-{{ if .EquoPackageUnmask }}
+{{ if .EquoPackagesMask }}
+      mask:
+{{ range $index, $p := .EquoPackagesMask }}
+        - {{ $p }}
+{{ end }}
+{{ end }}
+{{ if .EquoPackagesUnmask }}
       unmask:
-{{ range $index, $p := .EquoPackageUnmask }}
+{{ range $index, $p := .EquoPackagesUnmask }}
         - {{ $p }}
 {{ end }}
 {{ end }}
