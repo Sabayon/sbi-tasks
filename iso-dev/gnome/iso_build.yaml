@@ -22,6 +22,9 @@ environment:
   - "MOLECULE_ISO_TITLE=SABAYON"
   - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
   - "SABAYON_KERNEL_VERSION=5.3"
+  - "SABAYON_ENMAN_REPOS=https://dispatcher.sabayon.org/sbi/namespace/devel-9999/devel-9999"
+  - "SABAYON_EXTRA_PKGS=app-misc/sabayon-live-9999"
+  - "SABAYON_UNMASK_PKGS=app-misc/sabayon-live-9999"
 binds:
   - "/dev/loop-control:/dev/loop-control"
 retry: "5"
