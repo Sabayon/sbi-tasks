@@ -19,6 +19,9 @@ script:
   - equo up && equo upgrade
 
 
+
+  - equo i dev-perl/Sort-Versions
+
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
   - mkdir artifacts/staging3

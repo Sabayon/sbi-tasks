@@ -44,6 +44,9 @@ tasks:
       - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
       - equo up && equo upgrade
     
+    
+      - equo i dev-perl/Sort-Versions
+    
       - sark-localbuild
       - eval 'rm artifacts/build_*.log || true'
       - mkdir artifacts/staging1
@@ -97,6 +100,9 @@ tasks:
       - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
       - equo up && equo upgrade
     
+    
+      - equo i dev-perl/Sort-Versions
+    
       - sark-localbuild
       - eval 'rm artifacts/build_*.log || true'
       - mkdir artifacts/staging2
@@ -149,6 +155,9 @@ tasks:
       - eselect python set python3.6
       - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
       - equo up && equo upgrade
+    
+    
+      - equo i dev-perl/Sort-Versions
     
       - sark-localbuild
       - eval 'rm artifacts/build_*.log || true'
