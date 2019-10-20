@@ -66,7 +66,7 @@ tasks:
       - "PORTAGE_GIT_BRANCH=master"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "ARM {{ $target_repo_name }} ({{ replaceAll $index "s" "S" }})"
+    name: "AMD64 {{ $target_repo_name }} ({{ replaceAll $index "s" "S" }})"
     artefact_path: artifacts
     image: sabayon/builder
     {{ if $task_type_staging }}
