@@ -50,12 +50,23 @@ create_repo_amd64_files () {
   # AMD64 Pipeline
   mottainai-cli task compile next/amd64/pipeline.tmpl \
       -l ${conf} \
+      -s SourceGit="${sourcegit}" \
+      -s SourceDir="${dir_repo}" \
       -s Amd64QueueInjector="amd64_injector" \
       -o ${taskdir}/${dir_repo}-pipeline.yml
       #-s LxdTypeStaging=true \
+
+  # AMD64 Pipeline Executor
+  mottainai-cli task compile next/amd64/pipeline-executor.tmpl \
+      -l ${conf} \
+      -s SourceGit="${sourcegit}" \
+      -s SourceDir="${dir_repo}" \
+      -s PipelineFile="${dir_repo}-pipeline.yml" \
+      -o ${taskdir}/${dir_repo}-pipeline-executor.yml
 }
 
 create_repo_amd64_files "sihnon-common" "${COMMUNITY_REPO}/sihnon-common/repo.tmpl.values"
+create_repo_amd64_files "devel" "${COMMUNITY_REPO}/devel/repo.tmpl.values"
 create_repo_amd64_files "devel-9999" "${COMMUNITY_REPO}/devel-9999/repo.tmpl.values"
 
 # vim: ts=2 sw=2 filetype=sh expandtab
