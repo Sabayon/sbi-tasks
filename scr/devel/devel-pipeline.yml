@@ -67,7 +67,7 @@ tasks:
       - "PORTAGE_GIT_BRANCH=master"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "ARM Devel (Staging1)"
+    name: "AMD64 Devel (Staging1)"
     artefact_path: artifacts
     image: sabayon/builder
     
@@ -123,7 +123,7 @@ tasks:
       - "PORTAGE_GIT_BRANCH=master"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "ARM Devel (Staging2)"
+    name: "AMD64 Devel (Staging2)"
     artefact_path: artifacts
     image: sabayon/builder
     

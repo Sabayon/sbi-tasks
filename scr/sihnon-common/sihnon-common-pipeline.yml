@@ -65,7 +65,7 @@ tasks:
       - "PORTAGE_GIT_BRANCH=master"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "ARM Sihnon Common (Staging1)"
+    name: "AMD64 Sihnon Common (Staging1)"
     artefact_path: artifacts
     image: sabayon/builder
     
@@ -118,7 +118,7 @@ tasks:
       - "PORTAGE_GIT_BRANCH=master"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "ARM Sihnon Common (Staging2)"
+    name: "AMD64 Sihnon Common (Staging2)"
     artefact_path: artifacts
     image: sabayon/builder
     
@@ -171,7 +171,7 @@ tasks:
       - "PORTAGE_GIT_BRANCH=master"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "ARM Sihnon Common (Staging3)"
+    name: "AMD64 Sihnon Common (Staging3)"
     artefact_path: artifacts
     image: sabayon/builder
     
