@@ -1,7 +1,11 @@
+
+
+
+
+
+
 script:
   - source /etc/profile
-  # Temporary workaround for delay on DHCP response
-  - sleep 4
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - chmod 755 /sbin/sark-functions.sh
   - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
@@ -9,45 +13,60 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localinjector -O /usr/bin/sark-localinjector
   - wget https://dispatcher.sabayon.org/sbi/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
   - chmod a+x /usr/sbin/builder
   - chmod a+x /usr/bin/sark-localcreaterepo
   - chmod a+x /usr/bin/sark-localbuild
+  - chmod a+x /usr/bin/sark-localinjector
   - chmod a+x /usr/bin/pkgs-checker
   - eselect python set python3.6
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
+  # Force py3.6 on eit
+  - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel-9999/devel-9999
   - equo up && equo upgrade
-
-
-  - sark-localbuild
+  - sark-localinjector
   - eval 'rm artifacts/build_*.log || true'
-  - mkdir artifacts/staging3
-  - mv artifacts/sihnon-common-binhost/ artifacts/staging3/
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=amd64
-  - REPOSITORY_NAME=sihnon-common
-  - SAB_BUILDFILE=sihnon-common-build-staging3.yml
   - ETP_NONINTERACTIVE=1
-  # I need call emerge-webrsync at begin to retrive data for active profile.
-  # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
-  # - SKIP_PORTAGE_SYNC=1
-  - SKIP_CLEAN_PACKAGESDIR=1
+  - REPOSITORY_NAME=devel-9999
+  - REPO_CLEAN_EXPIRE=1
+  - REPO_CLEAN_EXPIRE_DAYS=1
+  - SKIP_COMMIT=1
+  # Pull is required for remove packages from repository. (SKIP_PULL=0)
+  - SKIP_PULL=0
+
+  - SKIP_INJECT=0
+
   - SAB_PORTDIR=/etc/portage
-  - "CREATEREPO_PHASE=false"
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=master"
+  - "REPOSITORY_DESCRIPTION=Devel 9999 AMD64 Sabayon Repository"
+  - "SAB_STAGING_DIRS=staging1 staging2"
+  - REPO_BINHOST_CLEAN=1
+  - SAB_BUILDFILE=devel-9999-build-inject.yml
+  # Skip errors on process existing broken tarballs
+  #- "PKGS_CHECKER_MAXCONCURRENCY=3"
+  # Override pkgs-checker filter options
+  # - "PKGS_CHECKER_FILTER_OPTS=-L INFO -v"
 
 
-name: "AMD64 Sihnon Common (Staging3)"
+  - "EIT_REMOVE_OPTS=--quick --nodeps"
 
-artefact_path: artifacts
+  # Force remove of packages from repository after injection
+  # - "TOREMOVE=app/foo"
 
 image: sabayon/builder
 type: docker
 
+artefact_path: artifacts
+name: "AMD64 Devel 9999 Repo (injector)"
 source: https://github.com/Sabayon/community-repositories/
-directory: sihnon-common
-queue: ""
-tag_namespace: sihnon-common-staging3
+directory: devel-9999
+
+namespace: "devel-9999,devel-9999-staging1,devel-9999-staging2"
+
+tag_namespace: devel-9999

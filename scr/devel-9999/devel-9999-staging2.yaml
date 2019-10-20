@@ -15,19 +15,22 @@ script:
   - chmod a+x /usr/bin/sark-localbuild
   - chmod a+x /usr/bin/pkgs-checker
   - eselect python set python3.6
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel-9999/devel-9999
   - equo up && equo upgrade
 
 
+
+  - equo i dev-perl/Sort-Versions
+
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
-  - mkdir artifacts/staging3
-  - mv artifacts/sihnon-common-binhost/ artifacts/staging3/
+  - mkdir artifacts/staging2
+  - mv artifacts/devel-9999-binhost/ artifacts/staging2/
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=amd64
-  - REPOSITORY_NAME=sihnon-common
-  - SAB_BUILDFILE=sihnon-common-build-staging3.yml
+  - REPOSITORY_NAME=devel-9999
+  - SAB_BUILDFILE=devel-9999-build-staging2.yml
   - ETP_NONINTERACTIVE=1
   # I need call emerge-webrsync at begin to retrive data for active profile.
   # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
@@ -40,7 +43,7 @@ environment:
   - "PORTAGE_GIT_BRANCH=master"
 
 
-name: "AMD64 Sihnon Common (Staging3)"
+name: "AMD64 Devel 9999 (Staging2)"
 
 artefact_path: artifacts
 
@@ -48,6 +51,6 @@ image: sabayon/builder
 type: docker
 
 source: https://github.com/Sabayon/community-repositories/
-directory: sihnon-common
+directory: devel-9999
 queue: ""
-tag_namespace: sihnon-common-staging3
+tag_namespace: devel-9999-staging2

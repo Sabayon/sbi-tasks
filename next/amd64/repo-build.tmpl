@@ -13,8 +13,8 @@ build:
 
   equo:
     dependency_install:
-      enable: 1
-      install_atoms: 1
+      enable: {{ if .EquoDepsInstallEnable }}{{ .EquoDepsInstallEnable }}{{ else }}1{{ end }}
+      install_atoms: {{ if .EquoInstallAtoms }}{{ .EquoInstallAtoms }}{{ else }}1{{ end }}
       # It seems that sometime dependencies calculation
       # doesn't catch all packages. I will investigate
       # split_install: 1
@@ -43,20 +43,24 @@ build:
         - {{ $p }}
 {{ end }}
 {{ end }}
-  qa_checks: 0
+  qa_checks: {{ if .QaCheck }}{{ .QaCheck }}{{ else }}0{{ end }}
   emerge:
     profile: "default/linux/amd64/17.0/desktop"
 
     # Install each package separately
-    split_install: 1
-    preserved_rebuild: 1
-    jobs: 3
+    split_install: {{ if .EmergeSplitInstall }}{{ .EmergeSplitInstall }}{{ else }}1{{ end }}
+    preserved_rebuild: {{ if .EmergePreservedRebuild }}{{ .EmergePreservedRebuild }}{{ else }}1{{ end }}
+    jobs: {{ if .EmergeJobs }}{{ .EmergeJobs }}{{ else }}3{{ end }}
 {{ if .EmergeDefaultArgs }}
     default_args: {{ .EmergeDefaultArgs }}
 {{ else }}
     default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
 {{ end }}
+{{ if .EmergeFeatures }}
+    features: {{ .EmergeFeatures }}
+{{ else }}
     features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+{{ end }}
 
 {{ if $remote_overlays }}
     remote_overlay:

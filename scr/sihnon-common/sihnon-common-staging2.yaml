@@ -18,6 +18,7 @@ script:
   - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
   - equo up && equo upgrade
 
+
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
   - mkdir artifacts/staging2
