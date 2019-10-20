@@ -33,7 +33,7 @@ environment:
   - ETP_NONINTERACTIVE=1
   - REPOSITORY_NAME=devel
   - REPO_CLEAN_EXPIRE=1
-  - REPO_CLEAN_EXPIRE_DAYS=10
+  - REPO_CLEAN_EXPIRE_DAYS=1
   - SKIP_COMMIT=1
   # Pull is required for remove packages from repository. (SKIP_PULL=0)
   - SKIP_PULL=0

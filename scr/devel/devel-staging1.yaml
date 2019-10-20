@@ -18,6 +18,10 @@ script:
   - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
   - equo up && equo upgrade
 
+
+
+  - equo i dev-perl/Sort-Versions
+
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
   - mkdir artifacts/staging1
