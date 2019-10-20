@@ -9,6 +9,10 @@ concurrency: 3
 
 
 
+
+
+
+
 group:
 
   - staging1
@@ -39,6 +43,7 @@ tasks:
       - eselect python set python3.6
       - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
       - equo up && equo upgrade
+    
       - sark-localbuild
       - eval 'rm artifacts/build_*.log || true'
       - mkdir artifacts/staging1
@@ -66,8 +71,8 @@ tasks:
     
     type: docker
     
-    source: https://github.com/Sabayon/sbi-tasks
-    directory: "/next/amd64/sihnon-common"
+    source: https://github.com/Sabayon/community-repositories/
+    directory: sihnon-common
     queue: ""
     tag_namespace: sihnon-common-staging1
 
@@ -91,6 +96,7 @@ tasks:
       - eselect python set python3.6
       - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
       - equo up && equo upgrade
+    
       - sark-localbuild
       - eval 'rm artifacts/build_*.log || true'
       - mkdir artifacts/staging2
@@ -118,8 +124,8 @@ tasks:
     
     type: docker
     
-    source: https://github.com/Sabayon/sbi-tasks
-    directory: "/next/amd64/sihnon-common"
+    source: https://github.com/Sabayon/community-repositories/
+    directory: sihnon-common
     queue: ""
     tag_namespace: sihnon-common-staging2
 
@@ -143,6 +149,7 @@ tasks:
       - eselect python set python3.6
       - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
       - equo up && equo upgrade
+    
       - sark-localbuild
       - eval 'rm artifacts/build_*.log || true'
       - mkdir artifacts/staging3
@@ -170,8 +177,8 @@ tasks:
     
     type: docker
     
-    source: https://github.com/Sabayon/sbi-tasks
-    directory: "/next/amd64/sihnon-common"
+    source: https://github.com/Sabayon/community-repositories/
+    directory: sihnon-common
     queue: ""
     tag_namespace: sihnon-common-staging3
 
@@ -218,7 +225,6 @@ tasks:
     
       - SKIP_INJECT=0
     
-      - SAB_PORTDIR=/etc/portage
       - "ACCEPT_LICENSE=*"
       - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
       - "PORTAGE_GIT_BRANCH=master"
@@ -230,20 +236,15 @@ tasks:
       #- "PKGS_CHECKER_MAXCONCURRENCY=3"
       # Override pkgs-checker filter options
       # - "PKGS_CHECKER_FILTER_OPTS=-L INFO -v"
-    
-    
       - "EIT_REMOVE_OPTS=--quick --nodeps"
-    
       # Force remove of packages from repository after injection
       # - "TOREMOVE=app/foo"
     image: sabayon/builder
-    
     type: docker
-    
     artefact_path: artifacts
     queue: amd64_injector
     name: "AMD64 Sihnon Common Repo (injector)"
-    source: https://github.com/Sabayon/sbi-tasks
-    directory: "/next/arm/sihnon-common"
+    source: https://github.com/Sabayon/community-repositories/
+    directory: sihnon-common
     namespace: "sihnon-common,sihnon-common-staging1,sihnon-common-staging2,sihnon-common-staging3"
     tag_namespace: sihnon-common
