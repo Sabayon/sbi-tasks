@@ -1,0 +1,49 @@
+script:
+  - source /etc/profile
+  # Temporary workaround for delay on DHCP response
+  - sleep 4
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+  - chmod 755 /sbin/sark-functions.sh
+  - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+  - chmod 755 /etc/sark-functions
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+  - chmod a+x /usr/sbin/builder
+  - chmod a+x /usr/bin/sark-localcreaterepo
+  - chmod a+x /usr/bin/sark-localbuild
+  - eselect python set python3.6
+  # Create mask file of upstream packages
+  - source /sbin/sark-functions.sh
+  # Required for update profile confs
+  - layman -s sabayon-distro
+  - sabayon_mask_upstream_pkgs
+  - equo up && equo upgrade
+  - emerge app-admin/gentoo-perl-helpers --buildpkg --accept-properties=-interactive -t --complete-graph -j 3
+  - ETC_PORTAGE_SETS="/tmp/sets/" gentoo-perl gen-upgrade-sets $ORIGIN_PERL_VERSION $TARGET_PERL_VERSION
+  - eval "mkdir -p /etc/portage/sets/ || true"
+  - cp /tmp/sets/* /etc/portage/sets/*
+  - cp /tmp/sets/* /artifacts/perl-upgrade
+  - emerge --buildpkg --oneshot -j 3 --accept-properties=-interactive -t --complete-graph @perl-upgrade
+  - emerge -c
+  - perl-cleaner --all -- --buildpkg
+  - mkdir /artifacts/perl-upgrade
+  - cp -rvf /usr/portage/packages/* /artifacts/perl-upgrade
+environment:
+  - SHELL=/bin/bash
+  - SABAYON_ARCH=arm
+  - ETP_NONINTERACTIVE=1
+  - ORIGIN_PERL_VERSION=5.26
+  - TARGET_PERL_VERSION=5.28
+  - SKIP_CLEAN_PACKAGESDIR=1
+  - SAB_PORTDIR=/etc/portage
+  - "CREATEREPO_PHASE=false"
+  - "ACCEPT_LICENSE=*"
+  - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+  - "PORTAGE_GIT_BRANCH=arm"
+name: "ARM Core (Upgrade Perl)"
+artefact_path: /artifacts
+image: sabayon/builder-arm
+type: lxd
+queue: arm_lxd
+tag_namespace: core-arm-upgrade-perl
