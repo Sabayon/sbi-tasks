@@ -20,7 +20,7 @@ script:
   - mottainai-cli pipeline create --yaml devel-9999-pipeline.yml
   - echo "=================================================================="
 
-planned: @weekly
+planned: "@weekly"
 
 environment:
   - "ACCEPT_LICENSE=*"
