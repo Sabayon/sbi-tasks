@@ -20,7 +20,7 @@ script:
   - mottainai-cli pipeline create --yaml {{ .PipelineFile }}
   - echo "=================================================================="
 {{ if .Planned }}
-planned: {{ .Planned }}
+planned: "{{ .Planned }}"
 {{ end }}
 environment:
   - "ACCEPT_LICENSE=*"
