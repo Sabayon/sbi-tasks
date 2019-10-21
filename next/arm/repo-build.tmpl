@@ -13,8 +13,9 @@ build:
 
   equo:
     dependency_install:
-      enable: 1
-      install_atoms: 1
+      enable: {{ if .EquoDepsInstallEnable }}{{ .EquoDepsInstallEnable }}{{ else }}1{{ end }}
+      install_atoms: {{ if .EquoInstallAtoms }}{{ .EquoInstallAtoms }}{{ else }}1{{ end }}
+      dependency_scan_depth: {{ if .EquoDepsInstallScanDepth }}{{ .EquoDepsInstallScanDepth }}{{ else }}2{{ end }}
       # It seems that sometime dependencies calculation
       # doesn't catch all packages. I will investigate
       # split_install: 1
