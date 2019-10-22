@@ -19,15 +19,19 @@ script:
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
   - equo up && equo upgrade
+  - rm -rf /usr/portage/
+  - git clone -b arm https://github.com/Sabayon/gentoo-mirror.git /usr/portage/
+  - chown -R portage:portage /usr/portage
+  - chmod -R ug+w,a+rX /usr/portage
   - emerge app-admin/gentoo-perl-helpers --buildpkg --accept-properties=-interactive -t --complete-graph -j 3
   - ETC_PORTAGE_SETS="/tmp/sets/" gentoo-perl gen-upgrade-sets $ORIGIN_PERL_VERSION $TARGET_PERL_VERSION
+  - eval "mkdir -p /artifacts/perl-upgrade || true"
   - eval "mkdir -p /etc/portage/sets/ || true"
-  - cp /tmp/sets/* /etc/portage/sets/*
-  - cp /tmp/sets/* /artifacts/perl-upgrade
+  - cp /tmp/sets/* /etc/portage/sets/
+  - cp /tmp/sets/* /artifacts/perl-upgrade/
   - emerge --buildpkg --oneshot -j 3 --accept-properties=-interactive -t --complete-graph @perl-upgrade
   - emerge -c
   - perl-cleaner --all -- --buildpkg
-  - mkdir /artifacts/perl-upgrade
   - cp -rvf /usr/portage/packages/* /artifacts/perl-upgrade
 environment:
   - SHELL=/bin/bash
