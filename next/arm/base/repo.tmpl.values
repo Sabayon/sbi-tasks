@@ -513,6 +513,46 @@ values:
         - dev-perl/JSON-XS
         - dev-perl/MailTools
         - perl-core/File-Temp
+        - virtual/perl-CPAN-Meta
+        - virtual/perl-CPAN-Meta-YAML
+        - virtual/perl-Carp
+        - virtual/perl-Compress-Raw-Bzip2
+        - virtual/perl-Compress-Raw-Zlib
+        - virtual/perl-Data-Dumper
+        - virtual/perl-Digest-MD5
+        - virtual/perl-Digest-SHA
+        - virtual/perl-Encode
+        - virtual/perl-Exporter
+        - virtual/perl-ExtUtils-CBuilder
+        - virtual/perl-ExtUtils-Install
+        - virtual/perl-ExtUtils-MakeMaker
+        - virtual/perl-ExtUtils-Manifest
+        - virtual/perl-ExtUtils-ParseXS
+        - virtual/perl-File-Path
+        - virtual/perl-File-Spec
+        - virtual/perl-File-Temp
+        - virtual/perl-Getopt-Long
+        - virtual/perl-IO
+        - virtual/perl-IO-Compress
+        - virtual/perl-IO-Socket-IP
+        - virtual/perl-JSON-PP
+        - virtual/perl-MIME-Base64
+        - virtual/perl-Module-Metadata
+        - virtual/perl-Parse-CPAN-Meta
+        - virtual/perl-Perl-OSType
+        - virtual/perl-Scalar-List-Utils
+        - virtual/perl-Storable
+        - virtual/perl-Sys-Syslog
+        - virtual/perl-Term-ANSIColor
+        - virtual/perl-Test-Harness
+        - virtual/perl-Text-ParseWords
+        - virtual/perl-Time-Local
+        - virtual/perl-XSLoader
+        - virtual/perl-if
+        - virtual/perl-libnet
+        - virtual/perl-parent
+        - virtual/perl-podlators
+        - virtual/perl-version
     staging16:
       target:
         - app-crypt/gpgme
