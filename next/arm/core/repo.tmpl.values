@@ -149,11 +149,15 @@ values:
         - virtual/shadow
         - virtual/ssh
         - app-portage/gemato
+        - app-portage/portage-utils
+        - app-admin/gentoo-perl-helpers
+        - app-misc/querypkg
     staging4:
       target:
         - sys-libs/db:5.3
         - sys-libs/db:6.0
         - dev-lang/perl
+        - dev-perl/libintl-perl
         - dev-perl/TermReadKey
         - dev-python/bz2file
     staging5:

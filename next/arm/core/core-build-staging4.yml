@@ -9,6 +9,7 @@ build:
     dependency_install:
       enable: 1
       install_atoms: 1
+      dependency_scan_depth: 2
       # It seems that sometime dependencies calculation
       # doesn't catch all packages. I will investigate
       # split_install: 1
@@ -54,6 +55,8 @@ build:
     - sys-libs/db:6.0
     
     - dev-lang/perl
+    
+    - dev-perl/libintl-perl
     
     - dev-perl/TermReadKey
     
