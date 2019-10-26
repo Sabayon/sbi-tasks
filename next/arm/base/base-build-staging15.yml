@@ -1,0 +1,219 @@
+
+
+
+
+build:
+
+
+  equo:
+    dependency_install:
+      enable: 1
+      install_atoms: 1
+      dependency_scan_depth: 2
+      # It seems that sometime dependencies calculation
+      # doesn't catch all packages. I will investigate
+      # split_install: 1
+    package:
+
+      unmask:
+
+        - sci-libs/buddy
+
+        - dev-lang/moarvm
+
+        - dev-lang/c-intercal
+
+        - dev-lang/bas
+
+        - dev-lang/nqp
+
+        - dev-lang/lisaac
+
+        - dev-lang/icon
+
+        - dev-lang/maude
+
+        - dev-lang/gforth
+
+        - dev-lang/R
+
+        - dev-lang/inform
+
+        - dev-lang/parrot
+
+        - dev-lang/nasm
+
+        - dev-lang/ferite
+
+        - dev-libs/ffcall
+
+        - dev-libs/libf2c
+
+        - dev-libs/libbrahe
+
+        - dev-libs/libg15
+
+        - dev-libs/libbson
+
+        - dev-libs/cxxtools
+
+        - dev-libs/vanessa-logger
+
+
+
+  qa_checks: 0
+  emerge:
+    # Set sabayon-arm profile
+    profile: "sabayon-distro:default/linux/arm/17.0/armv7a/sabayon"
+
+    # Install each package separately
+    split_install: 1
+    preserved_rebuild: 1
+    jobs: 3
+
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
+
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+
+
+
+
+
+
+  target:
+    
+    - dev-perl/Socket6
+    
+    - dev-perl/Types-Serialiser
+    
+    - dev-perl/Encode-Locale
+    
+    - dev-perl/Error
+    
+    - dev-perl/File-Listing
+    
+    - dev-perl/IO-Socket-SSL
+    
+    - dev-perl/Module-Runtime
+    
+    - dev-perl/Net-HTTP
+    
+    - dev-perl/Class-Load
+    
+    - dev-perl/Getopt-Long-Descriptive
+    
+    - dev-perl/IO-TieCombine
+    
+    - dev-perl/Unicode-EastAsianWidth
+    
+    - dev-perl/HTTP-Cookies
+    
+    - dev-perl/IO-Socket-INET6
+    
+    - dev-perl/LWP-MediaTypes
+    
+    - dev-perl/Package-Stash-XS
+    
+    - dev-perl/SGMLSpm
+    
+    - dev-perl/Module-Pluggable
+    
+    - dev-perl/TimeDate
+    
+    - dev-perl/Canary-Stability
+    
+    - dev-perl/Data-OptList
+    
+    - dev-perl/HTML-Tagset
+    
+    - dev-perl/IO-HTML
+    
+    - dev-perl/Package-Stash
+    
+    - dev-perl/Try-Tiny
+    
+    - dev-perl/LWP-Protocol-https
+    
+    - dev-perl/Module-Build
+    
+    - dev-perl/Sub-Install
+    
+    - dev-perl/XML-Parser
+    
+    - dev-perl/Dist-CheckConflicts
+    
+    - dev-perl/HTTP-Daemon
+    
+    - dev-perl/Params-Util
+    
+    - dev-perl/App-Cmd
+    
+    - dev-perl/HTTP-Date
+    
+    - dev-perl/MIME-Charset
+    
+    - dev-perl/URI
+    
+    - dev-perl/HTML-Parser
+    
+    - dev-perl/Params-Validate
+    
+    - dev-perl/Sort-Versions
+    
+    - dev-perl/String-RewritePrefix
+    
+    - dev-perl/WWW-RobotRules
+    
+    - dev-perl/Authen-SASL
+    
+    - dev-perl/Digest-HMAC
+    
+    - dev-perl/Locale-gettext
+    
+    - dev-perl/Text-Unidecode
+    
+    - dev-perl/Text-WrapI18N
+    
+    - dev-perl/Net-Daemon
+    
+    - dev-perl/Net-SSLeay
+    
+    - dev-perl/Text-CharWidth
+    
+    - dev-perl/Unicode-LineBreak
+    
+    - dev-perl/PlRPC
+    
+    - dev-perl/Sub-Exporter
+    
+    - dev-perl/Capture-Tiny
+    
+    - dev-perl/DBI
+    
+    - dev-perl/HTTP-Negotiate
+    
+    - dev-perl/Module-Implementation
+    
+    - dev-perl/YAML-Tiny
+    
+    - dev-perl/DBD-SQLite
+    
+    - dev-perl/Net-SMTP-SSL
+    
+    - dev-perl/Sub-Name
+    
+    - dev-perl/JSON
+    
+    - dev-perl/common-sense
+    
+    - dev-perl/libwww-perl
+    
+    - dev-perl/HTTP-Message
+    
+    - dev-perl/JSON-XS
+    
+    - dev-perl/MailTools
+    
+    - perl-core/File-Temp
+    
+

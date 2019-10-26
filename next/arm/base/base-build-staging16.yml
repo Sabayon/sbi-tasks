@@ -82,28 +82,8 @@ build:
 
   target:
     
-    - app-text/docbook-sgml-utils
+    - app-crypt/gpgme
     
-    - app-text/docbook-xml-simple-dtd:1.0
-    
-    - app-text/docbook-xml-simple-dtd:0
-    
-    - app-text/openjade
-    
-    - app-text/docbook-sgml-dtd:3.0
-    
-    - app-text/docbook-sgml-dtd:3.1
-    
-    - app-text/docbook-sgml-dtd:4.0
-    
-    - app-text/docbook-sgml-dtd:4.1
-    
-    - app-text/docbook-sgml-dtd:4.2
-    
-    - app-text/docbook-sgml-dtd:4.4
-    
-    - app-text/docbook-dsssl-stylesheets
-    
-    - app-text/po4a
+    - app-crypt/libb2
     
 

@@ -50,7 +50,7 @@ environment:
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=arm"
   - "REPOSITORY_DESCRIPTION=Base ARM Sabayon Repository"
-  - "SAB_STAGING_DIRS=staging1 staging10 staging11 staging12 staging13 staging14 staging2 staging3 staging4 staging5 staging6 staging7 staging8 staging9"
+  - "SAB_STAGING_DIRS=staging1 staging10 staging11 staging12 staging13 staging14 staging15 staging16 staging2 staging3 staging4 staging5 staging6 staging7 staging8 staging9"
   - REPO_BINHOST_CLEAN=1
   - SAB_BUILDFILE=base-build-inject.yml
   # Skip errors on process existing broken tarballs
@@ -76,6 +76,6 @@ name: "ARM Base Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
 
-namespace: "base-arm,base-arm-staging1,base-arm-staging10,base-arm-staging11,base-arm-staging12,base-arm-staging13,base-arm-staging14,base-arm-staging2,base-arm-staging3,base-arm-staging4,base-arm-staging5,base-arm-staging6,base-arm-staging7,base-arm-staging8,base-arm-staging9"
+namespace: "base-arm,base-arm-staging1,base-arm-staging10,base-arm-staging11,base-arm-staging12,base-arm-staging13,base-arm-staging14,base-arm-staging15,base-arm-staging16,base-arm-staging2,base-arm-staging3,base-arm-staging4,base-arm-staging5,base-arm-staging6,base-arm-staging7,base-arm-staging8,base-arm-staging9"
 
 tag_namespace: base-arm
