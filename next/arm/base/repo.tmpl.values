@@ -21,6 +21,8 @@ values:
       - base-build-staging12.yml
       - base-build-staging13.yml
       - base-build-staging14.yml
+      - base-build-staging15.yml
+      - base-build-staging16.yml
   EquoPackageUnmask:
     - sci-libs/buddy
     - dev-lang/moarvm
