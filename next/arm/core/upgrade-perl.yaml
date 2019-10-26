@@ -31,8 +31,10 @@ script:
   - cp /tmp/sets/* /artifacts/perl-upgrade/
   - emerge --buildpkg --oneshot -j 3 --accept-properties=-interactive -t --complete-graph @perl-upgrade
   - emerge -c
-  - perl-cleaner --all -- --buildpkg
-  - cp -rvf /usr/portage/packages/* /artifacts/perl-upgrade
+  # too many packages not aligned for execute this now.
+  # - perl-cleaner --all -- --buildpkg
+  # sark-localinjector require classic binhost tree.
+  - cp -rvf /usr/portage/packages /artifacts/perl-upgrade/core-arm-binhost
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=arm
