@@ -78,6 +78,8 @@ build:
     
     - app-portage/portage-utils
     
+    - app-portage/gentoolkit
+    
     - app-admin/gentoo-perl-helpers
     
     - app-misc/querypkg
