@@ -5,6 +5,9 @@ script:
   - source /etc/profile
   # Temporary workaround for delay on DHCP response
   - sleep 4
+  - eselect python set python3.6
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel-9999/devel-9999
+  - equo up && equo upgrade
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - chmod 755 /sbin/sark-functions.sh
   - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
@@ -19,9 +22,6 @@ script:
   - chmod a+x /usr/bin/sark-localbuild
   - chmod a+x /usr/bin/pkgs-checker
   - chmod a+x /usr/bin/dynlink-scanner
-  - eselect python set python3.6
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel-9999/devel-9999
-  - equo up && equo upgrade
 
 
 
