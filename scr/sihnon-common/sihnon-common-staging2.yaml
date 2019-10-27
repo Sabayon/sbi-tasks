@@ -12,11 +12,13 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/dynlink-scanner -O /usr/bin/dynlink-scanner
   - wget https://dispatcher.sabayon.org/sbi/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
   - chmod a+x /usr/sbin/builder
   - chmod a+x /usr/bin/sark-localcreaterepo
   - chmod a+x /usr/bin/sark-localbuild
   - chmod a+x /usr/bin/pkgs-checker
+  - chmod a+x /usr/bin/dynlink-scanner
   - eselect python set python3.6
   - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
   - equo up && equo upgrade
