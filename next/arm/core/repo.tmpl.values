@@ -50,6 +50,7 @@ values:
         - dev-lang/spidermonkey
         # Required by polkit
         - dev-lang/spidermonkey:52
+        - dev-lang/spidermonkey:60
         - dev-lang/swig
         - dev-libs/boehm-gc
         - dev-libs/glib

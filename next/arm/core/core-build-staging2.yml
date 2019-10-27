@@ -60,6 +60,8 @@ build:
     
     - dev-lang/spidermonkey:52
     
+    - dev-lang/spidermonkey:60
+    
     - dev-lang/swig
     
     - dev-libs/boehm-gc
