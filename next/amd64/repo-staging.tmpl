@@ -1,3 +1,6 @@
+{{ $staging := index .stagings .StagingPhase }}
+{{ $staging_keys := getKeys $staging }}
+{{ $hasEnvs := has "environments" $staging_keys }}
 script:
   - source /etc/profile
   # Temporary workaround for delay on DHCP response
@@ -44,6 +47,11 @@ environment:
   - "ACCEPT_LICENSE=*"
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=master"
+{{ if $hasEnvs }}{{ $envs := index $staging "environments" }}
+{{ range $idx, $e := $envs }}
+  - "{{ $e }}"
+{{ end }}
+{{ end }}
 {{ if .ForceBuilderJobs }}
   - "OVERRIDE_BUILDER_JOBS={{ .ForceBuilderJobs }}"
 {{ end }}
