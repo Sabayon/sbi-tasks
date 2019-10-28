@@ -4,6 +4,7 @@
 set -x
 
 COMMUNITY_REPO=${COMMUNITY_REPO:-../community-repositories}
+SBITASKS_REPO=${SBITASKS_REPO:-https://github.com/Sabayon/sbi-tasks}
 
 create_repo_amd64_files () {
   local dir_repo=$1
@@ -59,8 +60,8 @@ create_repo_amd64_files () {
   # AMD64 Pipeline Executor
   mottainai-cli task compile next/amd64/pipeline-executor.tmpl \
       -l ${conf} \
-      -s SourceGit="${sourcegit}" \
-      -s SourceDir="${dir_repo}" \
+      -s SourceGit="${SBITASKS_REPO}" \
+      -s SourceDir="/scr/${dir_repo}" \
       -s PipelineFile="${dir_repo}-pipeline.yml" \
       -o ${taskdir}/${dir_repo}-pipeline-executor.yml
 }

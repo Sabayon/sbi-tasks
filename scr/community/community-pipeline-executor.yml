@@ -4,8 +4,8 @@ name: "AMD64 Community (Pipeline Executor)"
 image: 'sabayon/base-amd64'
 storage: "geaaru"
 storage_path: "confs"
-source: https://github.com/Sabayon/community-repositories/
-directory: community
+source: https://github.com/Sabayon/sbi-tasks
+directory: /scr/community
 script:
   - source /etc/profile
   - equo up && equo install enman

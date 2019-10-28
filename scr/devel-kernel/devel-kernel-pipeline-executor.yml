@@ -4,8 +4,8 @@ name: "AMD64 Kernel Devel (Pipeline Executor)"
 image: 'sabayon/base-amd64'
 storage: "geaaru"
 storage_path: "confs"
-source: https://github.com/Sabayon/community-repositories/
-directory: devel-kernel
+source: https://github.com/Sabayon/sbi-tasks
+directory: /scr/devel-kernel
 script:
   - source /etc/profile
   - equo up && equo install enman
