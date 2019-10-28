@@ -1,7 +1,8 @@
-{{ $staging := index .stagings .StagingPhase }}
+{{ $staging := index .stagings .StagingPhase }}{{ $staging_keys := getKeys $staging }}
 {{ $overlays := index $staging "overlays" }}
 {{ $remote_overlays := index $staging "remote_overlay" }}
 {{ $script_pre := index $staging "script_pre" }}
+{{ $hasDefArgs := has "EmergeDefaultArgs" $staging_keys }}
 build:
 {{ if $script_pre }}
   script:
@@ -47,17 +48,20 @@ build:
 {{ end }}
   qa_checks: {{ if .QaCheck }}{{ .QaCheck }}{{ else }}0{{ end }}
   emerge:
-    profile: "default/linux/amd64/17.0/desktop"
+    profile: {{ if .EmergeProfile }}{{ .EmergeProfile }}{{ else }}"default/linux/amd64/17.0/desktop"{{ end }}
 
     # Install each package separately
     split_install: {{ if .EmergeSplitInstall }}{{ .EmergeSplitInstall }}{{ else }}1{{ end }}
     preserved_rebuild: {{ if .EmergePreservedRebuild }}{{ .EmergePreservedRebuild }}{{ else }}1{{ end }}
     jobs: {{ if .EmergeJobs }}{{ .EmergeJobs }}{{ else }}3{{ end }}
+{{ if $hasDefArgs }}
+    default_args: {{ index $staging "EmergeDefaultArgs" }}
+{{ else }}
 {{ if .EmergeDefaultArgs }}
     default_args: {{ .EmergeDefaultArgs }}
 {{ else }}
     default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
-{{ end }}
+{{ end }}{{ end }}
 {{ if .EmergeFeatures }}
     features: {{ .EmergeFeatures }}
 {{ else }}
