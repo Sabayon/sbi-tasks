@@ -308,7 +308,7 @@ tasks:
     image: sabayon/builder
     type: docker
     artefact_path: artifacts
-    queue: amd64_injector
+    queue: ""
     name: "AMD64 Community Repo (injector)"
     source: https://github.com/Sabayon/community-repositories/
     directory: community

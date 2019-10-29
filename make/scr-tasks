@@ -53,9 +53,9 @@ create_repo_amd64_files () {
       -l ${conf} \
       -s SourceGit="${sourcegit}" \
       -s SourceDir="${dir_repo}" \
-      -s Amd64QueueInjector="amd64_injector" \
       -o ${taskdir}/${dir_repo}-pipeline.yml
       #-s LxdTypeStaging=true \
+      #-s Amd64QueueInjector="amd64_injector" \
 
   # AMD64 Pipeline Executor
   mottainai-cli task compile next/amd64/pipeline-executor.tmpl \

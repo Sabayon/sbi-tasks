@@ -251,7 +251,7 @@ tasks:
     image: sabayon/builder
     type: docker
     artefact_path: artifacts
-    queue: amd64_injector
+    queue: ""
     name: "AMD64 Sihnon Common Repo (injector)"
     source: https://github.com/Sabayon/community-repositories/
     directory: sihnon-common

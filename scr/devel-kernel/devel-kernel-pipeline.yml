@@ -137,7 +137,7 @@ tasks:
     image: sabayon/builder
     type: docker
     artefact_path: artifacts
-    queue: amd64_injector
+    queue: ""
     name: "AMD64 Kernel Devel Repo (injector)"
     source: https://github.com/Sabayon/community-repositories/
     directory: devel-kernel
