@@ -35,9 +35,9 @@ injector:
           - {{ $entry }}
         {{ end }}
     {{ end }}
-    {{ if has "packages" $rules }}{{ $filter_packages := index .FilterRules "packages" }}
+    {{ if has "pkgs" $rules }}{{ $filter_packages := index .FilterRules "pkgs" }}
       - description: "{{ .TargetRepoName }} ARM Filter Packages"
-        packages:
+        pkgs:
         {{ range $entry := $filter_packages }}
           - {{ $entry }}
         {{ end }}
