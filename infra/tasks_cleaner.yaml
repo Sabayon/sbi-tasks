@@ -25,4 +25,5 @@ script:
 planned: "@daily"
 environment:
   - RETENTION_PERIOD=4
+  - REMOVE_PIPELINES=1
 type: docker_execute
