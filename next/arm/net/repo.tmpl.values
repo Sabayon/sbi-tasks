@@ -75,6 +75,7 @@ values:
         # Required by LXD
         - net-misc/ethertypes
         - net-libs/libnsl
+        - net-libs/libtirpc
         - dev-util/xdelta[lzma]
         - app-emulation/lxd::geaaru
         - dev-python/python3-lxc

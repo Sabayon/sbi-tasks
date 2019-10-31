@@ -90,6 +90,8 @@ build:
     
     - net-libs/libnsl
     
+    - net-libs/libtirpc
+    
     - dev-util/xdelta[lzma]
     
     - app-emulation/lxd::geaaru
