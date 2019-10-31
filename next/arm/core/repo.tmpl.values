@@ -97,10 +97,14 @@ values:
         - net-misc/curl
         - net-misc/openssh
         - mail-mta/msmtp
+        - sys-apps/acl
+        - sys-apps/attr
         - sys-apps/busybox
         - sys-apps/coreutils
         - sys-apps/diffutils
         - sys-apps/file
+        - sys-apps/findutils
+        - sys-apps/install-xattr
         - sys-apps/gawk
         - sys-apps/grep
         - sys-apps/iproute2
@@ -117,19 +121,26 @@ values:
         - sys-apps/man-pages
         - sys-apps/texinfo
         - sys-apps/portage
+        - sys-apps/shadow
         - sys-auth/polkit
+        - sys-devel/autoconf-archive
         - sys-devel/binutils
         - sys-devel/binutils-config
+        - sys-devel/gcc-config
         - sys-devel/gnuconfig
         - sys-devel/make
         - sys-devel/autogen
         - sys-devel/bison
+        - sys-devel/gettext
+        - sys-devel/patch
         - sys-devel/m4
         - sys-libs/glibc
         - sys-libs/e2fsprogs-libs
         - sys-libs/gdbm
         - sys-libs/libcap-ng
+        - sys-libs/libcap
         - sys-libs/libseccomp
+        - sys-libs/pam
         - sys-libs/readline
         - sys-libs/timezone-data
         - sys-process/procps
@@ -149,11 +160,19 @@ values:
         - virtual/service-manager
         - virtual/shadow
         - virtual/ssh
+        - virtual/libelf
         - app-portage/gemato
         - app-portage/portage-utils
         - app-portage/gentoolkit
         - app-admin/gentoo-perl-helpers
         - app-misc/querypkg
+        - sys-auth/pambase
+        - acct-user/polkitd
+        - acct-user/man
+        - acct-user/messagebus
+        - acct-group/man
+        - acct-group/messagebus
+        - acct-group/polkitd
     staging4:
       target:
         - sys-libs/db:5.3

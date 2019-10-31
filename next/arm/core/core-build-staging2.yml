@@ -152,6 +152,10 @@ build:
     
     - mail-mta/msmtp
     
+    - sys-apps/acl
+    
+    - sys-apps/attr
+    
     - sys-apps/busybox
     
     - sys-apps/coreutils
@@ -159,6 +163,10 @@ build:
     - sys-apps/diffutils
     
     - sys-apps/file
+    
+    - sys-apps/findutils
+    
+    - sys-apps/install-xattr
     
     - sys-apps/gawk
     
@@ -192,11 +200,17 @@ build:
     
     - sys-apps/portage
     
+    - sys-apps/shadow
+    
     - sys-auth/polkit
+    
+    - sys-devel/autoconf-archive
     
     - sys-devel/binutils
     
     - sys-devel/binutils-config
+    
+    - sys-devel/gcc-config
     
     - sys-devel/gnuconfig
     
@@ -205,6 +219,10 @@ build:
     - sys-devel/autogen
     
     - sys-devel/bison
+    
+    - sys-devel/gettext
+    
+    - sys-devel/patch
     
     - sys-devel/m4
     
@@ -216,7 +234,11 @@ build:
     
     - sys-libs/libcap-ng
     
+    - sys-libs/libcap
+    
     - sys-libs/libseccomp
+    
+    - sys-libs/pam
     
     - sys-libs/readline
     

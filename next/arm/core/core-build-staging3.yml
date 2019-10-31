@@ -74,6 +74,8 @@ build:
     
     - virtual/ssh
     
+    - virtual/libelf
+    
     - app-portage/gemato
     
     - app-portage/portage-utils
@@ -83,5 +85,19 @@ build:
     - app-admin/gentoo-perl-helpers
     
     - app-misc/querypkg
+    
+    - sys-auth/pambase
+    
+    - acct-user/polkitd
+    
+    - acct-user/man
+    
+    - acct-user/messagebus
+    
+    - acct-group/man
+    
+    - acct-group/messagebus
+    
+    - acct-group/polkitd
     
 
