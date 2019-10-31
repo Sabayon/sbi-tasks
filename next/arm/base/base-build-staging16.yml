@@ -86,4 +86,14 @@ build:
     
     - app-crypt/libb2
     
+    - app-crypt/argon2
+    
+    - dev-util/desktop-file-utils
+    
+    - dev-util/ninja
+    
+    - dev-util/re2c
+    
+    - app-misc/editor-wrapper
+    
 

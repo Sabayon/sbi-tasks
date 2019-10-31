@@ -100,10 +100,14 @@ build:
     
     - app-text/docbook-sgml-dtd:4.2
     
+    - app-text/docbook-sgml-dtd:4.3
+    
     - app-text/docbook-sgml-dtd:4.4
     
     - app-text/docbook-dsssl-stylesheets
     
     - app-text/po4a
+    
+    - app-text/sgml-common
     
 

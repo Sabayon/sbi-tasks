@@ -106,4 +106,6 @@ build:
     
     - app-vim/vimpython
     
+    - app-eselect/eselect-python
+    
 

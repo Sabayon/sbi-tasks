@@ -176,6 +176,8 @@ build:
     
     - dev-libs/ilbc-rfc3951
     
+    - dev-libs/icu
+    
     - dev-libs/iniparser
     
     - dev-libs/jemalloc

@@ -149,6 +149,7 @@ values:
         - dev-libs/hyphen
         - dev-libs/iksemel
         - dev-libs/ilbc-rfc3951
+        - dev-libs/icu
         - dev-libs/iniparser
         - dev-libs/jemalloc
         - dev-libs/json-c
@@ -404,6 +405,7 @@ values:
         - app-eselect/eselect
         - app-vim/salt-vim
         - app-vim/vimpython
+        - app-eselect/eselect-python
     staging11:
       target:
         - sys-apps/dmidecode
@@ -423,9 +425,11 @@ values:
         - app-text/docbook-sgml-dtd:4.0
         - app-text/docbook-sgml-dtd:4.1
         - app-text/docbook-sgml-dtd:4.2
+        - app-text/docbook-sgml-dtd:4.3
         - app-text/docbook-sgml-dtd:4.4
         - app-text/docbook-dsssl-stylesheets
         - app-text/po4a
+        - app-text/sgml-common
     staging14:
       target:
         - dev-util/pkgconfig
@@ -559,3 +563,8 @@ values:
       target:
         - app-crypt/gpgme
         - app-crypt/libb2
+        - app-crypt/argon2
+        - dev-util/desktop-file-utils
+        - dev-util/ninja
+        - dev-util/re2c
+        - app-misc/editor-wrapper
