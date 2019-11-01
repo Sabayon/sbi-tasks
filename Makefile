@@ -26,6 +26,19 @@ help:
 	@echo "                      (Only ARM for now)."
 	@echo "scr-tasks             Create all tasks YAML files (from templates) for "
 	@echo "                      SCR repos."
+	@echo "repo-compare-pkgs     Compare pkgs of repository with build files definition."
+	@echo "repo-compare-bins     Compare pkgs under binhost directory with build files"
+	@echo "                      definition."
+
+.PHONY: repo-compare-pkgs
+repo-compare-pkgs:
+	@echo "Missing packages:"
+	@make/repo-compare -m
+
+.PHONY: repo-compare-bins
+repo-compare-bins:
+	@echo "Missing targets:"
+	@make/repo-compare -t
 
 .PHONY: scr-tasks
 scr-tasks:

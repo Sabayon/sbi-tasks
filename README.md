@@ -41,7 +41,25 @@ repo-create-pkgs      Create task for force compilation of the packages
                       (Only ARM for now).
 scr-tasks             Create all tasks YAML files (from templates) for 
                       SCR repos.
+repo-compare-pkgs     Compare pkgs of repository with build files definition.
+repo-compare-bins     Compare pkgs under binhost directory with build files
+                      definition.
+```
 
+#### Compare a specific repository with target build mission
+
+```bash
+
+$# REPOSITORY=core make repo-compare-pkgs
+...
+```
+
+#### Compare a specific repository with binhost files not available as targets
+
+```bash
+
+$# REPOSITORY=core make repo-compare-bins
+...
 ```
 
 #### Drop packages from a repository

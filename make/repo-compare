@@ -1,0 +1,34 @@
+#!/bin/bash
+# Author: Daniele Rondina, geaaru@sabayonlinux.org
+
+REPO_ARCH="${REPO_ARCH:-arm}"
+if [ "${REPO_ARCH}" = 'arm' ] ; then
+  PKGLIST="PKGLIST-armv7l"
+else
+  PKGLIST="PKGLIST-amd64"
+fi
+TASK_LXD="${TASK_LXD:-1}"
+TASK_QUEUE="${TASK_QUEUE:-}"
+MCLI="${MCLI:-mottainai-cli}"
+PKGLIST_FILE="${PKGLIST_FILE:-https://dispatcher.sabayon.org/sbi/namespace/${REPOSITORY}-${REPO_ARCH}/${REPOSITORY}-${REPO_ARCH}/${PKGLIST}}"
+PKGS_CHECKER_BIN="${PKGS_CHECKER_BIN:-pkgs-checker}"
+
+main () {
+
+  [ -n "${REPOSITORY}" ] || {
+    echo "Missing REPOSITORY variable"
+    return 1
+  }
+
+  local pkgs_checker_opts="-p ${PKGLIST_FILE}"
+  for f in `ls next/${REPO_ARCH}/${REPOSITORY}/${REPOSITORY}-build-staging*` ; do
+    pkgs_checker_opts="$pkgs_checker_opts -s $f"
+  done
+
+  ${PKGS_CHECKER_BIN} sark compare ${pkgs_checker_opts} -v $@
+}
+
+main $@
+exit $?
+
+# vim: ts=2 sw=2 expandtab filetype=sh
