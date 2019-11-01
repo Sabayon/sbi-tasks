@@ -44,9 +44,9 @@ build:
 {{ if .EmergeDefaultArgs }}
     default_args: {{ .EmergeDefaultArgs }}
 {{ else }}
-    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --buildpkg --update
+    default_args: --accept-properties=-interactive -t --complete-graph --newuse --deep --with-bdeps=y --update
 {{ end }}
-    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict buildpkg
 
 {{ if $remote_overlays }}
     remote_overlay:

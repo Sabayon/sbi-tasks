@@ -42,7 +42,7 @@ build:
 
     default_args: --accept-properties=-interactive -t --complete-graph --deep --with-bdeps=y --buildpkg
 
-    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict
+    features: assume-digests binpkg-logs -userpriv config-protect-if-modified distlocks ebuild-locks fixlafiles merge-sync parallel-fetch preserve-libs protect-owned sandbox sfperms splitdebug strict buildpkg
 
 
 
