@@ -1,7 +1,9 @@
-{{ $target_repo := .TargetRepo }}
+{{ $target_repo := .TargetRepo }}{{ $target_repo_prefix := .TargetPrefixRepo }}
 {{ $keys := getKeys .stagings | sort }}
 {{ $namespace_prefix := printf "%s%s" $target_repo "-" }}
 {{ $staging_namespaces := joinWithPrefix $keys "," $namespace_prefix }}
+{{ $bfiles_prefix := printf "%s%s" $target_repo_prefix "-build-" }}
+{{ $pkglist_bfiles := joinWithPrefixAndPostfix $keys " " $bfiles_prefix ".yml" }}
 {{ $injector_sources := printf "%s,%s" $target_repo $staging_namespaces }}
 {{ $keys := join $keys " " }}
 script:
@@ -44,6 +46,7 @@ environment:
   - SKIP_COMMIT=1
   # Pull is required for remove packages from repository. (SKIP_PULL=0)
   - SKIP_PULL=0
+  - "SAB_STAGING_BUILD_RESOURCES={{ $pkglist_bfiles }}"
 {{ if .SkipInject }}
   - SKIP_INJECT=1
 {{ else }}

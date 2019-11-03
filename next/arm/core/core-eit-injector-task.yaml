@@ -4,6 +4,8 @@
 
 
 
+
+
 script:
   - source /etc/profile
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
@@ -44,6 +46,7 @@ environment:
   - SKIP_COMMIT=1
   # Pull is required for remove packages from repository. (SKIP_PULL=0)
   - SKIP_PULL=0
+  - "SAB_STAGING_BUILD_RESOURCES=core-build-staging1.yml core-build-staging2.yml core-build-staging3.yml core-build-staging4.yml core-build-staging5.yml"
 
   - SKIP_INJECT=0
 
