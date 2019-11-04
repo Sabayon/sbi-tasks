@@ -1,0 +1,62 @@
+
+
+
+script:
+  - source /etc/profile
+  # Temporary workaround for delay on DHCP response
+  - sleep 4
+  - eselect python set python3.6
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+  - equo up && equo upgrade
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+  - chmod 755 /sbin/sark-functions.sh
+  - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+  - chmod 755 /etc/sark-functions
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+  - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+  - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/dynlink-scanner -O /usr/bin/dynlink-scanner
+  - wget https://dispatcher.sabayon.org/sbi/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
+  - chmod a+x /usr/sbin/builder
+  - chmod a+x /usr/bin/sark-localcreaterepo
+  - chmod a+x /usr/bin/sark-localbuild
+  - chmod a+x /usr/bin/pkgs-checker
+  - chmod a+x /usr/bin/dynlink-scanner
+
+
+
+  - equo i dev-perl/Sort-Versions
+
+  - sark-localbuild
+  - eval 'rm artifacts/build_*.log || true'
+  - mkdir artifacts/staging2
+  - mv artifacts/geaaru-binhost/ artifacts/staging2/
+environment:
+  - SHELL=/bin/bash
+  - SABAYON_ARCH=amd64
+  - REPOSITORY_NAME=geaaru
+  - SAB_BUILDFILE=geaaru-build-staging2.yml
+  - ETP_NONINTERACTIVE=1
+  # I need call emerge-webrsync at begin to retrive data for active profile.
+  # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
+  # - SKIP_PORTAGE_SYNC=1
+  - SKIP_CLEAN_PACKAGESDIR=1
+  - SAB_PORTDIR=/etc/portage
+  - "CREATEREPO_PHASE=false"
+  - "ACCEPT_LICENSE=*"
+  - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+  - "PORTAGE_GIT_BRANCH=master"
+
+
+
+name: "AMD64 Geaaru (Staging2)"
+
+artefact_path: artifacts
+
+image: sabayon/builder
+type: docker
+
+source: https://github.com/Sabayon/community-repositories/
+directory: geaaru
+queue: ""
+tag_namespace: geaaru-staging2
