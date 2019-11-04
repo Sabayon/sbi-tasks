@@ -981,6 +981,8 @@ tasks:
 
 
 
+
+
     script:
       - source /etc/profile
       - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
@@ -1017,6 +1019,7 @@ tasks:
       - SKIP_COMMIT=1
       # Pull is required for remove packages from repository. (SKIP_PULL=0)
       - SKIP_PULL=0
+      - "SAB_STAGING_BUILD_RESOURCES=base-build-staging1.yml base-build-staging10.yml base-build-staging11.yml base-build-staging12.yml base-build-staging13.yml base-build-staging14.yml base-build-staging15.yml base-build-staging16.yml base-build-staging2.yml base-build-staging3.yml base-build-staging4.yml base-build-staging5.yml base-build-staging6.yml base-build-staging7.yml base-build-staging8.yml base-build-staging9.yml"
     
       - SKIP_INJECT=0
     
