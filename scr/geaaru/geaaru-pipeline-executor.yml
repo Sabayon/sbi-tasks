@@ -20,6 +20,8 @@ script:
   - mottainai-cli pipeline create --yaml geaaru-pipeline.yml
   - echo "=================================================================="
 
+planned: "@weekly"
+
 environment:
   - "ACCEPT_LICENSE=*"
 type: docker
