@@ -360,8 +360,6 @@ build:
     
     - dev-libs/xplc
     
-    - dev-libs/xqilla
-    
     - dev-libs/yajl
     
     - dev-libs/yaz

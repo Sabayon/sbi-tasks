@@ -98,8 +98,6 @@ build:
     
     - dev-lang/coffee-script
     
-    - dev-lang/confluence
-    
     - dev-lang/f2c
     
     - dev-lang/ferite

@@ -57,7 +57,6 @@ values:
         - dev-lang/cfortran
         - dev-lang/cll1h
         - dev-lang/coffee-script
-        - dev-lang/confluence
         - dev-lang/f2c
         - dev-lang/ferite
         # Disable dev-lang/gdl for now:
@@ -306,7 +305,6 @@ values:
         - dev-libs/xmlrpc-epi
         - dev-libs/xmlsec
         - dev-libs/xplc
-        - dev-libs/xqilla
         - dev-libs/yajl
         - dev-libs/yaz
         - dev-libs/zthread
