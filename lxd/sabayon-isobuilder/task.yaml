@@ -7,12 +7,14 @@ script:
   # temporary: Sleep for LXD
   - sleep 4
   - equo up
-  - equo install enman
+  - equo install enman --relaxed
   - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
-  - equo up geaaru
+  # Distrobuilder is now under devel
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+  - equo up geaaru && equo up devel
   - touch /etc/entropy/packages/package.unmask
   - equo unmask dev-util/simplestreams-builder-9999
-  - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools
+  - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
   # Temporary until replicator support .replicatorignore
   - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
   - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
