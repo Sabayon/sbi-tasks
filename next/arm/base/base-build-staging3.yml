@@ -96,8 +96,6 @@ build:
     
     - dev-libs/bglibs
     
-    - dev-libs/blitz
-    
     - dev-libs/boost
     
     - dev-libs/cdk

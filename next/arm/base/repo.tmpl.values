@@ -104,7 +104,6 @@ values:
         - dev-libs/atk
         - dev-libs/beecrypt
         - dev-libs/bglibs
-        - dev-libs/blitz
         - dev-libs/boost
         # Disable temporary for error: ERROR: Unknown or unidentifiable processor "armv7a"
         # - dev-libs/botan
@@ -400,7 +399,6 @@ values:
         - media-libs/audiofile
         - app-xemacs/xemacs-base
         - app-editors/xemacs
-        - app-eselect/eselect
         - app-vim/salt-vim
         - app-vim/vimpython
         - app-eselect/eselect-python
