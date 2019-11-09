@@ -33,18 +33,20 @@ create_report_file () {
 
 
   echo "Check Secondary Level Node"
-  mirror="http://mirror.de.sabayon.org"
+  mirror="http://mirror.de.sabayon.org/"
   # Fetch MIRROR_NAMESPACE from every node and create datasource for web client.
   rm -f /tmp/mirror-timestamp || true
+  local mres=0
   wget -T 10 -t 5 -O /tmp/mirror-timestamp ${mirror}sbi/mirrors-status/MIRROR_DATETIME || {
     log "ERROR: Mirror Out of sync."
-    measures[$i]="{ \"mirror\": \"$mirror\", \"status\": \"$mirror_status\" }"
-    let i++ || true
-    continue
+    mirror_ts="OUTSYNC"
+    mres=1
   }
 
-  mirror_ts=$(cat /tmp/mirror-timestamp)
-  log "Mirror $mirror with timestamp $mirror_ts"
+  if [ "$mres" = 0 ] ; then
+    mirror_ts=$(cat /tmp/mirror-timestamp)
+    log "Mirror $mirror with timestamp $mirror_ts"
+  fi
 
   measures[$i]="{ \"mirror\": \"$mirror\", \"status\": \"$mirror_ts\" }"
   let i++ || true
