@@ -93,6 +93,8 @@ injector:
         
           - base-build-staging16.yml
         
+          - base-build-staging17.yml
+        
     
     
     

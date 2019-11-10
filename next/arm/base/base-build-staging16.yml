@@ -82,11 +82,19 @@ build:
 
   target:
     
+    - app-crypt/gcr
+    
     - app-crypt/gpgme
     
     - app-crypt/libb2
     
     - app-crypt/argon2
+    
+    - app-crypt/mhash
+    
+    - app-crypt/mit-krb5
+    
+    - app-crypt/p11-kit
     
     - dev-util/desktop-file-utils
     
@@ -95,5 +103,11 @@ build:
     - dev-util/re2c
     
     - app-misc/editor-wrapper
+    
+    - sci-libs/lapack
+    
+    - sci-libs/blas-reference
+    
+    - sci-libs/buddy
     
 

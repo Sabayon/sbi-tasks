@@ -116,6 +116,8 @@ build:
     
     - virtual/daemontools
     
+    - virtual/krb5
+    
     - app-misc/screen
     
 

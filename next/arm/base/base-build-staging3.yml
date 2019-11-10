@@ -118,6 +118,8 @@ build:
     
     - dev-libs/cyrus-sasl
     
+    - dev-libs/cppunit
+    
     - dev-libs/d0_blind_id
     
     - dev-libs/darts

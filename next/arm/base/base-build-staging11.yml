@@ -88,4 +88,12 @@ build:
     
     - sys-apps/pciutils
     
+    - sys-apps/tcp-wrappers
+    
+    - sys-apps/baselayout-java
+    
+    - sys-apps/keyutils
+    
+    - sys-apps/pcsc-lite
+    
 

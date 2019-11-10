@@ -17,6 +17,7 @@ group:
   - staging14
   - staging15
   - staging16
+  - staging17
   - staging2
   - staging3
   - staging4
@@ -501,6 +502,65 @@ tasks:
     directory: "/next/arm/base"
     queue: arm_lxd
     tag_namespace: base-arm-staging16
+
+  staging17:
+    script:
+      - source /etc/profile
+      # Temporary workaround for delay on DHCP response
+      - sleep 4
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+      - chmod 755 /sbin/sark-functions.sh
+      - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+      - chmod 755 /etc/sark-functions
+      - echo '===> Preparing last step....'
+      - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/sbin/builder
+      - chmod a+x /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/bin/sark-localbuild
+      - eselect python set python3.6
+      # Force py3.6 on eit
+      - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+      # Create mask file of upstream packages
+      - source /sbin/sark-functions.sh
+      # Required for update profile confs
+      - layman -s sabayon-distro
+      - sabayon_mask_upstream_pkgs
+      - equo up && equo upgrade
+      # Temporary force build
+      # - sed -e 's/--update//g' -e 's/--newuse//g' base-build-staging17.yml -i
+      - sark-localbuild
+      - eval 'rm artifacts/build_*.log || true'
+      - mkdir artifacts/staging17
+      - mv artifacts/base-arm-binhost/ artifacts/staging17/
+    environment:
+      - SHELL=/bin/bash
+      - SABAYON_ARCH=arm
+      - REPOSITORY_NAME=base-arm
+      - SAB_BUILDFILE=base-build-staging17.yml
+      - ETP_NONINTERACTIVE=1
+      # I need call emerge-webrsync at begin to retrive data for active profile.
+      # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
+      # - SKIP_PORTAGE_SYNC=1
+      - SKIP_CLEAN_PACKAGESDIR=1
+      - SAB_PORTDIR=/etc/portage
+      - "CREATEREPO_PHASE=false"
+      - "ACCEPT_LICENSE=*"
+      - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+      - "PORTAGE_GIT_BRANCH=arm"
+      # Override list of targets for compile specific packages.
+      # - OVERRIDE_BUILD_TARGET="app/foo"
+    name: "ARM Base (Staging17)"
+    artefact_path: artifacts
+    
+    image: sabayon/builder-arm
+    type: lxd
+    
+    source: https://github.com/Sabayon/sbi-tasks
+    directory: "/next/arm/base"
+    queue: arm_lxd
+    tag_namespace: base-arm-staging17
 
   staging2:
     script:
@@ -1019,7 +1079,7 @@ tasks:
       - SKIP_COMMIT=1
       # Pull is required for remove packages from repository. (SKIP_PULL=0)
       - SKIP_PULL=0
-      - "SAB_STAGING_BUILD_RESOURCES=base-build-staging1.yml base-build-staging10.yml base-build-staging11.yml base-build-staging12.yml base-build-staging13.yml base-build-staging14.yml base-build-staging15.yml base-build-staging16.yml base-build-staging2.yml base-build-staging3.yml base-build-staging4.yml base-build-staging5.yml base-build-staging6.yml base-build-staging7.yml base-build-staging8.yml base-build-staging9.yml"
+      - "SAB_STAGING_BUILD_RESOURCES=base-build-staging1.yml base-build-staging10.yml base-build-staging11.yml base-build-staging12.yml base-build-staging13.yml base-build-staging14.yml base-build-staging15.yml base-build-staging16.yml base-build-staging17.yml base-build-staging2.yml base-build-staging3.yml base-build-staging4.yml base-build-staging5.yml base-build-staging6.yml base-build-staging7.yml base-build-staging8.yml base-build-staging9.yml"
     
       - SKIP_INJECT=0
     
@@ -1028,7 +1088,7 @@ tasks:
       - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
       - "PORTAGE_GIT_BRANCH=arm"
       - "REPOSITORY_DESCRIPTION=Base ARM Sabayon Repository"
-      - "SAB_STAGING_DIRS=staging1 staging10 staging11 staging12 staging13 staging14 staging15 staging16 staging2 staging3 staging4 staging5 staging6 staging7 staging8 staging9"
+      - "SAB_STAGING_DIRS=staging1 staging10 staging11 staging12 staging13 staging14 staging15 staging16 staging17 staging2 staging3 staging4 staging5 staging6 staging7 staging8 staging9"
       - REPO_BINHOST_CLEAN=1
       - SAB_BUILDFILE=base-build-inject.yml
       # Skip errors on process existing broken tarballs
@@ -1053,5 +1113,5 @@ tasks:
     name: "ARM Base Repo (injector)"
     source: https://github.com/Sabayon/sbi-tasks
     directory: "/next/arm/base"
-    namespace: "base-arm,base-arm-staging1,base-arm-staging10,base-arm-staging11,base-arm-staging12,base-arm-staging13,base-arm-staging14,base-arm-staging15,base-arm-staging16,base-arm-staging2,base-arm-staging3,base-arm-staging4,base-arm-staging5,base-arm-staging6,base-arm-staging7,base-arm-staging8,base-arm-staging9"
+    namespace: "base-arm,base-arm-staging1,base-arm-staging10,base-arm-staging11,base-arm-staging12,base-arm-staging13,base-arm-staging14,base-arm-staging15,base-arm-staging16,base-arm-staging17,base-arm-staging2,base-arm-staging3,base-arm-staging4,base-arm-staging5,base-arm-staging6,base-arm-staging7,base-arm-staging8,base-arm-staging9"
     tag_namespace: base-arm

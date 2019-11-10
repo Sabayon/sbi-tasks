@@ -110,4 +110,14 @@ build:
     
     - app-text/sgml-common
     
+    - app-text/scrollkeeper-dtd
+    
+    - app-text/texi2html
+    
+    - app-text/ghostscript-gpl
+    
+    - app-text/hunspell
+    
+    - app-text/libpaper
+    
 

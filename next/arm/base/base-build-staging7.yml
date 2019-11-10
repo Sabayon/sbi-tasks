@@ -84,6 +84,8 @@ build:
     
     - www-servers/apache
     
+    - www-servers/apache-tools
+    
     - www-servers/nginx
     
 

@@ -96,14 +96,64 @@ build:
     
     - media-libs/audiofile
     
+    - media-libs/libpng
+    
+    - media-libs/libquvi
+    
+    - media-libs/freetype
+    
+    - media-libs/libjpeg-turbo
+    
+    - media-libs/libogg
+    
+    - media-libs/libpng
+    
+    - media-libs/fontconfig
+    
+    - media-libs/lcms
+    
+    - media-libs/libsndfile
+    
+    - media-libs/libsamplerate
+    
+    - media-libs/openjpeg
+    
+    - media-libs/raptor
+    
+    - media-libs/flac
+    
+    - media-libs/giflib
+    
+    - media-libs/jbig2dec
+    
+    - media-libs/libjpeg-turbo
+    
+    - media-libs/libquvi-scripts
+    
+    - media-libs/tiff
+    
+    - media-libs/flac
+    
+    - media-libs/libvorbis
+    
     - app-xemacs/xemacs-base
     
     - app-editors/xemacs
+    
+    - app-vim/gentoo-syntax
     
     - app-vim/salt-vim
     
     - app-vim/vimpython
     
     - app-eselect/eselect-python
+    
+    - app-eselect/eselect-blas
+    
+    - app-eselect/eselect-emacs
+    
+    - app-eselect/eselect-fontconfig
+    
+    - app-eselect/eselect-postgresql
     
 

@@ -86,72 +86,144 @@ build:
     
     - sys-block/thin-provisioning-tools
     
-    - dev-python/requests
+    - dev-python/ans1crypto
+    
+    - dev-python/alabaster
+    
+    - dev-python/attrs
+    
+    - dev-python/cached-property
+    
+    - dev-python/cffi
+    
+    - dev-python/chardet
+    
+    - dev-python/cryptography
+    
+    - dev-python/docopt
+    
+    - dev-python/docutils
+    
+    - dev-python/functools32
+    
+    - dev-python/idna
+    
+    - dev-python/imagesize
+    
+    - dev-python/jsonschema
+    
+    - dev-python/jinja
+    
+    - dev-python/whoosh
+    
+    - dev-python/markupsafe
+    
+    - dev-python/namespace-sphinxcontrib
+    
+    - dev-python/namespace-zope
     
     - dev-python/ndg-httpsclient
     
-    - dev-python/ssl-fetch
-    
-    - dev-python/cffi
+    - dev-python/packaging
     
     - dev-python/pycparser
     
     - dev-python/ply
     
-    - dev-python/ans1crypto
-    
-    - dev-python/chardet
-    
-    - dev-python/idna
-    
-    - dev-python/urllib3
-    
-    - dev-python/pyopenssl
-    
-    - dev-python/cryptography
-    
-    - dev-python/python-ipaddress
-    
-    - dev-python/PySocks
-    
-    - dev-python/cryptography
+    - dev-python/pytz
     
     - dev-python/pyasn1
     
-    - dev-python/jsonschema
+    - dev-python/pygments
     
-    - dev-python/vcversioner
+    - dev-python/pyrsistent
+    
+    - dev-python/pyparsing
+    
+    - dev-python/pyopenssl
+    
+    - dev-python/python-ipaddress
+    
+    - dev-python/pyyaml
     
     - dev-python/webcolors
     
     - dev-python/rfc3987
     
-    - dev-python/docopt
-    
     - dev-python/regex
     
-    - dev-python/functools32
+    - dev-python/requests
+    
+    - dev-python/six
+    
+    - dev-python/setuptools_scm
+    
+    - dev-python/ssl-fetch
+    
+    - dev-python/sqlalchemy
+    
+    - dev-python/sphinx
+    
+    - dev-python/sphinx_rtd_theme
+    
+    - dev-python/sphinxcontrib-applehelp
+    
+    - dev-python/sphinxcontrib-devhelp
+    
+    - dev-python/sphinxcontrib-qthelp
+    
+    - dev-python/sphinxcontrib-htmlhelp
+    
+    - dev-python/sphinxcontrib-jsmath
+    
+    - dev-python/sphinxcontrib-websupport
+    
+    - dev-python/sphinxcontrib-serializinghtml
+    
+    - dev-python/snoballstemmer
     
     - dev-python/strict-rfc3339
     
-    - dev-python/pyyaml
-    
-    - dev-python/cached-property
+    - dev-python/typing
     
     - dev-python/texttable
+    
+    - dev-python/urllib3
+    
+    - dev-python/vcversioner
+    
+    - dev-python/zope-interface
+    
+    - dev-python/Babel
+    
+    - dev-python/PySocks
     
     - app-portage/layman
     
     - virtual/python-ipaddress
     
+    - virtual/python-typing
+    
+    - virtual/python-enum
+    
     - virtual/tmpfiles
     
+    - virtual/awk
+    
+    - virtual/blas
+    
+    - virtual/fortran
+    
+    - virtual/jpeg
+    
     - app-admin/sudo
+    
+    - app-admin/system-tools-backends
     
     - app-text/poppler::sabayon-distro
     
     - app-text/poppler-base::sabayon-distro
     
-    - virtual/perl-Archive-Tar
+    - app-text/poppler-data::sabayon-distro
     
 

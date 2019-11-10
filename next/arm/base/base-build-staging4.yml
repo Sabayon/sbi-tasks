@@ -98,6 +98,8 @@ build:
     
     - dev-libs/libburn
     
+    - dev-libs/libbson
+    
     - dev-libs/libcdio
     
     - dev-libs/libconfig
@@ -124,6 +126,8 @@ build:
     
     - dev-libs/libee
     
+    - dev-libs/libevent
+    
     - dev-libs/libestr
     
     - dev-libs/libev
@@ -131,6 +135,8 @@ build:
     - dev-libs/libevocosm
     
     - dev-libs/libezV24
+    
+    - dev-libs/libfastjson
     
     - dev-libs/libf2c
     
@@ -161,6 +167,8 @@ build:
     - dev-libs/libisofs
     
     - dev-libs/libksba
+    
+    - dev-libs/liblazy
     
     - dev-libs/liblogging
     
@@ -221,6 +229,8 @@ build:
     - dev-libs/libtommath
     
     - dev-libs/libusb-compat
+    
+    - dev-libs/libusb
     
     - dev-libs/libverto
     
@@ -369,5 +379,15 @@ build:
     - dev-libs/zziplib
     
     - dev-libs/ell
+    
+    - dev-util/boost-build
+    
+    - dev-util/cppunit
+    
+    - dev-util/gdbus-codegen
+    
+    - dev-util/google-perftools
+    
+    - dev-util/indent
     
 

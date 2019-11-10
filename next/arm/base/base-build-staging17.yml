@@ -82,18 +82,26 @@ build:
 
   target:
     
-    - sys-libs/compiler-rt
+    - dev-java/toolkit
     
-    - sys-libs/compiler-rt-sanitizers
+    - dev-db/lmdb
     
-    - sys-libs/libomp
+    - dev-db/postgresql
     
-    - sys-libs/ncurses
+    - dev-scheme/guile-lib
     
-    - sys-libs/slang
+    - dev-lua/LuaBitOp
     
-    - sys-libs/libunwind
+    - dev-lua/lpeg
     
-    - sys-libs/zlib
+    - dev-lua/luaexpat
+    
+    - dev-lua/luajson
+    
+    - dev-lua/luasocket
+    
+    - dev-cpp/glibmm
+    
+    - dev-cpp/libxmlpp
     
 

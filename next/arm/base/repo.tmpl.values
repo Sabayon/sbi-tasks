@@ -23,6 +23,7 @@ values:
       - base-build-staging14.yml
       - base-build-staging15.yml
       - base-build-staging16.yml
+      - base-build-staging17.yml
   EquoPackageUnmask:
     - sci-libs/buddy
     - dev-lang/moarvm
@@ -117,6 +118,7 @@ values:
         - dev-libs/cxxtools
         - dev-libs/cyberjack
         - dev-libs/cyrus-sasl
+        - dev-libs/cppunit
         - dev-libs/d0_blind_id
         - dev-libs/darts
         - dev-libs/dbus-c++
@@ -171,6 +173,7 @@ values:
         - dev-libs/libbrahe
         - dev-libs/libbulletml
         - dev-libs/libburn
+        - dev-libs/libbson
         - dev-libs/libcdio
         - dev-libs/libconfig
         - dev-libs/libcoyotl
@@ -184,10 +187,12 @@ values:
         - dev-libs/libebml
         - dev-libs/libedit
         - dev-libs/libee
+        - dev-libs/libevent
         - dev-libs/libestr
         - dev-libs/libev
         - dev-libs/libevocosm
         - dev-libs/libezV24
+        - dev-libs/libfastjson
         - dev-libs/libf2c
         - dev-libs/libffi
         - dev-libs/libg15
@@ -203,6 +208,7 @@ values:
         - dev-libs/libisoburn
         - dev-libs/libisofs
         - dev-libs/libksba
+        - dev-libs/liblazy
         - dev-libs/liblogging
         - dev-libs/liblognorm
         - dev-libs/libunistring
@@ -233,6 +239,7 @@ values:
         - dev-libs/libtecla
         - dev-libs/libtommath
         - dev-libs/libusb-compat
+        - dev-libs/libusb
         - dev-libs/libverto
         - dev-libs/libvformat
         - dev-libs/libwbxml
@@ -309,6 +316,11 @@ values:
         - dev-libs/zthread
         - dev-libs/zziplib
         - dev-libs/ell
+        - dev-util/boost-build
+        - dev-util/cppunit
+        - dev-util/gdbus-codegen
+        - dev-util/google-perftools
+        - dev-util/indent
     staging5:
       target:
         # It seems that with lxd LLVM is not compilable.
@@ -336,12 +348,17 @@ values:
 
     staging6:
       target:
-        - sys-libs/zlib
+        - sys-libs/compiler-rt
+        - sys-libs/compiler-rt-sanitizers
+        - sys-libs/libomp
         - sys-libs/ncurses
         - sys-libs/slang
+        - sys-libs/libunwind
+        - sys-libs/zlib
     staging7:
       target:
         - www-servers/apache
+        - www-servers/apache-tools
         - www-servers/nginx
     staging8:
       target:
@@ -354,40 +371,76 @@ values:
         - dev-vcs/git
         - sys-block/thin-provisioning-tools
         # ssl-fetch required for layman
-        - dev-python/requests
-        - dev-python/ndg-httpsclient
-        - dev-python/ssl-fetch
+        - dev-python/ans1crypto
+        - dev-python/alabaster
+        - dev-python/attrs
+        - dev-python/cached-property
         - dev-python/cffi
+        - dev-python/chardet
+        - dev-python/cryptography
+        - dev-python/docopt
+        - dev-python/docutils
+        - dev-python/functools32
+        - dev-python/idna
+        - dev-python/imagesize
+        - dev-python/jsonschema
+        - dev-python/jinja
+        - dev-python/whoosh
+        - dev-python/markupsafe
+        - dev-python/namespace-sphinxcontrib
+        - dev-python/namespace-zope
+        - dev-python/ndg-httpsclient
+        - dev-python/packaging
         - dev-python/pycparser
         - dev-python/ply
-        - dev-python/ans1crypto
-        - dev-python/chardet
-        - dev-python/idna
-        - dev-python/urllib3
-        - dev-python/pyopenssl
-        - dev-python/cryptography
-        - dev-python/python-ipaddress
-        - dev-python/PySocks
-        - dev-python/cryptography
+        - dev-python/pytz
         - dev-python/pyasn1
-        - dev-python/jsonschema
-        - dev-python/vcversioner
+        - dev-python/pygments
+        - dev-python/pyrsistent
+        - dev-python/pyparsing
+        - dev-python/pyopenssl
+        - dev-python/python-ipaddress
+        - dev-python/pyyaml
         - dev-python/webcolors
         - dev-python/rfc3987
-        - dev-python/docopt
         - dev-python/regex
-        - dev-python/functools32
+        - dev-python/requests
+        - dev-python/six
+        - dev-python/setuptools_scm
+        - dev-python/ssl-fetch
+        - dev-python/sqlalchemy
+        - dev-python/sphinx
+        - dev-python/sphinx_rtd_theme
+        - dev-python/sphinxcontrib-applehelp
+        - dev-python/sphinxcontrib-devhelp
+        - dev-python/sphinxcontrib-qthelp
+        - dev-python/sphinxcontrib-htmlhelp
+        - dev-python/sphinxcontrib-jsmath
+        - dev-python/sphinxcontrib-websupport
+        - dev-python/sphinxcontrib-serializinghtml
+        - dev-python/snoballstemmer
         - dev-python/strict-rfc3339
-        - dev-python/pyyaml
-        - dev-python/cached-property
+        - dev-python/typing
         - dev-python/texttable
+        - dev-python/urllib3
+        - dev-python/vcversioner
+        - dev-python/zope-interface
+        - dev-python/Babel
+        - dev-python/PySocks
         - app-portage/layman
         - virtual/python-ipaddress
+        - virtual/python-typing
+        - virtual/python-enum
         - virtual/tmpfiles
+        - virtual/awk
+        - virtual/blas
+        - virtual/fortran
+        - virtual/jpeg
         - app-admin/sudo
+        - app-admin/system-tools-backends
         - app-text/poppler::sabayon-distro
         - app-text/poppler-base::sabayon-distro
-        - virtual/perl-Archive-Tar
+        - app-text/poppler-data::sabayon-distro
     staging10:
       target:
         - dev-util/ctags
@@ -397,16 +450,45 @@ values:
         - app-eselect/eselect-vi
         - app-editors/nano
         - media-libs/audiofile
+        - media-libs/libpng
+        - media-libs/libquvi
+        - media-libs/freetype
+        - media-libs/libjpeg-turbo
+        - media-libs/libogg
+        - media-libs/libpng
+        - media-libs/fontconfig
+        - media-libs/lcms
+        - media-libs/libsndfile
+        - media-libs/libsamplerate
+        - media-libs/openjpeg
+        - media-libs/raptor
+        - media-libs/flac
+        - media-libs/giflib
+        - media-libs/jbig2dec
+        - media-libs/libjpeg-turbo
+        - media-libs/libquvi-scripts
+        - media-libs/tiff
+        - media-libs/flac
+        - media-libs/libvorbis
         - app-xemacs/xemacs-base
         - app-editors/xemacs
+        - app-vim/gentoo-syntax
         - app-vim/salt-vim
         - app-vim/vimpython
         - app-eselect/eselect-python
+        - app-eselect/eselect-blas
+        - app-eselect/eselect-emacs
+        - app-eselect/eselect-fontconfig
+        - app-eselect/eselect-postgresql
     staging11:
       target:
         - sys-apps/dmidecode
         - sys-apps/keyboard-configuration-helpers
         - sys-apps/pciutils
+        - sys-apps/tcp-wrappers
+        - sys-apps/baselayout-java
+        - sys-apps/keyutils
+        - sys-apps/pcsc-lite
     staging12:
       target:
         - dev-go/go-md2man
@@ -426,6 +508,11 @@ values:
         - app-text/docbook-dsssl-stylesheets
         - app-text/po4a
         - app-text/sgml-common
+        - app-text/scrollkeeper-dtd
+        - app-text/texi2html
+        - app-text/ghostscript-gpl
+        - app-text/hunspell
+        - app-text/libpaper
     staging14:
       target:
         - dev-util/pkgconfig
@@ -445,76 +532,83 @@ values:
         - sys-process/tini
         - sys-process/tiptop
         - virtual/daemontools
+        - virtual/krb5
         - app-misc/screen
     staging15:
       target:
-        - dev-perl/Socket6
-        - dev-perl/Types-Serialiser
+        - dev-perl/App-Cmd
+        - dev-perl/Authen-SASL
+        - dev-perl/Canary-Stability
+        - dev-perl/Capture-Tiny
+        - dev-perl/Class-Load
+        - dev-perl/Data-OptList
+        - dev-perl/Digest-HMAC
+        - dev-perl/Dist-CheckConflicts
+        - dev-perl/DBI
+        - dev-perl/DBD-SQLite
         - dev-perl/Encode-Locale
         - dev-perl/Error
         - dev-perl/File-Listing
+        - dev-perl/Getopt-Long-Descriptive
+        - dev-perl/HTML-Tagset
+        - dev-perl/HTTP-Cookies
+        - dev-perl/HTTP-Daemon
+        - dev-perl/HTTP-Date
+        - dev-perl/HTML-Parser
+        - dev-perl/HTTP-Message
+        - dev-perl/HTTP-Negotiate
+        - dev-perl/IO-HTML
+        - dev-perl/IO-TieCombine
         - dev-perl/IO-Socket-SSL
+        - dev-perl/IO-Socket-INET6
+        - dev-perl/JSON
+        - dev-perl/JSON-XS
+        - dev-perl/Locale-gettext
+        - dev-perl/LWP-MediaTypes
+        - dev-perl/LWP-Protocol-https
+        - dev-perl/YAML-Tiny
+        - dev-perl/MIME-Charset
         - dev-perl/Module-Runtime
         - dev-perl/Net-HTTP
-        - dev-perl/Class-Load
-        - dev-perl/Getopt-Long-Descriptive
-        - dev-perl/IO-TieCombine
-        - dev-perl/Unicode-EastAsianWidth
-        - dev-perl/HTTP-Cookies
-        - dev-perl/IO-Socket-INET6
-        - dev-perl/LWP-MediaTypes
+        - dev-perl/Net-DBus
         - dev-perl/Package-Stash-XS
-        - dev-perl/SGMLSpm
-        - dev-perl/Module-Pluggable
-        - dev-perl/TimeDate
-        - dev-perl/Canary-Stability
-        - dev-perl/Data-OptList
-        - dev-perl/HTML-Tagset
-        - dev-perl/IO-HTML
         - dev-perl/Package-Stash
-        - dev-perl/Try-Tiny
-        - dev-perl/LWP-Protocol-https
-        - dev-perl/Module-Build
-        - dev-perl/Sub-Install
-        - dev-perl/XML-Parser
-        - dev-perl/Dist-CheckConflicts
-        - dev-perl/HTTP-Daemon
         - dev-perl/Params-Util
-        - dev-perl/App-Cmd
-        - dev-perl/HTTP-Date
-        - dev-perl/MIME-Charset
-        - dev-perl/URI
-        - dev-perl/HTML-Parser
         - dev-perl/Params-Validate
-        - dev-perl/Sort-Versions
-        - dev-perl/String-RewritePrefix
-        - dev-perl/WWW-RobotRules
-        - dev-perl/Authen-SASL
-        - dev-perl/Digest-HMAC
-        - dev-perl/Locale-gettext
-        - dev-perl/Text-Unidecode
-        - dev-perl/Text-WrapI18N
+        - dev-perl/PlRPC
+        - dev-perl/MailTools
+        - dev-perl/Module-Build
+        - dev-perl/Module-Implementation
+        - dev-perl/Module-Pluggable
         - dev-perl/Net-Daemon
         - dev-perl/Net-SSLeay
-        - dev-perl/Text-CharWidth
-        - dev-perl/Unicode-LineBreak
-        - dev-perl/PlRPC
-        - dev-perl/Sub-Exporter
-        - dev-perl/Capture-Tiny
-        - dev-perl/DBI
-        - dev-perl/HTTP-Negotiate
-        - dev-perl/Module-Implementation
-        - dev-perl/YAML-Tiny
-        - dev-perl/DBD-SQLite
         - dev-perl/Net-SMTP-SSL
+        - dev-perl/SGMLSpm
+        - dev-perl/Sub-Install
+        - dev-perl/TimeDate
+        - dev-perl/Try-Tiny
+        - dev-perl/XML-Parser
+        - dev-perl/XML-Twig
+        - dev-perl/XML-XPath
+        - dev-perl/Sort-Versions
+        - dev-perl/String-RewritePrefix
+        - dev-perl/Sub-Exporter
+        - dev-perl/Socket6
         - dev-perl/Sub-Name
-        - dev-perl/JSON
+        - dev-perl/Text-CharWidth
+        - dev-perl/Text-Iconv
+        - dev-perl/Text-Unidecode
+        - dev-perl/Text-WrapI18N
+        - dev-perl/Tie-IxHash
+        - dev-perl/Types-Serialiser
+        - dev-perl/URI
+        - dev-perl/Unicode-EastAsianWidth
+        - dev-perl/Unicode-LineBreak
+        - dev-perl/WWW-RobotRules
         - dev-perl/common-sense
         - dev-perl/libwww-perl
-        - dev-perl/HTTP-Message
-        - dev-perl/JSON-XS
-        - dev-perl/MailTools
         - perl-core/File-Temp
+        - virtual/perl-Archive-Tar
         - virtual/perl-CPAN-Meta
         - virtual/perl-CPAN-Meta-YAML
         - virtual/perl-Carp
@@ -549,6 +643,7 @@ values:
         - virtual/perl-Test-Harness
         - virtual/perl-Text-ParseWords
         - virtual/perl-Time-Local
+        - virtual/perl-Time-HiRes
         - virtual/perl-XSLoader
         - virtual/perl-if
         - virtual/perl-libnet
@@ -557,10 +652,30 @@ values:
         - virtual/perl-version
     staging16:
       target:
+        - app-crypt/gcr
         - app-crypt/gpgme
         - app-crypt/libb2
         - app-crypt/argon2
+        - app-crypt/mhash
+        - app-crypt/mit-krb5
+        - app-crypt/p11-kit
         - dev-util/desktop-file-utils
         - dev-util/ninja
         - dev-util/re2c
         - app-misc/editor-wrapper
+        - sci-libs/lapack
+        - sci-libs/blas-reference
+        - sci-libs/buddy
+    staging17:
+      target:
+        - dev-java/toolkit
+        - dev-db/lmdb
+        - dev-db/postgresql
+        - dev-scheme/guile-lib
+        - dev-lua/LuaBitOp
+        - dev-lua/lpeg
+        - dev-lua/luaexpat
+        - dev-lua/luajson
+        - dev-lua/luasocket
+        - dev-cpp/glibmm
+        - dev-cpp/libxmlpp

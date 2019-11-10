@@ -82,9 +82,25 @@ build:
 
   target:
     
-    - dev-perl/Socket6
+    - dev-perl/App-Cmd
     
-    - dev-perl/Types-Serialiser
+    - dev-perl/Authen-SASL
+    
+    - dev-perl/Canary-Stability
+    
+    - dev-perl/Capture-Tiny
+    
+    - dev-perl/Class-Load
+    
+    - dev-perl/Data-OptList
+    
+    - dev-perl/Digest-HMAC
+    
+    - dev-perl/Dist-CheckConflicts
+    
+    - dev-perl/DBI
+    
+    - dev-perl/DBD-SQLite
     
     - dev-perl/Encode-Locale
     
@@ -92,129 +108,125 @@ build:
     
     - dev-perl/File-Listing
     
+    - dev-perl/Getopt-Long-Descriptive
+    
+    - dev-perl/HTML-Tagset
+    
+    - dev-perl/HTTP-Cookies
+    
+    - dev-perl/HTTP-Daemon
+    
+    - dev-perl/HTTP-Date
+    
+    - dev-perl/HTML-Parser
+    
+    - dev-perl/HTTP-Message
+    
+    - dev-perl/HTTP-Negotiate
+    
+    - dev-perl/IO-HTML
+    
+    - dev-perl/IO-TieCombine
+    
     - dev-perl/IO-Socket-SSL
+    
+    - dev-perl/IO-Socket-INET6
+    
+    - dev-perl/JSON
+    
+    - dev-perl/JSON-XS
+    
+    - dev-perl/Locale-gettext
+    
+    - dev-perl/LWP-MediaTypes
+    
+    - dev-perl/LWP-Protocol-https
+    
+    - dev-perl/YAML-Tiny
+    
+    - dev-perl/MIME-Charset
     
     - dev-perl/Module-Runtime
     
     - dev-perl/Net-HTTP
     
-    - dev-perl/Class-Load
-    
-    - dev-perl/Getopt-Long-Descriptive
-    
-    - dev-perl/IO-TieCombine
-    
-    - dev-perl/Unicode-EastAsianWidth
-    
-    - dev-perl/HTTP-Cookies
-    
-    - dev-perl/IO-Socket-INET6
-    
-    - dev-perl/LWP-MediaTypes
+    - dev-perl/Net-DBus
     
     - dev-perl/Package-Stash-XS
     
-    - dev-perl/SGMLSpm
-    
-    - dev-perl/Module-Pluggable
-    
-    - dev-perl/TimeDate
-    
-    - dev-perl/Canary-Stability
-    
-    - dev-perl/Data-OptList
-    
-    - dev-perl/HTML-Tagset
-    
-    - dev-perl/IO-HTML
-    
     - dev-perl/Package-Stash
-    
-    - dev-perl/Try-Tiny
-    
-    - dev-perl/LWP-Protocol-https
-    
-    - dev-perl/Module-Build
-    
-    - dev-perl/Sub-Install
-    
-    - dev-perl/XML-Parser
-    
-    - dev-perl/Dist-CheckConflicts
-    
-    - dev-perl/HTTP-Daemon
     
     - dev-perl/Params-Util
     
-    - dev-perl/App-Cmd
-    
-    - dev-perl/HTTP-Date
-    
-    - dev-perl/MIME-Charset
-    
-    - dev-perl/URI
-    
-    - dev-perl/HTML-Parser
-    
     - dev-perl/Params-Validate
     
-    - dev-perl/Sort-Versions
+    - dev-perl/PlRPC
     
-    - dev-perl/String-RewritePrefix
+    - dev-perl/MailTools
     
-    - dev-perl/WWW-RobotRules
+    - dev-perl/Module-Build
     
-    - dev-perl/Authen-SASL
+    - dev-perl/Module-Implementation
     
-    - dev-perl/Digest-HMAC
-    
-    - dev-perl/Locale-gettext
-    
-    - dev-perl/Text-Unidecode
-    
-    - dev-perl/Text-WrapI18N
+    - dev-perl/Module-Pluggable
     
     - dev-perl/Net-Daemon
     
     - dev-perl/Net-SSLeay
     
-    - dev-perl/Text-CharWidth
+    - dev-perl/Net-SMTP-SSL
     
-    - dev-perl/Unicode-LineBreak
+    - dev-perl/SGMLSpm
     
-    - dev-perl/PlRPC
+    - dev-perl/Sub-Install
+    
+    - dev-perl/TimeDate
+    
+    - dev-perl/Try-Tiny
+    
+    - dev-perl/XML-Parser
+    
+    - dev-perl/XML-Twig
+    
+    - dev-perl/XML-XPath
+    
+    - dev-perl/Sort-Versions
+    
+    - dev-perl/String-RewritePrefix
     
     - dev-perl/Sub-Exporter
     
-    - dev-perl/Capture-Tiny
-    
-    - dev-perl/DBI
-    
-    - dev-perl/HTTP-Negotiate
-    
-    - dev-perl/Module-Implementation
-    
-    - dev-perl/YAML-Tiny
-    
-    - dev-perl/DBD-SQLite
-    
-    - dev-perl/Net-SMTP-SSL
+    - dev-perl/Socket6
     
     - dev-perl/Sub-Name
     
-    - dev-perl/JSON
+    - dev-perl/Text-CharWidth
+    
+    - dev-perl/Text-Iconv
+    
+    - dev-perl/Text-Unidecode
+    
+    - dev-perl/Text-WrapI18N
+    
+    - dev-perl/Tie-IxHash
+    
+    - dev-perl/Types-Serialiser
+    
+    - dev-perl/URI
+    
+    - dev-perl/Unicode-EastAsianWidth
+    
+    - dev-perl/Unicode-LineBreak
+    
+    - dev-perl/WWW-RobotRules
     
     - dev-perl/common-sense
     
     - dev-perl/libwww-perl
     
-    - dev-perl/HTTP-Message
-    
-    - dev-perl/JSON-XS
-    
-    - dev-perl/MailTools
-    
     - perl-core/File-Temp
+    
+    - virtual/perl-Archive-Tar
     
     - virtual/perl-CPAN-Meta
     
@@ -283,6 +295,8 @@ build:
     - virtual/perl-Text-ParseWords
     
     - virtual/perl-Time-Local
+    
+    - virtual/perl-Time-HiRes
     
     - virtual/perl-XSLoader
     
