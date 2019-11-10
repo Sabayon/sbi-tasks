@@ -99,4 +99,16 @@ values:
     staging6:
       target:
         - www-client/links
+        - net-libs/glib-networking
+        - net-libs/http-parser
+        - net-libs/libproxy
+        - net-libs/libsoup
+        - net-libs/nghttp2
+        - net-libs/nodejs
+        - net-libs/liboauth
+        - net-libs/libpsl
+        - net-nds/c-ares
+        - net-nds/libidn
+        - net-nds/openldap
+        - dev-python/ipaddress
 
