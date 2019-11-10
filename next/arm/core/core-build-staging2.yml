@@ -112,6 +112,8 @@ build:
     
     - app-arch/bzip2
     
+    - app-arch/cpio
+    
     - app-arch/gzip
     
     - app-arch/tar
@@ -122,9 +124,15 @@ build:
     
     - app-arch/lz4
     
+    - app-arch/rpm2targz
+    
+    - app-arch/snappy
+    
     - app-arch/unzip
     
     - app-arch/zstd
+    
+    - app-arch/zip
     
     - app-crypt/gnupg
     
@@ -225,6 +233,8 @@ build:
     - sys-devel/patch
     
     - sys-devel/m4
+    
+    - sys-libs/binutils-libs
     
     - sys-libs/glibc
     
