@@ -50,6 +50,12 @@ build:
     
     - media-fonts/encodings
     
+    - media-fonts/liberation-fonts
+    
+    - media-fonts/urw-fonts
+    
+    - media-fonts/font-util
+    
     - x11-apps/mkfontdir
     
     - x11-apps/xauth
@@ -103,5 +109,7 @@ build:
     - x11-base/xorg-proto
     
     - x11-base/xorg-server
+    
+    - virtual/ttf-fonts
     
 

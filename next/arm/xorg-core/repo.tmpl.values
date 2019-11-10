@@ -19,6 +19,9 @@ values:
         - x11-libs/libXxf86vm
         - x11-libs/libxshmfence
         - media-fonts/encodings
+        - media-fonts/liberation-fonts
+        - media-fonts/urw-fonts
+        - media-fonts/font-util
         - x11-apps/mkfontdir
         - x11-apps/xauth
         - x11-apps/mesa-progs
@@ -46,6 +49,7 @@ values:
         - x11-apps/xinit
         - x11-base/xorg-proto
         - x11-base/xorg-server
+        - virtual/ttf-fonts
     staging2:
       target:
         - x11-drivers/xf86-input-evdev
