@@ -84,14 +84,18 @@ build:
     
     - sys-devel/llvm-common
     
-    - sys-devel/llvm
+    - sys-devel/llvm:8
     
-    - sys-devel/llvm:6
+    - sys-devel/llvm:9
     
     - sys-devel/clang-common
     
-    - sys-devel/clang
+    - sys-devel/clang:8
     
-    - sys-devel/clang-runtime
+    - sys-devel/clang:9
+    
+    - sys-devel/clang-runtime:8
+    
+    - sys-devel/clang-runtime:9
     
 

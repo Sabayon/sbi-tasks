@@ -323,7 +323,7 @@ values:
         - dev-util/indent
     staging5:
       target:
-        # It seems that with lxd LLVM is not compilable.
+        # Compilation of llvm require privileged container to avoid this error:
         #  * Unpacking parts of llvm-8.0.0.src.tar.xz ...
         #  tar: llvm-8.0.0.src/utils/vim/README: Cannot change ownership to uid 107418, gid 89939: Invalid argument
         #  tar: llvm-8.0.0.src/utils/vim/indent/llvm.vim: Cannot change ownership to uid 107418, gid 89939: Invalid argument
@@ -335,16 +335,18 @@ values:
         #  tar: llvm-8.0.0.src/utils/vim/ftdetect/llvm-lit.vim: Cannot change ownership to uid 107418, gid 89939: Invalid argument
         #  ....
         - sys-devel/llvm-common
-        - sys-devel/llvm
-        - sys-devel/llvm:6
+        - sys-devel/llvm:8
+        - sys-devel/llvm:9
 
         # Same issue for clang and LXD
         # tar: cfe-8.0.0.src/include/clang/Parse/RAIIObjectsForParser.h: Cannot change ownership to uid 107418, gid 89939: Invalid argument
         # tar: cfe-8.0.0.src/include/clang/Parse/Parser.h: Cannot change ownership to uid 107418, gid 89939: Invalid argument
         # tar: cfe-8.0.0.src/include/clang/Parse/LoopHint.h: Cannot change ownership to uid 107418, gid 89939: Invalid argument
         - sys-devel/clang-common
-        - sys-devel/clang
-        - sys-devel/clang-runtime
+        - sys-devel/clang:8
+        - sys-devel/clang:9
+        - sys-devel/clang-runtime:8
+        - sys-devel/clang-runtime:9
 
     staging6:
       target:
