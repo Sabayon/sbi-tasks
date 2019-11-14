@@ -1,0 +1,44 @@
+mirrors:
+
+  masters:
+    - http://mirror.de.sabayon.org/
+
+  slaves:
+    - http://best.sabayon.org/
+    - http://dl.sabayon.org/
+    - http://pkg.sabayon.org/
+
+    # Holland
+    - ftp://ftp.nluug.nl/pub/os/Linux/distr/sabayonlinux/
+    - http://www.dyingmuppet.nl/mirror/
+    # Equador
+    - http://mirror.cedia.org.ec/sabayon/
+    # Russia
+    - http://mirror.yandex.ru/sabayon/
+    # Italy
+    - http://sabayonlinux.mirror.garr.it/mirrors/sabayonlinux/
+    # Sweden
+    - http://mirror.ctrl-c.liu.se/sabayon/
+    - http://ftp.acc.umu.se/mirror/sabayon.org/
+    # US
+    - http://mirror.umd.edu/sabayonlinux/
+    # Brazil
+    - http://sabayon.c3sl.ufpr.br/
+    # Australia
+    - http://mirror.internode.on.net/pub/sabayon/
+    # Portugal
+    - http://ftp.rnl.ist.utl.pt/pub/sabayon/
+    # Greece
+    - http://ftp.cc.uoc.gr/mirrors/linux/SabayonLinux/
+    # Hungary
+    - http://ftp.fsn.hu/pub/linux/distributions/sabayon/
+    # Japan
+    - http://ftp.kddilabs.jp/Linux/packages/sabayonlinux/
+    - http://riksun.riken.go.jp/pub/Linux/sabayon/
+
+  slaves_outsync:
+    # US
+    - http://cross-lfs.sabayonlinux.org/
+    - http://mirror.clarkson.edu/sabayon/
+    # CZ
+    - http://mirror.dkm.cz/sabayon/
