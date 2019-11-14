@@ -2,7 +2,7 @@
 # Description: This task create files for check mirrors sync.
 
 name: "Infra: Mirrors Sync Status"
-image: sabayon/base-amd64
+image: sabayon/builder
 tag_namespace: "mirrors-status"
 artefact_path: /mirrors
 directory: /infra

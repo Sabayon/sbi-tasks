@@ -7,7 +7,8 @@ MIRROR_NAMESPACE="${MIRROR_NAMESPACE:-/sbi/mirrors-status}"
 NAMESPACE_PATH="${NAMESPACE_PATH:-/mirrors}"
 STATUS_FILE="${STATUS_FILE:-${NAMESPACE_PATH}/mirrors-status.json}"
 ORIGIN_NODE="${ORIGIN_NODE:-https://dispatcher.sabayon.org/sbi/namespace}"
-REPO_FILE="${REPO_FILE:-/etc/entropy/repositories.conf.d/entropy_sabayonlinux.org}"
+#REPO_FILE="${REPO_FILE:-/etc/entropy/repositories.conf.d/entropy_sabayonlinux.org}"
+REPO_FILE="${REPO_FILE:-./mirrors.yml}"
 
 log () {
   echo "========================================================="
@@ -17,7 +18,8 @@ log () {
 
 create_report_file () {
   # Retrieve list of our mirrors
-  local mirrors=`cat ${REPO_FILE} | grep ^pkg | awk '{ print $3 }'`
+  #local mirrors=`cat ${REPO_FILE} | grep ^pkg | awk '{ print $3 }'`
+  local mirrors=`cat cat ${REPO_FILE} | shyaml get-values mirrors.slaves`
   local mirror=""
   local mirror_status=""
   local mirror_ts=""
