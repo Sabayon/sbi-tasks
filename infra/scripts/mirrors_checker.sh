@@ -19,7 +19,7 @@ log () {
 create_report_file () {
   # Retrieve list of our mirrors
   #local mirrors=`cat ${REPO_FILE} | grep ^pkg | awk '{ print $3 }'`
-  local mirrors=`cat cat ${REPO_FILE} | shyaml get-values mirrors.slaves`
+  local mirrors=`cat ${REPO_FILE} | shyaml get-values mirrors.slaves`
   local mirror=""
   local mirror_status=""
   local mirror_ts=""
