@@ -5,40 +5,79 @@ mirrors:
 
   slaves:
     - http://best.sabayon.org/
+    # Sabayon Packages Continent-based Load Balancer
     - http://dl.sabayon.org/
     - http://pkg.sabayon.org/
 
     # Holland
+
+    # NLUUG, Holland
     - ftp://ftp.nluug.nl/pub/os/Linux/distr/sabayonlinux/
+
+    # dyingmuppet Mirror
     - http://www.dyingmuppet.nl/mirror/
+
     # Equador
     - http://mirror.cedia.org.ec/sabayon/
+
     # Russia
+
+    # Yandex Linux Mirror, Russian Federation
     - http://mirror.yandex.ru/sabayon/
+
     # Italy
     - http://sabayonlinux.mirror.garr.it/mirrors/sabayonlinux/
+
     # Sweden
     - http://mirror.ctrl-c.liu.se/sabayon/
     - http://ftp.acc.umu.se/mirror/sabayon.org/
+
     # US
+
+    # University of Maryland LUG, 1Gbit/sec, United States
     - http://mirror.umd.edu/sabayonlinux/
+
     # Brazil
+
+    # Instituto Federal de Educação, Ciência e Tecnologia do Cearà, Brazil
     - http://sabayon.c3sl.ufpr.br/
+
     # Australia
+
+    # Internode
     - http://mirror.internode.on.net/pub/sabayon/
+
     # Portugal
+
+    # Rede das Novas Licenciaturas - Instituto Superior Técnico, 1Gbit/sec, Portugal
     - http://ftp.rnl.ist.utl.pt/pub/sabayon/
+
     # Greece
+
+    # University of Crete, 1Gbit/sec, Greece
     - http://ftp.cc.uoc.gr/mirrors/linux/SabayonLinux/
+
     # Hungary
+
+    # Free Software Network, Hungary, 1Gbit/sec
     - http://ftp.fsn.hu/pub/linux/distributions/sabayon/
+
     # Japan
+
+     # KDDI R&D Laboratories Inc., Japan, 200Mbit/sec
     - http://ftp.kddilabs.jp/Linux/packages/sabayonlinux/
+
+    # RIKEN Nishina Center for research support, Japan, 1Gbit/sec
     - http://riksun.riken.go.jp/pub/Linux/sabayon/
 
   slaves_outsync:
+
     # US
     - http://cross-lfs.sabayonlinux.org/
     - http://mirror.clarkson.edu/sabayon/
+
     # CZ
+
+    # UPC Česká republika, a.s., 2Gbit/sec, Czech Republic
     - http://mirror.dkm.cz/sabayon/
+
