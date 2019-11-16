@@ -53,12 +53,12 @@ create_report_file () {
 
   echo "MIRRORS: $mirrors"
   for mirror in $mirrors ; do
-    if [ "$mirror" = "http://pkg.sabayon.org" ] ; then
+    if [ "$mirror" = "http://pkg.sabayon.org/" ] ; then
       echo "skip $mirror"
       continue
     fi
 
-    if [ "$mirror" = "http://dl.sabayon.org" ] ; then
+    if [ "$mirror" = "http://dl.sabayon.org/" ] ; then
       # This is skipped because redirect over mirrors
       echo "skip $mirror"
       continue
