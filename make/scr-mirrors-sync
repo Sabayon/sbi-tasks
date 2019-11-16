@@ -1,0 +1,43 @@
+#!/bin/bash
+# Author: Daniele Rondina, geaaru@sabayonlinux.org
+
+if [ -n "$DEBUG" ] ; then
+  set -x
+fi
+
+ENMAN_DB_REPO=${ENMAN_DB_REPO:-../enman-db}
+MIRRORS_FILE="${MIRRORS_FILE:-./infra/mirrors.yml}"
+
+scr_repos=(
+  "devel"
+  "devel-9999"
+  "community"
+  "dotnet"
+  "elementary"
+  "geaaru"
+  "gaming-live"
+  "gnome-unstable"
+  "haskell"
+  "kdepim"
+  "kde-unstable"
+  "mudler"
+  "pentesting"
+  "ruby"
+  "rust"
+  "sihnon-common"
+  "sihnon-desktop"
+  "sihnon-server"
+  "zfs"
+)
+
+for repo in ${scr_repos[@]} ; do
+  echo "Syncing $repo mirrors..."
+  infra/scripts/sabayon-repo-generator \
+    --mirror-file ${MIRRORS_FILE} \
+    --descr "${repo} SCR Repository" \
+    --name "${repo}" \
+    --scr \
+    --to "${ENMAN_DB_REPO}/repositories/${repo}"
+done
+
+# vim: ts=2 sw=2 filetype=sh expandtab

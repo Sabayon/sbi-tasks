@@ -26,11 +26,13 @@ Usage:
 
 Examples:
 
-\$# sabayon-repo-generator --mirror-file mirrors.yaml --name sabayon-weekly \
-  --to /etc/entropy/repositories.conf.d/entropy_sabayon-weekly
+\$# sabayon-repo-generator --mirror-file mirrors.yaml --name sabayon-weekly \\
+  --to /etc/entropy/repositories.conf.d/entropy_sabayon-weekly \\
+  --descr \"Sabayon weekly Repository\"
 
-\$# sabayon-repo-generator --mirror-file mirrors.yaml --name devel \
-  --to /etc/entropy/repositories.conf.d/entropy_enman_devel
+\$# sabayon-repo-generator --mirror-file mirrors.yaml --name devel \\
+  --to /etc/entropy/repositories.conf.d/entropy_enman_devel \\
+  --descr \"Devel SCR Repository\"
 
 "
 
@@ -39,6 +41,7 @@ Examples:
 
 create_repofile () {
 
+  local i=0
   mirrors=$(cat $SAB_MIRROR_FILE | shyaml get-values mirrors.slaves)
 
   if [ $SAB_SCR -eq 0 ] ; then
@@ -49,8 +52,8 @@ create_repofile () {
 
 [${SAB_REPONAME}]
 desc = ${SAB_REPODESCR}
-repo = http://pkg.sabayon.org
 enabled =  true
+repo = http://pkg.sabayon.org
 
 " > ${SAB_TOFILE}
 
@@ -59,7 +62,29 @@ enabled =  true
       echo "pkg = ${m}/entropy" >> ${SAB_TOFILE} || return 1
     done
 
+  else
+
+    for m in ${mirrors} ; do
+
+      if [ $i -eq 0 ] ; then
+        echo "
+# Repository configuration file automatically generated
+# by sabayon-repo-generator script.
+
+[${SAB_REPONAME}]
+desc = ${SAB_REPODESCR}
+enabled =  true
+repo = ${m}/sbi/${SAB_REPONAME}/${SAB_REPONAME}#bz2
+
+" > ${SAB_TOFILE}
+
+        let i++ || true
+      fi
+
+      echo "pkg = ${m}/sbi/${m}/${m}" >> ${SAB_TOFILE} || return 1
+    done
   fi
+
 
   return 0
 }

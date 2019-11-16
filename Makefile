@@ -26,6 +26,7 @@ help:
 	@echo "                      (Only ARM for now)."
 	@echo "scr-tasks             Create all tasks YAML files (from templates) for "
 	@echo "                      SCR repos."
+	@echo "scr-mirrors-sync      Sync SCR mirrors files."
 	@echo "repo-compare-pkgs     Compare pkgs of repository with build files definition."
 	@echo "repo-compare-bins     Compare pkgs under binhost directory with build files"
 	@echo "                      definition."
@@ -43,6 +44,10 @@ repo-compare-bins:
 .PHONY: scr-tasks
 scr-tasks:
 	@make/scr-tasks
+
+.PHONY: scr-mirrors-sync
+scr-mirrors-sync:
+	@make/scr-mirrors-sync
 
 .PHONY: repo-create-pkgs
 repo-create-pkgs:
