@@ -65,7 +65,6 @@ create_report_file () {
     fi
 
     mirror_status="OUTSYNC"
-    mirror="${mirror/\/entropy//}"
 
     log "Elaborate Mirror: $mirror"
 
