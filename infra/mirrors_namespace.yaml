@@ -9,6 +9,7 @@ directory: /infra
 source: "https://github.com/Sabayon/sbi-tasks.git"
 type: docker
 script:
+  - source /etc/profile
   - chmod a+x scripts/mirrors_checker.sh
   - scripts/mirrors_checker.sh
   - eval 'rm -rf /mirrors/build_*.log || true'
