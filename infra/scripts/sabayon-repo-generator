@@ -1,0 +1,126 @@
+#!/bin/bash
+# Author: Daniele Rondina, geaaru@sabayonlinux.org
+
+set -e
+
+_error () {
+  echo "$@"
+  exit 1
+}
+
+_help () {
+  echo "
+------------------------------------
+Sabayon Repository File Generator
+Copyright (s) 2019 Sabayon
+------------------------------------
+
+Usage:
+
+[--mirror-file]            Mirror list file.
+[--descr]                  Repository Description.
+[--name]                   Repository Name.
+[--to file]                Target file
+[--scr]                    SCR repo.
+[--help|-h]                Help message.
+
+Examples:
+
+\$# sabayon-repo-generator --mirror-file mirrors.yaml --name sabayon-weekly \
+  --to /etc/entropy/repositories.conf.d/entropy_sabayon-weekly
+
+\$# sabayon-repo-generator --mirror-file mirrors.yaml --name devel \
+  --to /etc/entropy/repositories.conf.d/entropy_enman_devel
+
+"
+
+  return 1
+}
+
+create_repofile () {
+
+  mirrors=$(cat $SAB_MIRROR_FILE | shyaml get-values mirrors.slaves)
+
+  if [ $SAB_SCR -eq 0 ] ; then
+
+    echo "
+# Repository configuration file automatically generated
+# by sabayon-repo-generator script.
+
+[${SAB_REPONAME}]
+desc = ${SAB_REPODESCR}
+repo = http://pkg.sabayon.org
+enabled =  true
+
+" > ${SAB_TOFILE}
+
+    for m in ${mirrors} ; do
+
+      echo "pkg = ${m}/entropy" >> ${SAB_TOFILE} || return 1
+    done
+
+  fi
+
+  return 0
+}
+
+main () {
+  _parse_args() {
+
+    if [ $# -lt 1 ] ; then
+      _help
+      return 1
+    fi
+
+    SAB_MIRROR_FILE=""
+    SAB_REPODESCR=""
+    SAB_REPONAME=""
+    SAB_TOFILE=""
+    SAB_SCR=0
+
+    while [ $# -gt 0 ] ; do
+      case "$1" in
+        --help|-h)
+          _help || return 1
+          ;;
+        --mirror-file)
+          SAB_MIRROR_FILE=$2
+          shift
+          ;;
+        --descr)
+          SAB_REPODESCR=$2
+          shift
+          ;;
+        --name)
+          SAB_REPONAME=$2
+          shift
+          ;;
+        --to)
+          SAB_TOFILE=$2
+          shift
+          ;;
+        --scr)
+          SAB_SCR=1
+          ;;
+        *|--)
+          _error "Invalid parameter $1"
+          ;;
+      esac
+      shift
+    done
+
+    export SAB_MIRROR_FILE SAB_REPODESCR SAB_REPONAME SAB_TOFILE SAB_SCR
+    return 0
+  }
+
+  _parse_args "$@"
+
+  unset -f _parse_args
+
+  create_repofile
+
+  return 0
+}
+
+main "$@"
+exit $?
