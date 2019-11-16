@@ -74,7 +74,7 @@ repo = http://pkg.sabayon.org
 [${SAB_REPONAME}]
 desc = ${SAB_REPODESCR}
 enabled =  true
-repo = ${m}/sbi/${SAB_REPONAME}/${SAB_REPONAME}#bz2
+repo = ${m}sbi/${SAB_REPONAME}/${SAB_REPONAME}#bz2
 
 " > ${SAB_TOFILE}
 
