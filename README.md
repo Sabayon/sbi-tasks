@@ -41,9 +41,16 @@ repo-create-pkgs      Create task for force compilation of the packages
                       (Only ARM for now).
 scr-tasks             Create all tasks YAML files (from templates) for 
                       SCR repos.
+scr-mirrors-sync      Sync SCR mirrors files.
 repo-compare-pkgs     Compare pkgs of repository with build files definition.
 repo-compare-bins     Compare pkgs under binhost directory with build files
                       definition.
+```
+
+#### Sync Enman SCR mirrors
+
+```bash
+$# make scr-mirrors-sync
 ```
 
 #### Compare a specific repository with target build mission
