@@ -4,7 +4,8 @@ mirrors:
     - http://mirror.de.sabayon.org/
 
   slaves:
-    - http://best.sabayon.org/
+    # TO DROP
+    #- http://best.sabayon.org/
     # Sabayon Packages Continent-based Load Balancer
     - http://dl.sabayon.org/
     - http://pkg.sabayon.org/
