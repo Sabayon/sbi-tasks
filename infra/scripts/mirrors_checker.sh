@@ -37,7 +37,7 @@ create_report_file () {
   # Fetch MIRROR_NAMESPACE from every node and create datasource for web client.
   rm -f /tmp/mirror-timestamp || true
   local mres=0
-  wget -T 10 -t 5 -O /tmp/mirror-timestamp ${mirror}sbi/mirrors-status/MIRROR_DATETIME || {
+  wget -T 10 -t 5 -O /tmp/mirror-timestamp ${mirror}/sbi/mirrors-status/MIRROR_DATETIME || {
     log "ERROR: Mirror Out of sync."
     mirror_ts="OUTSYNC"
     mres=1
@@ -53,12 +53,12 @@ create_report_file () {
 
   echo "MIRRORS: $mirrors"
   for mirror in $mirrors ; do
-    if [ "$mirror" = "http://pkg.sabayon.org/" ] ; then
+    if [ "$mirror" = "http://pkg.sabayon.org" ] ; then
       echo "skip $mirror"
       continue
     fi
 
-    if [ "$mirror" = "http://dl.sabayon.org/" ] ; then
+    if [ "$mirror" = "http://dl.sabayon.org" ] ; then
       # This is skipped because redirect over mirrors
       echo "skip $mirror"
       continue
@@ -70,7 +70,7 @@ create_report_file () {
 
     # Fetch MIRROR_NAMESPACE from every node and create datasource for web client.
     rm -f /tmp/mirror-timestamp || true
-    wget -T 10 -t 5 -O /tmp/mirror-timestamp ${mirror}sbi/mirrors-status/MIRROR_DATETIME || {
+    wget -T 10 -t 5 -O /tmp/mirror-timestamp ${mirror}/sbi/mirrors-status/MIRROR_DATETIME || {
       log "ERROR: Mirror Out of sync."
       measures[$i]="{ \"mirror\": \"$mirror\", \"status\": \"$mirror_status\" }"
       let i++ || true
