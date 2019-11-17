@@ -1,6 +1,7 @@
 # Devel ARM Repository packages (splitted in staging tasks)
 values:
   TargetRepo: "devel-arm"
+  TargetLimboRepo: "devel-arm-limbo"
   TargetRepoName: "Devel"
   TargetPrefixRepo: "devel"
   ExpireDays: 5

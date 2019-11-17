@@ -6,6 +6,7 @@
 
 
 
+
 script:
   - source /etc/profile
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
@@ -20,7 +21,7 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/core-arm/core-arm
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/core-arm-limbo/core-arm
   - equo up && equo upgrade
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/dynlink-scanner -O /usr/bin/dynlink-scanner
@@ -81,6 +82,6 @@ name: "ARM Core Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/core"
 
-namespace: "core-arm,core-arm-staging1,core-arm-staging2,core-arm-staging3,core-arm-staging4,core-arm-staging5"
+namespace: "core-arm,core-arm-limbo-staging1,core-arm-limbo-staging2,core-arm-limbo-staging3,core-arm-limbo-staging4,core-arm-limbo-staging5"
 
-tag_namespace: core-arm
+tag_namespace: core-arm-limbo

@@ -136,6 +136,8 @@ build:
     
     - dev-lang/tk
     
+    - dev-lang/tcl
+    
     - dev-tcltk/expect
     
 

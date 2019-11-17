@@ -6,6 +6,7 @@
 
 
 
+
 script:
   - source /etc/profile
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
@@ -20,7 +21,7 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/net-arm/net-arm
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/net-arm-limbo/net-arm
   - equo up && equo upgrade
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/dynlink-scanner -O /usr/bin/dynlink-scanner
@@ -81,6 +82,6 @@ name: "ARM Net Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/net"
 
-namespace: "net-arm,net-arm-staging1,net-arm-staging2,net-arm-staging3,net-arm-staging4,net-arm-staging5,net-arm-staging6"
+namespace: "net-arm,net-arm-limbo-staging1,net-arm-limbo-staging2,net-arm-limbo-staging3,net-arm-limbo-staging4,net-arm-limbo-staging5,net-arm-limbo-staging6"
 
-tag_namespace: net-arm
+tag_namespace: net-arm-limbo

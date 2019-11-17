@@ -1,6 +1,7 @@
 # Base ARM Repository packages (splitted in staging tasks)
 values:
   TargetRepo: "base-arm"
+  TargetLimboRepo: "base-arm-limbo"
   TargetRepoName: "Base"
   TargetPrefixRepo: "base"
   ExpireDays: 5
@@ -90,6 +91,7 @@ values:
         - dev-lang/parrot
         - dev-lang/php
         - dev-lang/tk
+        - dev-lang/tcl
         - dev-tcltk/expect
     staging2:
       target:

@@ -1,6 +1,7 @@
 # Net ARM Repository packages (splitted in staging tasks)
 values:
   TargetRepo: "net-arm"
+  TargetLimboRepo: "net-arm-limbo"
   TargetRepoName: "Net"
   TargetPrefixRepo: "net"
   ExpireDays: 5

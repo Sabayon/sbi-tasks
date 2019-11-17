@@ -1,6 +1,7 @@
 {{ $target_repo := .TargetRepo }}{{ $target_repo_prefix := .TargetPrefixRepo }}
+{{ $target_repo_limbo := .TargetLimboRepo }}
 {{ $keys := getKeys .stagings | sort }}
-{{ $namespace_prefix := printf "%s%s" $target_repo "-" }}
+{{ $namespace_prefix := printf "%s%s" $target_repo_limbo "-" }}
 {{ $staging_namespaces := joinWithPrefix $keys "," $namespace_prefix }}
 {{ $bfiles_prefix := printf "%s%s" $target_repo_prefix "-build-" }}
 {{ $pkglist_bfiles := joinWithPrefixAndPostfix $keys " " $bfiles_prefix ".yml" }}
@@ -20,7 +21,7 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/{{ .TargetRepo }}/{{ .TargetRepo }}
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/{{ $target_repo_limbo }}/{{ $target_repo }}
   - equo up && equo upgrade
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/dynlink-scanner -O /usr/bin/dynlink-scanner
@@ -97,8 +98,8 @@ name: "ARM {{ .TargetRepoName }} Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/{{ .TargetPrefixRepo }}"
 {{ if .PkgsToRemove }}
-namespace: "{{ .TargetRepo }}"
+namespace: "{{ $target_repo_limbo }}"
 {{ else }}
 namespace: "{{ $injector_sources }}"
 {{ end }}
-tag_namespace: {{ .TargetRepo }}
+tag_namespace: {{ $target_repo_limbo }}

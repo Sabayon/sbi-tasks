@@ -1,6 +1,7 @@
 # Xorg Core ARM Repository packages (splitted in staging tasks)
 values:
   TargetRepo: "xorg-core-arm"
+  TargetLimboRepo: "xorg-core-arm-limbo"
   TargetRepoName: "Xorg-Core"
   TargetPrefixRepo: "xorg-core"
   ExpireDays: 5

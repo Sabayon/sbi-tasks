@@ -6,6 +6,7 @@
 
 
 
+
 script:
   - source /etc/profile
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
@@ -20,7 +21,7 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/sabayon-arm/sabayon-arm
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/sabayon-arm-limbo/sabayon-arm
   - equo up && equo upgrade
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/dynlink-scanner -O /usr/bin/dynlink-scanner
@@ -81,6 +82,6 @@ name: "ARM Sabayon Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/sabayon"
 
-namespace: "sabayon-arm,sabayon-arm-staging1,sabayon-arm-staging2,sabayon-arm-staging3"
+namespace: "sabayon-arm,sabayon-arm-limbo-staging1,sabayon-arm-limbo-staging2,sabayon-arm-limbo-staging3"
 
-tag_namespace: sabayon-arm
+tag_namespace: sabayon-arm-limbo

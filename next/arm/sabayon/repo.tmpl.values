@@ -1,6 +1,7 @@
 # Sabayon ARM Repository packages (splitted in staging tasks)
 values:
   TargetRepo: "sabayon-arm"
+  TargetLimboRepo: "sabayon-arm-limbo"
   TargetRepoName: "Sabayon"
   TargetPrefixRepo: "sabayon"
   ExpireDays: 5
