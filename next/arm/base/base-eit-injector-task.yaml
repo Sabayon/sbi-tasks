@@ -82,6 +82,6 @@ name: "ARM Base Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/base"
 
-namespace: "base-arm,base-arm-limbo-staging1,base-arm-limbo-staging10,base-arm-limbo-staging11,base-arm-limbo-staging12,base-arm-limbo-staging13,base-arm-limbo-staging14,base-arm-limbo-staging15,base-arm-limbo-staging16,base-arm-limbo-staging17,base-arm-limbo-staging2,base-arm-limbo-staging3,base-arm-limbo-staging4,base-arm-limbo-staging5,base-arm-limbo-staging6,base-arm-limbo-staging7,base-arm-limbo-staging8,base-arm-limbo-staging9"
+namespace: "base-arm-limbo,base-arm-staging1,base-arm-staging10,base-arm-staging11,base-arm-staging12,base-arm-staging13,base-arm-staging14,base-arm-staging15,base-arm-staging16,base-arm-staging17,base-arm-staging2,base-arm-staging3,base-arm-staging4,base-arm-staging5,base-arm-staging6,base-arm-staging7,base-arm-staging8,base-arm-staging9"
 
 tag_namespace: base-arm-limbo

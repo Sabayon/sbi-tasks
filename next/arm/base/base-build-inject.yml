@@ -6,47 +6,175 @@ build:
 
       unmask:
 
-        - sci-libs/buddy
+        - app-editors/xemacs
 
-        - dev-lang/moarvm
+        - app-vim/salt-vim
 
-        - dev-lang/c-intercal
+        - app-vim/vimpython
+
+        - app-xemacs/xemacs-base
 
         - dev-lang/bas
 
-        - dev-lang/nqp
+        - dev-lang/cfortran
 
-        - dev-lang/lisaac
+        - dev-lang/c-intercal
 
-        - dev-lang/icon
-
-        - dev-lang/maude
-
-        - dev-lang/gforth
-
-        - dev-lang/R
-
-        - dev-lang/inform
-
-        - dev-lang/parrot
-
-        - dev-lang/nasm
+        - dev-lang/f2c
 
         - dev-lang/ferite
 
-        - dev-libs/ffcall
+        - dev-lang/gforth
 
-        - dev-libs/libf2c
+        - dev-lang/icon
 
-        - dev-libs/libbrahe
+        - dev-lang/inform
 
-        - dev-libs/libg15
+        - dev-lang/lisaac
 
-        - dev-libs/libbson
+        - dev-lang/logtalk
+
+        - dev-lang/maude
+
+        - dev-lang/moarvm
+
+        - dev-lang/nasm
+
+        - dev-lang/nqp
+
+        - dev-lang/parrot
+
+        - dev-lang/R
+
+        - dev-libs/389-adminutil
+
+        - dev-libs/argtable
+
+        - dev-libs/cdk
+
+        - dev-libs/cgicc
+
+        - dev-libs/cvector
 
         - dev-libs/cxxtools
 
+        - dev-libs/cyberjack
+
+        - dev-libs/d0_blind_id
+
+        - dev-libs/darts
+
+        - dev-libs/elfio
+
+        - dev-libs/ferrisloki
+
+        - dev-libs/ffcall
+
+        - dev-libs/gf2x
+
+        - dev-libs/g-wrap
+
+        - dev-libs/http-fetcher
+
+        - dev-libs/iksemel
+
+        - dev-libs/jthread
+
+        - dev-libs/legousbtower
+
+        - dev-libs/libax25
+
+        - dev-libs/libbrahe
+
+        - dev-libs/libbson
+
+        - dev-libs/libbulletml
+
+        - dev-libs/libdivsufsort
+
+        - dev-libs/libdnsres
+
+        - dev-libs/libdshconfig
+
+        - dev-libs/libezV24
+
+        - dev-libs/libf2c
+
+        - dev-libs/libg15
+
+        - dev-libs/libg15render
+
+        - dev-libs/libhome
+
+        - dev-libs/liblazy
+
+        - dev-libs/libmba
+
+        - dev-libs/libmirage
+
+        - dev-libs/libmoe
+
+        - dev-libs/libofx
+
+        - dev-libs/libowfat
+
+        - dev-libs/libpqxx
+
+        - dev-libs/librep
+
+        - dev-libs/libsuinput
+
+        - dev-libs/libvformat
+
+        - dev-libs/libwbxml
+
+        - dev-libs/libx86emu
+
+        - dev-libs/maloc
+
+        - dev-libs/mongo-c-driver
+
+        - dev-libs/pslib
+
+        - dev-libs/rremove
+
+        - dev-libs/shhopt
+
+        - dev-libs/svrcore
+
+        - dev-libs/tntnet
+
+        - dev-libs/ucl
+
+        - dev-libs/ucommon
+
+        - dev-libs/udis86
+
+        - dev-libs/vanessa-adt
+
         - dev-libs/vanessa-logger
+
+        - dev-libs/xalan-c
+
+        - dev-libs/xplc
+
+        - dev-libs/zthread
+
+        - dev-perl/App-Cmd
+
+        - dev-perl/IO-TieCombine
+
+        - dev-perl/Sort-Versions
+
+        - dev-perl/String-RewritePrefix
+
+        - dev-python/cached-property
+
+        - dev-python/texttable
+
+        - dev-scheme/guile-lib
+
+        - sci-libs/buddy
 
 
 
