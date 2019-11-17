@@ -30,7 +30,7 @@ Examples:
   --to /etc/entropy/repositories.conf.d/entropy_sabayon-weekly \\
   --descr \"Sabayon weekly Repository\"
 
-\$# sabayon-repo-generator --mirror-file mirrors.yaml --name devel \\
+\$# sabayon-repo-generator --scr --mirror-file mirrors.yaml --name devel \\
   --to /etc/entropy/repositories.conf.d/entropy_enman_devel \\
   --descr \"Devel SCR Repository\"
 
