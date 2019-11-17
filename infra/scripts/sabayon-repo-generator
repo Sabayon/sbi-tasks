@@ -59,14 +59,25 @@ repo = http://pkg.sabayon.org
 
     for m in ${mirrors} ; do
 
-      echo "pkg = ${m}/entropy" >> ${SAB_TOFILE} || return 1
+      if [ "${m}" = "http://pkg.sabayon.org" ] ; then
+        echo "pkg = ${m}" >> ${SAB_TOFILE} || return 1
+      else
+        echo "pkg = ${m}/entropy" >> ${SAB_TOFILE} || return 1
+      fi
     done
 
   else
 
     for m in ${mirrors} ; do
 
+      if [ "${m}" = "http://pkg.sabayon.org" ] ; then
+        # pkg.sabayon.org is not for SCR
+        continue
+      fi
+
       if [ $i -eq 0 ] ; then
+# Until equo support 301/302 Moved permanently in repo section
+# i force Italy node.
         echo "
 # Repository configuration file automatically generated
 # by sabayon-repo-generator script.
@@ -74,14 +85,14 @@ repo = http://pkg.sabayon.org
 [${SAB_REPONAME}]
 desc = ${SAB_REPODESCR}
 enabled =  true
-repo = ${m}sbi/${SAB_REPONAME}/${SAB_REPONAME}#bz2
+repo = http://sabayonlinux.mirror.garr.it/mirrors/sabayonlinux/sbi/${SAB_REPONAME}/${SAB_REPONAME}#bz2
 
 " > ${SAB_TOFILE}
 
         let i++ || true
       fi
 
-      echo "pkg = ${m}sbi/${SAB_REPONAME}/${SAB_REPONAME}" >> ${SAB_TOFILE} || return 1
+      echo "pkg = ${m}/sbi/${SAB_REPONAME}/${SAB_REPONAME}" >> ${SAB_TOFILE} || return 1
     done
   fi
 
