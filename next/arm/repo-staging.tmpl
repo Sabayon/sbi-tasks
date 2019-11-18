@@ -28,6 +28,7 @@ script:
   # Temporary force build
   - sed -e 's/--update//g' -e 's/--newuse//g' {{ .TargetPrefixRepo }}-build-{{ .StagingPhase }}.yml -i
 {{ end }}
+  - sed -i /usr/lib64/python2.7/site-packages/yaml/__init__.py -e "s:load_warning('load'):# load_warning('load'):g" -e "s:load_warning('load_all'):# load_warning('load_all'):g" -e "s:raise RuntimeError:# raise RuntimeError:g"
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
   - mkdir artifacts/{{ .StagingPhase }}

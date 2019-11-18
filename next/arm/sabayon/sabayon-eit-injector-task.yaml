@@ -35,6 +35,7 @@ script:
   - chmod a+x /usr/bin/sark-localinjector
   - chmod a+x /usr/bin/pkgs-checker
   - chmod a+x /usr/bin/dynlink-scanner
+  - sed -i /usr/lib64/python2.7/site-packages/yaml/__init__.py -e "s:load_warning('load'):# load_warning('load'):g" -e "s:load_warning('load_all'):# load_warning('load_all'):g" -e "s:raise RuntimeError:# raise RuntimeError:g"
   - sark-localinjector
   - eval 'rm artifacts/build_*.log || true'
 environment:
@@ -82,6 +83,6 @@ name: "ARM Sabayon Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/sabayon"
 
-namespace: "sabayon-arm,sabayon-arm-limbo-staging1,sabayon-arm-limbo-staging2,sabayon-arm-limbo-staging3"
+namespace: "sabayon-arm-limbo,sabayon-arm-staging1,sabayon-arm-staging2,sabayon-arm-staging3"
 
 tag_namespace: sabayon-arm-limbo

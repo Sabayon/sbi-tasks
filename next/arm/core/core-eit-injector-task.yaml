@@ -35,6 +35,7 @@ script:
   - chmod a+x /usr/bin/sark-localinjector
   - chmod a+x /usr/bin/pkgs-checker
   - chmod a+x /usr/bin/dynlink-scanner
+  - sed -i /usr/lib64/python2.7/site-packages/yaml/__init__.py -e "s:load_warning('load'):# load_warning('load'):g" -e "s:load_warning('load_all'):# load_warning('load_all'):g" -e "s:raise RuntimeError:# raise RuntimeError:g"
   - sark-localinjector
   - eval 'rm artifacts/build_*.log || true'
 environment:
@@ -82,6 +83,6 @@ name: "ARM Core Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/core"
 
-namespace: "core-arm,core-arm-limbo-staging1,core-arm-limbo-staging2,core-arm-limbo-staging3,core-arm-limbo-staging4,core-arm-limbo-staging5"
+namespace: "core-arm-limbo,core-arm-staging1,core-arm-staging2,core-arm-staging3,core-arm-staging4,core-arm-staging5"
 
 tag_namespace: core-arm-limbo

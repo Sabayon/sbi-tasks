@@ -35,6 +35,7 @@ script:
   - chmod a+x /usr/bin/sark-localinjector
   - chmod a+x /usr/bin/pkgs-checker
   - chmod a+x /usr/bin/dynlink-scanner
+  - sed -i /usr/lib64/python2.7/site-packages/yaml/__init__.py -e "s:load_warning('load'):# load_warning('load'):g" -e "s:load_warning('load_all'):# load_warning('load_all'):g" -e "s:raise RuntimeError:# raise RuntimeError:g"
   - sark-localinjector
   - eval 'rm artifacts/build_*.log || true'
 environment:

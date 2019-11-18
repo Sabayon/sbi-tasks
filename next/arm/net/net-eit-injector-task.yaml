@@ -35,6 +35,7 @@ script:
   - chmod a+x /usr/bin/sark-localinjector
   - chmod a+x /usr/bin/pkgs-checker
   - chmod a+x /usr/bin/dynlink-scanner
+  - sed -i /usr/lib64/python2.7/site-packages/yaml/__init__.py -e "s:load_warning('load'):# load_warning('load'):g" -e "s:load_warning('load_all'):# load_warning('load_all'):g" -e "s:raise RuntimeError:# raise RuntimeError:g"
   - sark-localinjector
   - eval 'rm artifacts/build_*.log || true'
 environment:
@@ -82,6 +83,6 @@ name: "ARM Net Repo (injector)"
 source: https://github.com/Sabayon/sbi-tasks
 directory: "/next/arm/net"
 
-namespace: "net-arm,net-arm-limbo-staging1,net-arm-limbo-staging2,net-arm-limbo-staging3,net-arm-limbo-staging4,net-arm-limbo-staging5,net-arm-limbo-staging6"
+namespace: "net-arm-limbo,net-arm-staging1,net-arm-staging2,net-arm-staging3,net-arm-staging4,net-arm-staging5,net-arm-staging6"
 
 tag_namespace: net-arm-limbo
