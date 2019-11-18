@@ -1,6 +1,7 @@
 source: "https://github.com/Sabayon/sbi-tasks"
 environment:
 - LC_ALL=en_US.UTF-8
+- MOTTAINAI_CLI_GENERAL__CLIENT_TIMEOUT=100
 image: sabayon/base-amd64
 script:
   - equo up && ACCEPT_LICENSE=* equo i enman
