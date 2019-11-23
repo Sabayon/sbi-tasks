@@ -38,4 +38,4 @@ source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
 timeout: 0
 #planned: "0 0 1 * * *"
-
+planned: "@daily"
