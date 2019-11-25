@@ -32,6 +32,11 @@ clean_pipelines () {
     fi
 
     pipelineid=$(echo $i | sed -e 's:.*_::g')
+
+    if [ "$pipelineid" = "" ] ; then
+       # handle row with description text of the previous row"
+       continue
+    fi
     pdate=$(echo $i | sed -e 's:_.*::g')
     days=$(python -c "from datetime import datetime; print ((datetime.strptime('$nowdate', '%Y-%m-%d')-datetime.strptime('$pdate', '%Y-%m-%d')).days)")
 
@@ -97,10 +102,7 @@ main () {
 
   clean_tasks
 
-  # Temporary if until mottainai-cli is updated
-  if [ -n "${REMOVE_PIPELINES}" ] ; then
-    clean_pipelines
-  fi
+  clean_pipelines
 
   exit 0
 }
