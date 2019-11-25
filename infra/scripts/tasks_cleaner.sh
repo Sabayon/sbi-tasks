@@ -46,7 +46,7 @@ clean_pipelines () {
 
     if [ $days -gt ${RETENTION_PERIOD} ] ; then
       echo "Removing pipeline $pipelineid ($tdate - $days)"
-      mottainai-cli pipelineid remove $pipelineid
+      mottainai-cli pipeline remove $pipelineid
       let removed++ || true
     fi
 
