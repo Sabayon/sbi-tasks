@@ -19,6 +19,12 @@ build:
       # It seems that sometime dependencies calculation
       # doesn't catch all packages. I will investigate
       # split_install: 1
+{{ if .EquoRepositories }}
+    repositories:
+    {{ range $index, $r := .EquoRepositories }}
+      - {{ $r }}
+    {{ end }}
+{{ end }}
     package:
 {{ if .EquoPackageUnmask }}
       unmask:
