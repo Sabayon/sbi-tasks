@@ -13,6 +13,7 @@ build:
       # It seems that sometime dependencies calculation
       # doesn't catch all packages. I will investigate
       # split_install: 1
+
     package:
 
       unmask:
@@ -27,6 +28,11 @@ build:
 
         - dev-libs/vanessa-logger
 
+
+
+      install:
+
+        - dev-lang/swig
 
 
   qa_checks: 0

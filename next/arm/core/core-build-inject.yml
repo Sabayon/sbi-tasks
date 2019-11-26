@@ -18,6 +18,11 @@ build:
 
 
 
+      install:
+
+        - dev-lang/swig
+
+
 
 
 injector:

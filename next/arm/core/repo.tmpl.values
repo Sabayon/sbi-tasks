@@ -19,6 +19,8 @@ values:
     - dev-libs/libbson
     - dev-libs/cxxtools
     - dev-libs/vanessa-logger
+  EquoPackagesInstall:
+    - dev-lang/swig
   stagings:
     staging1:
       target:
