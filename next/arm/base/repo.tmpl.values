@@ -25,7 +25,12 @@ values:
       - base-build-staging15.yml
       - base-build-staging16.yml
       - base-build-staging17.yml
+  EquoRepositories:
+    - https://dispatcher.sabayon.org/sbi/namespace/xorg-core-arm/xorg-core-arm
+    - https://dispatcher.sabayon.org/sbi/namespace/net-arm/net-arm
   EquoPackageUnmask:
+    # Temporary until bump of 1.4.0-r1
+    - app-admin/enman
 
     - app-editors/xemacs
     - app-vim/salt-vim

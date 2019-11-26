@@ -6,6 +6,8 @@ build:
 
       unmask:
 
+        - app-admin/enman
+
         - app-editors/xemacs
 
         - app-vim/salt-vim

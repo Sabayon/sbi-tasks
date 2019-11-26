@@ -13,9 +13,19 @@ build:
       # It seems that sometime dependencies calculation
       # doesn't catch all packages. I will investigate
       # split_install: 1
+
+    repositories:
+    
+      - https://dispatcher.sabayon.org/sbi/namespace/xorg-core-arm/xorg-core-arm
+    
+      - https://dispatcher.sabayon.org/sbi/namespace/net-arm/net-arm
+    
+
     package:
 
       unmask:
+
+        - app-admin/enman
 
         - app-editors/xemacs
 
