@@ -19,6 +19,9 @@ build:
       # It seems that sometime dependencies calculation
       # doesn't catch all packages. I will investigate
       # split_install: 1
+{{ if .EquoSplitInstall }}
+      split_install: {{ .EquoSplitInstall }}
+{{ end }}
 {{ if .EquoRepositories }}
     repositories:
     {{ range $index, $r := .EquoRepositories }}
