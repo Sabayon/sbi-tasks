@@ -25,6 +25,7 @@ values:
       - base-build-staging15.yml
       - base-build-staging16.yml
       - base-build-staging17.yml
+  EquoSplitInstall: 1
   EquoRepositories:
     - https://dispatcher.sabayon.org/sbi/namespace/xorg-core-arm/xorg-core-arm
     - https://dispatcher.sabayon.org/sbi/namespace/net-arm/net-arm
