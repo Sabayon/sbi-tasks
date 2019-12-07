@@ -1,0 +1,40 @@
+name: "Convert Sabayon tree"
+image: sabayon/ci
+type: docker
+directory: "/bots/luet-tree"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+- export WORKDIR=$PWD
+- git clone https://github.com/mudler/luet /luet
+- pushd /luet
+- go build
+- mv luet /usr/bin/luet
+- popd
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+- git clone https://github.com/Sabayon/sabayon-distro /sabayon-distro
+- git clone https://github.com/Sabayon/for-gentoo /sabayon-distro/for-gentoo
+# Update user fork
+- bash -ex ../scripts/setup_git_repo.sh
+- pushd /root/repo
+- mkdir -p overlay-packages/sabayon
+- luet convert /sabayon-distro /root/repo/overlay-packages/sabayon
+- bash scripts/sanitize.sh
+- bash scripts/create_build.sh
+- git add --all .
+- git commit -m 'Sabayon distro snapshot'
+- popd
+# Create PRs
+- bash -ex ../scripts/create_pr.sh
+
+storage: "7287247578967654972"
+environment:
+- LUET_REPO=/root/repo/overlay-packages/sabayon
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:auto-maintainers/tree.git
+- UPSTREAM_REPO=git@github.com:Luet-lab/tree.git
+- WORK_BRANCH=convert

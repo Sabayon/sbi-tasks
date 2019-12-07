@@ -17,7 +17,10 @@ script:
 # Update user fork
 - bash -ex ../scripts/setup_git_repo.sh
 - pushd /root/repo
-- luet convert /gentoo /root/repo
+- mkdir -p overlay-packages/gentoo
+- luet convert /gentoo /root/repo/overlay-packages/gentoo
+- bash scripts/sanitize.sh
+- bash scripts/create_build.sh
 - git add --all .
 - git commit -m 'Gentoo snapshot'
 - popd
@@ -26,6 +29,7 @@ script:
 
 storage: "7287247578967654972"
 environment:
+- LUET_REPO=/root/repo/overlay-packages/gentoo
 - GIT_AUTHOR_NAME=MarvinHatesOceans
 - GIT_AUTHOR_EMAIL=github-bots@sabayon.com
 - GIT_COMMITTER_NAME=MarvinHatesOceans
@@ -33,4 +37,3 @@ environment:
 - FORK_REPO=git@github.com:auto-maintainers/tree.git
 - UPSTREAM_REPO=git@github.com:Luet-lab/tree.git
 - WORK_BRANCH=convert
-planned: "@daily"
