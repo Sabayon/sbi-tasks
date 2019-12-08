@@ -26,7 +26,7 @@ products:
     release_title: "Base"
     directory: sabayon-base
     prefix_path: "https://dispatcher.sabayon.org/sbi/namespace/lxd-sabayon-base"
-    days: 1
+    days: 2
     aliases:
       - "sabayon/base"
 
@@ -40,7 +40,7 @@ products:
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
     prefix_path: "https://dispatcher.sabayon.org/sbi/namespace/lxd-sabayon-builder"
-    days: 1
+    days: 2
     aliases:
       - "sabayon/builder"
 
@@ -54,7 +54,7 @@ products:
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
     prefix_path: "https://dispatcher.sabayon.org/sbi/namespace/lxd-sabayon-isobuilder"
-    days: 1
+    days: 2
     aliases:
       - "sabayon/iso-builder"
 
