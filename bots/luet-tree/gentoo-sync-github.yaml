@@ -27,7 +27,7 @@ script:
 - git add --all .
 - git commit -m "Gentoo snapshot $(date)"
 - git submodule add -f https://github.com/Luet-lab/tree parent
-- cd parent && git pull && cd ..
+- cd parent && git pull origin master && cd ..
 - git add parent
 - git commit -m "Update parent repository to $(date)"
 - git push -fv
