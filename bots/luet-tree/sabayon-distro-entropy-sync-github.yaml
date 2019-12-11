@@ -18,13 +18,13 @@ script:
 - git clone https://github.com/Sabayon/for-gentoo /sabayon-distro/for-gentoo
 - git clone --recurse-submodules git@github.com:Luet-lab/sabayon-entropy-tree.git /root/repo
 - pushd /root/repo
-- mkdir /root/repo/output
-- luet convert /sabayon-distro /root/repo/output
+- mkdir -p $DESTINATION
 - cp -rfv /luet-tree/scripts ./
-- bash scripts/sanitize.sh
-- bash scripts/create_build.sh
-- cp -rfv output/* /root/repo/
-- rm -rf /root/repo/output
+- cp -rfv /luet-tree/Makefile ./
+- cp -rfv /luet-tree/templates $DESTINATION
+- make generate
+- cp -rfv $DESTINATION/* /root/repo/
+- rm -rf $DESTINATION
 - git add --all .
 - git commit -m "Sabayon snapshot $(date)"
 - git submodule add -f https://github.com/Luet-lab/tree parent
@@ -36,7 +36,8 @@ script:
 storage: "7287247578967654972"
 environment:
 - PORTAGE_ARTIFACTS=true
-- LUET_REPO=/root/repo/output
+- OVERLAY=/sabayon-distro
+- DESTINATION=/root/repo/output
 - BUILD_LAYER_NAME=build-sabayon-overlays
 - GIT_AUTHOR_NAME=MarvinHatesOceans
 - GIT_AUTHOR_EMAIL=github-bots@sabayon.com
