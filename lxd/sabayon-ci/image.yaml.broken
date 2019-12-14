@@ -61,7 +61,7 @@ packages:
   update: true
   cleanup: true
   install:
-    - sabayon-live
+    - systemd
 
 actions:
   # Spinbase image doesn't include enman tool
