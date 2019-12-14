@@ -1,20 +1,18 @@
-name: "Build luet tree"
+name: "Build luet tree (over LXD)"
 image: sabayon/ci
-type: docker
+type: lxd
+queue: lxd
 directory: "/bots/luet-tree"
-
 script:
-- docker system prune --force --volumes --all
+# - docker system prune --force --volumes --all
+- systemctl start docker
 - equo up && ACCEPT_LICENSE=* equo i runc
 - curl -fSL "https://github.com/genuinetools/img/releases/download/v0.5.7/img-linux-amd64" -o /usr/bin/img
 - chmod +x /usr/bin/img
 - export WORKDIR=$PWD
 - curl -LO https://storage.googleapis.com/container-diff/latest/container-diff-linux-amd64 && chmod +x container-diff-linux-amd64 && mkdir -p $HOME/bin && sudo mv container-diff-linux-amd64 /usr/bin/container-diff
-- git clone https://github.com/mudler/luet /luet
-- pushd /luet
-- go build
-- mv luet /usr/bin/luet
-- popd
+- wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+- chmod a+x /usr/bin/luet
 - git clone https://github.com/luet-lab/tree /tree
 # Update user fork
 - pushd /tree
@@ -25,6 +23,6 @@ script:
 - pushd $WORKDIR/artefacts
 - rm -rfv *.image.tar build
 - luet create-repo --name "Luet tree" --tree /tree --type "http"
-- docker system prune --force --volumes --all
+# - docker system prune --force --volumes --all
 tag_namespace: "luet-tree"
 planned: "@daily"
