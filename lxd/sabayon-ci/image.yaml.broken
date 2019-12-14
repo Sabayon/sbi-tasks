@@ -7,7 +7,7 @@ image:
 source:
   downloader: docker-http
   # For docker is mandatory for now use 
-  url: sabayon/builder-amd64
+  url: sabayon/ci
 
 environment:
   clear_defaults: true
