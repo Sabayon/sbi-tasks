@@ -7,7 +7,6 @@ script:
   # temporary: Sleep for LXD
   - sleep 4
   - equo up
-  - equo install enman --relaxed
   - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
   # Distrobuilder is now under devel
   - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
@@ -25,10 +24,13 @@ script:
   - chmod a+rwx -R images/
   - find .
   - eval 'rm images/build_*.log || true'
-type: docker
-image: sabayon/base-amd64
+type: lxd
+image: sabayon/base
 name: "Build LXD sabayon/ci image"
 environment:
+  # For big image use of /tmp in RAM is not good.
+  - "TMPDIR=/distrobuilder"
+  - "CACHEDIR=/cache"
   - "LXD_PRODUCT=sabayon-ci:current:amd64:default"
   - "LXD_IMAGEDIR=sabayon-ci"
   - "SSBUILDER_PREFIX=../lxd-sabayon-ci"
@@ -38,4 +40,5 @@ tag_namespace: lxd-sabayon-ci
 artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
+queue: lxd
 timeout: 0
