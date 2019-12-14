@@ -1,0 +1,10 @@
+# Author: Sabayon Dev Team
+name: "Tests: Check docker in LXD"
+image: sabayon/builder
+type: lxd
+queue: lxd
+script:
+  - source /etc/profile
+  - systemctl start docker
+  - docker pull quay.io/luet/base
+  - docker run quay.io/luet/base
