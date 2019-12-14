@@ -1,0 +1,22 @@
+environment:
+  - ETP_NONINTERACTIVE=1
+  - "ACCEPT_LICENSE=*"
+image: sabayon/builder
+script:
+  - source /etc/profile
+  - equo up && equo i dev-lang/go
+  - mkdir go
+  - export GOPATH=$PWD/go
+  - export PATH="$PATH:$GOPATH/bin"
+  - WORKDIR=$PWD
+  - mkdir -p go/src/github.com/mudler
+  - git clone https://github.com/mudler/luet go/src/github.com/mudler/luet
+  - pushd go/src/github.com/mudler/luet
+  - make deps multiarch-build
+  - for i in release/luet-* ; do arch=$(echo $i | cut -d'-' -f 6) ; ln -s $(basename $i) release/luet-latest-linux-${arch}  ; done
+  - cp release/* $WORKDIR/artefacts/
+tag_namespace: luet-cross-bin
+name: "Luet devel dump"
+type: lxd
+queue: lxd
+planned: "@weekly"
