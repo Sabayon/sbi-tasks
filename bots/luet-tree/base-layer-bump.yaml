@@ -1,0 +1,33 @@
+name: "Bump base-layer in luet-tree"
+image: sabayon/ci
+type: docker
+directory: "/bots/luet-tree"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+- export WORKDIR=$PWD
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+- bash -ex ../scripts/setup_git_repo.sh
+- pushd /root/repo
+- make bump-base
+- git add .travis.yml
+- git commit -m "Update travis"
+- git add overlays/portage
+- git commit -m "Bump portage $(date)"
+- git add --all .
+- git commit -m "Bump base layer $(date)"
+- popd
+# Create PRs
+- bash -ex ../scripts/create_pr.sh
+
+storage: "7287247578967654972"
+environment:
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:auto-maintainers/tree.git
+- UPSTREAM_REPO=git@github.com:Luet-lab/tree.git
+- WORK_BRANCH=base-layer-bump
+planned: "@daily"
