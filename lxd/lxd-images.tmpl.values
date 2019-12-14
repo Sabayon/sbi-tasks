@@ -13,3 +13,8 @@ values:
         namespace: "lxd-sabayon-isobuilder"
         name: "sabayon/isobuilder"
         directory: "sabayon-isobuilder"
+    sabayon-ci:
+        namespace: "lxd-sabayon-ci"
+        name: "sabayon/ci"
+        directory: "sabayon-ci"
+

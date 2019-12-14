@@ -58,4 +58,17 @@ products:
     aliases:
       - "sabayon/iso-builder"
 
+  # Sabayon ci rootfs
+  - name: sabayon-ci:current:amd64:default
+    arch: amd64
+    release: current
+    os: Sabayon
+    release_title: "CI"
+    directory: sabayon-ci
+    # Path where retrieve images informations and files.
+    # This option is used by build-images-file
+    prefix_path: "https://dispatcher.sabayon.org/sbi/namespace/lxd-sabayon-ci"
+    days: 2
+    aliases:
+      - "sabayon/ci"
 
