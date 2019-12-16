@@ -11,8 +11,6 @@ script:
 - bash -ex ../scripts/setup_git_repo.sh
 - pushd /root/repo
 - make bump-base
-- git add .travis.yml
-- git commit -m "Update travis"
 - git add overlays/portage
 - git commit -m "Bump portage $(date)"
 - git add --all .
