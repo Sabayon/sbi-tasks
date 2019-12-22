@@ -37,9 +37,6 @@ mirrors:
 
     # US
 
-    # University of Maryland LUG, 1Gbit/sec, United States
-    - http://mirror.umd.edu/sabayonlinux
-
     # Brazil
 
     # Instituto Federal de Educação, Ciência e Tecnologia do Cearà, Brazil
@@ -83,4 +80,9 @@ mirrors:
 
     # UPC Česká republika, a.s., 2Gbit/sec, Czech Republic
     - http://mirror.dkm.cz/sabayon
+
+    # US
+
+    # University of Maryland LUG, 1Gbit/sec, United States
+    - http://mirror.umd.edu/sabayonlinux
 
