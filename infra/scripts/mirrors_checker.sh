@@ -18,6 +18,7 @@ log () {
 create_report_file () {
   # Retrieve list of our mirrors
   local mirrors=`cat ${MIRROR_FILE} | shyaml get-values mirrors.slaves`
+  local mirrors_out=`cat ${MIRROR_FILE} | shyaml get-values mirrors.slaves_outsync`
   local mirror=""
   local mirror_status=""
   local mirror_ts=""
@@ -64,6 +65,28 @@ create_report_file () {
       continue
     fi
 
+    mirror_status="OUTSYNC"
+
+    log "Elaborate Mirror: $mirror"
+
+    # Fetch MIRROR_NAMESPACE from every node and create datasource for web client.
+    rm -f /tmp/mirror-timestamp || true
+    wget -T 10 -t 5 -O /tmp/mirror-timestamp ${mirror}/sbi/mirrors-status/MIRROR_DATETIME || {
+      log "ERROR: Mirror Out of sync."
+      measures[$i]="{ \"mirror\": \"$mirror\", \"status\": \"$mirror_status\" }"
+      let i++ || true
+      continue
+    }
+
+    mirror_ts=$(cat /tmp/mirror-timestamp)
+    log "Mirror $mirror with timestamp $mirror_ts"
+
+    measures[$i]="{ \"mirror\": \"$mirror\", \"status\": \"$mirror_ts\" }"
+    let i++ || true
+  done
+
+  echo "MIRRORS OUT Sync: $mirrors_out"
+  for mirror in $mirrors_out ; do
     mirror_status="OUTSYNC"
 
     log "Elaborate Mirror: $mirror"
