@@ -1,4 +1,4 @@
-name: "Convert gentoo tree"
+name: "Luet: Create PR for Portage Gentoo tree"
 image: sabayon/ci
 type: docker
 directory: "/bots/luet-tree"

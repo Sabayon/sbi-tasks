@@ -1,4 +1,4 @@
-name: "Convert Sabayon tree"
+name: "Luet: Create Sync Pr for Sabayon tree"
 image: sabayon/ci
 type: docker
 directory: "/bots/luet-tree"

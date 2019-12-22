@@ -1,4 +1,4 @@
-name: "Convert sabayon tree"
+name: "Luet: Sync sabayon-distro to Sabayon Entropy Tree"
 image: sabayon/ci
 type: docker
 directory: "/bots/luet-tree"
