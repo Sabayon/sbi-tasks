@@ -39,7 +39,7 @@ environment:
   - SKIP_COMMIT=1
   # Pull is required for remove packages from repository. (SKIP_PULL=0)
   - SKIP_PULL=0
-  - "SAB_STAGING_BUILD_RESOURCES=geaaru-build-staging1.yml geaaru-build-staging2.yml"
+  - "SAB_STAGING_BUILD_RESOURCES=geaaru-build-staging1.yml geaaru-build-staging2.yml geaaru-build-staging3.yml"
 
   - SKIP_INJECT=0
 
@@ -48,7 +48,7 @@ environment:
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=master"
   - "REPOSITORY_DESCRIPTION=Geaaru AMD64 Sabayon Repository"
-  - "SAB_STAGING_DIRS=staging1 staging2"
+  - "SAB_STAGING_DIRS=staging1 staging2 staging3"
   - REPO_BINHOST_CLEAN=1
   - SAB_BUILDFILE=geaaru-build-inject.yml
   # Skip errors on process existing broken tarballs
@@ -70,6 +70,6 @@ name: "AMD64 Geaaru Repo (injector)"
 source: https://github.com/Sabayon/community-repositories/
 directory: geaaru
 
-namespace: "geaaru,geaaru-staging1,geaaru-staging2"
+namespace: "geaaru,geaaru-staging1,geaaru-staging2,geaaru-staging3"
 
 tag_namespace: geaaru
