@@ -6,6 +6,54 @@ set -x
 COMMUNITY_REPO=${COMMUNITY_REPO:-../community-repositories}
 SBITASKS_REPO=${SBITASKS_REPO:-https://github.com/Sabayon/sbi-tasks}
 
+create_luet_repo_amd64_files () {
+  local dir_repo=$1
+  local conf=$2
+  local taskdir=scr/${dir_repo}
+
+  local sourcegit="https://github.com/Sabayon/community-repositories/"
+  local sourcedir="/${dir_repo}"
+
+  local n_keys=$(cat $conf | shyaml keys values.stagings)
+
+  mkdir -p ${taskdir} || true
+
+  for i in $n_keys ; do
+    staging="$i"
+    # Create Luet target file
+    mottainai-cli task compile next/amd64/luet-targets.kernel-modules.tmpl \
+      -l ${conf} \
+      -s StagingPhase="${staging}" \
+      -o ${COMMUNITY_REPO}/${dir_repo}/luet-${staging}-targets
+
+    # Create Luet compile task
+    mottainai-cli task compile next/amd64/luet-entropy-staging.tmpl \
+      -l ${conf} \
+      -s LxdType=1 \
+      -s StagingPhase="${staging}" \
+      -o ${taskdir}/${dir_repo}-${staging}.yaml
+
+  done
+
+  # AMD64 Injector buildfile
+  inject_build_tmpl=next/amd64/repo-inject-build.tmpl
+  if [ -f ${COMMUNITY_REPO}/${dir_repo}/repo-inject-build.tmpl ] ; then
+    inject_build_tmpl=${COMMUNITY_REPO}/${dir_repo}/repo-inject-build.tmpl
+  fi
+
+  mottainai-cli task compile ${inject_build_tmpl} -l ${conf} \
+      -o ${COMMUNITY_REPO}/${dir_repo}/${dir_repo}-build-inject.yml
+
+  # AMD64 Injector task
+  mottainai-cli task compile next/amd64/repo-injector.tmpl \
+      -l ${conf} \
+      -s SourceGit="${sourcegit}" \
+      -s SourceDir="${dir_repo}" \
+      -o ${taskdir}/${dir_repo}-eit-injector-task.yaml
+
+  # TODO: create pipeline
+}
+
 create_repo_amd64_files () {
   local dir_repo=$1
   local conf=$2
@@ -72,5 +120,7 @@ create_repo_amd64_files "devel-kernel" "${COMMUNITY_REPO}/devel-kernel/repo.tmpl
 create_repo_amd64_files "devel-9999" "${COMMUNITY_REPO}/devel-9999/repo.tmpl.values"
 create_repo_amd64_files "community" "${COMMUNITY_REPO}/community/repo.tmpl.values"
 create_repo_amd64_files "geaaru" "${COMMUNITY_REPO}/geaaru/repo.tmpl.values"
+
+create_luet_repo_amd64_files "sabayon-kernels" "${COMMUNITY_REPO}/sabayon-kernels/repo.tmpl.values"
 
 # vim: ts=2 sw=2 filetype=sh expandtab

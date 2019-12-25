@@ -1,0 +1,48 @@
+{{ $staging := index .stagings .StagingPhase }}
+{{ $kernel_slot := .StagingPhase }}
+{{ $staging_keys := getKeys $staging }}
+{{ $hasEnvs := has "environments" $staging_keys }}
+script:
+  - source /etc/profile
+  - equo up && equo i runc
+  - curl -fSL "https://github.com/genuinetools/img/releases/download/v0.5.7/img-linux-amd64" -o /usr/bin/img
+  - chmod +x /usr/bin/img
+  - systemctl start docker
+  - export WORKDIR=$PWD
+  - curl -LO https://storage.googleapis.com/container-diff/latest/container-diff-linux-amd64 && chmod +x container-diff-linux-amd64 && mkdir -p $HOME/bin && sudo mv container-diff-linux-amd64 /usr/bin/container-diff
+  - wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+  - chmod a+x /usr/bin/luet
+  - git clone --recurse-submodules https://github.com/luet-lab/sabayon-entropy-tree /tree
+  # Update user fork
+  - pushd /tree
+  - mkdir build
+  # Compile repo targets
+  - make build
+  - mv build/* $WORKDIR/artefacts
+  - pushd $WORKDIR/artefacts
+  - rm -rfv *.image.tar build
+  - luet create-repo --name "{{ .TargetRepo }} Luet tree" --tree /tree --type "http"
+environment:
+  - SHELL=/bin/bash
+  - SABAYON_ARCH=amd64
+  - ETP_NONINTERACTIVE=1
+  - "TARGET=luet-{{ $kernel_slot }}-targets"
+  - "ACCEPT_LICENSE=*"
+{{ if $hasEnvs }}{{ $envs := index $staging "environments" }}
+{{ range $idx, $e := $envs }}
+  - "{{ $e }}"
+{{ end }}
+{{ end }}
+name: "AMD64 Luet {{ .TargetRepoName }} ({{ .TaskTarget }})"
+artefact_path: artifacts
+{{ if .LxdType }}
+image: sabayon/ci
+type: lxd
+{{ else }}
+image: sabayon/ci
+type: docker
+{{ end }}
+source: {{ if .SourceGit }}{{ .SourceGit }}{{ else }}https://github.com/Sabayon/sbi-tasks{{ end }}
+directory: {{ if .SourceDir }}{{ .SourceDir }}{{ else }}""{{ end }}
+queue: {{ if .Amd64Queue }}{{ .Amd64Queue }}{{ else }}"lxd"{{ end }}
+tag_namespace: {{ .TargetRepo }}-{{ .StagingPhase }}

@@ -1,0 +1,5 @@
+{{ $staging := index .stagings .StagingPhase }}
+{{ $kernel_slot := .StagingPhase | replace "-" "." }}{{ $commons := .commons  }}
+{{ $staging_keys := getKeys $staging }}
+{{ range $index, $t := $commons}}{{ $a := split "/" $t }}{{ $cat := $a._0 }}{{ $pn := $a._1 }}
+{{ $cat }}-{{ $kernel_slot }}/{{ $pn }}{{ end }}

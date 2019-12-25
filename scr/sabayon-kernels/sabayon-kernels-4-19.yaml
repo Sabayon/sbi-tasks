@@ -1,0 +1,41 @@
+
+
+
+
+script:
+  - source /etc/profile
+  - equo up && equo i runc
+  - curl -fSL "https://github.com/genuinetools/img/releases/download/v0.5.7/img-linux-amd64" -o /usr/bin/img
+  - chmod +x /usr/bin/img
+  - systemctl start docker
+  - export WORKDIR=$PWD
+  - curl -LO https://storage.googleapis.com/container-diff/latest/container-diff-linux-amd64 && chmod +x container-diff-linux-amd64 && mkdir -p $HOME/bin && sudo mv container-diff-linux-amd64 /usr/bin/container-diff
+  - wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+  - chmod a+x /usr/bin/luet
+  - git clone --recurse-submodules https://github.com/luet-lab/sabayon-entropy-tree /tree
+  # Update user fork
+  - pushd /tree
+  - mkdir build
+  # Compile repo targets
+  - make build
+  - mv build/* $WORKDIR/artefacts
+  - pushd $WORKDIR/artefacts
+  - rm -rfv *.image.tar build
+  - luet create-repo --name "sabayon-kernels Luet tree" --tree /tree --type "http"
+environment:
+  - SHELL=/bin/bash
+  - SABAYON_ARCH=amd64
+  - ETP_NONINTERACTIVE=1
+  - "TARGET=luet-4-19-targets"
+  - "ACCEPT_LICENSE=*"
+
+name: "AMD64 Luet Sabayon Kernels (<no value>)"
+artefact_path: artifacts
+
+image: sabayon/ci
+type: lxd
+
+source: https://github.com/Sabayon/sbi-tasks
+directory: ""
+queue: "lxd"
+tag_namespace: sabayon-kernels-4-19
