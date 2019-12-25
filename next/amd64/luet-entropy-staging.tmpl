@@ -17,6 +17,10 @@ script:
   - pushd /tree
   - mkdir build
   - cp $WORKDIR/luet-{{ $kernel_slot }}-targets .
+  - echo "============================================="
+  - echo "TARGETS:"
+  - cat luet-{{ $kernel_slot }}-targets
+  - echo "============================================="
   # Compile repo targets
   - make build
   - mv build/* $MOTTAINAI_ARTEFACT_PATH

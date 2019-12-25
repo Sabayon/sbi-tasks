@@ -17,6 +17,10 @@ script:
   - pushd /tree
   - mkdir build
   - cp $WORKDIR/luet-4-9-targets .
+  - echo "============================================="
+  - echo "TARGETS:"
+  - cat luet-4-9-targets
+  - echo "============================================="
   # Compile repo targets
   - make build
   - mv build/* $MOTTAINAI_ARTEFACT_PATH
