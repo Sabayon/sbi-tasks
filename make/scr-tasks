@@ -31,6 +31,8 @@ create_luet_repo_amd64_files () {
       -l ${conf} \
       -s LxdType=1 \
       -s StagingPhase="${staging}" \
+      -s SourceGit="${sourcegit}" \
+      -s SourceDir="${dir_repo}" \
       -o ${taskdir}/${dir_repo}-${staging}.yaml
 
   done

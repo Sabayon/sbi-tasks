@@ -16,10 +16,11 @@ script:
   # Update user fork
   - pushd /tree
   - mkdir build
+  - cp $WORKDIR/luet-{{ $kernel_slot }}-targets .
   # Compile repo targets
   - make build
-  - mv build/* $WORKDIR/artefacts
-  - pushd $WORKDIR/artefacts
+  - mv build/* $MOTTAINAI_ARTEFACT_PATH
+  - pushd $MOTTAINAI_ARTEFACT_PATH
   - rm -rfv *.image.tar build
   - luet create-repo --name "{{ .TargetRepo }} Luet tree" --tree /tree --type "http"
 environment:
@@ -33,7 +34,7 @@ environment:
   - "{{ $e }}"
 {{ end }}
 {{ end }}
-name: "AMD64 Luet {{ .TargetRepoName }} ({{ .TaskTarget }})"
+name: "AMD64 Luet {{ .TargetRepoName }} ({{ $kernel_slot }})"
 artefact_path: artifacts
 {{ if .LxdType }}
 image: sabayon/ci

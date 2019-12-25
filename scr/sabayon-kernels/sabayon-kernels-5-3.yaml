@@ -16,10 +16,11 @@ script:
   # Update user fork
   - pushd /tree
   - mkdir build
+  - cp $WORKDIR/luet-5-3-targets .
   # Compile repo targets
   - make build
-  - mv build/* $WORKDIR/artefacts
-  - pushd $WORKDIR/artefacts
+  - mv build/* $MOTTAINAI_ARTEFACT_PATH
+  - pushd $MOTTAINAI_ARTEFACT_PATH
   - rm -rfv *.image.tar build
   - luet create-repo --name "sabayon-kernels Luet tree" --tree /tree --type "http"
 environment:
@@ -35,7 +36,7 @@ artefact_path: artifacts
 image: sabayon/ci
 type: lxd
 
-source: https://github.com/Sabayon/sbi-tasks
-directory: ""
+source: https://github.com/Sabayon/community-repositories/
+directory: sabayon-kernels
 queue: "lxd"
 tag_namespace: sabayon-kernels-5-3
