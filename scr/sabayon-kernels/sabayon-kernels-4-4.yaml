@@ -29,7 +29,7 @@ environment:
   - "TARGET=luet-4-4-targets"
   - "ACCEPT_LICENSE=*"
 
-name: "AMD64 Luet Sabayon Kernels (<no value>)"
+name: "AMD64 Luet Sabayon Kernels (4-4)"
 artefact_path: artifacts
 
 image: sabayon/ci

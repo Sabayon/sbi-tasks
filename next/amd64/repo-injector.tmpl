@@ -74,6 +74,9 @@ environment:
 {{ end }}
   # Force remove of packages from repository after injection
   # - "TOREMOVE=app/foo"
+{{ if .LuetStaging }}
+  - "LUET_STAGING=1"
+{{ end }}
 {{ if .LxdType }}
 image: sabayon/builder
 type: lxd
