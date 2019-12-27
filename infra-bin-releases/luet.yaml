@@ -1,6 +1,7 @@
 environment:
   - ETP_NONINTERACTIVE=1
   - "ACCEPT_LICENSE=*"
+  - BRANCH=develop
 image: sabayon/builder
 script:
   - source /etc/profile
@@ -10,7 +11,7 @@ script:
   - export PATH="$PATH:$GOPATH/bin"
   - WORKDIR=$PWD
   - mkdir -p go/src/github.com/mudler
-  - git clone https://github.com/mudler/luet go/src/github.com/mudler/luet
+  - git clone https://github.com/mudler/luet go/src/github.com/mudler/luet -b $BRANCH
   - pushd go/src/github.com/mudler/luet
   - make deps multiarch-build
   - for i in release/luet-* ; do arch=$(echo $i | cut -d'-' -f 6) ; ln -s $(basename $i) release/luet-latest-linux-${arch}  ; done
