@@ -13,8 +13,8 @@ script:
 
    - docker login -u $DOCKER_USER -p $DOCKER_PASS
    - docker push sabayon/stage3-amd64:latest
-   - docker manifest create --amend sabayon/stage3:latest sabayon/base-amd64:latest
-   - docker manifest annotate sabayon/stage3:latest sabayon/base-amd64:latest --arch amd64 --os linux
+   - docker manifest create --amend sabayon/stage3:latest sabayon/stage3-amd64:latest
+   - docker manifest annotate sabayon/stage3:latest sabayon/stage3-amd64:latest --arch amd64 --os linux
    - docker manifest inspect sabayon/stage3:latest
    - docker manifest push --purge sabayon/stage3:latest
 type: lxd
