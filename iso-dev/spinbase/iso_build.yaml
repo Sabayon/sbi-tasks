@@ -23,6 +23,7 @@ environment:
   - "MOLECULE_ISO_TITLE=SABAYON"
   - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
   - "SABAYON_KERNEL_VERSION=5.4"
+  - "SABAYON_UPGRADE_REPO=sabayon-limbo"
 binds:
   - "/dev/loop-control:/dev/loop-control"
 retry: "5"

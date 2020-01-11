@@ -23,6 +23,7 @@
     "SABAYON_INSTALL_KERNEL=1",
     "MOLECULE_ISO_TITLE=SABAYON",
     "RAM=4096",
+    "SABAYON_UPGRADE_REPO=sabayon-limbo",
     "CPU=4"
   ],
   "queue": "virtualbox",
