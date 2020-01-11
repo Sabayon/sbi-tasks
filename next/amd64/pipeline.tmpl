@@ -13,12 +13,18 @@ concurrency: 3
 {{ $skip_inject := .SkipInject }}
 {{ $source_git := .SourceGit }}{{ $source_dir := .SourceDir }}
 {{ $expiry_days := .ExpireDays }}
+{{ if .Chain }}
+chain:
+{{ range $index, $staging := .stagings }}
+  - {{ $index }}{{ end }}
+  - injector
+{{ else }}
 group:
 {{ range $index, $staging := .stagings }}
   - {{ $index }}{{ end }}
-
 chord:
   - injector
+{{ end }}
 tasks:
 {{ range $index, $staging := .stagings }}
   {{ $index }}:
@@ -106,7 +112,7 @@ tasks:
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.6
       # Force py3.6 on eit
-      - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+      #- sed -e 's:python2.7:python:g' -i /usr/bin/eit
       - enman add https://dispatcher.sabayon.org/sbi/namespace/{{ $target_repo }}/{{ $target_repo }}
       - equo up && equo upgrade
       - sark-localinjector
