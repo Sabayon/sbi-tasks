@@ -13,12 +13,12 @@ concurrency: 3
 
 
 
-group:
+
+chain:
 
   - staging1
-
-chord:
   - injector
+
 tasks:
 
   staging1:
@@ -104,7 +104,7 @@ tasks:
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.6
       # Force py3.6 on eit
-      - sed -e 's:python2.7:python:g' -i /usr/bin/eit
+      #- sed -e 's:python2.7:python:g' -i /usr/bin/eit
       - enman add https://dispatcher.sabayon.org/sbi/namespace/devel-kernel/devel-kernel
       - equo up && equo upgrade
       - sark-localinjector

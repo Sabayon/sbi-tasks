@@ -1,6 +1,6 @@
 # Authors: Sabayon Team
 #          geaaru@sabayonlinux.org
-pipeline_name: "Repository AMD64 Devel 9999 Pipeline"
+pipeline_name: "Repository AMD64 Devel Pipeline"
 concurrency: 3
 
 
@@ -14,10 +14,11 @@ concurrency: 3
 
 
 
-chain:
+group:
 
   - staging1
   - staging2
+chord:
   - injector
 
 tasks:
@@ -40,7 +41,7 @@ tasks:
       - chmod a+x /usr/bin/sark-localbuild
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.6
-      - enman add https://dispatcher.sabayon.org/sbi/namespace/devel-9999/devel-9999
+      - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
       - equo up && equo upgrade
     
     
@@ -49,12 +50,12 @@ tasks:
       - sark-localbuild
       - eval 'rm artifacts/build_*.log || true'
       - mkdir artifacts/staging1
-      - mv artifacts/devel-9999-binhost/ artifacts/staging1/
+      - mv artifacts/devel-binhost/ artifacts/staging1/
     environment:
       - SHELL=/bin/bash
       - SABAYON_ARCH=amd64
-      - REPOSITORY_NAME=devel-9999
-      - SAB_BUILDFILE=devel-9999-build-staging1.yml
+      - REPOSITORY_NAME=devel
+      - SAB_BUILDFILE=devel-build-staging1.yml
       - ETP_NONINTERACTIVE=1
       # I need call emerge-webrsync at begin to retrive data for active profile.
       # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
@@ -67,16 +68,16 @@ tasks:
       - "PORTAGE_GIT_BRANCH=master"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "AMD64 Devel 9999 (Staging1)"
+    name: "AMD64 Devel (Staging1)"
     artefact_path: artifacts
     image: sabayon/builder
     
     type: docker
     
     source: https://github.com/Sabayon/community-repositories/
-    directory: devel-9999
+    directory: devel
     queue: ""
-    tag_namespace: devel-9999-staging1
+    tag_namespace: devel-staging1
 
   staging2:
     script:
@@ -96,7 +97,7 @@ tasks:
       - chmod a+x /usr/bin/sark-localbuild
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.6
-      - enman add https://dispatcher.sabayon.org/sbi/namespace/devel-9999/devel-9999
+      - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
       - equo up && equo upgrade
     
     
@@ -105,12 +106,12 @@ tasks:
       - sark-localbuild
       - eval 'rm artifacts/build_*.log || true'
       - mkdir artifacts/staging2
-      - mv artifacts/devel-9999-binhost/ artifacts/staging2/
+      - mv artifacts/devel-binhost/ artifacts/staging2/
     environment:
       - SHELL=/bin/bash
       - SABAYON_ARCH=amd64
-      - REPOSITORY_NAME=devel-9999
-      - SAB_BUILDFILE=devel-9999-build-staging2.yml
+      - REPOSITORY_NAME=devel
+      - SAB_BUILDFILE=devel-build-staging2.yml
       - ETP_NONINTERACTIVE=1
       # I need call emerge-webrsync at begin to retrive data for active profile.
       # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
@@ -123,16 +124,16 @@ tasks:
       - "PORTAGE_GIT_BRANCH=master"
       # Override list of targets for compile specific packages.
       # - OVERRIDE_BUILD_TARGET="app/foo"
-    name: "AMD64 Devel 9999 (Staging2)"
+    name: "AMD64 Devel (Staging2)"
     artefact_path: artifacts
     image: sabayon/builder
     
     type: docker
     
     source: https://github.com/Sabayon/community-repositories/
-    directory: devel-9999
+    directory: devel
     queue: ""
-    tag_namespace: devel-9999-staging2
+    tag_namespace: devel-staging2
 
 
   injector:
@@ -162,7 +163,7 @@ tasks:
       - eselect python set python3.6
       # Force py3.6 on eit
       #- sed -e 's:python2.7:python:g' -i /usr/bin/eit
-      - enman add https://dispatcher.sabayon.org/sbi/namespace/devel-9999/devel-9999
+      - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
       - equo up && equo upgrade
       - sark-localinjector
       - eval 'rm artifacts/build_*.log || true'
@@ -170,23 +171,23 @@ tasks:
       - SHELL=/bin/bash
       - SABAYON_ARCH=amd64
       - ETP_NONINTERACTIVE=1
-      - REPOSITORY_NAME=devel-9999
+      - REPOSITORY_NAME=devel
       - REPO_CLEAN_EXPIRE=1
       - REPO_CLEAN_EXPIRE_DAYS=1
       - SKIP_COMMIT=1
       # Pull is required for remove packages from repository. (SKIP_PULL=0)
       - SKIP_PULL=0
-      - "SAB_STAGING_BUILD_RESOURCES=devel-9999-build-staging1.yml devel-9999-build-staging2.yml"
+      - "SAB_STAGING_BUILD_RESOURCES=devel-build-staging1.yml devel-build-staging2.yml"
     
       - SKIP_INJECT=0
     
       - "ACCEPT_LICENSE=*"
       - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
       - "PORTAGE_GIT_BRANCH=master"
-      - "REPOSITORY_DESCRIPTION=Devel 9999 AMD64 Sabayon Repository"
+      - "REPOSITORY_DESCRIPTION=Devel AMD64 Sabayon Repository"
       - "SAB_STAGING_DIRS=staging1 staging2"
       - REPO_BINHOST_CLEAN=1
-      - SAB_BUILDFILE=devel-9999-build-inject.yml
+      - SAB_BUILDFILE=devel-build-inject.yml
       # Skip errors on process existing broken tarballs
       #- "PKGS_CHECKER_MAXCONCURRENCY=3"
       # Override pkgs-checker filter options
@@ -198,8 +199,8 @@ tasks:
     type: docker
     artefact_path: artifacts
     queue: ""
-    name: "AMD64 Devel 9999 Repo (injector)"
+    name: "AMD64 Devel Repo (injector)"
     source: https://github.com/Sabayon/community-repositories/
-    directory: devel-9999
-    namespace: "devel-9999,devel-9999-staging1,devel-9999-staging2"
-    tag_namespace: devel-9999
+    directory: devel
+    namespace: "devel,devel-staging1,devel-staging2"
+    tag_namespace: devel

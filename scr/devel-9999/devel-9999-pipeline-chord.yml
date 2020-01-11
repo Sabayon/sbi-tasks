@@ -14,10 +14,11 @@ concurrency: 3
 
 
 
-chain:
+group:
 
   - staging1
   - staging2
+chord:
   - injector
 
 tasks:
