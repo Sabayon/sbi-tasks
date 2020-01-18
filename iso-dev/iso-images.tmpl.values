@@ -19,3 +19,5 @@ values:
       name: "LxQT"
     tarball:
       name: "Tarball"
+    vidoe-editing:
+      name: "VideoEditing"
