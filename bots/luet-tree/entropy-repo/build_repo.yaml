@@ -1,4 +1,4 @@
-name: "Build luet-embedded repository"
+name: "Build luet-entropy repository"
 
 artefact_path: build
 cache_clean: "yes"
@@ -6,11 +6,8 @@ environment:
 - TREE=distro_amd64
 - LUET_GENERAL__DEBUG=true
 - LUET_GENERAL__SPINNER_MS=60000
-- "BUILD_ARGS=--pull --push --image-repository sabayonarm/luetcache --nodeps"
-- SUDO=sudo -E
-- CLEAN=false
 image: sabayon/ci
-storage: '9317096982217158'
+storage: 'docker-credentials'
 script:
 - systemctl start docker
 - source storage/env
@@ -28,7 +25,7 @@ script:
 - make build-all
 - make create-repo
 - rm -rf build/*.image.tar
-source: https://github.com/Luet-lab/luet-embedded
-tag_namespace: luet-embedded
+source: https://github.com/Luet-lab/luet-entropy-repo
+tag_namespace: luet-entropy-repo
 type: lxd
 queue: lxd
