@@ -3,9 +3,9 @@ name: "Build luet-entropy repository"
 artefact_path: build
 cache_clean: "yes"
 environment:
-- TREE=distro_amd64
 - LUET_GENERAL__DEBUG=true
 - LUET_GENERAL__SPINNER_MS=60000
+- CONCURRENCY=2
 image: sabayon/ci
 storage: 'docker-credentials'
 script:
