@@ -1,0 +1,31 @@
+name: "Build luet entropy repo specs (sabayonlinux.org base)"
+image: sabayon/base
+directory: "/"
+type: lxd
+queue: lxd
+source: https://github.com/Luet-lab/luet-entropy-repo.git
+environment:
+- "ACCEPT_LICENSE=*"
+- "REPOSITORY=sabayonlinux.org"
+- "DOWNLOAD_LATEST_PKGS_CHECKER=1"
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:auto-maintainers/luet-entropy-repo.git
+- UPSTREAM_REPO=git@github.com:Luet-lab/luet-entropy-repo.git
+- WORK_BRANCH=overlays-bump
+script:
+- source /etc/profile
+- equo up && equo upgrade && ACCEPT_LICENSE=* equo i gentoolkit
+- export WORKDIR=$PWD
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+- bash -ex ../scripts/setup_git_repo.sh
+# needed for equery
+- emerge-webrsync
+- chmod a+x bump-packages.sh && scripts/bump-packages.sh
+- git add --ll .
+- git comit -m "Bump packages $(date)"
+- bash -ex ../scripts/create_pr.sh
+planned: "@weekly"
