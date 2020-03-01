@@ -1,9 +1,9 @@
 name: "Build luet entropy repo specs (sabayonlinux.org base)"
 image: sabayon/base
-directory: "/"
+directory: "/bots/luet-tree/entropy-repo"
 type: lxd
 queue: lxd
-source: https://github.com/Luet-lab/luet-entropy-repo.git
+source: "https://github.com/Sabayon/sbi-tasks"
 environment:
 - "ACCEPT_LICENSE=*"
 - "REPOSITORY=sabayonlinux.org"
@@ -14,18 +14,22 @@ environment:
 - GIT_COMMITTER_EMAIL=github-bots@sabayon.com
 - FORK_REPO=git@github.com:auto-maintainers/luet-entropy-repo.git
 - UPSTREAM_REPO=git@github.com:Luet-lab/luet-entropy-repo.git
-- WORK_BRANCH=overlays-bump
+- WORK_BRANCH=packages-bump
+# NOTE: $HOME in lxd tasks is the workdir.
 script:
 - source /etc/profile
 - equo up && equo upgrade && ACCEPT_LICENSE=* equo i gentoolkit
 - export WORKDIR=$PWD
 # Setup deps and ssh/GH access
-- bash -ex ../scripts/setup_ssh.sh
-- bash -ex ../scripts/setup_git_repo.sh
+- bash -ex ../../scripts/setup_ssh.sh
+- bash -ex ../../scripts/setup_git_repo.sh
 # needed for equery
 - emerge-webrsync
-- chmod a+x bump-packages.sh && scripts/bump-packages.sh
-- git add --ll .
-- git comit -m "Bump packages $(date)"
-- bash -ex ../scripts/create_pr.sh
+- push /root/repo
+- ./scripts/bump-packages.sh
+- git add --all .
+- git commit -m "Bump packages $(date)"
+- popd
+# Create PR
+- bash -ex ../../scripts/create_pr.sh
 planned: "@weekly"
