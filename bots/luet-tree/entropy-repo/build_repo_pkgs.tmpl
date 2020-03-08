@@ -1,11 +1,13 @@
-name: "Build luet-entropy repository"
-
+name: "{{ .TaskName }}"
 artefact_path: build
-cache_clean: "yes"
 environment:
 - LUET_GENERAL__DEBUG=true
 - LUET_GENERAL__SPINNER_MS=60000
-- CONCURRENCY=1
+- CONCURRENCY={{ .Concurrency }}
+- "PACKAGES={{ .LuetPkgs }}"
+{{ if .BuildArgs }}
+- "BUILD_ARGS={{ .BuildArgs }}"
+{{ end }}
 image: sabayon/ci
 storage: 'docker-credentials'
 script:
@@ -15,17 +17,18 @@ script:
 - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
 - docker login -u $DOCKER_USER -p $DOCKER_PASS
 - docker ps
-- git clone https://github.com/mudler/luet
-- pushd luet
-- git checkout develop
-- make build
-- cp -rfv luet /usr/bin/luet
-- popd
+- wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+- chmod a+x /usr/bin/luet
 - curl -LO https://storage.googleapis.com/container-diff/v0.15.0/container-diff-linux-amd64 && mv container-diff-linux-amd64 container-diff && chmod +x container-diff && sudo mv container-diff /usr/bin/
-- make build-all
-- make create-repo
-- rm -rf build/*.image.tar
-source: https://github.com/Luet-lab/luet-entropy-repo
+# Better clone repository here instead of use sources for speedup bootstrap
+- git clone https://github.com/Luet-lab/luet-entropy-repo
+- pushd luet-entropy-repo
+- ln -s ../build .
+- echo "$PACKAGES" > targets
+- make build
+- rm -rf build/*.image.tar || true
+# source: https://github.com/Luet-lab/luet-entropy-repo
+publish_mode: append
 tag_namespace: luet-entropy-repo
 type: lxd
 queue: lxd
