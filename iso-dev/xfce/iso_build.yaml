@@ -21,12 +21,12 @@ environment:
   - "DRACUT=1"
   - "MOLECULE_ISO_TITLE=SABAYON"
   - "SABAYON_MOLECULES_GIT_OPTS=-b develop"
-  - "SABAYON_KERNEL_VERSION=5.4"
+
 binds:
   - "/dev/loop-control:/dev/loop-control"
 retry: "5"
 
 tag_namespace: "sabayon:iso-dev"
 namespace: "spinbase:iso-dev"
-planned: "0 0 3 * * *"
+#planned: "0 0 3 * * *"
 
