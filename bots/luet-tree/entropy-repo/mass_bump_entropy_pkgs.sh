@@ -9,6 +9,7 @@ PKGS4_TASK=${PKGS4_TASK:-20}
 TREE_REPO="${TREE_REPO:-sabayonlinux.org}"
 TREE_PATH="${TREE_PATH:-../../../../luet-entropy-repo/tree/}"
 CONCURRENCY=${CONCURRENCY:-1}
+BUILD_ARGS_NODEPS="${BUILD_ARGS_NODEPS:-1}"
 
 # Temporary disable acct-group/acct-user for entities tool integration
 EXCLUDES="${EXCLUDES:---exclude acct-group --exclude acct-user -v}"
@@ -32,13 +33,18 @@ task_name="Bump luet pkgs $(date -u  +'%Y-%m-%d %H:%M:%S'):"
 push_task () {
   local n_task=$1
   local list=$2
+  local opts=""
 
   mkdir -p /tmp/luet-entropy
+
+  if [ "${BUILD_ARGS_NODEPS}" = 1 ] ; then
+    opts="-s BuildArgsNoDeps=${BUILD_ARGS_NODEPS}"
+  fi
 
   mottainai-cli task compile build_repo_pkgs.tmpl \
     -s TaskName="$task_name $n_task" \
     -s LuetPkgs="$list" \
-    -s Concurrency=${CONCURRENCY} \
+    -s Concurrency=${CONCURRENCY} $opts \
     -o /tmp/luet-entropy/task_${n_task}.yaml
 
   if [ -z "${SKIP_FIRE}" ] ; then

@@ -5,12 +5,14 @@ environment:
 - LUET_GENERAL__SPINNER_MS=60000
 - CONCURRENCY={{ .Concurrency }}
 - "PACKAGES={{ .LuetPkgs }}"
-{{ if .BuildArgs }}
-- "BUILD_ARGS={{ .BuildArgs }}"
+{{ if .BuildArgsNoDeps }}
+- "BUILD_ARGS=--pull --image-repository sabayonarm/luetcache --push --nodeps"
 {{ end }}
 image: sabayon/ci
 storage: 'docker-credentials'
 script:
+# Better wait that systemd is up & running
+- sleep 2
 - systemctl start docker
 - source storage/env
 - mkdir -p $HOME/.docker
@@ -25,8 +27,12 @@ script:
 - pushd luet-entropy-repo
 - ln -s ../build .
 - echo "$PACKAGES" > targets
+- echo "==== TARGETS ============"
+- cat targets
+- echo "========================="
 - make build
 - rm -rf build/*.image.tar || true
+- rm -rf build/sabayon-base-layer-9999.metadata.yaml build//sabayon-base-layer-9999.package.tar.gz || true
 # source: https://github.com/Luet-lab/luet-entropy-repo
 publish_mode: append
 tag_namespace: luet-entropy-repo
