@@ -22,5 +22,5 @@ script:
 planned: "@weekly"
 environment:
   - "ACCEPT_LICENSE=*"
-  - "NAMESPACES_LIST=sabayon:iso-dev sabayon:iso spinbase:iso spinbase:iso-dev"
+  - "NAMESPACES_LIST=sabayon:iso-dev sabayon:iso spinbase:iso spinbase:iso-dev luet-entropy-repo"
 type: docker
