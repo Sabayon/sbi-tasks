@@ -12,7 +12,7 @@ clean_namespace () {
   local n=$1
   local f=""
 
-  local files="$(mottainai-cli namespace show $n 2>&1 | grep '/build' --color=none | awk '{print $4}')"
+  local files="$(mottainai-cli namespace show $n 2>&1 | grep '/build' --color=none | awk '{ print $4 }' | grep '^/build_[0-9]*.log$' --color=none)"
   for f in $files ; do
     echo "[${n}] Removing $f..."
     mottainai-cli namespace remove "${n}" $f
