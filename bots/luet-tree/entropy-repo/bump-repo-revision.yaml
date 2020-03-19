@@ -1,0 +1,21 @@
+name: "Bump revision of luet-entropy repository"
+artefact_path: build
+environment:
+- LUET_GENERAL__DEBUG=true
+- LUET_GENERAL__SPINNER_MS=60000
+- CONCURRENCY=1
+image: sabayon/ci
+storage: 'docker-credentials'
+script:
+- wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+- chmod a+x /usr/bin/luet
+- make create-repo
+source: https://github.com/Luet-lab/luet-entropy-repo
+publish_mode: append
+namespace: luet-entropy-repo
+namespace_filters:
+  - ".*metadata.yaml$"
+  - "repository.yaml$"
+tag_namespace: luet-entropy-repo
+type: lxd
+queue: lxd
