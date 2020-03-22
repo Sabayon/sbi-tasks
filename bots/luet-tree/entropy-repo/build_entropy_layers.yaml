@@ -1,17 +1,17 @@
-name: "{{ .TaskName }}"
+name: "Build luet-entropy-repo repository (layer/sabayon-base*)"
 artefact_path: build
 environment:
 - LUET_GENERAL__DEBUG=true
 - LUET_GENERAL__SPINNER_MS=60000
-- CONCURRENCY={{ .Concurrency }}
-- "PACKAGES={{ .LuetPkgs }}"
-{{ if .BuildArgsNoDeps }}
-- "BUILD_ARGS=--pull --image-repository sabayonarm/luetcache --push --nodeps"
-{{ end }}
+- CONCURRENCY=1
+- "PACKAGES=layer/sabayon-base-set-a"
+#- "BUILD_ARGS=--pull --image-repository sabayonarm/luetcache --push"
+- "BUILD_ARGS=--image-repository sabayonarm/luetcache --push"
+- "CLEAN=true"
+
 image: sabayon/ci
 storage: 'docker-credentials'
 script:
-# Better wait that systemd is up & running
 - sleep 2
 - systemctl start docker
 - source storage/env
@@ -31,17 +31,10 @@ script:
 - cat targets
 - echo "========================="
 - make build
-- rm -rf build/*.image.tar || true
-- rm -rf build/sabayon-base-layer-9999.metadata.yaml build/sabayon-base-layer-9999.package.tar.gz || true
-- rm -rf build/sabayon-base-set-a-layer-9999.package.tar.gz  build/sabayon-base-set-a-layer-9999.metadata.yaml || true
 # Clean up docker layers and free disk space
 - docker system prune --force --all --volumes
-# source: https://github.com/Luet-lab/luet-entropy-repo
-publish_mode: append
-#namespace: luet-entropy-repo
-#namespace_filters:
-#  - ".*metadata.yaml$"
-#  - "repository.yaml$"
+- make create-repo
+- rm -rf build/*.image.tar
 tag_namespace: luet-entropy-repo
 type: lxd
 queue: lxd

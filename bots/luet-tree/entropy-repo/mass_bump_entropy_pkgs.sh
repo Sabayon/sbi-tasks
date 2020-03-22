@@ -5,14 +5,15 @@ set -e
 
 LUET_BIN=${LUET_BIN:-/usr/bin/luet}
 LUET_CONFIG=${LUET_CONFIG:-/tmp/luet.yaml}
-PKGS4_TASK=${PKGS4_TASK:-20}
+PKGS4_TASK=${PKGS4_TASK:-30}
 TREE_REPO="${TREE_REPO:-sabayonlinux.org}"
 TREE_PATH="${TREE_PATH:-../../../../luet-entropy-repo/tree/}"
 CONCURRENCY=${CONCURRENCY:-1}
 BUILD_ARGS_NODEPS="${BUILD_ARGS_NODEPS:-1}"
 
 # Temporary disable acct-group/acct-user for entities tool integration
-EXCLUDES="${EXCLUDES:---exclude acct-group --exclude acct-user -v}"
+#EXCLUDES="${EXCLUDES:-}"
+EXCLUDES="${EXCLUDES:---exclude acct-group --exclude acct-user}"
 
 export LUET_LOGGING__LEVEL="info"
 export LUET_GENERAL__DEBUG="false"
@@ -26,7 +27,7 @@ general:
 " > /tmp/luet.yaml
 
 # Retrieve list of packages
-pkgs=$(${LUET_BIN} --config ${LUET_CONFIG} tree pkglist --tree ${TREE_PATH}${TREE_REPO} ${EXCLUDES})
+pkgs=$(${LUET_BIN} --config ${LUET_CONFIG} tree pkglist --tree ${TREE_PATH}${TREE_REPO} ${EXCLUDES} -v)
 
 task_name="Bump luet pkgs $(date -u  +'%Y-%m-%d %H:%M:%S'):"
 
