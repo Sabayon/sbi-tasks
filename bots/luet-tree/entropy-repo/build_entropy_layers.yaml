@@ -4,7 +4,8 @@ environment:
 - LUET_GENERAL__DEBUG=true
 - LUET_GENERAL__SPINNER_MS=60000
 - CONCURRENCY=1
-- "PACKAGES=layer/sabayon-base-set-a"
+#- "PACKAGES=layer/sabayon-base-set-a"
+- "PACKAGES=layer/sabayon-base"
 #- "BUILD_ARGS=--pull --image-repository sabayonarm/luetcache --push"
 - "BUILD_ARGS=--image-repository sabayonarm/luetcache --push"
 - "CLEAN=true"

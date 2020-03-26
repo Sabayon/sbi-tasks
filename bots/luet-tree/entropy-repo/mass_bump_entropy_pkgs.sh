@@ -5,7 +5,7 @@ set -e
 
 LUET_BIN=${LUET_BIN:-/usr/bin/luet}
 LUET_CONFIG=${LUET_CONFIG:-/tmp/luet.yaml}
-PKGS4_TASK=${PKGS4_TASK:-30}
+PKGS4_TASK=${PKGS4_TASK:-20}
 TREE_REPO="${TREE_REPO:-sabayonlinux.org}"
 TREE_PATH="${TREE_PATH:-../../../../luet-entropy-repo/tree/}"
 CONCURRENCY=${CONCURRENCY:-1}
