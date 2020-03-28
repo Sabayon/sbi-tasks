@@ -48,7 +48,7 @@ build:
 {{ end }}
   qa_checks: {{ if .QaCheck }}{{ .QaCheck }}{{ else }}0{{ end }}
   emerge:
-    profile: {{ if .EmergeProfile }}{{ .EmergeProfile }}{{ else }}"default/linux/amd64/17.0/desktop"{{ end }}
+    profile: {{ if .EmergeProfile }}{{ .EmergeProfile }}{{ else }}"default/linux/amd64/17.1/desktop"{{ end }}
 
     # Install each package separately
     split_install: {{ if .EmergeSplitInstall }}{{ .EmergeSplitInstall }}{{ else }}1{{ end }}
