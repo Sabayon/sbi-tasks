@@ -7,10 +7,16 @@ environment:
 image: sabayon/ci
 storage: 'docker-credentials'
 script:
+- source /etc/profile
 - wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
 - chmod a+x /usr/bin/luet
+- export DESTINATION=$PWD/build
+- git clone https://github.com/Luet-lab/luet-entropy-repo
+- cd luet-entropy-repo
+# Golang issue: it seems that walk in a dir that is symlink doesn't work
+# correctly
+#- ln -s ../build .
 - make create-repo
-source: https://github.com/Luet-lab/luet-entropy-repo
 publish_mode: append
 namespace: luet-entropy-repo
 namespace_filters:
