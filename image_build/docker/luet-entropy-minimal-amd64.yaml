@@ -1,0 +1,22 @@
+source: https://github.com/Luet-lab/luet-entropy-repo.git
+directory: '/'
+image: 'sabayon/ci'
+storage: '9317096982217158'
+script:
+   - source storage/env
+   - mkdir -p $HOME/.docker
+   - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+   - docker build --no-cache --rm -t luet/entropy-minimal:latest .
+
+   - docker-companion squash --remove luet/entropy-minimal-amd64:latest
+
+   - docker login -u $DOCKER_USER -p $DOCKER_PASS
+   - docker push luet/entropy-minimal-amd64:latest
+   - docker manifest create --amend luet/entropy-minimal:latest luet/entropy-minimal-amd64:latest
+   - docker manifest annotate luet/entropy-minimal:latest luet/entropy-minimal-amd64:latest --arch amd64 --os linux
+   - docker manifest inspect luet/entropy-minimal:latest
+   - docker manifest push --purge luet/entropy-minimal:latest
+type: docker
+name: "Build luet/entropy-minimal Docker image"
+
+#planned: "0 0 16 * * *"
