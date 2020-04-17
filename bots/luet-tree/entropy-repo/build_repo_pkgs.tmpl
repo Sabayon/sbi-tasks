@@ -3,6 +3,7 @@ artefact_path: build
 environment:
 - LUET_GENERAL__DEBUG=true
 - LUET_GENERAL__SPINNER_MS=60000
+- "TMPDIR=/var/tmp"
 - CONCURRENCY={{ .Concurrency }}
 - "PACKAGES={{ .LuetPkgs }}"
 {{ if .BuildArgsNoDeps }}
