@@ -14,11 +14,13 @@ concurrency: 3
 
 
 
-chain:
+group:
 
   - staging1
   - staging2
   - staging3
+  - staging4
+chord:
   - injector
 
 tasks:
@@ -43,9 +45,6 @@ tasks:
       - eselect python set python3.6
       - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
       - equo up && equo upgrade
-    
-    
-      - equo i dev-perl/Sort-Versions
     
       - sark-localbuild
       - eval 'rm artifacts/build_*.log || true'
@@ -100,9 +99,6 @@ tasks:
       - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
       - equo up && equo upgrade
     
-    
-      - equo i dev-perl/Sort-Versions
-    
       - sark-localbuild
       - eval 'rm artifacts/build_*.log || true'
       - mkdir artifacts/staging2
@@ -156,9 +152,6 @@ tasks:
       - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
       - equo up && equo upgrade
     
-    
-      - equo i dev-perl/Sort-Versions
-    
       - sark-localbuild
       - eval 'rm artifacts/build_*.log || true'
       - mkdir artifacts/staging3
@@ -190,6 +183,59 @@ tasks:
     directory: geaaru
     queue: ""
     tag_namespace: geaaru-staging3
+
+  staging4:
+    script:
+      - source /etc/profile
+      # Temporary workaround for delay on DHCP response
+      - sleep 4
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+      - chmod 755 /sbin/sark-functions.sh
+      - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+      - chmod 755 /etc/sark-functions
+      - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+      - wget https://dispatcher.sabayon.org/sbi/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
+      - chmod a+x /usr/sbin/builder
+      - chmod a+x /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/bin/sark-localbuild
+      - chmod a+x /usr/bin/pkgs-checker
+      - eselect python set python3.6
+      - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+      - equo up && equo upgrade
+    
+      - sark-localbuild
+      - eval 'rm artifacts/build_*.log || true'
+      - mkdir artifacts/staging4
+      - mv artifacts/geaaru-binhost/ artifacts/staging4/
+    environment:
+      - SHELL=/bin/bash
+      - SABAYON_ARCH=amd64
+      - REPOSITORY_NAME=geaaru
+      - SAB_BUILDFILE=geaaru-build-staging4.yml
+      - ETP_NONINTERACTIVE=1
+      # I need call emerge-webrsync at begin to retrive data for active profile.
+      # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
+      # - SKIP_PORTAGE_SYNC=1
+      - SKIP_CLEAN_PACKAGESDIR=1
+      - SAB_PORTDIR=/etc/portage
+      - "CREATEREPO_PHASE=false"
+      - "ACCEPT_LICENSE=*"
+      - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+      - "PORTAGE_GIT_BRANCH=master"
+      # Override list of targets for compile specific packages.
+      # - OVERRIDE_BUILD_TARGET="app/foo"
+    name: "AMD64 Geaaru (Staging4)"
+    artefact_path: artifacts
+    image: sabayon/builder
+    
+    type: docker
+    
+    source: https://github.com/Sabayon/community-repositories/
+    directory: geaaru
+    queue: ""
+    tag_namespace: geaaru-staging4
 
 
   injector:
@@ -233,7 +279,7 @@ tasks:
       - SKIP_COMMIT=1
       # Pull is required for remove packages from repository. (SKIP_PULL=0)
       - SKIP_PULL=0
-      - "SAB_STAGING_BUILD_RESOURCES=geaaru-build-staging1.yml geaaru-build-staging2.yml geaaru-build-staging3.yml"
+      - "SAB_STAGING_BUILD_RESOURCES=geaaru-build-staging1.yml geaaru-build-staging2.yml geaaru-build-staging3.yml geaaru-build-staging4.yml"
     
       - SKIP_INJECT=0
     
@@ -241,7 +287,7 @@ tasks:
       - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
       - "PORTAGE_GIT_BRANCH=master"
       - "REPOSITORY_DESCRIPTION=Geaaru AMD64 Sabayon Repository"
-      - "SAB_STAGING_DIRS=staging1 staging2 staging3"
+      - "SAB_STAGING_DIRS=staging1 staging2 staging3 staging4"
       - REPO_BINHOST_CLEAN=1
       - SAB_BUILDFILE=geaaru-build-inject.yml
       # Skip errors on process existing broken tarballs
@@ -258,5 +304,5 @@ tasks:
     name: "AMD64 Geaaru Repo (injector)"
     source: https://github.com/Sabayon/community-repositories/
     directory: geaaru
-    namespace: "geaaru,geaaru-staging1,geaaru-staging2,geaaru-staging3"
+    namespace: "geaaru,geaaru-staging1,geaaru-staging2,geaaru-staging3,geaaru-staging4"
     tag_namespace: geaaru

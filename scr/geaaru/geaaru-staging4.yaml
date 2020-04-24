@@ -26,13 +26,13 @@ script:
 
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
-  - mkdir artifacts/staging3
-  - mv artifacts/geaaru-binhost/ artifacts/staging3/
+  - mkdir artifacts/staging4
+  - mv artifacts/geaaru-binhost/ artifacts/staging4/
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=amd64
   - REPOSITORY_NAME=geaaru
-  - SAB_BUILDFILE=geaaru-build-staging3.yml
+  - SAB_BUILDFILE=geaaru-build-staging4.yml
   - ETP_NONINTERACTIVE=1
   # I need call emerge-webrsync at begin to retrive data for active profile.
   # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
@@ -46,7 +46,7 @@ environment:
 
 
 
-name: "AMD64 Geaaru (Staging3)"
+name: "AMD64 Geaaru (Staging4)"
 
 artefact_path: artifacts
 
@@ -56,4 +56,4 @@ type: docker
 source: https://github.com/Sabayon/community-repositories/
 directory: geaaru
 queue: ""
-tag_namespace: geaaru-staging3
+tag_namespace: geaaru-staging4

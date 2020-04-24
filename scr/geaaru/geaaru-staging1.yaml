@@ -24,9 +24,6 @@ script:
   - chmod a+x /usr/bin/dynlink-scanner
 
 
-
-  - equo i dev-perl/Sort-Versions
-
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
   - mkdir artifacts/staging1
