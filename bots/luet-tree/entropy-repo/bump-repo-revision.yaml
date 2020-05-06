@@ -4,6 +4,7 @@ environment:
 - LUET_GENERAL__DEBUG=true
 - LUET_GENERAL__SPINNER_MS=60000
 - CONCURRENCY=1
+- BRANCH=develop
 image: sabayon/ci
 storage: 'docker-credentials'
 script:
@@ -11,7 +12,7 @@ script:
 - wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
 - chmod a+x /usr/bin/luet
 - export DESTINATION=$PWD/build
-- git clone https://github.com/Luet-lab/luet-entropy-repo
+- git clone -b $BRANCH https://github.com/Luet-lab/luet-entropy-repo
 - cd luet-entropy-repo
 # Golang issue: it seems that walk in a dir that is symlink doesn't work
 # correctly
