@@ -1,4 +1,5 @@
-source: https://github.com/Luet-lab/luet-entropy-repo.git
+environment:
+- BRANCH=develop
 directory: '/'
 image: 'sabayon/ci'
 storage: '9317096982217158'
@@ -6,6 +7,7 @@ script:
    - source storage/env
    - mkdir -p $HOME/.docker
    - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+   - git clone -b $BRANCH https://github.com/Luet-lab/luet-entropy-repo.git && cd luet-entropy-repo
    - docker build --no-cache --rm -t luetpm/entropy-minimal:latest .
 
    - docker login -u $DOCKER_USER -p $DOCKER_PASS
