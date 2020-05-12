@@ -9,6 +9,7 @@ environment:
 {{ if .BuildArgsNoDeps }}
 - "BUILD_ARGS=--pull --image-repository sabayonarm/luetcache --push --nodeps"
 {{ end }}
+- BRANCH=develop
 image: sabayon/ci
 storage: 'docker-credentials'
 script:
@@ -24,7 +25,7 @@ script:
 - chmod a+x /usr/bin/luet
 - curl -LO https://storage.googleapis.com/container-diff/v0.15.0/container-diff-linux-amd64 && mv container-diff-linux-amd64 container-diff && chmod +x container-diff && sudo mv container-diff /usr/bin/
 # Better clone repository here instead of use sources for speedup bootstrap
-- git clone https://github.com/Luet-lab/luet-entropy-repo
+- git clone -b $BRANCH https://github.com/Luet-lab/luet-entropy-repo
 - pushd luet-entropy-repo
 - ln -s ../build .
 - echo "$PACKAGES" > targets
