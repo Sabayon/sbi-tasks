@@ -34,7 +34,7 @@ script:
 - make build
 # Clean up docker layers and free disk space
 - docker system prune --force --all --volumes
-- make create-repo
+#- make create-repo
 - rm -rf build/*.image.tar
 tag_namespace: luet-entropy-repo
 type: lxd
