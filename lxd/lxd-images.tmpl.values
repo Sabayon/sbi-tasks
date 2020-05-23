@@ -17,4 +17,7 @@ values:
         namespace: "lxd-sabayon-ci"
         name: "sabayon/ci"
         directory: "sabayon-ci"
-
+    sabayon-luet:
+        namespace: "lxd-sabayon-luet"
+        name: "sabayon/luet"
+        directory: "sabayon-luet"

@@ -72,3 +72,18 @@ products:
     aliases:
       - "sabayon/ci"
 
+  # Sabayon Luet
+  - name: sabayon-luet:current:amd64:default
+    arch: amd64
+    release: current
+    os: Sabayon
+    release_title: "Luet"
+    directory: sabayon-luet
+    # Path where retrieve images informations and files.
+    # This option is used by build-images-file
+    prefix_path: "https://dispatcher.sabayon.org/sbi/namespace/lxd-sabayon-luet"
+    days: 2
+    aliases:
+      - "sabayon/luet"
+
+
