@@ -77,6 +77,8 @@ packages:
 
   sets:
     - packages:
+        # TODO: fix this dep of systemd
+        - app-arch/lzma
         - sys-apps/systemd
         - sys-apps/coreutils
         - sys-apps/findutils
