@@ -1,0 +1,29 @@
+name: "Build mocaccino-micro repository"
+image: sabayon/ci
+type: lxd
+queue: lxd
+directory: "/"
+storage: 'docker-credentials'
+source: https://github.com/mocaccinoOS/mocaccino-micro
+environment:
+- BUILD_ARGS=-d --image-repository sabayonarm/mocaccinocache --push
+script:
+# - docker system prune --force --volumes --all
+- systemctl start docker
+- source storage/env
+- mkdir -p $HOME/.docker
+- 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- docker ps
+- curl -fSL "https://github.com/genuinetools/img/releases/download/v0.5.7/img-linux-amd64" -o /usr/bin/img
+- chmod +x /usr/bin/img
+- export WORKDIR=$PWD
+- curl -LO https://storage.googleapis.com/container-diff/latest/container-diff-linux-amd64 && chmod +x container-diff-linux-amd64 && mkdir -p $HOME/bin && sudo mv container-diff-linux-amd64 /usr/bin/container-diff
+- wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+- chmod a+x /usr/bin/luet
+- luet --version
+- BACKEND=docker make build-all create-repo
+- mv build/* $WORKDIR/artefacts
+- rm -rfv *.image.tar build
+tag_namespace: "mocaccino-micro"
+#planned: "@daily"

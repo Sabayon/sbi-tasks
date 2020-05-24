@@ -1,0 +1,28 @@
+name: "Add specs in luet-entropy-repo"
+image: sabayon/ci
+type: lxd
+directory: "/bots/luet-tree"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+- sleep 3
+- systemctl start docker
+- export WORKDIR=$PWD
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+- bash -ex ../scripts/setup_git_repo.sh
+- pushd /root/repo
+- git checkout develop
+- make auto-add 
+
+storage: "7287247578967654972"
+environment:
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:auto-maintainers/luet-entropy-repo.git
+- UPSTREAM_REPO=git@github.com:Luet-lab/luet-entropy-repo.git
+- WORK_BRANCH=add
+- AUTO_GIT=true
+  #planned: "@daily"
