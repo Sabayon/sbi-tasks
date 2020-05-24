@@ -90,6 +90,7 @@ actions:
       touch /etc/passwd
       touch /etc/group
       ls -R /etc/luet
+      rm /etc/luet/repos.conf.d/sabayonlinux.org_stable.yml || true
 
   - trigger: post-packages
     action: |-
