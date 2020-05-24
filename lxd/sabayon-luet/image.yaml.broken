@@ -79,6 +79,9 @@ packages:
     - packages:
         - sys-apps/systemd
         - sys-apps/coreutils
+        - sys-apps/findutils
+        - sys-apps/sed
+        - app-misc/sabayon-version
       action: install
 
 actions:
@@ -87,8 +90,6 @@ actions:
       touch /etc/passwd
       touch /etc/group
       ls -R /etc/luet
-#      find /etc/luet/
-#rm /etc/luet/repos.conf.d/sabayonlinux.org-stable.yml
 
   - trigger: post-packages
     action: |-
