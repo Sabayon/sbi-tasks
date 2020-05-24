@@ -86,7 +86,8 @@ actions:
     action: |-
       touch /etc/passwd
       touch /etc/group
-      rm /etc/luet/repos.conf.d/sabayonlinux.org-stable.yml
+      find /etc/luet/
+#rm /etc/luet/repos.conf.d/sabayonlinux.org-stable.yml
 
   - trigger: post-packages
     action: |-

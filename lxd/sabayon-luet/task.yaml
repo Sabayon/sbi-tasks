@@ -1,7 +1,7 @@
 # Authors: Daniele Rondina
 #          geaaru@sabayonlinux.org
 #
-# Description: Script for build LXD sabayon/base
+# Description: Script for build LXD sabayon/luet
 script:
   - source /etc/profile
   # temporary: Sleep for LXD
@@ -11,9 +11,11 @@ script:
   - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
   # Distrobuilder is now under devel
   - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
-  - equo up geaaru && equo up devel
+  # Distrobuilder is now under devel-9999
+  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel-9999/devel-9999
+  - equo up geaaru && equo up devel && equo up devel-9999
   - touch /etc/entropy/packages/package.unmask
-  - equo unmask dev-util/simplestreams-builder-9999
+  - equo unmask dev-util/simplestreams-builder-9999 app-emulation/distrobuilder-9999
   - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
   # Temporary until replicator support .replicatorignore
   - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
@@ -27,14 +29,14 @@ script:
   - eval 'rm images/build_*.log || true'
 type: docker
 image: sabayon/base-amd64
-name: "Build LXD sabayon/base image"
+name: "Build LXD sabayon/luet image"
 environment:
-  - "LXD_PRODUCT=sabayon-base:current:amd64:default"
-  - "LXD_IMAGEDIR=sabayon-base"
-  - "SSBUILDER_PREFIX=../lxd-sabayon-base"
+  - "LXD_PRODUCT=sabayon-luet:current:amd64:default"
+  - "LXD_IMAGEDIR=sabayon-luet"
+  - "SSBUILDER_PREFIX=../lxd-sabayon-luet"
   - "ACCEPT_LICENSE=*"
-namespace: lxd-sabayon-base
-tag_namespace: lxd-sabayon-base
+namespace: lxd-sabayon-luet
+tag_namespace: lxd-sabayon-luet
 artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
