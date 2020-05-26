@@ -18,11 +18,17 @@ script:
 # correctly
 #- ln -s ../build .
 - make create-repo
+# Speedup pull from LXD container
+- rm $DESTINATION/*.metadata.yaml -v
 publish_mode: append
 namespace: luet-entropy-repo
 namespace_filters:
   - ".*metadata.yaml$"
   - "repository.yaml$"
+artefact_push_filters:
+  - "repository.yaml$"
+  - "repository.meta.yaml.tar.gz$"
+  - "tree.tar.gz$"
 tag_namespace: luet-entropy-repo
 type: lxd
 queue: lxd
