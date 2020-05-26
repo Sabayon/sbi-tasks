@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -e
 
 LUET_BIN=/usr/bin/luet
 LUET_REPO_BRANCH=develop
@@ -36,15 +36,19 @@ msg "====================================================="
 msg "LUET REPO UPDATE:"
 $LUET_BIN repo update
 msg "====================================================="
+sleep 1
 
 msg "LUET RECLAIM:"
 $LUET_BIN reclaim
 msg "====================================================="
+sleep 1
 
 msg "INSTALLED PACKAGES:"
 $LUET_BIN search --installed .
 msg "====================================================="
+sleep 1
 
 msg "LUET UPGRADE:"
 $LUET_BIN upgrade
+sleep 1
 

@@ -1,5 +1,6 @@
 image: sabayon/ci
 script:
+- source /etc/profile
 - ./scripts/test-reclaim.sh
 type: lxd
 queue: lxd
