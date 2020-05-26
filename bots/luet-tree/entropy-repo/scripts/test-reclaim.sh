@@ -19,12 +19,16 @@ wget ${LUET_REPO_CONF} -O /etc/luet/repos.conf.d/${LUET_REPO_FILE}
 wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
 chmod a+x ${LUET_BIN}
 
+find /etc/luet
+
 echo "Ready for the game!"
 
 msg () {
   echo "====================================================="
   echo $1
   echo "====================================================="
+
+  sleep 1
 
   return 0
 }
@@ -36,19 +40,15 @@ msg "====================================================="
 msg "LUET REPO UPDATE:"
 $LUET_BIN repo update
 msg "====================================================="
-sleep 1
 
 msg "LUET RECLAIM:"
 $LUET_BIN reclaim
 msg "====================================================="
-sleep 1
 
 msg "INSTALLED PACKAGES:"
 $LUET_BIN search --installed .
 msg "====================================================="
-sleep 1
 
 msg "LUET UPGRADE:"
 $LUET_BIN upgrade
-sleep 1
 
