@@ -1,0 +1,7 @@
+image: sabayon/ci
+script:
+- ./scripts/test-reclaim.sh
+type: lxd
+queue: lxd
+source: "https://github.com/Sabayon/sbi-tasks"
+directory: "/bots/luet-tree/entropy-repo"
