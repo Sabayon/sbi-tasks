@@ -1,0 +1,18 @@
+directory: '/'
+image: 'sabayon/ci'
+storage: '9317096982217158'
+source: https://github.com/mocaccinoOS/mocaccino-micro.git
+script:
+   - source storage/env
+   - mkdir -p $HOME/.docker
+   - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+   - docker build -f Dockerfile-toolchain --no-cache --rm -t luetpm/mocaccino-micro-toolchain:latest .
+
+   - docker login -u $DOCKER_USER -p $DOCKER_PASS
+   - docker push luetpm/mocaccino-micro-toolchain:latest
+   - docker manifest inspect luetpm/mocaccino-micro-toolchain:latest
+   #- docker manifest push --purge luetpm/mocaccino-micro-toolchain:latest
+type: docker
+name: "Build luetpm/mocaccino-micro-toolchain Docker image"
+
+#planned: "0 0 16 * * *"
