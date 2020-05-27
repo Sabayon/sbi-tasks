@@ -2,6 +2,9 @@
 
 set -e
 
+# Packages to install before run luet reclaim
+PACKAGES="${PACKAGES:-""}"
+
 LUET_BIN=/usr/bin/luet
 LUET_REPO_BRANCH=develop
 #LUET_REPO_FILE=sabayonlinux.org-stable.yml
@@ -21,8 +24,6 @@ chmod a+x ${LUET_BIN}
 
 find /etc/luet
 
-echo "Ready for the game!"
-
 msg () {
   echo "====================================================="
   echo $1
@@ -32,6 +33,15 @@ msg () {
 
   return 0
 }
+
+if [ "${PACKAGES}" != "" ] ; then
+  msg "Install entropy packages: ${PACKAGES}"
+  export ACCEPT_LICENSE=*
+  equo update && equo upgrade && equo i ${PACKAGES}
+fi
+
+msg "Ready for the game!"
+
 
 msg "LUET CONFIG:"
 $LUET_BIN config
@@ -46,7 +56,8 @@ $LUET_BIN reclaim
 msg "====================================================="
 
 msg "INSTALLED PACKAGES:"
-$LUET_BIN search --installed .
+$LUET_BIN search --installed . -o yaml > result/installed_pkgs.yaml
+cat result/installed_pkgs.yaml
 msg "====================================================="
 
 msg "LUET UPGRADE:"
