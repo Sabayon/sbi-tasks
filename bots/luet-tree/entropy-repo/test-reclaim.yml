@@ -7,5 +7,6 @@ queue: lxd
 source: "https://github.com/Sabayon/sbi-tasks"
 directory: "/bots/luet-tree/entropy-repo"
 artefact_path: result
+name: "Test Luet reclaim"
 environment:
-#- "PACKAGES=app/foo"
+  #- "PACKAGES=games-strategy/wesnoth"
