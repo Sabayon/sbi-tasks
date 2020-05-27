@@ -7,5 +7,5 @@ queue: lxd
 source: "https://github.com/Sabayon/sbi-tasks"
 directory: "/bots/luet-tree/entropy-repo"
 artefact_path: result
-environments:
+environment:
 #- "PACKAGES=app/foo"
