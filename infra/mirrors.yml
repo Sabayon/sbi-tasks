@@ -32,7 +32,6 @@ mirrors:
     - http://sabayonlinux.mirror.garr.it/mirrors/sabayonlinux
 
     # Sweden
-    - http://mirror.ctrl-c.liu.se/sabayon
     - http://ftp.acc.umu.se/mirror/sabayon.org
 
     # US
