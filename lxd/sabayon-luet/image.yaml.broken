@@ -19,6 +19,10 @@ environment:
       value: "/bin/bash"
     - key: "LUET_NOLOCK"
       value: "true"
+    - key: "USER"
+      value: "root"
+    - key: "LC_ALL"
+      value: "en_US.UTF-8"
 
 targets:
   lxc:
@@ -80,7 +84,6 @@ packages:
         # TODO: fix this dep of systemd
         - app-arch/xz-utils
         - sys-apps/systemd
-        - sys-apps/coreutils
         - sys-apps/findutils
         - sys-apps/sed
         - app-misc/sabayon-version

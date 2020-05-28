@@ -21,3 +21,13 @@ values:
         namespace: "lxd-sabayon-luet"
         name: "sabayon/luet"
         directory: "sabayon-luet"
+
+    # Mocaccino images
+    mocaccino-micro:
+        namespace: "lxd-mocaccino-micro"
+        name: "mocaccino/micro"
+        directory: "mocaccino-micro"
+    mocaccino-micro-toolchain:
+        namespace: "lxd-mocaccino-micro-toolchain"
+        name: "mocaccino/micro-toolchain"
+        directory: "mocaccino-micro-toolchain"

@@ -1,0 +1,81 @@
+image:
+  distribution: mocaccino
+  decription: Mocaccino OS Micro
+  expiry: 30d
+  architecture: amd64
+
+source:
+  downloader: docker-http
+  # For docker is mandatory for now use 
+  url: luetpm/mocaccino-micro
+
+environment:
+  clear_defaults: true
+  variables:
+    - key: "PATH"
+      value: "/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin"
+    - key: "SHELL"
+      value: "/bin/bash"
+    - key: "LUET_NOLOCK"
+      value: "true"
+    - key: "USER"
+      value: "root"
+    - key: "LC_ALL"
+      value: "en_US.UTF-8"
+
+targets:
+  lxc:
+    create-message: |
+      You just created a Sabayon container (arch={{ image.architecture }})
+
+    config:
+      - type: all
+        before: 5
+        content: |-
+          lxc.include = LXC_TEMPLATE_CONFIG/sabayon.common.conf
+
+      - type: user
+        before: 5
+        content: |-
+          lxc.include = LXC_TEMPLATE_CONFIG/sabayon.userns.conf
+
+      - type: all
+        after: 4
+        content: |-
+          lxc.include = LXC_TEMPLATE_CONFIG/common.conf
+
+      - type: user
+        after: 4
+        content: |-
+          lxc.include = LXC_TEMPLATE_CONFIG/userns.conf
+
+      - type: all
+        content: |-
+          lxc.arch = {{ image.architecture_kernel }}
+
+files:
+ - path: /etc/hostname
+   generator: hostname
+
+ - path: /etc/hosts
+   generator: hosts
+
+packages:
+  manager: luet
+
+  update: true
+  cleanup: true
+
+  sets:
+    - packages:
+      action: install
+
+actions:
+
+  - trigger: post-packages
+    action: |-
+      rm -rf /var/cache/luet/repos/
+
+mappings:
+  architecture_map: debian
+

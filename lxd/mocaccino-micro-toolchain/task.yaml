@@ -1,7 +1,7 @@
 # Authors: Daniele Rondina
 #          geaaru@sabayonlinux.org
 #
-# Description: Script for build LXD sabayon/luet
+# Description: Script for build LXD mocaccino/micro-toolchain
 script:
   - source /etc/profile
   # temporary: Sleep for LXD
@@ -29,14 +29,14 @@ script:
   - eval 'rm images/build_*.log || true'
 type: docker
 image: sabayon/base-amd64
-name: "Build LXD sabayon/luet image"
+name: "Build LXD mocaccino/micro-toolchain image"
 environment:
-  - "LXD_PRODUCT=sabayon-luet:current:amd64:default"
-  - "LXD_IMAGEDIR=sabayon-luet"
-  - "SSBUILDER_PREFIX=../lxd-sabayon-luet"
+  - "LXD_PRODUCT=mocaccino-micro-toolchain:current:amd64:default"
+  - "LXD_IMAGEDIR=mocaccino-micro-toolchain"
+  - "SSBUILDER_PREFIX=../lxd-mocaccino-micro-toolchain"
   - "ACCEPT_LICENSE=*"
-namespace: lxd-sabayon-luet
-tag_namespace: lxd-sabayon-luet
+namespace: lxd-mocaccino-micro-toolchain
+tag_namespace: lxd-mocaccino-micro-toolchain
 artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd

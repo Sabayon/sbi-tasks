@@ -86,4 +86,32 @@ products:
     aliases:
       - "sabayon/luet"
 
+  # Mocaccino Micro
+  - name: mocaccino-micro:current:amd64:default
+    arch: amd64
+    release: current
+    os: Mocaccino
+    release_title: "Micro"
+    directory: mocaccino-micro
+    # Path where retrieve images informations and files.
+    # This option is used by build-images-file
+    prefix_path: "https://dispatcher.sabayon.org/sbi/namespace/lxd-mocaccino-micro"
+    days: 2
+    aliases:
+      - "mocaccino/micro"
+
+  # Mocaccino Micro Toolchain
+  - name: mocaccino-micro-toolchain:current:amd64:default
+    arch: amd64
+    release: current
+    os: Mocaccino
+    release_title: "Micro Toolchain"
+    directory: mocaccino-micro-toolchain
+    # Path where retrieve images informations and files.
+    # This option is used by build-images-file
+    prefix_path: "https://dispatcher.sabayon.org/sbi/namespace/lxd-mocaccino-micro-toolchain"
+    days: 2
+    aliases:
+      - "mocaccino/micro-toolchain"
+
 
