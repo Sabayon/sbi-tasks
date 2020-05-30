@@ -10,6 +10,8 @@ script:
 - bash -ex ../scripts/setup_ssh.sh
 - bash -ex ../scripts/setup_git_repo.sh
 - pushd /root/repo
+# Use jq from script
+- equo rm jq
 - git checkout master
 - make auto-bump
 
