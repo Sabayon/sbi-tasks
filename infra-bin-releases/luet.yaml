@@ -16,7 +16,7 @@ script:
   - git clone https://github.com/mudler/luet go/src/github.com/mudler/luet -b $BRANCH
   - pushd go/src/github.com/mudler/luet
   - make deps multiarch-build
-  - for i in release/luet-* ; do arch=$(echo $i | cut -d'-' -f 6) ; ln -s $(basename $i) release/luet-latest-linux-${arch}  ; done
+  - for i in release/luet-* ; do arch=${i##*-} ; ln -s $(basename $i) release/luet-latest-linux-${arch}  ; done
   - cp release/* $WORKDIR/artefacts/
 tag_namespace: luet-cross-bin
 name: "Luet devel dump"
