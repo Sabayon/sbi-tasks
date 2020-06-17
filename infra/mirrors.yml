@@ -12,6 +12,11 @@ mirrors:
     # and doesn't require 'entropy' path.
     - http://pkg.sabayon.org
 
+    # France
+    
+    # Mirror in Paris, by remi.lu: 1Gb/s
+    - http://mir.sabayon.fr
+    
     # Holland
 
     # NLUUG, Holland
