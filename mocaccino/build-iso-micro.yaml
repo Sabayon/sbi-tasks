@@ -10,7 +10,7 @@ environment:
 - IMAGE_NAME=MocaccinoOS-Micro
 - OVERLAY=true 
 - FIRST_STAGE=distro/mocaccino-initramfs
-- LUET_PACKAGES=distro/seed system/mocaccino-init system/mocaccino-live-boot system/luet system/container-diff
+- LUET_PACKAGES=distro/seed system/mocaccino-init distro/sabayon-kernel system/mocaccino-live-boot system/luet system/container-diff
 - LUET_GENERAL__DEBUG=true
 
 script:
@@ -20,7 +20,6 @@ script:
 - source storage/env
 - git clone https://github.com/mocaccinoOS/desktop mocaccino-desktop
 - cd mocaccino-desktop
-- git checkout test
 - curl https://gist.githubusercontent.com/mudler/8b8d6c53c4669f4b9f9a72d1a2b92172/raw/114dcc00bad41896f8614cc0214f834b95a1e2a6/get_luet_root.sh | sudo sh
 - sudo luet install system/container-diff system/luet-extensions
 - equo up && equo i sys-fs/squashfs-tools sys-fs/dosfstools dev-libs/libisoburn
