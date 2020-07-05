@@ -10,7 +10,7 @@ environment:
 - IMAGE_NAME=MocaccinoOS-Micro
 - OVERLAY=true 
 - FIRST_STAGE=distro/mocaccino-initramfs
-- LUET_PACKAGES=distro/seed system/mocaccino-init distro/sabayon-kernel system/mocaccino-live-boot system/luet system/container-diff
+- LUET_PACKAGES=distro/seed system/mocaccino-init kernel/sabayon-full system/mocaccino-live-boot system/luet system/container-diff
 - LUET_GENERAL__DEBUG=true
 
 script:

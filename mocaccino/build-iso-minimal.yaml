@@ -7,7 +7,7 @@ storage: 'mocaccino-credentials'
 source: https://github.com/mocaccinoOS/mocaccino-desktop
 environment:
 - BUILD_ARGS=--pull --push --image-repository mocaccinoos/desktop-cache
-- IMAGE_NAME=MocaccinoOS-Gnome
+- IMAGE_NAME=MocaccinoOS-Minimal
 - OVERLAY=true 
 - FIRST_STAGE=distro/mocaccino-initramfs
 - LUET_PACKAGES=flavor/sabayon-minimal-live system/luet system/container-diff
