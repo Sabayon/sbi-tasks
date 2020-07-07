@@ -10,6 +10,8 @@ environment:
 - IMAGE_NAME=MocaccinoOS-Minimal
 - OVERLAY=true 
 - FIRST_STAGE=distro/mocaccino-initramfs
+- ISOIMAGE_PACKAGES=live/syslinux system/mocaccino-live-boot
+- UEFI_PACKAGES=live/systemd-boot system/mocaccino-live-boot
 - LUET_PACKAGES=flavor/sabayon-minimal-live system/luet system/container-diff
 - LUET_GENERAL__DEBUG=true
 
