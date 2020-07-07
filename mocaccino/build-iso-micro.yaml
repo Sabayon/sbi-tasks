@@ -6,11 +6,12 @@ directory: "/"
 storage: 'mocaccino-credentials'
 source: https://github.com/mocaccinoOS/mocaccino-desktop
 environment:
-- BUILD_ARGS=--pull --push --image-repository mocaccinoos/desktop-cache
 - IMAGE_NAME=MocaccinoOS-Micro
 - OVERLAY=true 
 - FIRST_STAGE=distro/mocaccino-initramfs
-- LUET_PACKAGES=distro/seed system/mocaccino-init kernel/sabayon-full system/mocaccino-live-boot system/luet system/container-diff
+- ISOIMAGE_PACKAGES=live/syslinux system/mocaccino-live-boot
+- UEFI_PACKAGES=live/systemd-boot system/mocaccino-live-boot
+- LUET_PACKAGES=utils/busybox utils/busybox-init repository/mocaccino-extra system/mocaccino-init kernel/sabayon-full system/mocaccino-live-boot system/luet system/container-diff
 - LUET_GENERAL__DEBUG=true
 
 script:
@@ -24,7 +25,7 @@ script:
 - sudo luet install system/container-diff system/luet-extensions
 - equo up && equo i sys-fs/squashfs-tools sys-fs/dosfstools dev-libs/libisoburn
 - curl https://gist.githubusercontent.com/mudler/87a5da08bacae8ea69b8f15497534d8d/raw/26109389ea6eb5f0b8b54c9711509e5ec974b1d2/keybase_cp.sh > keybase_cp.sh
-- ROOT_DIR=$PWD LUET_CONFIG="$PWD/conf/luet.yaml" make iso
+- ROOT_DIR=$PWD LUET_CONFIG="$PWD/conf/luet-micro.yaml" make iso
 - sha256sum $IMAGE_NAME > $IMAGE_NAME.sha256
 - mkdir isobuild
 - mv $IMAGE_NAME $IMAGE_NAME.sha256 isobuild/
