@@ -1,0 +1,27 @@
+environment:
+  - ETP_NONINTERACTIVE=1
+  - "ACCEPT_LICENSE=*"
+  - BRANCH=master
+image: sabayon/builder
+script:
+  - source /etc/profile
+  # systemd-networkd is slow :'(
+  - sleep 2
+  - wget https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
+  - tar -C /usr/local -xzf go1.14.2.linux-amd64.tar.gz
+  - export PATH=$PATH:/usr/local/go/bin
+  - mkdir go
+  - export GOPATH=$PWD/go
+  - export PATH="$PATH:$GOPATH/bin"
+  - WORKDIR=$PWD
+  - mkdir -p go/src/github.com/MottainaiCI
+  - git clone https://github.com/MottainaiCI/lxd-compose go/src/github.com/MottainaiCI/lxd-compose -b $BRANCH
+  - pushd go/src/github.com/MottainaiCI/lxd-compose
+  - make deps multiarch-build
+  - for i in release/lxd-compose-* ; do arch=${i##*-} ; ln -s $(basename $i) release/lxd-compose-latest-linux-${arch}  ; done
+  - cp release/* $WORKDIR/artefacts/
+tag_namespace: lxd-compose-cross-bin
+name: "LXD Compose devel dump"
+type: lxd
+queue: lxd
+planned: "@weekly"
