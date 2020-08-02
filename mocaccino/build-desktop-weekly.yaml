@@ -1,4 +1,4 @@
-name: "Build mocaccino desktop"
+name: "Build mocaccino desktop (clean old packages)"
 image: sabayon/ci
 type: lxd
 queue: lxd
@@ -29,7 +29,7 @@ script:
 - keybase-download '/keybase/public/mocaccino/desktop/*.yaml' $PWD/build
 - ls -liah $PWD/build
 - BACKEND=docker make rebuild-all create-repo
-- keybase-append $PWD/build/ /keybase/public/mocaccino/desktop
+- keybase-deploy $PWD/build/ /keybase/public/mocaccino/desktop
 
 
-planned: "@daily"
+planned: "@weekly"
