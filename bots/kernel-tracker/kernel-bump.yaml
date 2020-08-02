@@ -27,7 +27,7 @@ publish_mode: "append"
 environment:
 - FIRMWARE_VER=20200721
 - KERNEL_VERSION_BUMP=5.8
-- KERNEL_BASE=5.7
+- KERNEL_BASE=5.8
 - ACCEPT_LICENSE=*
 - GIT_AUTHOR_NAME=MarvinHatesOceans
 - GIT_AUTHOR_EMAIL=github-bots@sabayon.com
