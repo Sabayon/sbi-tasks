@@ -27,10 +27,13 @@ environment:
   - BRANCH=arm-poc
   - SHELL=/bin/bash
   - TREE=arm
-  - BUILD_ARGS=--pull --push --image-repository mocaccinoos/micro-arm-cache --no-spinner --debug
+#  - CLEAN=true
+#  - BUILD_ARGS=--push --image-repository mocaccinoos/micro-arm-cache --no-spinner --debug
+  #- BUILD_ARGS=--pull --push --image-repository mocaccinoos/micro-arm-cache --no-spinner --debug
+  - BUILD_ARGS=--pull --push --image-repository mocaccinoos/micro-arm-cache
   - "SUDO="
   - PACKAGES=system/musl-toolchain
-name: "Mocaccino ARM Micro: Build"
+name: "Mocaccino ARM Micro: Build musl-toolchain"
 
 #image: debian/11/armhf
 image: sabayon/builder-arm
