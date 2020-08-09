@@ -30,7 +30,7 @@ environment:
 #  - CLEAN=true
 #  - BUILD_ARGS=--push --image-repository mocaccinoos/micro-arm-cache --no-spinner --debug
   #- BUILD_ARGS=--pull --push --image-repository mocaccinoos/micro-arm-cache --no-spinner --debug
-  - BUILD_ARGS=--pull --push --image-repository mocaccinoos/micro-arm-cache
+  - BUILD_ARGS=--pull --push --image-repository mocaccinoos/micro-arm-cache --config ./conf/luet.yaml
   - "SUDO="
   - PACKAGES=system/musl-toolchain
 name: "Mocaccino ARM Micro: Build musl-toolchain"
