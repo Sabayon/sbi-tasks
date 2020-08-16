@@ -245,18 +245,6 @@ mottainai-cli task compile iso/iso_build.tmpl \
 
 done
 
-# ISO Daily Dev tasks
-for i in "spinbase" "gnome" "kde" "lxqt" "mate" "minimal" "server" "tarball" "xfce"
-do
-mottainai-cli task compile iso/iso_build.tmpl \
-                            -s IsoImage=$i \
-                            -s IsoDev=true \
-                            -s TaskType=docker \
-                            -s IsoName="${i^}" \
-                            -o iso-dev/$i/iso_build.yaml
-
-done
-
 # ISO Daily Pipeline
 mottainai-cli task compile iso/pipeline.tmpl \
                             -l iso/iso-images.tmpl.values \
