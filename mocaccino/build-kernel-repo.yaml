@@ -30,6 +30,7 @@ script:
 # with sudo LUET_CONFIG var is ignored
 - cp conf/luet.yaml .luet.yaml
 - BACKEND=docker make rebuild-all create-repo
+- ls -liah $PWD/build
 - keybase-append $PWD/build/ /keybase/public/mocaccino/kernel-repo
 
   #planned: "@daily"

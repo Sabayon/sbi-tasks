@@ -30,7 +30,7 @@ script:
 - keybase-download '/keybase/public/mocaccino/desktop/*.yaml' $PWD/build
 - ls -liah $PWD/build
 - BACKEND=docker make rebuild-all create-repo
+- ls -liah $PWD/build
 - keybase-append $PWD/build/ /keybase/public/mocaccino/desktop
-
 
 planned: "@daily"
