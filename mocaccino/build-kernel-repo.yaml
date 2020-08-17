@@ -8,7 +8,8 @@ source: https://github.com/mocaccinoOS/kernel-repo
 environment:
 - BUILD_ARGS=--pull --push --image-repository mocaccinoos/kernel-repo-amd64-cache --skip-if-metadata-exists=true
 - LUET_CONFIG="conf/luet.yaml"
-- SUDO=sudo -E
+- "SUDO="
+#- SUDO=sudo -E
 - CLEAN=false
 script:
 - sleep 5
@@ -26,6 +27,8 @@ script:
 - keybase-download '/keybase/public/mocaccino/kernel-repo/*.yaml' $PWD/build
 - ls -liah $PWD/build
 - luet config
+# with sudo LUET_CONFIG var is ignored
+- cp conf/luet.yaml .luet.yaml
 - BACKEND=docker make rebuild-all create-repo
 - keybase-append $PWD/build/ /keybase/public/mocaccino/kernel-repo
 

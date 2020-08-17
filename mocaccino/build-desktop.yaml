@@ -9,7 +9,8 @@ environment:
 - BUILD_ARGS=--pull --push --image-repository mocaccinoos/desktop-cache --skip-if-metadata-exists=true -d --no-spinner
 - LUET_CONFIG="conf/luet.yaml"
 - LUET_GENERAL__DEBUG=true
-- SUDO=sudo -E
+- "SUDO="
+#- SUDO=sudo -E
 - CLEAN=false
 script:
 - sleep 5
