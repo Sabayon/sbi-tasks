@@ -1,7 +1,7 @@
 # Author: Sabayon Dev Team
 # Task Buildlog Cleaner
 name: "Maintenance (buildlog)"
-image: 'sabayon/base-amd64'
+image: "sabayon/base"
 storage: "geaaru"
 storage_path: "confs"
 source: "https://github.com/Sabayon/sbi-tasks.git"
@@ -22,5 +22,5 @@ script:
 planned: "@weekly"
 environment:
   - "ACCEPT_LICENSE=*"
-  - "NAMESPACES_LIST=sabayon:iso-dev sabayon:iso spinbase:iso spinbase:iso-dev luet-entropy-repo"
+  - "NAMESPACES_LIST=sabayon:iso spinbase:iso luet-entropy-repo mocaccino-micro-armv7a"
 type: docker
