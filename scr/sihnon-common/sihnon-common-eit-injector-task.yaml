@@ -39,7 +39,7 @@ environment:
   - SKIP_COMMIT=1
   # Pull is required for remove packages from repository. (SKIP_PULL=0)
   - SKIP_PULL=0
-  - "SAB_STAGING_BUILD_RESOURCES=sihnon-common-build-staging1.yml sihnon-common-build-staging2.yml sihnon-common-build-staging3.yml sihnon-common-build-staging4.yml"
+  - "SAB_STAGING_BUILD_RESOURCES=sihnon-common-build-staging1.yml sihnon-common-build-staging2.yml sihnon-common-build-staging3.yml"
 
   - SKIP_INJECT=0
 
@@ -48,7 +48,7 @@ environment:
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=master"
   - "REPOSITORY_DESCRIPTION=Sihnon Common AMD64 Sabayon Repository"
-  - "SAB_STAGING_DIRS=staging1 staging2 staging3 staging4"
+  - "SAB_STAGING_DIRS=staging1 staging2 staging3"
   - REPO_BINHOST_CLEAN=1
   - SAB_BUILDFILE=sihnon-common-build-inject.yml
   # Skip errors on process existing broken tarballs
@@ -71,6 +71,6 @@ name: "AMD64 Sihnon Common Repo (injector)"
 source: https://github.com/Sabayon/community-repositories/
 directory: sihnon-common
 
-namespace: "sihnon-common,sihnon-common-staging1,sihnon-common-staging2,sihnon-common-staging3,sihnon-common-staging4"
+namespace: "sihnon-common,sihnon-common-staging1,sihnon-common-staging2,sihnon-common-staging3"
 
 tag_namespace: sihnon-common
