@@ -34,7 +34,8 @@ mirrors:
     - http://mirror.yandex.ru/sabayon
 
     # Italy
-    - http://sabayonlinux.mirror.garr.it/sabayonlinux
+    - http://sabayonlinux.mirror.garr.it/sabayon
+    - http://sabayon.mirror.garr.it/sabayon
 
     # Sweden
     - http://ftp.acc.umu.se/mirror/sabayon.org
