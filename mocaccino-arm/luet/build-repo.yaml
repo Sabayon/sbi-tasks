@@ -1,0 +1,48 @@
+name: "ARM - Bump repo revision - mocaccino-arm/luet"
+storage: 'mocaccino-credentials'
+script:
+  - source /etc/profile
+  - source storage/env
+  # Temporary workaround for delay on DHCP response
+  - sleep 4
+  # stop systemd-networkd to drop iface address from docker0
+  # NOTE: this is needed until we use sabayon/builder-arm image
+  - echo "[Match]" >> /etc/systemd/network/default_dhcp.network
+  - echo 'Name=eth*' >> /etc/systemd/network/default_dhcp.network
+  - systemctl daemon-reload
+  - systemctl restart systemd-networkd
+  - systemctl start docker
+  - sleep 10
+  - systemctl status docker
+  - ip a
+  - mkdir -p $HOME/.docker
+  - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker ps
+  - wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-arm -O /usr/bin/luet && chmod a+x /usr/bin/luet
+  - git clone -b $BRANCH https://github.com/Luet-lab/luet-repo.git ./luet-repo && cd luet-repo
+# reduce log intersection
+  - sleep 4
+  # We can't use this now. I have an old mottainai-agent version without env MOTTAINAI_ARTEFACT_PATH
+  #- DESTINATION=${MOTTAINAI_ARTEFACT_PATH} make create-repo
+  - mkdir build && cp ../artefacts/* build/ -v && make create-repo
+  - ls -l build
+  - cp build/* ../artefacts/ -v
+    #- luet create-repo --name "Mocaccino ARM7" --tree $TREE --type "http" --packages artefacts/ --output artefacts/ --meta-compression gzip
+environment:
+  - BRANCH=master
+  - SHELL=/bin/bash
+  - TREE=packages
+  - ARCH=armv7
+  - BUILD_ARGS=--pull --push --image-repository mocaccinoos/luet-arm-cache --config ./conf/luet.yaml
+  - "LUET_CONFIG=./conf/luet.yaml"
+  - "SUDO="
+image: sabayon/builder-arm
+type: lxd
+tag_namespace: "mocaccino-luet-armv7a"
+namespace: "mocaccino-luet-armv7a"
+namespace_filters:
+  - ".*.yaml$"
+publish_mode: append
+directory: /
+queue: arm_lxd
