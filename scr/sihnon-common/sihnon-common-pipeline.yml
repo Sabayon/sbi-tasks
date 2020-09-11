@@ -42,7 +42,7 @@ tasks:
       - chmod a+x /usr/bin/sark-localbuild
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.6
-      - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
+      #- enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
       - equo up && equo upgrade
     
     
@@ -98,7 +98,7 @@ tasks:
       - chmod a+x /usr/bin/sark-localbuild
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.6
-      - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
+      #- enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
       - equo up && equo upgrade
     
     
@@ -154,7 +154,7 @@ tasks:
       - chmod a+x /usr/bin/sark-localbuild
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.6
-      - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
+      #- enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
       - equo up && equo upgrade
     
     
