@@ -26,6 +26,9 @@ script:
   # Force py3.6 on eit
   #- sed -e 's:python2.7:python:g' -i /usr/bin/eit
   - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
+  # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
+  # adding and removing corrects the repo url as a workaround until image is updated
+  - enman remove devel && enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
   - equo up && equo upgrade
   - sark-localinjector
   - eval 'rm artifacts/build_*.log || true'
@@ -70,6 +73,7 @@ artefact_path: artifacts
 name: "AMD64 Sihnon Common Repo (injector)"
 source: https://github.com/Sabayon/community-repositories/
 directory: sihnon-common
+queue: scr
 
 namespace: "sihnon-common,sihnon-common-staging1,sihnon-common-staging2,sihnon-common-staging3"
 
