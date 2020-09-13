@@ -91,6 +91,9 @@ artefact_path: artifacts
 name: "AMD64 {{ .TargetRepoName }} Repo (injector)"
 source: {{ if .SourceGit }}{{ .SourceGit }}{{ else }}https://github.com/Sabayon/sbi-tasks{{ end }}
 directory: {{ if .SourceDir }}{{ .SourceDir }}{{ else }}"/next/amd64/{{ .TargetPrefixRepo }}"{{ end }}
+{{ if .Amd64Queue -}}
+queue: {{ .Amd64Queue }}
+{{ end -}}
 {{ if .PkgsToRemove }}
 namespace: "{{ .TargetRepo }}"
 {{ else }}
