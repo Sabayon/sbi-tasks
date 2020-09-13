@@ -19,10 +19,9 @@ chain:
   - {{ $index }}{{ end }}
   - injector
 {{ else }}
-group:
+chain:
 {{ range $index, $staging := .stagings }}
   - {{ $index }}{{ end }}
-chord:
   - injector
 {{ end }}
 tasks:
