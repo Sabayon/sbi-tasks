@@ -117,6 +117,7 @@ create_repo_amd64_files () {
 }
 
 create_repo_amd64_files "sihnon-common" "${COMMUNITY_REPO}/sihnon-common/repo.tmpl.values"
+create_repo_amd64_files "sihnon-server" "${COMMUNITY_REPO}/sihnon-server/repo.tmpl.values"
 create_repo_amd64_files "devel" "${COMMUNITY_REPO}/devel/repo.tmpl.values"
 create_repo_amd64_files "devel-kernel" "${COMMUNITY_REPO}/devel-kernel/repo.tmpl.values"
 create_repo_amd64_files "devel-9999" "${COMMUNITY_REPO}/devel-9999/repo.tmpl.values"
