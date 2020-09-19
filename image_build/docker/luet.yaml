@@ -1,0 +1,24 @@
+name: "AMD64 - Build docker image luetpm/luet"
+storage: "docker-credentials"
+script:
+  - source /etc/profile
+  - source storage/env
+  - sleep 2
+  - systemctl start docker
+  - systemctl status docker
+  - ip a
+  - mkdir -p $HOME/.docker
+  - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+  - git clone https://github.com/mudler/luet && cd luet
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - docker build --no-cache --rm -t luetpm/luet:latest .
+  - docker image inspect luetpm/luet:latest
+  - docker push luetpm/luet:latest
+environment:
+  - BRANCH=master
+  - SHELL=/bin/bash
+  - ARCH=amd64
+image: sabayon/builder
+type: lxd
+directory: /
+queue: lxd
