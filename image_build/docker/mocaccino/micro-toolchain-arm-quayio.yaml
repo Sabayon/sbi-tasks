@@ -22,10 +22,10 @@ script:
   - git clone ${REPO}
   - cd mocaccino-micro/arm
   - cp ../conf . -rfv
-  - docker build --no-cache --rm -t ${DOCKER_IMAGE}:latest .
+  - docker build --no-cache --rm -t ${DOCKER_IMAGE}:latest-arm .
   - docker login -u $DOCKER_USER -p $DOCKER_PASS quay.io
-  - docker image inspect ${DOCKER_IMAGE}:latest
-  - docker push ${DOCKER_IMAGE}:latest
+  - docker image inspect ${DOCKER_IMAGE}:latest-arm
+  - docker push ${DOCKER_IMAGE}:latest-arm
 name: "Build ARM quay.io/mocaccino/micro-toolchian Docker image"
 image: sabayon/builder-arm
 type: lxd
