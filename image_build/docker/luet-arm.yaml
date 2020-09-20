@@ -20,13 +20,14 @@ script:
   - git clone https://github.com/mudler/luet && cd luet
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - docker ps
-  - docker build --no-cache --rm -t luetpm/luet:latest .
-  - docker image inspect luetpm/luet:latest
-  - docker push luetpm/luet:latest
+  - docker build --no-cache --rm -t luetpm/luet:${IMAGE_MANIFEST} .
+  - docker image inspect luetpm/luet:${IMAGE_MANIFEST}
+  - docker push luetpm/luet:${IMAGE_MANIFEST}
 environment:
   - BRANCH=master
   - SHELL=/bin/bash
   - ARCH=armv7
+  - IMAGE_MANIFEST=latest-arm
 image: sabayon/builder-arm
 type: lxd
 directory: /
