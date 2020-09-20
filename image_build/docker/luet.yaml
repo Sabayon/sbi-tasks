@@ -11,13 +11,15 @@ script:
   - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
   - git clone https://github.com/mudler/luet && cd luet
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - docker build --no-cache --rm -t luetpm/luet:latest .
-  - docker image inspect luetpm/luet:latest
-  - docker push luetpm/luet:latest
+  - docker build --no-cache --rm -t ${IMAGE_NAME}:${IMAGE_MANIFEST} .
+  - docker image inspect ${IMAGE_NAME}:${IMAGE_MANIFEST}
+  - docker push ${IMAGE_NAME}:${IMAGE_MANIFEST}
 environment:
   - BRANCH=master
   - SHELL=/bin/bash
   - ARCH=amd64
+  - IMAGE_NAME=luetpm/luet
+  - IMAGE_MANIFEST=latest-amd64
 image: sabayon/builder
 type: lxd
 directory: /
