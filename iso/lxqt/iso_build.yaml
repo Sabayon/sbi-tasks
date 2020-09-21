@@ -28,5 +28,5 @@ retry: "5"
 
 tag_namespace: "sabayon:iso"
 namespace: "spinbase:iso"
-planned: "0 0 3 * * *"
+#planned: "0 0 3 * * *"
 

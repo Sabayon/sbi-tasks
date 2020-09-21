@@ -23,6 +23,6 @@ environment:
   - BASE_URL=https://dispatcher.sabayon.org/sbi/namespace/sabayon%3Aiso/iso/
 tag_namespace: sabayon:iso
 publish_mode: append
-planned: "0 0 10 * * *"
+#planned: "0 0 10 * * *"
 timeout: 0
 retry: "3"

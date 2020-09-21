@@ -27,6 +27,6 @@ binds:
   - "/dev/loop-control:/dev/loop-control"
 retry: "5"
 
-planned: "0 0 1 * * *"
+#planned: "0 0 1 * * *"
 tag_namespace: "spinbase:iso"
 
