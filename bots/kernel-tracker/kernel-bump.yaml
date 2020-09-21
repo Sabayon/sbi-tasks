@@ -26,8 +26,8 @@ tag_namespace: "distfiles"
 publish_mode: "append"
 environment:
 - FIRMWARE_VER=20200817
-- KERNEL_VERSION_BUMP=5.9
-- KERNEL_BASE=5.8
+- KERNEL_VERSION_BUMP=5.8
+- KERNEL_BASE=5.7
 - ACCEPT_LICENSE=*
 - GIT_AUTHOR_NAME=MarvinHatesOceans
 - GIT_AUTHOR_EMAIL=github-bots@sabayon.com
