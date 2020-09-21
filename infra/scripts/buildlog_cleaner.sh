@@ -33,7 +33,7 @@ main () {
     exit 1
   fi
 
-  for namespace in "${NAMESPACES_LIST}" ; do
+  for namespace in ${NAMESPACES_LIST} ; do
     clean_namespace "$namespace"
   done
 
