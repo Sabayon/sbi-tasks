@@ -1,6 +1,7 @@
 storage: "docker-credentials"
 environment:
   - IMAGE_MANIFEST=latest-arm
+  - IMAGE_NAME=luetpm/mocaccino-micro-toolchain
 script:
   - source /etc/profile
   - source storage/env
@@ -21,12 +22,10 @@ script:
   - git clone https://github.com/mocaccinoOS/mocaccino-micro.git
   - cd mocaccino-micro/arm
   - cp ../conf . -rfv
-  - docker build --no-cache --rm -t luetpm/mocaccino-micro-toolchain:${IMAGE_MANIFEST} .
+  - docker build --no-cache --rm -f Dockerfile-toolchain -t ${IMAGE_NAME}:${IMAGE_MANIFEST} .
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - docker image inspect luetpm/mocaccino-micro-toolchain:${IMAGE_MANIFEST}
-  - docker push luetpm/mocaccino-micro-toolchain:${IMAGE_MANIFEST}
-   #- docker manifest inspect luetpm/mocaccino-micro:latest
-   #- docker manifest push --purge luetpm/mocaccino-micro:latest
+  - docker image inspect ${IMAGE_NAME}:${IMAGE_MANIFEST}
+  - docker push ${IMAGE_NAME}:${IMAGE_MANIFEST}
 name: "Build ARM luetpm/mocaccino-micro-toolchian Docker image"
 image: sabayon/builder-arm
 type: lxd
