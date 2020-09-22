@@ -1,0 +1,29 @@
+name: "AMD64 - Build docker image luetpm/funtoo-seed"
+storage: "docker-credentials"
+script:
+  - source /etc/profile
+  - source storage/env
+  - sleep 2
+  - systemctl start docker
+  - systemctl status docker
+  - ip a
+  - mkdir -p $HOME/.docker
+  - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+  - git clone -b ${BRANCH} https://github.com/mocaccinoOS/mocaccino-funtoo.git repo
+  - cd repo/amd64/packages/funtoo-seed/1.4
+  - wget -q https://github.com/mikefarah/yq/releases/download/3.4.0/yq_linux_amd64 -O /usr/bin/yq && chmod a+x /usr/bin/yq
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export PACKAGE_VERSION=$(yq r definition.yaml 'version')
+  - ./build.sh
+  - docker build --no-cache --rm -t ${IMAGE_NAME}:${IMAGE_MANIFEST} --build-arg TARBALL=rootfs.tar.xz .
+  - docker image inspect ${IMAGE_NAME}:${IMAGE_MANIFEST}
+  - docker push ${IMAGE_NAME}:${IMAGE_MANIFEST}
+environment:
+  - BRANCH=master
+  - SHELL=/bin/bash
+  - IMAGE_NAME=luetpm/funtoo-seed
+  - IMAGE_MANIFEST=latest-amd64
+image: sabayon/builder
+type: lxd
+directory: /
+queue: lxd
