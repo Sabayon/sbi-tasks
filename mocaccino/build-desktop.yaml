@@ -12,6 +12,7 @@ environment:
 - "SUDO="
 #- SUDO=sudo -E
 - CLEAN=false
+- APPEND=false
 script:
 - sleep 5
 - systemctl start docker
@@ -33,4 +34,4 @@ script:
 - ls -liah $PWD/build
 - keybase-append $PWD/build/ /keybase/public/mocaccino/desktop
 
-planned: "@daily"
+#planned: "@daily"
