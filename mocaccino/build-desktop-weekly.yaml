@@ -6,11 +6,12 @@ directory: "/"
 storage: 'mocaccino-credentials'
 source: https://github.com/mocaccinoOS/mocaccino-desktop
 environment:
-- BUILD_ARGS=--pull --push --image-repository mocaccinoos/desktop-cache --skip-if-metadata-exists=true -d --no-spinner
+- BUILD_ARGS=--pull --push --image-repository mocaccinoos/desktop-cache -d --no-spinner
+#- BUILD_ARGS=--pull --push --image-repository mocaccinoos/desktop-cache --skip-if-metadata-exists=true -d --no-spinner
 - LUET_CONFIG="conf/luet.yaml"
 - LUET_GENERAL__DEBUG=true
-- SUDO=sudo -E
-- CLEAN=false
+- "SUDO="
+- CLEAN=true
 script:
 - sleep 5
 - systemctl start docker
@@ -32,4 +33,4 @@ script:
 - keybase-deploy $PWD/build/ /keybase/public/mocaccino/desktop
 
 
-planned: "@weekly"
+  #planned: "@weekly"
