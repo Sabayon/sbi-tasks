@@ -21,7 +21,7 @@ script:
 - chmod -R 777 /push
 # TODO: we could implement something to check what files are already
 # been pushed and push only delta
-- keybase-deploy /artefacts /keybase/public/mocaccino/desktop
+- keybase-deploy /push/ /keybase/public/mocaccino/desktop
 namespace: "mocaccino-desktop"
 artefact_path: /artefacts
 namespace_filters:
