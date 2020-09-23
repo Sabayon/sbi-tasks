@@ -1,0 +1,38 @@
+name: "AMD64 - Bump repo revision - mocaccino/desktop"
+storage: 'mocaccino-credentials'
+script:
+- source /etc/profile
+- source storage/env
+- systemctl start docker
+- mkdir -p $HOME/.docker
+- 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+- curl https://gist.githubusercontent.com/mudler/8b8d6c53c4669f4b9f9a72d1a2b92172/raw/e9d38b8e0702e7f1ef9a5db1bfa428add12a2d24/get_luet_root.sh | sudo sh
+- luet install system/container-diff system/luet-extensions repository/mocaccino-extra
+- wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
+- git clone -b $BRANCH $REPO ./repo && cd repo
+- cp conf/luet.yaml .luet.yaml
+- luet config
+- mkdir build/
+- cp ../artefacts/* build/ -v && make create-repo
+- ls -l build
+- cp build/* ../artefacts/ -v
+# Deploy packages on keybase
+#- keybase-deploy $PWD/build/ /keybase/public/mocaccino/kernel-repo
+environment:
+- REPO=https://github.com/mocaccinoOS/desktop.git
+- BRANCH=master
+- SHELL=/bin/bash
+- TREE=packages
+- BUILD_ARGS=--pull --push --image-repository mocaccinoos/desktop-cache --config ./conf/luet.yaml
+- "LUET_CONFIG=./conf/luet.yaml"
+- "SUDO="
+image: sabayon/builder
+type: lxd
+tag_namespace: "mocaccino-desktop"
+namespace: "mocaccino-desktop"
+namespace_filters:
+  - ".*.yaml$"
+publish_mode: append
+directory: /
+queue: lxd

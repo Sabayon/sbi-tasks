@@ -1,0 +1,29 @@
+name: "mocaccino/desktop: Sync namespace -> keybase"
+image: sabayon/ci
+type: lxd
+queue: lxd
+storage: 'mocaccino-credentials'
+script:
+- sleep 5
+- systemctl start docker
+- source storage/env
+- mkdir -p $HOME/.docker
+- 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+- mkdir /push
+# Avoid repush on error
+- mv /artefacts/* /push/
+- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+- docker ps
+- ip a
+- curl https://gist.githubusercontent.com/mudler/8b8d6c53c4669f4b9f9a72d1a2b92172/raw/e9d38b8e0702e7f1ef9a5db1bfa428add12a2d24/get_luet_root.sh | sudo sh
+- sudo luet install system/container-diff system/luet-extensions repository/mocaccino-extra
+- sudo luet install utils/keybase-tools
+- chmod -R 777 /push
+# TODO: we could implement something to check what files are already
+# been pushed and push only delta
+- keybase-deploy /artefacts /keybase/public/mocaccino/desktop
+namespace: "mocaccino-desktop"
+artefact_path: /artefacts
+namespace_filters:
+- ".*.yaml$"
+- ".*.tar.gz$"
