@@ -22,7 +22,7 @@ script:
   - chmod a+x /usr/bin/sark-localbuild
   - chmod a+x /usr/bin/sark-localinjector
   - chmod a+x /usr/bin/pkgs-checker
-  - eselect python set python3.6
+  - eselect python set python3.7
   # Force py3.6 on eit
   #- sed -e 's:python2.7:python:g' -i /usr/bin/eit
   - enman add https://dispatcher.sabayon.org/sbi/namespace/{{ .TargetRepo }}/{{ .TargetRepo }}
