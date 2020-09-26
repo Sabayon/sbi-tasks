@@ -22,5 +22,5 @@ script:
 planned: "@weekly"
 environment:
   - "ACCEPT_LICENSE=*"
-  - "NAMESPACES_LIST=sabayon:iso spinbase:iso luet-entropy-repo mocaccino-micro-armv7a mocaccino-kernel mocaccino-desktop mocaccino-kernel"
+  - "NAMESPACES_LIST=sabayon:iso spinbase:iso luet-entropy-repo mocaccino-micro-armv7a mocaccino-kernel mocaccino-desktop mocaccino-micro"
 type: docker
