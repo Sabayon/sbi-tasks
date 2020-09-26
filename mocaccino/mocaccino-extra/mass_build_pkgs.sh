@@ -6,7 +6,8 @@ set -e
 LUET_BIN=${LUET_BIN:-/usr/bin/luet}
 LUET_CONFIG=${LUET_CONFIG:-/tmp/luet.yaml}
 PKGS4_TASK=${PKGS4_TASK:-1}
-TREE_PATH="${TREE_PATH:-../../../../mocaccino/extra/}"
+TREE_PATH="${TREE_PATH:-../../../../mocaccino/mocaccino-extra/amd64}"
+COMMON_TREE_PATH="${COMMON_TREE_PATH:-../../../../mocaccino/mocaccino-extra/multi-arch}"
 CONCURRENCY=${CONCURRENCY:-1}
 TASK_NAME_PREFIX="${TASK_NAME_PREFIX:-AMD64 mocaccinoos/mocaccino-extra: }"
 LUET_OPTS="${LUET_OPTS:-}"
@@ -23,9 +24,11 @@ general:
   debug: false
 " > /tmp/luet.yaml
 
+TREES_OPTS="-t ${TREE_PATH}/packages -t ${COMMON_TREE_PATH}/packages"
+
 # Retrieve list of packages
-n_pkgs=$(${LUET_BIN} --config ${LUET_CONFIG} tree pkglist --tree ${TREE_PATH}/packages ${LUET_OPTS} | wc -l)
-pkgs=$(${LUET_BIN} --config ${LUET_CONFIG} tree pkglist --tree ${TREE_PATH}/packages ${LUET_OPTS})
+n_pkgs=$(${LUET_BIN} --config ${LUET_CONFIG} tree pkglist ${TREES_OPTS} ${LUET_OPTS} | wc -l)
+pkgs=$(${LUET_BIN} --config ${LUET_CONFIG} tree pkglist ${TREES_OPTS} ${LUET_OPTS})
 
 
 push_task () {
