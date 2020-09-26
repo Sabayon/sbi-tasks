@@ -32,13 +32,13 @@ script:
 
   - sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
-  - mkdir artifacts/staging4
-  - mv artifacts/community-binhost/ artifacts/staging4/
+  - mkdir artifacts/staging5
+  - mv artifacts/community-binhost/ artifacts/staging5/
 environment:
   - SHELL=/bin/bash
   - SABAYON_ARCH=amd64
   - REPOSITORY_NAME=community
-  - SAB_BUILDFILE=community-build-staging4.yml
+  - SAB_BUILDFILE=community-build-staging5.yml
   - ETP_NONINTERACTIVE=1
   # I need call emerge-webrsync at begin to retrive data for active profile.
   # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
@@ -52,7 +52,7 @@ environment:
 
 
 
-name: "AMD64 Community (Staging4)"
+name: "AMD64 Community (Staging5)"
 
 artefact_path: artifacts
 
@@ -62,4 +62,4 @@ type: docker
 source: https://github.com/Sabayon/community-repositories/
 directory: community
 queue: ""
-tag_namespace: community-staging4
+tag_namespace: community-staging5

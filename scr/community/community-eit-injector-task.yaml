@@ -26,6 +26,9 @@ script:
   # Force py3.6 on eit
   #- sed -e 's:python2.7:python:g' -i /usr/bin/eit
   - enman add https://dispatcher.sabayon.org/sbi/namespace/community/community
+  # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
+  # adding and removing corrects the repo url as a workaround until image is updated
+  - enman remove devel && enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
   - equo up && equo upgrade
   - sark-localinjector
   - eval 'rm artifacts/build_*.log || true'
@@ -39,7 +42,7 @@ environment:
   - SKIP_COMMIT=1
   # Pull is required for remove packages from repository. (SKIP_PULL=0)
   - SKIP_PULL=0
-  - "SAB_STAGING_BUILD_RESOURCES=community-build-staging1.yml community-build-staging2.yml community-build-staging3.yml community-build-staging4.yml"
+  - "SAB_STAGING_BUILD_RESOURCES=community-build-staging1.yml community-build-staging2.yml community-build-staging3.yml community-build-staging4.yml community-build-staging5.yml"
 
   - SKIP_INJECT=0
 
@@ -48,7 +51,7 @@ environment:
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=master"
   - "REPOSITORY_DESCRIPTION=Community AMD64 Sabayon Repository"
-  - "SAB_STAGING_DIRS=staging1 staging2 staging3 staging4"
+  - "SAB_STAGING_DIRS=staging1 staging2 staging3 staging4 staging5"
   - REPO_BINHOST_CLEAN=1
   - SAB_BUILDFILE=community-build-inject.yml
   # Skip errors on process existing broken tarballs
@@ -71,6 +74,6 @@ name: "AMD64 Community Repo (injector)"
 source: https://github.com/Sabayon/community-repositories/
 directory: community
 
-namespace: "community,community-staging1,community-staging2,community-staging3,community-staging4"
+namespace: "community,community-staging1,community-staging2,community-staging3,community-staging4,community-staging5"
 
 tag_namespace: community

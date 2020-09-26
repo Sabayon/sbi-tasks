@@ -20,6 +20,7 @@ chain:
   - staging2
   - staging3
   - staging4
+  - staging5
   - injector
 
 tasks:
@@ -43,6 +44,9 @@ tasks:
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.6
       - enman add https://dispatcher.sabayon.org/sbi/namespace/community/community
+      # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
+      # adding and removing corrects the repo url as a workaround until image is updated
+      - enman remove devel && enman add devel
       - equo up && equo upgrade
     
     
@@ -99,6 +103,9 @@ tasks:
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.6
       - enman add https://dispatcher.sabayon.org/sbi/namespace/community/community
+      # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
+      # adding and removing corrects the repo url as a workaround until image is updated
+      - enman remove devel && enman add devel
       - equo up && equo upgrade
     
     
@@ -155,6 +162,9 @@ tasks:
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.6
       - enman add https://dispatcher.sabayon.org/sbi/namespace/community/community
+      # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
+      # adding and removing corrects the repo url as a workaround until image is updated
+      - enman remove devel && enman add devel
       - equo up && equo upgrade
     
     
@@ -211,6 +221,9 @@ tasks:
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.6
       - enman add https://dispatcher.sabayon.org/sbi/namespace/community/community
+      # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
+      # adding and removing corrects the repo url as a workaround until image is updated
+      - enman remove devel && enman add devel
       - equo up && equo upgrade
     
     
@@ -248,6 +261,65 @@ tasks:
     queue: ""
     tag_namespace: community-staging4
 
+  staging5:
+    script:
+      - source /etc/profile
+      # Temporary workaround for delay on DHCP response
+      - sleep 4
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+      - chmod 755 /sbin/sark-functions.sh
+      - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+      - chmod 755 /etc/sark-functions
+      - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+      - wget https://dispatcher.sabayon.org/sbi/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
+      - chmod a+x /usr/sbin/builder
+      - chmod a+x /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/bin/sark-localbuild
+      - chmod a+x /usr/bin/pkgs-checker
+      - eselect python set python3.6
+      - enman add https://dispatcher.sabayon.org/sbi/namespace/community/community
+      # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
+      # adding and removing corrects the repo url as a workaround until image is updated
+      - enman remove devel && enman add devel
+      - equo up && equo upgrade
+    
+    
+      - equo i dev-perl/Sort-Versions
+    
+      - sark-localbuild
+      - eval 'rm artifacts/build_*.log || true'
+      - mkdir artifacts/staging5
+      - mv artifacts/community-binhost/ artifacts/staging5/
+    environment:
+      - SHELL=/bin/bash
+      - SABAYON_ARCH=amd64
+      - REPOSITORY_NAME=community
+      - SAB_BUILDFILE=community-build-staging5.yml
+      - ETP_NONINTERACTIVE=1
+      # I need call emerge-webrsync at begin to retrive data for active profile.
+      # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
+      # - SKIP_PORTAGE_SYNC=1
+      - SKIP_CLEAN_PACKAGESDIR=1
+      - SAB_PORTDIR=/etc/portage
+      - "CREATEREPO_PHASE=false"
+      - "ACCEPT_LICENSE=*"
+      - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+      - "PORTAGE_GIT_BRANCH=master"
+      # Override list of targets for compile specific packages.
+      # - OVERRIDE_BUILD_TARGET="app/foo"
+    name: "AMD64 Community (Staging5)"
+    artefact_path: artifacts
+    image: sabayon/builder
+    
+    type: docker
+    
+    source: https://github.com/Sabayon/community-repositories/
+    directory: community
+    queue: ""
+    tag_namespace: community-staging5
+
 
   injector:
 
@@ -277,6 +349,9 @@ tasks:
       # Force py3.6 on eit
       #- sed -e 's:python2.7:python:g' -i /usr/bin/eit
       - enman add https://dispatcher.sabayon.org/sbi/namespace/community/community
+      # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
+      # adding and removing corrects the repo url as a workaround until image is updated
+      - enman remove devel && enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
       - equo up && equo upgrade
       - sark-localinjector
       - eval 'rm artifacts/build_*.log || true'
@@ -290,7 +365,7 @@ tasks:
       - SKIP_COMMIT=1
       # Pull is required for remove packages from repository. (SKIP_PULL=0)
       - SKIP_PULL=0
-      - "SAB_STAGING_BUILD_RESOURCES=community-build-staging1.yml community-build-staging2.yml community-build-staging3.yml community-build-staging4.yml"
+      - "SAB_STAGING_BUILD_RESOURCES=community-build-staging1.yml community-build-staging2.yml community-build-staging3.yml community-build-staging4.yml community-build-staging5.yml"
     
       - SKIP_INJECT=0
     
@@ -298,7 +373,7 @@ tasks:
       - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
       - "PORTAGE_GIT_BRANCH=master"
       - "REPOSITORY_DESCRIPTION=Community AMD64 Sabayon Repository"
-      - "SAB_STAGING_DIRS=staging1 staging2 staging3 staging4"
+      - "SAB_STAGING_DIRS=staging1 staging2 staging3 staging4 staging5"
       - REPO_BINHOST_CLEAN=1
       - SAB_BUILDFILE=community-build-inject.yml
       # Skip errors on process existing broken tarballs
@@ -315,5 +390,5 @@ tasks:
     name: "AMD64 Community Repo (injector)"
     source: https://github.com/Sabayon/community-repositories/
     directory: community
-    namespace: "community,community-staging1,community-staging2,community-staging3,community-staging4"
+    namespace: "community,community-staging1,community-staging2,community-staging3,community-staging4,community-staging5"
     tag_namespace: community
