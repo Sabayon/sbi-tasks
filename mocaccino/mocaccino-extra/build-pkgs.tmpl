@@ -1,0 +1,38 @@
+storage: 'mocaccino-credentials'
+script:
+- source /etc/profile
+- source storage/env
+# Temporary workaround for delay on DHCP response
+- sleep 4
+- systemctl start docker
+- mkdir -p $HOME/.docker
+- 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+- curl --no-progress-meter https://gist.githubusercontent.com/mudler/8b8d6c53c4669f4b9f9a72d1a2b92172/raw/e9d38b8e0702e7f1ef9a5db1bfa428add12a2d24/get_luet_root.sh | sudo sh
+# Temporary fetch last build from develop
+- wget -q https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
+- sudo luet install system/container-diff system/luet-extensions
+- git clone -b $BRANCH $REPO ./luet-repo && cd luet-repo
+- echo "${PACKAGES}" > targets
+- make build
+- ls -l build/
+- cp -vrf build/* ../artefacts/
+environment:
+- REPO=https://github.com/mocaccinoOS/mocaccino-extra.git
+- BRANCH=master
+- SHELL=/bin/bash
+- LUET_SYSTEM__TMPDIR_BASE=/luettmp
+#  - CLEAN=true
+- "PACKAGES={{ .LuetPkgs }}"
+- BUILD_ARGS=--pull --push --config ./conf/luet.yaml --skip-if-metadata-exists=true
+- "SUDO="
+name: "{{ .TaskName }}"
+image: sabayon/builder
+type: lxd
+tag_namespace: "mocaccino-extra"
+namespace: "mocaccino-extra"
+namespace_filters:
+  - ".*metadata.yaml$"
+publish_mode: append
+directory: /
+queue: lxd
