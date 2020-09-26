@@ -5,7 +5,7 @@ script:
   - source /etc/profile
   # Temporary workaround for delay on DHCP response
   - sleep 4
-  - eselect python set python3.6
+  - eselect python set python3.7
   - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
   # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
   # adding and removing corrects the repo url as a workaround until image is updated
