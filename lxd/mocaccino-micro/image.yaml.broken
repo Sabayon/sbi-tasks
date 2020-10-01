@@ -7,7 +7,7 @@ image:
 source:
   downloader: docker-http
   # For docker is mandatory for now use 
-  url: luetpm/mocaccino-micro
+  url: luetpm/mocaccino-extra
 
 environment:
   clear_defaults: true
@@ -68,7 +68,13 @@ packages:
 
   sets:
     - packages:
+        - init/mocaccino-runit
+        - init/runit-init
+        - init/runit
+        - system/mocaccino-init
+        - unit-srv/udhcpc
       action: install
+
 
 actions:
 
