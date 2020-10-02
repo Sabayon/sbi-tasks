@@ -68,6 +68,7 @@ packages:
 
   sets:
     - packages:
+        - init/mocaccino-skel
         - init/mocaccino-runit
         - init/runit-init
         - init/runit
