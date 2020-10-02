@@ -72,7 +72,7 @@ packages:
         - init/runit-init
         - init/runit
         - system/mocaccino-init
-        - unit-srv/udhcpc
+        - runit-srv/udhcpc
       action: install
 
 
