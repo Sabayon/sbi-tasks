@@ -74,6 +74,9 @@ packages:
         - init/runit
         - system/mocaccino-init
         - runit-srv/udhcpc
+        - groups/utmp
+        - shells/bash
+        - utils/eudev
       action: install
 
 
@@ -81,6 +84,8 @@ actions:
 
   - trigger: post-packages
     action: |-
+      # Create lock directory used by Luet
+      mkdir -p /var/lock
       rm -rf /var/cache/luet/repos/
 
 mappings:
