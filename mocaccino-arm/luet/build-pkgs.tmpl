@@ -21,7 +21,7 @@ script:
   - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
   - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
   - docker ps
-  - wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-arm -O /usr/bin/luet && chmod a+x /usr/bin/luet
+  - wget https://downloads.svc.sabayon.org/namespace/luet-cross-bin/luet-latest-linux-arm -O /usr/bin/luet && chmod a+x /usr/bin/luet
   - git clone -b $BRANCH https://github.com/Luet-lab/luet-repo.git ./luet-repo && cd luet-repo
 # reduce log intersection
   - sleep 4
