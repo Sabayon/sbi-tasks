@@ -22,7 +22,7 @@ script:
 - cp -rfv /luet-tree/scripts ./
 - cp -rfv /luet-tree/Makefile ./
 - cp -rfv /luet-tree/templates $DESTINATION
-- wget https://dispatcher.sabayon.org/sbi/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
+- wget https://downloads.svc.sabayon.org/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
 - chmod a+x /usr/bin/pkgs-checker
 - make generate
 - cp -rfv $DESTINATION/* /root/repo/

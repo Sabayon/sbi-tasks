@@ -11,7 +11,7 @@ script:
 - export WORKDIR=$PWD
 - curl -LO https://storage.googleapis.com/container-diff/latest/container-diff-linux-amd64 && chmod +x container-diff-linux-amd64 && mkdir -p $HOME/bin && sudo mv container-diff-linux-amd64 /usr/bin/container-diff
 - git clone https://github.com/mudler/luet /luet
-- wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+- wget https://downloads.svc.sabayon.org/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
 - chmod a+x /usr/bin/luet
 #- pushd /luet
 #- go build
