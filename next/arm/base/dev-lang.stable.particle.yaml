@@ -3,7 +3,7 @@ repository:
 build:
   equo:
     repositories:
-      - https://dispatcher.sabayon.org/sbi/namespace/core-arm/core-arm
+      - https://downloads.svc.sabayon.org/namespace/core-arm/core-arm
   qa_checks: 0
   emerge:
     # Set sabayon-arm profile

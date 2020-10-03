@@ -4,7 +4,7 @@ script:
   - echo "SOURCE_DIR = ${SOURCE_DIR}"
   # Temporary workaround for delay on DHCP response
   - sleep 10
-  # - wget https://dispatcher.sabayon.org/sbi/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker
+  # - wget https://downloads.svc.sabayon.org/namespace/core-staging-arm/pkgs-checker_linux_arm -O /usr/bin/pkgs-checker
   # - chmod a+x /usr/bin/pkgs-checker
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - chmod 755 /sbin/sark-functions.sh
@@ -27,7 +27,7 @@ script:
   - sabayon_mask_upstream_pkgs
   - emerge --unmerge virtual/service-manager net-misc/netifrc
   - equo rescue spmsync
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/core-arm/core-arm
+  - enman add https://downloads.svc.sabayon.org/namespace/core-arm/core-arm
   - equo update core-arm
   - equo upgrade
   - sed -i -e 's/^\s*- .*//' core-build.yml

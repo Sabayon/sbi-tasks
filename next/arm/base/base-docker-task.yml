@@ -18,7 +18,7 @@ script:
   - sabayon_mask_upstream_pkgs
   # This command must be integrated with builder.
   - mirrorselect -s3 -b10 -D
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/base-arm/base-arm
+  - enman add https://downloads.svc.sabayon.org/namespace/base-arm/base-arm
   - equo up && equo upgrade
   - SAB_BUILDFILE=sys-devel.particle.yaml ./sark-localbuild
   - eval 'rm artifacts/build_*.log || true'
