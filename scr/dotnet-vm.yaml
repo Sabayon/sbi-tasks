@@ -3,7 +3,7 @@ environment:
 - LC_ALL=en_US.UTF-8
 source: 'https://github.com/Sabayon/community-repositories'
 tag_namespace: 'dotnet'
-image: 'https://dispatcher.sabayon.org/sbi/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box'
+image: 'https://downloads.svc.sabayon.org/namespace/vagrant/Sabayon_Linux_DAILY_amd64_Server.box'
 queue: 'virtualbox'
 artefacts_path: 'artifacts'
 storage_path: 'confs'

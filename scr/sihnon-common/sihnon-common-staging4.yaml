@@ -6,7 +6,7 @@ script:
   # Temporary workaround for delay on DHCP response
   - sleep 4
   - eselect python set python3.6
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/sihnon-common/sihnon-common
+  - enman add https://downloads.svc.sabayon.org/namespace/sihnon-common/sihnon-common
   - equo up && equo upgrade
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - chmod 755 /sbin/sark-functions.sh
@@ -16,7 +16,7 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/dynlink-scanner -O /usr/bin/dynlink-scanner
-  - wget https://dispatcher.sabayon.org/sbi/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
+  - wget https://downloads.svc.sabayon.org/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
   - chmod a+x /usr/sbin/builder
   - chmod a+x /usr/bin/sark-localcreaterepo
   - chmod a+x /usr/bin/sark-localbuild

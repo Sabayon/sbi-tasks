@@ -9,7 +9,7 @@ directory: /scr/devel-9999
 script:
   - source /etc/profile
   - equo up && equo install enman
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+  - enman add https://downloads.svc.sabayon.org/namespace/devel/devel
   - equo up
   - equo install dev-util/mottainai-cli
   - mkdir -p /root/.config/

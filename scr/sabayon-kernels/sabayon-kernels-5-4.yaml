@@ -10,7 +10,7 @@ script:
   - systemctl start docker
   - export WORKDIR=$PWD
   - curl -LO https://storage.googleapis.com/container-diff/latest/container-diff-linux-amd64 && chmod +x container-diff-linux-amd64 && mkdir -p $HOME/bin && sudo mv container-diff-linux-amd64 /usr/bin/container-diff
-  - wget https://dispatcher.sabayon.org/sbi/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+  - wget https://downloads.svc.sabayon.org/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
   - chmod a+x /usr/bin/luet
   - git clone --recurse-submodules https://github.com/luet-lab/sabayon-entropy-tree /tree
   # Update user fork
@@ -21,8 +21,6 @@ script:
   - echo "TARGETS:"
   - cat luet-5-4-targets
   - echo "============================================="
-  # Drop sudo that reset envs
-  - sed -i -e 's:sudo ::g'  Makefile
   # Compile repo targets
   - make build
   - mv build/* $MOTTAINAI_ARTEFACT_PATH
@@ -35,10 +33,6 @@ environment:
   - ETP_NONINTERACTIVE=1
   - "TARGET=luet-5-4-targets"
   - "ACCEPT_LICENSE=*"
-  - "LUET_GENERAL__SPINNER_MS=120000"
-  - "LUET_GENERAL__SPINNER_CHARSET=28"
-  #- "LUET_GENERAL__DEBUG=true"
-  - "LUET_LOGGING__LEVEL=debug"
 
 name: "AMD64 Luet Sabayon Kernels (5-4)"
 artefact_path: artifacts
