@@ -9,7 +9,7 @@ directory: "/infra"
 script:
   - source /etc/profile
   - equo up && equo install enman
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+  - enman add https://downloads.svc.sabayon.org/namespace/devel/devel
   - equo up
   - equo install dev-util/mottainai-cli
   - mkdir -p /root/.config/
@@ -22,5 +22,5 @@ script:
 planned: "@weekly"
 environment:
   - "ACCEPT_LICENSE=*"
-  - "NAMESPACES_LIST=sabayon:iso spinbase:iso luet-entropy-repo mocaccino-micro-armv7a mocaccino-kernel mocaccino-desktop mocaccino-micro"
+  - "NAMESPACES_LIST=sabayon:iso spinbase:iso luet-entropy-repo mocaccino-micro-armv7a mocaccino-kernel mocaccino-desktop mocaccino-micro mocaccino-extra"
 type: docker

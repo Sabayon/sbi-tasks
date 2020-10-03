@@ -17,7 +17,7 @@ image: sabayon/builder-amd64
 script:
   - equo up
   - equo install enman
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+  - enman add https://downloads.svc.sabayon.org/namespace/geaaru/geaaru
   - equo update geaaru
   - equo upgrade
   - equo install dev-python/mkdocs-material dev-python/mkdocs-cinder dev-python/pymdown-extensions www-servers/tornado-5.1 hub

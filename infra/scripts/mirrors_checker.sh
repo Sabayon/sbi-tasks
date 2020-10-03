@@ -6,7 +6,7 @@ set -e
 MIRROR_NAMESPACE="${MIRROR_NAMESPACE:-/sbi/mirrors-status}"
 NAMESPACE_PATH="${NAMESPACE_PATH:-/mirrors}"
 STATUS_FILE="${STATUS_FILE:-${NAMESPACE_PATH}/mirrors-status.json}"
-ORIGIN_NODE="${ORIGIN_NODE:-https://dispatcher.sabayon.org/sbi/namespace}"
+ORIGIN_NODE="${ORIGIN_NODE:-https://downloads.svc.sabayon.org/namespace}"
 MIRROR_FILE="${MIRROR_FILE:-mirrors.yml}"
 
 log () {
