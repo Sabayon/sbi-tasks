@@ -9,7 +9,7 @@ directory: {{ if .SourceDir }}{{ .SourceDir }}{{ else }}/infra{{ end }}
 script:
   - source /etc/profile
   - equo up && equo install enman
-  - enman add https://downloads.svc.sabayon.org/namespace/devel/devel
+  - enman add https://downloads.svc.sabayon.org/devel/devel
   - equo up
   - equo install dev-util/mottainai-cli
   - mkdir -p /root/.config/

@@ -10,7 +10,7 @@ fi
 TASK_LXD="${TASK_LXD:-1}"
 TASK_QUEUE="${TASK_QUEUE:-}"
 MCLI="${MCLI:-mottainai-cli}"
-PKGLIST_FILE="${PKGLIST_FILE:-https://downloads.svc.sabayon.org/namespace/${REPOSITORY}-${REPO_ARCH}/${REPOSITORY}-${REPO_ARCH}/${PKGLIST}}"
+PKGLIST_FILE="${PKGLIST_FILE:-https://downloads.svc.sabayon.org/${REPOSITORY}-${REPO_ARCH}/${REPOSITORY}-${REPO_ARCH}/${PKGLIST}}"
 PKGS_CHECKER_BIN="${PKGS_CHECKER_BIN:-pkgs-checker}"
 
 main () {

@@ -60,7 +60,7 @@ tasks:
     environment:
       - SAB_GENHTML_DUMP_HTML=0
       - SAB_GENHTML_REMOVE_ISO=1
-      - BASE_URL=https://downloads.svc.sabayon.org/namespace/sabayon%3Aiso{{ if $isodev }}-dev{{ end }}/iso/
+      - BASE_URL=https://downloads.svc.sabayon.org/sabayon%3Aiso{{ if $isodev }}-dev{{ end }}/iso/
     tag_namespace: sabayon:iso{{ if $isodev }}-dev{{ end }}
     publish_mode: append
     timeout: 0

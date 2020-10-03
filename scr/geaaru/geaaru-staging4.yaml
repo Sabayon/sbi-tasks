@@ -6,10 +6,10 @@ script:
   # Temporary workaround for delay on DHCP response
   - sleep 4
   - eselect python set python3.7
-    #  - enman add https://downloads.svc.sabayon.org/namespace/geaaru/geaaru
+  - enman add https://downloads.svc.sabayon.org/geaaru/geaaru
   # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
   # adding and removing corrects the repo url as a workaround until image is updated
-  - enman remove devel && enman add https://downloads.svc.sabayon.org/namespace/devel/devel
+  - enman remove devel && enman add https://downloads.svc.sabayon.org/devel/devel
   - equo up && equo upgrade
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - chmod 755 /sbin/sark-functions.sh
@@ -19,7 +19,7 @@ script:
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/dynlink-scanner -O /usr/bin/dynlink-scanner
-  - wget https://downloads.svc.sabayon.org/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
+  - wget https://downloads.svc.sabayon.org/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
   - chmod a+x /usr/sbin/builder
   - chmod a+x /usr/bin/sark-localcreaterepo
   - chmod a+x /usr/bin/sark-localbuild

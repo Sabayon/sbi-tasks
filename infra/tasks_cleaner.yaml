@@ -10,7 +10,7 @@ script:
   - export ACCEPT_LICENSE='*'
   - export LC_ALL=en_US.UTF-8
   - equo up && equo install enman
-  - enman add https://downloads.svc.sabayon.org/namespace/devel/devel
+  - enman add https://downloads.svc.sabayon.org/devel/devel
   - echo 'https_validate_cert = false' >> /etc/entropy/repositories.conf.d/entropy_enman_devel
   - equo up
   - equo install dev-util/mottainai-cli

@@ -108,7 +108,7 @@ tasks:
       # Required for update profile confs
       - layman -s sabayon-distro
       - sabayon_mask_upstream_pkgs
-      - enman add https://downloads.svc.sabayon.org/namespace/{{ $target_repo }}/{{ $target_repo }}
+      - enman add https://downloads.svc.sabayon.org/{{ $target_repo }}/{{ $target_repo }}
       - equo up && equo upgrade
       - sark-localinjector
       - eval 'rm artifacts/build_*.log || true'

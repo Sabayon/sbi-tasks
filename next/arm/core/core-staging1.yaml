@@ -12,13 +12,13 @@ script:
   # Required for update profile confs
   - layman -s sabayon-distro
   - sabayon_mask_upstream_pkgs
-  - enman add https://downloads.svc.sabayon.org/namespace/core-arm-limbo/core-arm
+  - enman add https://downloads.svc.sabayon.org/core-arm-limbo/core-arm
   - equo up && equo upgrade
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/dynlink-scanner -O /usr/bin/dynlink-scanner
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
-  - wget https://downloads.svc.sabayon.org/namespace/pkgs-checker-cross-bin/pkgs-checker-latest-linux-arm -O /usr/bin/pkgs-checker
+  - wget https://downloads.svc.sabayon.org/pkgs-checker-cross-bin/pkgs-checker-latest-linux-arm -O /usr/bin/pkgs-checker
   - chmod a+x /usr/sbin/builder
   - chmod a+x /usr/bin/sark-localcreaterepo
   - chmod a+x /usr/bin/sark-localbuild

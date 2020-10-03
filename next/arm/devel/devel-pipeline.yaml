@@ -165,7 +165,7 @@ tasks:
       # Required for update profile confs
       - layman -s sabayon-distro
       - sabayon_mask_upstream_pkgs
-      - enman add https://downloads.svc.sabayon.org/namespace/devel-arm/devel-arm
+      - enman add https://downloads.svc.sabayon.org/devel-arm/devel-arm
       - equo up && equo upgrade
       - sark-localinjector
       - eval 'rm artifacts/build_*.log || true'

@@ -10,7 +10,7 @@ script:
   - bash scripts/generate_metadata.sh
   - mv metadata.json artefacts/
 environment:
-  - SYNC_URL=https://downloads.svc.sabayon.org/namespace/
+  - SYNC_URL=https://downloads.svc.sabayon.org/
   - ACCEPT_LICENSE=*
 type: docker_execute
 planned: "@daily"

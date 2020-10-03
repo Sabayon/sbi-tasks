@@ -21,7 +21,7 @@ REPOS_TO_SYNC=(
 export WORKSPACE="${WORKSPACE:-$PWD}"
 
 export ARCHES="${ARCHES:-amd64}"
-export SYNC_URL="${SYNC_URL:-http://dispatcher.sabayon.org/namespace/}"
+export SYNC_URL="${SYNC_URL:-http://dispatcher.sabayon.org/}"
 export VAGRANT_DIR="${TEMPWORK}/"
 
 

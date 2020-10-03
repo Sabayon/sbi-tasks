@@ -8,11 +8,11 @@ script:
   - sleep 4
   - equo up
   - equo install enman --relaxed
-  - enman add https://downloads.svc.sabayon.org/namespace/geaaru/geaaru
+  - enman add https://downloads.svc.sabayon.org/geaaru/geaaru
 
-  - enman add https://downloads.svc.sabayon.org/namespace/devel/devel
+  - enman add https://downloads.svc.sabayon.org/devel/devel
   # Distrobuilder is now under devel-9999
-  - enman add https://downloads.svc.sabayon.org/namespace/devel-9999/devel-9999
+  - enman add https://downloads.svc.sabayon.org/devel-9999/devel-9999
   - equo up geaaru && equo up devel && equo up devel-9999
   - touch /etc/entropy/packages/package.unmask
   - equo unmask dev-util/simplestreams-builder-9999 app-emulation/distrobuilder-9999

@@ -77,7 +77,7 @@ packages:
         cached: true
         priority: 1
         urls:
-          - "https://downloads.svc.sabayon.org/namespace/luet-entropy-repo"
+          - "https://downloads.svc.sabayon.org/luet-entropy-repo"
 
   sets:
     - packages:

@@ -2,7 +2,7 @@ image: sabayon/builder-amd64
 script:
   - source /etc/profile
   - equo up && equo install enman
-  - enman add https://downloads.svc.sabayon.org/namespace/devel/devel
+  - enman add https://downloads.svc.sabayon.org/devel/devel
   - equo update && equo install mottainai-cli
   # Temporary workaround for issee https://github.com/MottainaiCI/mottainai-cli/issues/9
   - mkdir /root/.config -p

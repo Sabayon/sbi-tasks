@@ -21,7 +21,7 @@ script:
 - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
 - docker login -u $DOCKER_USER -p $DOCKER_PASS
 - docker ps
-- wget https://downloads.svc.sabayon.org/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+- wget https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
 - chmod a+x /usr/bin/luet
 - curl -LO https://storage.googleapis.com/container-diff/v0.15.0/container-diff-linux-amd64 && mv container-diff-linux-amd64 container-diff && chmod +x container-diff && sudo mv container-diff /usr/bin/
 # Better clone repository here instead of use sources for speedup bootstrap

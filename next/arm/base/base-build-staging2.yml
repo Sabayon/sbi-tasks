@@ -19,9 +19,9 @@ build:
 
     repositories:
     
-      - https://downloads.svc.sabayon.org/namespace/xorg-core-arm/xorg-core-arm
+      - https://downloads.svc.sabayon.org/xorg-core-arm/xorg-core-arm
     
-      - https://downloads.svc.sabayon.org/namespace/net-arm/net-arm
+      - https://downloads.svc.sabayon.org/net-arm/net-arm
     
 
     package:

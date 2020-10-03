@@ -27,8 +27,8 @@ values:
       - base-build-staging17.yml
   EquoSplitInstall: 1
   EquoRepositories:
-    - https://downloads.svc.sabayon.org/namespace/xorg-core-arm/xorg-core-arm
-    - https://downloads.svc.sabayon.org/namespace/net-arm/net-arm
+    - https://downloads.svc.sabayon.org/xorg-core-arm/xorg-core-arm
+    - https://downloads.svc.sabayon.org/net-arm/net-arm
   EquoPackageUnmask:
     # Temporary until bump of 1.4.0-r1
     - app-admin/enman

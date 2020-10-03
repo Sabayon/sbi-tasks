@@ -19,7 +19,7 @@ script:
 - chmod +x /usr/bin/img
 - export WORKDIR=$PWD
 - curl -LO https://storage.googleapis.com/container-diff/latest/container-diff-linux-amd64 && chmod +x container-diff-linux-amd64 && mkdir -p $HOME/bin && sudo mv container-diff-linux-amd64 /usr/bin/container-diff
-- wget https://downloads.svc.sabayon.org/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+- wget https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
 - chmod a+x /usr/bin/luet
 - luet --version
 - BACKEND=docker make build-all create-repo

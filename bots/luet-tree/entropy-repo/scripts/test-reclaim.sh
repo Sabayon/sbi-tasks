@@ -19,7 +19,7 @@ echo "Downloading luet configs..."
 wget ${LUET_REPO_URL}/${LUET_REPO_BRANCH}/conf/luet-dso.yaml -O /etc/luet/.luet.yaml
 wget ${LUET_REPO_CONF} -O /etc/luet/repos.conf.d/${LUET_REPO_FILE}
 
-wget https://downloads.svc.sabayon.org/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+wget https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
 chmod a+x ${LUET_BIN}
 
 find /etc/luet

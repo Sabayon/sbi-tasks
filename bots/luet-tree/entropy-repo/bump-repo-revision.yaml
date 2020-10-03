@@ -9,7 +9,7 @@ image: sabayon/ci
 storage: 'docker-credentials'
 script:
 - source /etc/profile
-- wget https://downloads.svc.sabayon.org/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+- wget https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
 - chmod a+x /usr/bin/luet
 - export DESTINATION=$PWD/build
 - git clone -b $BRANCH https://github.com/Luet-lab/luet-entropy-repo

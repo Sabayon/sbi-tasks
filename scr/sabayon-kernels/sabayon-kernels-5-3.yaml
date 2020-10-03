@@ -10,7 +10,7 @@ script:
   - systemctl start docker
   - export WORKDIR=$PWD
   - curl -LO https://storage.googleapis.com/container-diff/latest/container-diff-linux-amd64 && chmod +x container-diff-linux-amd64 && mkdir -p $HOME/bin && sudo mv container-diff-linux-amd64 /usr/bin/container-diff
-  - wget https://downloads.svc.sabayon.org/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
+  - wget https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet
   - chmod a+x /usr/bin/luet
   - git clone --recurse-submodules https://github.com/luet-lab/sabayon-entropy-tree /tree
   # Update user fork

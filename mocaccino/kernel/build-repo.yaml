@@ -9,7 +9,7 @@ script:
 - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 - curl https://gist.githubusercontent.com/mudler/8b8d6c53c4669f4b9f9a72d1a2b92172/raw/e9d38b8e0702e7f1ef9a5db1bfa428add12a2d24/get_luet_root.sh | sudo sh
 - luet install system/container-diff system/luet-extensions repository/mocaccino-extra
-- wget https://downloads.svc.sabayon.org/namespace/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
+- wget https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
 - git clone -b $BRANCH $REPO ./kernel && cd kernel
 - cp conf/luet.yaml .luet.yaml
 - luet config
