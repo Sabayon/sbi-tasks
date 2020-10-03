@@ -22,9 +22,9 @@ tasks:
       - sleep 4
       - equo up
       - equo install enman --relaxed
-      - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+      - enman add https://downloads.svc.sabayon.org/namespace/geaaru/geaaru
       # Distrobuilder is now under devel
-      - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+      - enman add https://downloads.svc.sabayon.org/namespace/devel/devel
       - equo up geaaru && equo up devel
       - touch /etc/entropy/packages/package.unmask
       - equo unmask dev-util/simplestreams-builder-9999
@@ -61,9 +61,9 @@ tasks:
       - source /etc/profile
       - equo up
       - equo install enman --relaxed
-      - enman add https://dispatcher.sabayon.org/sbi/namespace/geaaru/geaaru
+      - enman add https://downloads.svc.sabayon.org/namespace/geaaru/geaaru
       # Distrobuilder is now under devel
-      - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+      - enman add https://downloads.svc.sabayon.org/namespace/devel/devel
       - equo up geaaru && equo up devel
       - touch /etc/entropy/packages/package.unmask
       - equo unmask dev-util/simplestreams-builder-9999
