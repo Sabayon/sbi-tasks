@@ -14,7 +14,7 @@ repository:
 build:
   equo:
     repositories:
-      - https://dispatcher.sabayon.org/sbi/namespace/core-staging-amd64/core-amd64
+      - https://downloads.svc.sabayon.org/namespace/core-staging-amd64/core-amd64
   qa_checks: 0
   emerge:
    # Install each package separately
