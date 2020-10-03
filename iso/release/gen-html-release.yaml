@@ -20,7 +20,7 @@ directory: /
 environment:
   - SAB_GENHTML_DUMP_HTML=0
   - SAB_GENHTML_REMOVE_ISO=1
-  - BASE_URL=https://dispatcher.sabayon.org/sbi/namespace/cocoon%3Aiso%3Anext-release/iso/
+  - BASE_URL=https://downloads.svc.sabayon.org/namespace/cocoon%3Aiso%3Anext-release/iso/
 tag_namespace: "cocoon:iso:next-release"
 publish_mode: append
 timeout: 0
