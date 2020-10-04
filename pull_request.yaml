@@ -4,7 +4,7 @@ environment:
 image: sabayon/base-amd64
 script:
   - equo up && ACCEPT_LICENSE=* equo i enman
-  - enman add https://dispatcher.sabayon.org/sbi/namespace/devel/devel
+  - enman add https://downloads.svc.sabayon.org/devel/devel
   - echo 'https_validate_cert = false' >> /etc/entropy/repositories.conf.d/entropy_enman_devel
   - equo up && ACCEPT_LICENSE=* equo i mottainai-cli dev-util/replicant
   - mkdir -p /root/.config/
