@@ -21,3 +21,4 @@ cd $(dirname "${0}") || exit 1
 ./kernel-autobump "${KERNEL_DIR}" stable origin 5.6 sabayon- "5\.6\.[0-9999]"
 ./kernel-autobump "${KERNEL_DIR}" stable origin 5.7 sabayon- "5\.7\.[0-9999]"
 ./kernel-autobump "${KERNEL_DIR}" stable origin 5.8 sabayon- "5\.8\.[0-9999]"
+./kernel-autobump "${KERNEL_DIR}" stable origin 5.9 sabayon- "5\.9\.[0-9999]"
