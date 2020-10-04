@@ -20,8 +20,6 @@ script:
   - mottainai-cli pipeline create --yaml devel-kernel-pipeline.yml
   - echo "=================================================================="
 
-planned: "@daily"
-
 environment:
   - "ACCEPT_LICENSE=*"
 type: docker
