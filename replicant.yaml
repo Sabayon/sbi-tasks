@@ -14,6 +14,6 @@ script:
   - replicant -p sab-infra environment ensure
 type: docker_execute
 name: "Replicant job"
-storage: "8925468933589065900"
+storage: "geaaru"
 storage_path: confs
 
