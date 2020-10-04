@@ -1,0 +1,31 @@
+name: "AMD64 - Rebuild all mocaccino/extra"
+storage: 'mocaccino-credentials,minio'
+script:
+- source /etc/profile
+- source storage/env
+- bash storage/login.sh
+- systemctl start docker
+- mkdir -p $HOME/.docker
+- 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+- curl https://get.mocaccino.org/luet/get_luet_root.sh | sudo sh
+- luet install system/container-diff system/luet-extensions repository/mocaccino-extra
+- git clone -b $BRANCH $REPO ./repo && cd repo
+- cp conf/luet.yaml .luet.yaml
+- luet config
+- mkdir build/
+- chmod -R 777 $PWD/build
+- mc mirror  --exclude '*.gz' minio-ci/mocaccino-micro/ $PWD/build
+- make rebuild-all create-repo
+- ls -l build
+- mc cp --recursive $PWD/build/ minio-ci/mocaccino-extra/
+environment:
+- REPO=https://github.com/mocaccinoOS/mocaccino-extra.git
+- BRANCH=master
+- SHELL=/bin/bash
+- BUILD_ARGS=--pull --push --config ./conf/luet.yaml
+- "SUDO="
+image: sabayon/builder
+type: lxd
+directory: /
+queue: lxd
