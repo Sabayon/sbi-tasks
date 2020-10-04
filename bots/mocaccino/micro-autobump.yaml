@@ -15,7 +15,7 @@ script:
 # Use jq from script
 - equo rm jq
 - git checkout master
-- TREE_DIR=/root/repo/packages luet autobump-github
+- TREE_DIR=/root/repo/multi-arch/packages luet autobump-github
 
 storage: "7287247578967654972"
 environment:
