@@ -20,6 +20,7 @@ script:
 - mc cp --recursive --overwrite $PWD/build/ minio-ci/${REPO_NAME}/
 - cp -vrf build/* ../artefacts/
 environment:
+- REPO_NAME=mocaccino-micro
 - REPO=https://github.com/mocaccinoOS/mocaccino-micro.git
 - BRANCH=master
 - SHELL=/bin/bash

@@ -22,6 +22,7 @@ script:
 # Deploy packages on keybase
 #- keybase-deploy $PWD/build/ /keybase/public/mocaccino/kernel-repo
 environment:
+- REPO_NAME=mocaccino-micro
 - REPO=https://github.com/mocaccinoOS/mocaccino-micro.git
 - BRANCH=master
 - SHELL=/bin/bash
