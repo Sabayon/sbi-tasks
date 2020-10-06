@@ -15,7 +15,9 @@ script:
 - cp conf/luet.yaml .luet.yaml
 - luet config
 - mkdir build/
+- chmod -R 777 $PWD/build
 - mc mirror  --exclude '*.gz' minio-ci/${REPO_NAME}/ $PWD/build
+- ls -l build
 - make create-repo
 - mc cp --recursive $PWD/build/ minio-ci/${REPO_NAME}/
 - ls -l build
