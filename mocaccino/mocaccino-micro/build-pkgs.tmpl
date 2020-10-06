@@ -14,9 +14,11 @@ script:
 #- wget -q https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
 - luet install system/container-diff system/luet-extensions
 - git clone -b $BRANCH $REPO ./luet-repo && cd luet-repo
-- mc mirror  --exclude '*.gz' minio-ci/${REPO_NAME}/ $PWD/build
+- mkdir build/
+- wget -q https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
+#- mc mirror  --exclude '*.gz' minio-ci/${REPO_NAME}/ $PWD/build
+#- ls -l build/
 - make build
-- ls -l build/
 - mc cp --recursive $PWD/build/ minio-ci/${REPO_NAME}/
 - cp -vrf build/* ../artefacts/
 environment:
@@ -27,7 +29,7 @@ environment:
 - LUET_SYSTEM__TMPDIR_BASE=/luettmp
 #  - CLEAN=true
 - "PACKAGES={{ .LuetPkgs }}"
-- BUILD_ARGS=--pull --push --config ./conf/luet.yaml --skip-if-metadata-exists=true
+- BUILD_ARGS=--pull --push --config ./conf/luet.yaml --only-target-package
 - "SUDO="
 name: "{{ .TaskName }}"
 image: sabayon/builder
