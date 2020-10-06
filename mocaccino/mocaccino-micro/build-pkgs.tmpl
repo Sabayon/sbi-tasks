@@ -17,7 +17,7 @@ script:
 - mc mirror  --exclude '*.gz' minio-ci/${REPO_NAME}/ $PWD/build
 - make build
 - ls -l build/
-- mc cp --recursive --overwrite $PWD/build/ minio-ci/${REPO_NAME}/
+- mc cp --recursive $PWD/build/ minio-ci/${REPO_NAME}/
 - cp -vrf build/* ../artefacts/
 environment:
 - REPO_NAME=mocaccino-micro
