@@ -13,12 +13,14 @@ script:
 #- wget https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
 - git clone -b $BRANCH $REPO ./repo && cd repo
 - luet config
-- mc mirror  --exclude '*.gz' minio-ci/${REPO_NAME}/ $PWD/build
 - mkdir build/
-- make create-repo
-- mc cp --recursive --overwrite $PWD/build/ minio-ci/${REPO_NAME}/
+- chmod -R 777 $PWD/build
+- mc mirror  --exclude '*.gz' minio-ci/${REPO_NAME}/ $PWD/build
 - ls -l build
-- cp build/* ../artefacts/ -v
+- make create-repo
+- mc cp --recursive $PWD/build/ minio-ci/${REPO_NAME}/
+- ls -l build
+#- cp build/* ../artefacts/ -v
 # Deploy packages on keybase
 #- keybase-deploy $PWD/build/ /keybase/public/mocaccino/kernel-repo
 environment:
