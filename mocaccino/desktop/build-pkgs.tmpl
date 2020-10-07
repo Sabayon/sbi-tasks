@@ -1,9 +1,10 @@
-storage: 'mocaccino-credentials'
+storage: 'mocaccino-credentials,minio'
 script:
 - source /etc/profile
 - source storage/env
 # Temporary workaround for delay on DHCP response
 - sleep 4
+- source storage/login.sh
 - systemctl start docker
 - mkdir -p $HOME/.docker
 - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
