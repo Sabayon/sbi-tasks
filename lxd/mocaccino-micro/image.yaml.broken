@@ -81,6 +81,11 @@ packages:
 
 
 actions:
+  - trigger: post-unpack
+    action: |-
+      # Fix docker-companion issue on handle removed data layer.
+      # https://github.com/mudler/docker-companion/issues/6
+      rm -rf /var/cache/luet/packages/*
 
   - trigger: post-packages
     action: |-
