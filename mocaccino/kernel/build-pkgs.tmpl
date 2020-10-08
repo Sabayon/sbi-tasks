@@ -29,7 +29,7 @@ environment:
 - LUET_SYSTEM__TMPDIR_BASE=/luettmp
 #  - CLEAN=true
 - "PACKAGES={{ .LuetPkgs }}"
-- BUILD_ARGS=--pull --push --image-repository mocaccinoos/kernel-repo-amd64-cache --config ./conf/luet.yaml
+- BUILD_ARGS=--pull --push --config ./conf/luet.yaml --only-target-package
 - "SUDO="
 name: "{{ .TaskName }}"
 image: sabayon/builder
