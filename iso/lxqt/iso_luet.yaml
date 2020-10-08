@@ -1,0 +1,30 @@
+# Authors: Sabayon team
+#
+# Description: Sabayon ISO KDE task
+
+name: "Mocaccino LxQT ISO"
+image: sabayon/ci
+type: lxd
+storage: "geaaru,secureboot-key"
+artefact_path: /iso
+environment:
+- "ACCEPT_LICENSE=*"
+- SPECFILE=lxqt.yaml
+tag_namespace: "iso-lxqt"
+script:
+- sleep 5
+- systemctl start docker
+- mkdir -p $HOME/.docker
+- 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+- equo up
+- equo i sys-fs/dosfstools sys-fs/udftools sys-boot/syslinux app-crypt/sbsigntools app-crypt/shim-signed dev-libs/libisoburn sys-fs/squashfs-tools
+- curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
+- luet install system/luet-extensions repository/mocaccino-extra
+- luet install utils/yq utils/jq
+- rm /usr/bin/luet-geniso /usr/share/luet-extension/geniso/13_prepare_iso.sh
+- wget https://raw.githubusercontent.com/Luet-lab/extensions/master/extensions/geniso/luet-geniso -O /usr/bin/luet-geniso
+- wget https://raw.githubusercontent.com/Luet-lab/extensions/master/extensions/geniso/iso/13_prepare_iso.sh -O /usr/share/luet-extension/geniso/13_prepare_iso.sh
+- chmod a+x /usr/bin/luet-geniso /usr/share/luet-extension/geniso/13_prepare_iso.sh
+- git clone https://github.com/mocaccinoOS/ci.git ci
+- cd ci && ./scripts/isospec specs/${SPECFILE}
+- mv *.iso *.sha256 /iso/
