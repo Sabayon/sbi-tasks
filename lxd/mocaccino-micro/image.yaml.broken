@@ -68,18 +68,25 @@ packages:
 
   sets:
     - packages:
-        - init/mocaccino-skel
-        - init/mocaccino-runit
-        - init/runit-init
         - init/runit
-        - init/void-runit
-        - system/mocaccino-init
-        - runit-srv/udhcpc
+        - init/runit-init
+        - init/mocaccino-runit
+        - init/mocaccino-skel
         - groups/utmp
-        - shells/bash
+        - editors/vim
+        - kernel/sabayon-full 
+        - runit-srv/udhcpc
+        - system/mocaccino-init 
+        - system/mocaccino-live-boot
+        - system/luet
+        - utils/busybox
         - utils/eudev
+        - utils/openssh
+        - utils/procps
+        - utils/yip
+        - utils/yip-integration
+        - shells/bash
       action: install
-
 
 actions:
   - trigger: post-unpack
