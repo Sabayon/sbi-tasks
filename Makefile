@@ -117,3 +117,9 @@ tag-server:
                             -o ..task.yaml
 	$(CLI) task create --yaml ..task.yaml
 	rm -rf ..task.yaml
+
+.PHONY: autobump
+autobump:
+	$(CLI) task create --yaml bots/luet/luet-official-repo-autobump.yaml
+	$(CLI) task create --yaml bots/mocaccino/micro-autobump.yaml
+	$(CLI) task create --yaml bots/mocaccino/extra-autobump.yaml
