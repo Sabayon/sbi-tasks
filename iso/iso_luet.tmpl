@@ -1,8 +1,8 @@
 # Authors: Sabayon team
 #
-# Description: Sabayon ISO Lxqt task
+# Description: Sabayon ISO {{ .IsoName }} task
 
-name: "Sabayon Lxqt ISO"
+name: "Sabayon {{ .IsoName }} ISO"
 image: sabayon/ci
 type: lxd
 queue: lxd
@@ -10,8 +10,8 @@ storage: "geaaru,secureboot-key"
 artefact_path: /iso
 environment:
 - "ACCEPT_LICENSE=*"
-- SPECFILE=lxqt.yaml
-tag_namespace: "iso-lxqt"
+- SPECFILE={{ .IsoImage }}.yaml
+tag_namespace: "iso-{{ .IsoImage }}"
 script:
 - sleep 5
 - systemctl start docker

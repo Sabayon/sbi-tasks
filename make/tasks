@@ -234,22 +234,14 @@ mottainai-cli task compile lxd/lxd-pipeline.tmpl \
 
 
 # ISO Daily tasks
-for i in "spinbase" "gnome" "kde" "lxqt" "mate" "minimal" "server" "tarball" "xfce"
+for i in "gnome" "kde" "lxqt" "mate"
 do
-mottainai-cli task compile iso/iso_build.tmpl \
+mottainai-cli task compile iso/iso_luet.tmpl \
                             -s IsoImage=$i \
-                            -s IsoDev=false \
-                            -s TaskType=docker \
                             -s IsoName="${i^}" \
-                            -o iso/$i/iso_build.yaml
+                            -o iso/$i/iso_luet.yaml
 
 done
-
-# ISO Daily Pipeline
-mottainai-cli task compile iso/pipeline.tmpl \
-                            -l iso/iso-images.tmpl.values \
-                            -o iso/pipeline-isos-daily.yml
-
 
 # ARM Repositories
 
