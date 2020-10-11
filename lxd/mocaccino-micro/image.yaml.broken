@@ -72,6 +72,7 @@ packages:
         - init/mocaccino-runit
         - init/runit-init
         - init/runit
+        - init/void-runit
         - system/mocaccino-init
         - runit-srv/udhcpc
         - groups/utmp
