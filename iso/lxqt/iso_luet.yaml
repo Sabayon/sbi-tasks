@@ -28,4 +28,4 @@ script:
 - chmod a+x /usr/bin/luet-geniso /usr/share/luet-extension/geniso/13_prepare_iso.sh
 - git clone https://github.com/mocaccinoOS/ci.git ci
 - cd ci && ./scripts/isospec specs/${SPECFILE}
-- mv *.iso *.sha256 /iso/
+- mv *.iso *.sha256 iso-meta.* /iso/
