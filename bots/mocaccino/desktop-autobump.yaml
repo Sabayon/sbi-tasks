@@ -1,0 +1,30 @@
+name: "Bump specs in mocaccino/mocaccino-desktop"
+image: sabayon/ci
+type: docker
+directory: "/bots/mocaccino"
+source: "https://github.com/Sabayon/sbi-tasks"
+
+script:
+- export WORKDIR=$PWD
+- curl  https://get.mocaccino.org/luet/get_luet_root.sh | sh
+- luet install system/luet-extensions
+# Setup deps and ssh/GH access
+- bash -ex ../scripts/setup_ssh.sh
+- bash -ex ../scripts/setup_git_repo.sh
+- pushd /root/repo
+# Use jq from script
+- equo rm jq
+- git checkout master
+- make auto-bump
+
+storage: "7287247578967654972"
+environment:
+- GIT_AUTHOR_NAME=MarvinHatesOceans
+- GIT_AUTHOR_EMAIL=github-bots@sabayon.com
+- GIT_COMMITTER_NAME=MarvinHatesOceans
+- GIT_COMMITTER_EMAIL=github-bots@sabayon.com
+- FORK_REPO=git@github.com:auto-maintainers/desktop.git
+- UPSTREAM_REPO=git@github.com:mocaccinoOS/desktop.git
+- WORK_BRANCH=bumps
+- AUTO_GIT=true
+planned: "@daily"
