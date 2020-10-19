@@ -28,4 +28,4 @@ environment:
 - UPSTREAM_REPO=git@github.com:Luet-lab/luet-repo.git
 - WORK_BRANCH=bumps
 - AUTO_GIT=true
-planned: "@daily"
+  #planned: "@daily"

@@ -27,4 +27,4 @@ environment:
 - UPSTREAM_REPO=git@github.com:mocaccinoOS/mocaccino-extra.git
 - WORK_BRANCH=bumps
 - AUTO_GIT=true
-planned: "@daily"
+  #planned: "@daily"
