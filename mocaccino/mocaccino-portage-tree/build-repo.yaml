@@ -1,4 +1,4 @@
-name: "AMD64 - Bump repo revision - desktop"
+name: "AMD64 - Bump repo revision - mocaccino-portage-tree"
 storage: 'mocaccino-credentials,minio'
 script:
 - source /etc/profile
@@ -22,8 +22,8 @@ script:
 - mc cp --recursive $PWD/build/ minio-ci/${REPO_NAME}/
 - ls -l build
 environment:
-- REPO_NAME=desktop
-- REPO=https://github.com/mocaccinoOS/desktop.git
+- REPO_NAME=mocaccino-portage-tree
+- REPO=https://github.com/mocaccinoOS/portage-tree.git
 - BRANCH=master
 - SHELL=/bin/bash
 - BUILD_ARGS=--pull --push --config ./conf/luet.yaml

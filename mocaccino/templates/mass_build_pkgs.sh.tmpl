@@ -15,7 +15,6 @@ MCLI_OPTS="${MCLI_OPTS:-}"
 REPO_URL="${REPO_URL:-{{ .RepoUrl }}}"
 REPO_BRANCH="${REPO_BRANCH:-{{ .RepoBranch }}}"
 
-BUILD_ARGS="${BUILD_ARGS:---pull --push --config ./conf/luet.yaml --only-target-package --skip-if-metadata-exists=true}"
 
 export LUET_LOGGING__LEVEL="info"
 export LUET_GENERAL__DEBUG="false"
@@ -42,13 +41,16 @@ push_task () {
   local task_name="${TASK_NAME_PREFIX} $list - ${n_task}/${n_pkgs}"
   mkdir -p /tmp/luet-repo
 
+  if [ -n "${CLEAN}" ] ; then
+    opts="-s Clean=true"
+  fi
+
   mottainai-cli task compile build-pkgs.tmpl \
     -s TaskName="$task_name" \
     -s LuetPkgs="$list" \
     -s RepoName="{{ .RepoName }}" \
     -s RepoUrl="${REPO_URL}" \
     -s RepoBranch="${REPO_BRANCH}" \
-    -s buildArgs="${BUILD_ARGS}" \
     -o /tmp/luet-repo/task_${n_task}.yaml
 
   if [ -z "${SKIP_FIRE}" ] ; then

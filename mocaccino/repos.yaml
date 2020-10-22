@@ -8,11 +8,11 @@ values:
       gitrepo: https://github.com/mocaccinoOS/mocaccino-micro.git
       gitbranch: master
 
-    - name: portage-tree
+    - name: mocaccino-portage-tree
       gitrepo: https://github.com/mocaccinoOS/portage-tree.git
       gitbranch: master
 
-    - name: desktop
+    - name: mocaccino-desktop
       gitrepo: https://github.com/mocaccinoOS/desktop.git
       gitbranch: master
 

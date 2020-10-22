@@ -2,7 +2,6 @@ storage: 'mocaccino-credentials,minio'
 script:
 - source /etc/profile
 - source storage/env
-- source storage/login.sh
 # Temporary workaround for delay on DHCP response
 - sleep 4
 - systemctl start docker
@@ -11,10 +10,12 @@ script:
 - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 - curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
 # Temporary fetch last build from develop
-- luet install system/container-diff system/luet-extensions
+- luet install repository/mocaccino-extra-stable
+- luet install system/container-diff system/luet-extensions net-fs/minio-client
+- source storage/login.sh
 - git clone -b $BRANCH $REPO ./luet-repo && cd luet-repo
 - mkdir build/
-- wget -q https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
+#- wget -q https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
 #- mc mirror  --exclude '*.gz' minio-ci/${REPO_NAME}/ $PWD/build
 #- find build/
 - make rebuild
@@ -28,9 +29,11 @@ environment:
 - BRANCH={{ .RepoBranch }}
 - SHELL=/bin/bash
 - LUET_SYSTEM__TMPDIR_BASE=/luettmp
-#  - CLEAN=true
+{{ if .Clean }}
+- CLEAN=true
+{{ end }}
 - "PACKAGES={{ .LuetPkgs }}"
-- BUILD_ARGS={{ .buildArgs }}
+- "BUILD_ARGS=--pull --push --config ./conf/luet.yaml --only-target-package --skip-if-metadata-exists=true"
 - "SUDO="
 name: "{{ .TaskName }}"
 image: sabayon/builder
