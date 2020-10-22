@@ -1,4 +1,4 @@
-name: "AMD64 - Bump repo revision - mocaccino/micro"
+name: "AMD64 - Bump repo revision - mocaccino-micro"
 storage: 'mocaccino-credentials,minio'
 script:
 - source /etc/profile
@@ -12,6 +12,7 @@ script:
 - luet install system/container-diff system/luet-extensions repository/mocaccino-extra
 #- wget https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
 - git clone -b $BRANCH $REPO ./repo && cd repo
+- cp conf/luet.yaml .luet.yaml
 - luet config
 - mkdir build/
 - chmod -R 777 $PWD/build
@@ -20,9 +21,6 @@ script:
 - make create-repo
 - mc cp --recursive $PWD/build/ minio-ci/${REPO_NAME}/
 - ls -l build
-#- cp build/* ../artefacts/ -v
-# Deploy packages on keybase
-#- keybase-deploy $PWD/build/ /keybase/public/mocaccino/kernel-repo
 environment:
 - REPO_NAME=mocaccino-micro
 - REPO=https://github.com/mocaccinoOS/mocaccino-micro.git

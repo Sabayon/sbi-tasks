@@ -12,6 +12,10 @@ CONCURRENCY=${CONCURRENCY:-1}
 TASK_NAME_PREFIX="${TASK_NAME_PREFIX:-AMD64 mocaccinoos/mocaccino-micro: }"
 LUET_OPTS="${LUET_OPTS:-}"
 MCLI_OPTS="${MCLI_OPTS:-}"
+REPO_URL="${REPO_URL:-https://github.com/mocaccinoOS/mocaccino-micro.git}"
+REPO_BRANCH="${REPO_BRANCH:-master}"
+
+BUILD_ARGS="${BUILD_ARGS:---pull --push --config ./conf/luet.yaml --only-target-package --skip-if-metadata-exists=true}"
 
 export LUET_LOGGING__LEVEL="info"
 export LUET_GENERAL__DEBUG="false"
@@ -41,6 +45,10 @@ push_task () {
   mottainai-cli task compile build-pkgs.tmpl \
     -s TaskName="$task_name" \
     -s LuetPkgs="$list" \
+    -s RepoName="mocaccino-micro" \
+    -s RepoUrl="${REPO_URL}" \
+    -s RepoBranch="${REPO_BRANCH}" \
+    -s buildArgs="${BUILD_ARGS}" \
     -o /tmp/luet-repo/task_${n_task}.yaml
 
   if [ -z "${SKIP_FIRE}" ] ; then

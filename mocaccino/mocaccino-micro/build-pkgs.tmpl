@@ -2,34 +2,35 @@ storage: 'mocaccino-credentials,minio'
 script:
 - source /etc/profile
 - source storage/env
+- source storage/login.sh
 # Temporary workaround for delay on DHCP response
 - sleep 4
-- source storage/login.sh
 - systemctl start docker
 - mkdir -p $HOME/.docker
 - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
 - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 - curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
 # Temporary fetch last build from develop
-#- wget -q https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
 - luet install system/container-diff system/luet-extensions
 - git clone -b $BRANCH $REPO ./luet-repo && cd luet-repo
 - mkdir build/
 - wget -q https://downloads.svc.sabayon.org/luet-cross-bin/luet-latest-linux-amd64 -O /usr/bin/luet && chmod a+x /usr/bin/luet
 #- mc mirror  --exclude '*.gz' minio-ci/${REPO_NAME}/ $PWD/build
-#- ls -l build/
-- make build
+#- find build/
+- make rebuild
+- find build/
 - mc cp --recursive $PWD/build/ minio-ci/${REPO_NAME}/
+# For debug/throubleshooting
 - cp -vrf build/* ../artefacts/
 environment:
-- REPO_NAME=mocaccino-micro
-- REPO=https://github.com/mocaccinoOS/mocaccino-micro.git
-- BRANCH=master
+- REPO_NAME={{ .RepoName }}
+- REPO={{ .RepoUrl }}
+- BRANCH={{ .RepoBranch }}
 - SHELL=/bin/bash
 - LUET_SYSTEM__TMPDIR_BASE=/luettmp
 #  - CLEAN=true
 - "PACKAGES={{ .LuetPkgs }}"
-- BUILD_ARGS=--pull --push --config ./conf/luet.yaml --only-target-package
+- BUILD_ARGS={{ .buildArgs }}
 - "SUDO="
 name: "{{ .TaskName }}"
 image: sabayon/builder

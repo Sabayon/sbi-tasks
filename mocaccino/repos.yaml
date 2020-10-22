@@ -1,5 +1,4 @@
 values:
-  build_args: "--pull --push --config ./conf/luet.yaml --only-target-package --skip-if-metadata-exists=true"
   repositories:
     - name: mocaccino-extra
       gitrepo: https://github.com/mocaccinoOS/mocaccino-extra.git

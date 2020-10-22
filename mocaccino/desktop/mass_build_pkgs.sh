@@ -6,11 +6,16 @@ set -e
 LUET_BIN=${LUET_BIN:-/usr/bin/luet}
 LUET_CONFIG=${LUET_CONFIG:-/tmp/luet.yaml}
 PKGS4_TASK=${PKGS4_TASK:-1}
-TREE_PATH="${TREE_PATH:-../../../../mocaccino/desktop/}"
+TREE_PATH="${TREE_PATH:-../../../../mocaccino/desktop/amd64}"
+COMMON_TREE_PATH="${COMMON_TREE_PATH:-../../../../mocaccino/desktop/multi-arch}"
 CONCURRENCY=${CONCURRENCY:-1}
 TASK_NAME_PREFIX="${TASK_NAME_PREFIX:-AMD64 mocaccinoos/desktop: }"
 LUET_OPTS="${LUET_OPTS:-}"
 MCLI_OPTS="${MCLI_OPTS:-}"
+REPO_URL="${REPO_URL:-https://github.com/mocaccinoOS/desktop.git}"
+REPO_BRANCH="${REPO_BRANCH:-master}"
+
+BUILD_ARGS="${BUILD_ARGS:---pull --push --config ./conf/luet.yaml --only-target-package --skip-if-metadata-exists=true}"
 
 export LUET_LOGGING__LEVEL="info"
 export LUET_GENERAL__DEBUG="false"
@@ -23,9 +28,11 @@ general:
   debug: false
 " > /tmp/luet.yaml
 
+TREES_OPTS="-t ${TREE_PATH}/packages -t ${COMMON_TREE_PATH}/packages"
+
 # Retrieve list of packages
-n_pkgs=$(${LUET_BIN} --config ${LUET_CONFIG} tree pkglist --tree ${TREE_PATH}/packages ${LUET_OPTS} | wc -l)
-pkgs=$(${LUET_BIN} --config ${LUET_CONFIG} tree pkglist --tree ${TREE_PATH}/packages ${LUET_OPTS})
+n_pkgs=$(${LUET_BIN} --config ${LUET_CONFIG} tree pkglist ${TREES_OPTS} ${LUET_OPTS} | wc -l)
+pkgs=$(${LUET_BIN} --config ${LUET_CONFIG} tree pkglist ${TREES_OPTS} ${LUET_OPTS})
 
 
 push_task () {
@@ -38,6 +45,10 @@ push_task () {
   mottainai-cli task compile build-pkgs.tmpl \
     -s TaskName="$task_name" \
     -s LuetPkgs="$list" \
+    -s RepoName="desktop" \
+    -s RepoUrl="${REPO_URL}" \
+    -s RepoBranch="${REPO_BRANCH}" \
+    -s buildArgs="${BUILD_ARGS}" \
     -o /tmp/luet-repo/task_${n_task}.yaml
 
   if [ -z "${SKIP_FIRE}" ] ; then

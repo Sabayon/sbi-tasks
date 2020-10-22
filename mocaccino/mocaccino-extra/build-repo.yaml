@@ -1,4 +1,4 @@
-name: "AMD64 - Bump repo revision - mocaccino/extra"
+name: "AMD64 - Bump repo revision - mocaccino-extra"
 storage: 'mocaccino-credentials,minio'
 script:
 - source /etc/profile
@@ -21,8 +21,6 @@ script:
 - make create-repo
 - mc cp --recursive $PWD/build/ minio-ci/${REPO_NAME}/
 - ls -l build
-# Deploy packages on keybase
-#- keybase-deploy $PWD/build/ /keybase/public/mocaccino/kernel-repo
 environment:
 - REPO_NAME=mocaccino-extra
 - REPO=https://github.com/mocaccinoOS/mocaccino-extra.git
