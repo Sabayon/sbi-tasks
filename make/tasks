@@ -243,53 +243,29 @@ mottainai-cli task compile iso/iso_luet.tmpl \
 
 done
 
-# ARM Repositories
 
-create_repo_arm_files () {
-  local dir_repo=$1
-  local conf=$2
+# Create Mocaccino tasks
+for ((i=0;i<$(yq read  mocaccino/repos.yaml --length  'values.repositories.');i++)) ; do
 
-  local n_stages=$(cat $conf | shyaml -y get-length values.stagings)
+  repo=$(yq read mocaccino/repos.yaml "values.repositories.[${i}].name")
+  gitrepo=$(yq read mocaccino/repos.yaml "values.repositories.[${i}].gitrepo")
+  gitbranch=$(yq read mocaccino/repos.yaml "values.repositories.[${i}].gitbranch")
 
-  for ((i=1;i<=${n_stages};i++)) ; do
-    staging="staging${i}"
-    # Create SARK build file.
-    mottainai-cli task compile next/arm/repo-build.tmpl \
-      -l ${conf} \
-      -s StagingPhase="${staging}" \
-      -o next/arm/${dir_repo}/${dir_repo}-build-${staging}.yml
+  mkdir -p mocaccino/${repo}/ || true
 
-    # Create Mottainai task
-    mottainai-cli task compile next/arm/repo-staging.tmpl \
-      -l ${conf} \
-      -s TaskTarget="${staging^}" \
-      -s StagingPhase="${staging}" \
-      -s LxdType=true \
-      -o next/arm/${dir_repo}/${dir_repo}-${staging}.yaml
-  done
+  mottainai-cli task compile mocaccino/templates/mass_build_pkgs.sh.tmpl \
+    -s RepoUrl="${gitrepo}" \
+    -s RepoName="${repo}" \
+    -s RepoBranch="${gitbranch}" \
+    -o mocaccino/${repo}/mass_build_pkgs.sh
+  chmod a+x mocaccino/${repo}/mass_build_pkgs.sh
+  cp -v mocaccino/templates/build-pkgs.tmpl mocaccino/${repo}/
 
-  # ARM Injector buildfile
-  mottainai-cli task compile next/arm/repo-inject-build.tmpl \
-      -l ${conf} \
-      -o next/arm/${dir_repo}/${dir_repo}-build-inject.yml
+  mottainai-cli task compile mocaccino/templates/build-repo.tmpl \
+    -s RepoUrl="${gitrepo}" \
+    -s RepoName="${repo}" \
+    -s RepoBranch="${gitbranch}" \
+    -o mocaccino/${repo}/build-repo.yaml
 
-  # ARM Injector task
-  mottainai-cli task compile next/arm/repo-injector.tmpl \
-      -l ${conf} \
-      -s ArmQueue="arm_injector" \
-      -o next/arm/${dir_repo}/${dir_repo}-eit-injector-task.yaml
+done
 
-  # ARM Pipeline
-  mottainai-cli task compile next/arm/pipeline.tmpl \
-      -l ${conf} \
-      -s ArmQueueInjector="arm_injector" \
-      -s LxdTypeStaging=true \
-      -o next/arm/${dir_repo}/${dir_repo}-pipeline.yaml
-}
-
-create_repo_arm_files "core" "next/arm/core/repo.tmpl.values"
-create_repo_arm_files "base" "next/arm/base/repo.tmpl.values"
-create_repo_arm_files "net" "next/arm/net/repo.tmpl.values"
-create_repo_arm_files "sabayon" "next/arm/sabayon/repo.tmpl.values"
-create_repo_arm_files "xorg-core" "next/arm/xorg-core/repo.tmpl.values"
-create_repo_arm_files "devel" "next/arm/devel/repo.tmpl.values"

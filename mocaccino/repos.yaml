@@ -1,0 +1,22 @@
+values:
+  build_args: "--pull --push --config ./conf/luet.yaml --only-target-package --skip-if-metadata-exists=true"
+  repositories:
+    - name: mocaccino-extra
+      gitrepo: https://github.com/mocaccinoOS/mocaccino-extra.git
+      gitbranch: master
+
+    - name: mocaccino-micro
+      gitrepo: https://github.com/mocaccinoOS/mocaccino-micro.git
+      gitbranch: master
+
+    - name: portage-tree
+      gitrepo: https://github.com/mocaccinoOS/portage-tree.git
+      gitbranch: master
+
+    - name: desktop
+      gitrepo: https://github.com/mocaccinoOS/desktop.git
+      gitbranch: master
+
+    - name: mocaccino-kernel
+      gitrepo: https://github.com/mocaccinoOS/kernel-repo.git
+      gitbranch: master
