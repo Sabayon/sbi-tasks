@@ -20,6 +20,7 @@ do
   }
   make deps
   make multiarch-build
+  for i in release/${SUBPROJECT}-* ; do arch=${i##*-} ; ln -s $(basename $i) release/${SUBPROJECT}-latest-linux-${arch}  ; done
   mv release/* $WORKDIR/artefacts/
   popd
 done
