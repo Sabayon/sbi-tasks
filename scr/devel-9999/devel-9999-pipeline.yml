@@ -43,7 +43,7 @@ tasks:
       - enman add https://downloads.svc.sabayon.org/devel-9999/devel-9999
       # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
       # adding and removing corrects the repo url as a workaround until image is updated
-      - enman remove devel && enman add devel
+      - enman remove devel && enman add https://get.svc.sabayon.org/scr/devel/devel
       - equo up && equo upgrade
     
       - sark-localbuild
@@ -99,7 +99,7 @@ tasks:
       - enman add https://downloads.svc.sabayon.org/devel-9999/devel-9999
       # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
       # adding and removing corrects the repo url as a workaround until image is updated
-      - enman remove devel && enman add devel
+      - enman remove devel && enman add https://get.svc.sabayon.org/scr/devel/devel
       - equo up && equo upgrade
     
       - sark-localbuild
@@ -171,10 +171,11 @@ tasks:
       - enman add https://downloads.svc.sabayon.org/devel-9999/devel-9999
       # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
       # adding and removing corrects the repo url as a workaround until image is updated
-      - enman remove devel && enman add https://downloads.svc.sabayon.org/devel/devel
+      - enman remove devel && enman add https://get.svc.sabayon.org/scr/devel/devel
       - equo up && equo upgrade
       - sark-localinjector
       - eval 'rm artifacts/build_*.log || true'
+      - eval 'rm -rf artifacts/staging* -rf || true'
       - mc cp --recursive $PWD/artifacts/ minio-ci/scr/${REPOSITORY_NAME}/
     environment:
       - SHELL=/bin/bash
