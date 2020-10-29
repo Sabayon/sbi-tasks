@@ -143,12 +143,17 @@ tasks:
 
 
 
+    storage: 'minio'
     script:
       - source /etc/profile
       - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
       - chmod 755 /sbin/sark-functions.sh
       - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
       - chmod 755 /etc/sark-functions
+      - curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
+      - luet install repository/mocaccino-extra-stable
+      - luet install system/luet-extensions net-fs/minio-client
+      - source storage/login.sh
       - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
       - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
       - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
@@ -159,6 +164,7 @@ tasks:
       - chmod a+x /usr/bin/sark-localbuild
       - chmod a+x /usr/bin/sark-localinjector
       - chmod a+x /usr/bin/pkgs-checker
+      - mc mirror minio-ci/scr/${REPOSITORY_NAME} $PWD/artifacts
       - eselect python set python3.7
       # Force py3.6 on eit
       #- sed -e 's:python2.7:python:g' -i /usr/bin/eit
@@ -169,6 +175,7 @@ tasks:
       - equo up && equo upgrade
       - sark-localinjector
       - eval 'rm artifacts/build_*.log || true'
+      - mc cp --recursive $PWD/artifacts/ minio-ci/scr/${REPOSITORY_NAME}/
     environment:
       - SHELL=/bin/bash
       - SABAYON_ARCH=amd64
@@ -204,5 +211,4 @@ tasks:
     name: "AMD64 Devel 9999 Repo (injector)"
     source: https://github.com/Sabayon/community-repositories/
     directory: devel-9999
-    namespace: "devel-9999,devel-9999-staging1,devel-9999-staging2"
-    tag_namespace: devel-9999
+    namespace: "devel-9999-staging1,devel-9999-staging2"

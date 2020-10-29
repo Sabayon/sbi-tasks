@@ -17,5 +17,5 @@ script:
 type: docker
 timeout: 64800
 
-#planned: "@daily"
+planned: "@daily"
 
