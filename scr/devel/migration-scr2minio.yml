@@ -1,0 +1,20 @@
+storage: 'minio'
+script:
+  - source /etc/profile
+  - curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
+  - luet install repository/mocaccino-extra-stable
+  - luet install system/luet-extensions net-fs/minio-client
+  - source storage/login.sh
+  - eval 'rm artifacts/build_*.log || true'
+  - mc cp --recursive $PWD/artifacts/ minio-ci/scr/${REPOSITORY_NAME}/
+# Avoid pushing of the data
+  - rm -rf artifacts/*
+root_task: 1675242954520124255
+environment:
+  - SHELL=/bin/bash
+  - SABAYON_ARCH=amd64
+  - REPOSITORY_NAME=devel
+image: sabayon/builder
+type: docker
+artefact_path: artifacts
+name: "AMD64 Devel Repo (Migration 2 Minio)"
