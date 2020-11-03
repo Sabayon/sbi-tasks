@@ -62,23 +62,18 @@ packages:
   update: true
   cleanup: true
 
-  repositories:
-
   sets:
     - packages:
         - sys-apps/dbus
         - dev-vcs/git
       action: install
 
+  repositories:
    # Enable main repository
    - name: "sabayonlinux.org"
      type: "equo"
 
 actions:
-  # Spinbase image doesn't include enman tool
-  # for external repositories. This is not needed
-  # if external repository aren't used or it's used equ
-  # as repo type.
   - trigger: post-unpack
     action: |-
       #!/bin/bash
