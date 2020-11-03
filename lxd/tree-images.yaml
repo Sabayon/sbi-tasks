@@ -114,4 +114,18 @@ products:
     aliases:
       - "mocaccino/micro-toolchain"
 
+  # Mocaccino QA
+  - name: mocaccino-qa:current:amd64:default
+    arch: amd64
+    release: current
+    os: Mocaccino
+    release_title: "QA / Test"
+    directory: mocaccino-aq
+    # Path where retrieve images informations and files.
+    # This option is used by build-images-file
+    prefix_path: "https://downloads.svc.sabayon.org/lxd-mocaccino-qa"
+    days: 2
+    aliases:
+      - "mocaccino/qa"
+
 

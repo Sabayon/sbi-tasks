@@ -8,15 +8,136 @@ pipeline_name: "LXD Build Images Pipeline"
 concurrency: 2
 
 group:
+  - mocaccino-micro
+  - mocaccino-micro-toolchain
+  - mocaccino-qa
   - sabayon-base
   - sabayon-builder
   - sabayon-ci
   - sabayon-isobuilder
+  - sabayon-luet
 
 chord:
   - build-tree
 
 tasks:
+
+  mocaccino-micro:
+    script:
+      - source /etc/profile
+      # temporary: Sleep for LXD
+      - sleep 4
+      - equo up
+      - equo install enman --relaxed
+      - enman add https://downloads.svc.sabayon.org/geaaru/geaaru
+      # Distrobuilder is now under devel
+      - enman add https://downloads.svc.sabayon.org/devel/devel
+      - equo up geaaru && equo up devel
+      - touch /etc/entropy/packages/package.unmask
+      - equo unmask dev-util/simplestreams-builder-9999
+      - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
+      # Temporary until replicator support .replicatorignore
+      - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+      - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
+      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
+      - ls -ltr images/$LXD_IMAGEDIR/
+      # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
+      # by agent.
+      - chmod a+rwx -R images/
+      - find .
+      - eval 'rm images/build_*.log || true'
+    type: docker
+    image: sabayon/base-amd64
+    name: "Build LXD mocaccino/micro image"
+    environment:
+      - "LXD_PRODUCT=mocaccino-micro:current:amd64:default"
+      - "LXD_IMAGEDIR=mocaccino-micro"
+      - "SSBUILDER_PREFIX=../lxd-mocaccino-micro"
+      - "ACCEPT_LICENSE=*"
+    namespace: lxd-mocaccino-micro
+    tag_namespace: lxd-mocaccino-micro
+    artefact_path: images
+    source: https://github.com/Sabayon/sbi-tasks.git
+    directory: /lxd
+    timeout: 0
+
+  mocaccino-micro-toolchain:
+    script:
+      - source /etc/profile
+      # temporary: Sleep for LXD
+      - sleep 4
+      - equo up
+      - equo install enman --relaxed
+      - enman add https://downloads.svc.sabayon.org/geaaru/geaaru
+      # Distrobuilder is now under devel
+      - enman add https://downloads.svc.sabayon.org/devel/devel
+      - equo up geaaru && equo up devel
+      - touch /etc/entropy/packages/package.unmask
+      - equo unmask dev-util/simplestreams-builder-9999
+      - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
+      # Temporary until replicator support .replicatorignore
+      - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+      - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
+      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
+      - ls -ltr images/$LXD_IMAGEDIR/
+      # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
+      # by agent.
+      - chmod a+rwx -R images/
+      - find .
+      - eval 'rm images/build_*.log || true'
+    type: docker
+    image: sabayon/base-amd64
+    name: "Build LXD mocaccino/micro-toolchain image"
+    environment:
+      - "LXD_PRODUCT=mocaccino-micro-toolchain:current:amd64:default"
+      - "LXD_IMAGEDIR=mocaccino-micro-toolchain"
+      - "SSBUILDER_PREFIX=../lxd-mocaccino-micro-toolchain"
+      - "ACCEPT_LICENSE=*"
+    namespace: lxd-mocaccino-micro-toolchain
+    tag_namespace: lxd-mocaccino-micro-toolchain
+    artefact_path: images
+    source: https://github.com/Sabayon/sbi-tasks.git
+    directory: /lxd
+    timeout: 0
+
+  mocaccino-qa:
+    script:
+      - source /etc/profile
+      # temporary: Sleep for LXD
+      - sleep 4
+      - equo up
+      - equo install enman --relaxed
+      - enman add https://downloads.svc.sabayon.org/geaaru/geaaru
+      # Distrobuilder is now under devel
+      - enman add https://downloads.svc.sabayon.org/devel/devel
+      - equo up geaaru && equo up devel
+      - touch /etc/entropy/packages/package.unmask
+      - equo unmask dev-util/simplestreams-builder-9999
+      - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
+      # Temporary until replicator support .replicatorignore
+      - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+      - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
+      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
+      - ls -ltr images/$LXD_IMAGEDIR/
+      # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
+      # by agent.
+      - chmod a+rwx -R images/
+      - find .
+      - eval 'rm images/build_*.log || true'
+    type: docker
+    image: sabayon/base-amd64
+    name: "Build LXD mocaccino/qa image"
+    environment:
+      - "LXD_PRODUCT=mocaccino-qa:current:amd64:default"
+      - "LXD_IMAGEDIR=mocaccino-qa"
+      - "SSBUILDER_PREFIX=../lxd-mocaccino-qa"
+      - "ACCEPT_LICENSE=*"
+    namespace: lxd-mocaccino-qa
+    tag_namespace: lxd-mocaccino-qa
+    artefact_path: images
+    source: https://github.com/Sabayon/sbi-tasks.git
+    directory: /lxd
+    timeout: 0
 
   sabayon-base:
     script:
@@ -169,6 +290,45 @@ tasks:
       - "ACCEPT_LICENSE=*"
     namespace: lxd-sabayon-isobuilder
     tag_namespace: lxd-sabayon-isobuilder
+    artefact_path: images
+    source: https://github.com/Sabayon/sbi-tasks.git
+    directory: /lxd
+    timeout: 0
+
+  sabayon-luet:
+    script:
+      - source /etc/profile
+      # temporary: Sleep for LXD
+      - sleep 4
+      - equo up
+      - equo install enman --relaxed
+      - enman add https://downloads.svc.sabayon.org/geaaru/geaaru
+      # Distrobuilder is now under devel
+      - enman add https://downloads.svc.sabayon.org/devel/devel
+      - equo up geaaru && equo up devel
+      - touch /etc/entropy/packages/package.unmask
+      - equo unmask dev-util/simplestreams-builder-9999
+      - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
+      # Temporary until replicator support .replicatorignore
+      - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+      - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
+      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
+      - ls -ltr images/$LXD_IMAGEDIR/
+      # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
+      # by agent.
+      - chmod a+rwx -R images/
+      - find .
+      - eval 'rm images/build_*.log || true'
+    type: docker
+    image: sabayon/base-amd64
+    name: "Build LXD sabayon/luet image"
+    environment:
+      - "LXD_PRODUCT=sabayon-luet:current:amd64:default"
+      - "LXD_IMAGEDIR=sabayon-luet"
+      - "SSBUILDER_PREFIX=../lxd-sabayon-luet"
+      - "ACCEPT_LICENSE=*"
+    namespace: lxd-sabayon-luet
+    tag_namespace: lxd-sabayon-luet
     artefact_path: images
     source: https://github.com/Sabayon/sbi-tasks.git
     directory: /lxd

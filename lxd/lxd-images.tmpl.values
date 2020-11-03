@@ -31,3 +31,7 @@ values:
         namespace: "lxd-mocaccino-micro-toolchain"
         name: "mocaccino/micro-toolchain"
         directory: "mocaccino-micro-toolchain"
+    mocaccino-qa:
+        namespace: "lxd-mocaccino-qa"
+        name: "mocaccino/qa"
+        directory: "mocaccino-qa"
