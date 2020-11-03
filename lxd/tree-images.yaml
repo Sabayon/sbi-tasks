@@ -120,7 +120,7 @@ products:
     release: current
     os: Mocaccino
     release_title: "QA / Test"
-    directory: mocaccino-aq
+    directory: mocaccino-qa
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
     prefix_path: "https://downloads.svc.sabayon.org/lxd-mocaccino-qa"
