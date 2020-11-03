@@ -19,6 +19,10 @@ environment:
     value: "*"
   - key: "ETP_NONINTERACTIVE"
     value: "1"
+  - key: "LUET_NOLOCK"
+    value: "true"
+  - key: "LC_ALL"
+    value: "en_US.UTF-8"
 
 targets:
   lxc:
