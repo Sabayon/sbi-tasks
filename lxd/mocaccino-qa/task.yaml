@@ -1,7 +1,7 @@
 # Authors: Daniele Rondina
 #          geaaru@sabayonlinux.org
 #
-# Description: Script for build LXD sabayon/base
+# Description: Script for build LXD mocaccino/qa
 script:
   - source /etc/profile
   # temporary: Sleep for LXD
@@ -27,14 +27,14 @@ script:
   - eval 'rm images/build_*.log || true'
 type: docker
 image: sabayon/base-amd64
-name: "Build LXD sabayon/base image"
+name: "Build LXD mocaccino/qa image"
 environment:
-  - "LXD_PRODUCT=sabayon-base:current:amd64:default"
-  - "LXD_IMAGEDIR=sabayon-base"
-  - "SSBUILDER_PREFIX=../lxd-sabayon-base"
+  - "LXD_PRODUCT=mocaccino-qa:current:amd64:default"
+  - "LXD_IMAGEDIR=mocaccino-qa"
+  - "SSBUILDER_PREFIX=../lxd-mocaccino-qa"
   - "ACCEPT_LICENSE=*"
-namespace: lxd-sabayon-base
-tag_namespace: lxd-sabayon-base
+namespace: lxd-mocaccino-qa
+tag_namespace: lxd-mocaccino-qa
 artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
