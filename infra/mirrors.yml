@@ -23,7 +23,8 @@ mirrors:
     - ftp://ftp.nluug.nl/pub/os/Linux/distr/sabayonlinux
 
     # dyingmuppet Mirror
-    - http://www.dyingmuppet.nl/mirror
+    # Disable. Return 404
+    #- http://www.dyingmuppet.nl/mirror
 
     # Equador
     - http://mirror.cedia.org.ec/sabayon
@@ -50,7 +51,8 @@ mirrors:
     # Australia
 
     # Internode
-    - http://mirror.internode.on.net/pub/sabayon
+    # Disable. It seems out of sync
+    # - http://mirror.internode.on.net/pub/sabayon
 
     # Portugal
 
