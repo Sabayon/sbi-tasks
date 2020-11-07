@@ -65,7 +65,6 @@ packages:
   update: true
   cleanup: true
 
-  repositories:
   sets:
     - packages:
         - sys-apps/dbus
@@ -91,7 +90,7 @@ actions:
       echo -5 | equo conf update
 
   - trigger: post-packages
-      curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
+    action: |-
       #!/bin/sh
       curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
       luet install repository/mocaccino-extra-stable system/luet-extensions
