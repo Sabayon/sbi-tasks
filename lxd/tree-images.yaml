@@ -128,4 +128,17 @@ products:
     aliases:
       - "mocaccino/qa"
 
+  # Mocaccino Builder
+  - name: mocaccino-builder:current:amd64:default
+    arch: amd64
+    release: current
+    os: Mocaccino
+    release_title: "Builder"
+    directory: mocaccino-builder
+    # Path where retrieve images informations and files.
+    # This option is used by build-images-file
+    prefix_path: "https://downloads.svc.sabayon.org/lxd-mocaccino-builder"
+    days: 2
+    aliases:
+      - "mocaccino/builder"
 

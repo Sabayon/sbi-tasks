@@ -35,3 +35,7 @@ values:
         namespace: "lxd-mocaccino-qa"
         name: "mocaccino/qa"
         directory: "mocaccino-qa"
+    mocaccino-builder:
+        namespace: "lxd-mocaccino-builder"
+        name: "mocaccino/builder"
+        directory: "mocaccino-builder"

@@ -1,7 +1,7 @@
 image:
   distribution: sabayon
   decription: Sabayon
-  variant: base
+  variant: builder
   expiry: 10d
   architecture: amd64
 
@@ -19,10 +19,6 @@ environment:
     value: "*"
   - key: "ETP_NONINTERACTIVE"
     value: "1"
-  - key: "LUET_NOLOCK"
-    value: "true"
-  - key: "LC_ALL"
-    value: "en_US.UTF-8"
 
 targets:
   lxc:
@@ -66,18 +62,26 @@ packages:
   update: true
   cleanup: true
 
+  repositories:
+   # Enable main repository
+   - name: "sabayonlinux.org"
+     type: "equo"
+
   sets:
     - packages:
         - sys-apps/dbus
         - dev-vcs/git
+        - app-emulation/docker
       action: install
 
 actions:
+  # Spinbase image doesn't include enman tool
+  # for external repositories. This is not needed
+  # if external repository aren't used or it's used equ
+  # as repo type.
   - trigger: post-unpack
     action: |-
       #!/bin/bash
-      equo repo disable sabayon-weekly || true
-      equo repo enable sabayonlinux.org
       equo up && equo i enman
 
   - trigger: post-packages
@@ -88,7 +92,7 @@ actions:
   - trigger: post-packages
     action: |-
       #!/bin/sh
-      curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
+      curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sudo sh
       luet install repository/mocaccino-extra-stable system/luet-extensions
       luet install utils/jq utils/yq utils/charty net-fs/minio-client
 
