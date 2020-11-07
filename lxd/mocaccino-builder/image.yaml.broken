@@ -63,10 +63,6 @@ packages:
   cleanup: true
 
   repositories:
-   # Enable main repository
-   - name: "sabayonlinux.org"
-     type: "equo"
-
   sets:
     - packages:
         - sys-apps/dbus
@@ -82,6 +78,8 @@ actions:
   - trigger: post-unpack
     action: |-
       #!/bin/bash
+      equo repo disable sabayon-weekly || true
+      equo repo enable sabayonlinux.org
       equo up && equo i enman
 
   - trigger: post-packages
