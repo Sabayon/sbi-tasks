@@ -142,3 +142,17 @@ products:
     aliases:
       - "mocaccino/builder"
 
+  # Mocaccino Portage
+  - name: mocaccino-portage:current:amd64:default
+    arch: amd64
+    release: current
+    os: Mocaccino
+    release_title: "Portage"
+    directory: mocaccino-portage
+    # Path where retrieve images informations and files.
+    # This option is used by build-images-file
+    prefix_path: "https://downloads.svc.sabayon.org/lxd-mocaccino-portage"
+    days: 2
+    aliases:
+      - "mocaccino/portage"
+

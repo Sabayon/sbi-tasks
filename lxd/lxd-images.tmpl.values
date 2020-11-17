@@ -39,3 +39,7 @@ values:
         namespace: "lxd-mocaccino-builder"
         name: "mocaccino/builder"
         directory: "mocaccino-builder"
+    mocaccino-portage:
+        namespace: "lxd-mocaccino-portage"
+        name: "mocaccino/portage"
+        directory: "mocaccino-portage"
