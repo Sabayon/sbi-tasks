@@ -77,6 +77,8 @@ actions:
       # Fix docker-companion issue on handle removed data layer.
       # https://github.com/mudler/docker-companion/issues/6
       rm -rf /var/cache/luet/packages/*
+      luet install repository/mocaccino-portage
+      luet install repository/mocaccino-extra
 
   - trigger: post-packages
     action: |-
