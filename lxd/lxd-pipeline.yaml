@@ -12,6 +12,7 @@ group:
   - mocaccino-micro
   - mocaccino-micro-toolchain
   - mocaccino-portage
+  - mocaccino-portage-builder
   - mocaccino-qa
   - sabayon-base
   - sabayon-builder
@@ -175,6 +176,45 @@ tasks:
       - "ACCEPT_LICENSE=*"
     namespace: lxd-mocaccino-portage
     tag_namespace: lxd-mocaccino-portage
+    artefact_path: images
+    source: https://github.com/Sabayon/sbi-tasks.git
+    directory: /lxd
+    timeout: 0
+
+  mocaccino-portage-builder:
+    script:
+      - source /etc/profile
+      # temporary: Sleep for LXD
+      - sleep 4
+      - equo up
+      - equo install enman --relaxed
+      - enman add https://downloads.svc.sabayon.org/geaaru/geaaru
+      # Distrobuilder is now under devel
+      - enman add https://downloads.svc.sabayon.org/devel/devel
+      - equo up geaaru && equo up devel
+      - touch /etc/entropy/packages/package.unmask
+      - equo unmask dev-util/simplestreams-builder-9999
+      - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
+      # Temporary until replicator support .replicatorignore
+      - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+      - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
+      - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
+      - ls -ltr images/$LXD_IMAGEDIR/
+      # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
+      # by agent.
+      - chmod a+rwx -R images/
+      - find .
+      - eval 'rm images/build_*.log || true'
+    type: docker
+    image: sabayon/base-amd64
+    name: "Build LXD mocaccino/portage-builder image"
+    environment:
+      - "LXD_PRODUCT=mocaccino-portage-builder:current:amd64:default"
+      - "LXD_IMAGEDIR=mocaccino-portage-builder"
+      - "SSBUILDER_PREFIX=../lxd-mocaccino-portage-builder"
+      - "ACCEPT_LICENSE=*"
+    namespace: lxd-mocaccino-portage-builder
+    tag_namespace: lxd-mocaccino-portage-builder
     artefact_path: images
     source: https://github.com/Sabayon/sbi-tasks.git
     directory: /lxd

@@ -68,7 +68,7 @@ packages:
 
   sets:
     - packages:
-        - layers/system-x
+        - layers/gnome-image
       action: install
 
 

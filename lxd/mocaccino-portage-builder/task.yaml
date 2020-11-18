@@ -1,7 +1,7 @@
 # Authors: Daniele Rondina
 #          geaaru@sabayonlinux.org
 #
-# Description: Script for build LXD mocaccino/portage
+# Description: Script for build LXD mocaccino/portage-builder
 script:
   - source /etc/profile
   # temporary: Sleep for LXD
@@ -28,14 +28,14 @@ script:
   - eval 'rm images/build_*.log || true'
 type: docker
 image: sabayon/base-amd64
-name: "Build LXD mocaccino/portage image"
+name: "Build LXD mocaccino/portage-builder image"
 environment:
-  - "LXD_PRODUCT=mocaccino-portage:current:amd64:default"
-  - "LXD_IMAGEDIR=mocaccino-portage"
-  - "SSBUILDER_PREFIX=../lxd-mocaccino-portage"
+  - "LXD_PRODUCT=mocaccino-portage-builder:current:amd64:default"
+  - "LXD_IMAGEDIR=mocaccino-portage-builder"
+  - "SSBUILDER_PREFIX=../lxd-mocaccino-portage-builder"
   - "ACCEPT_LICENSE=*"
-namespace: lxd-mocaccino-portage
-tag_namespace: lxd-mocaccino-portage
+namespace: lxd-mocaccino-portage-builder
+tag_namespace: lxd-mocaccino-portage-builder
 artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
