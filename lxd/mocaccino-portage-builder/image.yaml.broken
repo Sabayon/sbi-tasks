@@ -18,6 +18,8 @@ environment:
       value: "/bin/bash"
     - key: "LUET_NOLOCK"
       value: "true"
+    - key: "LUET_YES"
+      value: "true"
     - key: "USER"
       value: "root"
     - key: "LC_ALL"

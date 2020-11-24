@@ -21,6 +21,8 @@ environment:
     value: "1"
   - key: "LUET_NOLOCK"
     value: "true"
+  - key: "LUET_YES"
+    value: "true"
   - key: "LC_ALL"
     value: "en_US.UTF-8"
 
