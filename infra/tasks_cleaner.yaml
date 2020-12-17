@@ -7,7 +7,8 @@ storage_path: "confs"
 source: "https://github.com/Sabayon/sbi-tasks.git"
 directory: "/infra"
 script:
-- curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
+- source /etc/profile
+- sleep 1
 - luet install repository/mocaccino-extra-stable
 - luet install dev-util/mottainai-cli
 - mkdir -p /root/.config/

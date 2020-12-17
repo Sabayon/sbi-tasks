@@ -64,7 +64,7 @@ clean_tasks () {
   local days=""
 
   echo "Searching for old task to remove..."
-  local tasks_list=$(mottainai-cli task list | grep -w "success\|failed\|error" --color=none | awk -F "|" '{str = sprintf("%s_%s", $8, $2)} { print str }' | awk '{str = sprintf("%s_%s", $1, $6)} { print str }')
+  local tasks_list=$(mottainai-cli task list -j | jq .[] | jq '.ID + "-" + .created_time' -r)
   for i in ${tasks_list} ; do
     taskid=""
     tdate=""
@@ -75,9 +75,10 @@ clean_tasks () {
       # Skip header
       continue
     fi
-    taskid=$(echo $i | sed -e 's:.*_::g')
-    tdate=$(echo $i | sed -e 's:_.*::g')
-    days=$(python -c "from datetime import datetime; print ((datetime.strptime('$nowdate', '%Y-%m-%d')-datetime.strptime('$tdate', '%Y-%m-%d')).days)")
+    taskid=$(echo $i | cut -d'-' -f 1)
+    tdate=$(echo $i | cut -d'-' -f 2)
+    tdate=${tdate:0:8}
+    days=$(python -c "from datetime import datetime; print ((datetime.strptime('$nowdate', '%Y-%m-%d')-datetime.strptime('$tdate', '%Y%m%d')).days)")
 
     if [ "$DEBUG" = 1 ] ; then
       echo "Check task ${taskid} with date ${tdate}: days $days"
