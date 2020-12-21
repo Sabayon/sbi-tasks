@@ -25,7 +25,7 @@ products:
     os: Sabayon
     release_title: "Base"
     directory: sabayon-base
-    prefix_path: "https://downloads.svc.sabayon.org/lxd-sabayon-base"
+    prefix_path: "https://get.mocaccino.org/mocaccino-lxd/lxd-sabayon-base"
     days: 2
     aliases:
       - "sabayon/base"
@@ -39,7 +39,7 @@ products:
     directory: sabayon-builder
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
-    prefix_path: "https://downloads.svc.sabayon.org/lxd-sabayon-builder"
+    prefix_path: "https://get.mocaccino.org/mocaccino-lxd/lxd-sabayon-builder"
     days: 2
     aliases:
       - "sabayon/builder"
@@ -53,7 +53,7 @@ products:
     directory: sabayon-isobuilder
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
-    prefix_path: "https://downloads.svc.sabayon.org/lxd-sabayon-isobuilder"
+    prefix_path: "https://get.mocaccino.org/mocaccino-lxd/lxd-sabayon-isobuilder"
     days: 2
     aliases:
       - "sabayon/iso-builder"
@@ -67,7 +67,7 @@ products:
     directory: sabayon-ci
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
-    prefix_path: "https://downloads.svc.sabayon.org/lxd-sabayon-ci"
+    prefix_path: "https://get.mocaccino.org/mocaccino-lxd/lxd-sabayon-ci"
     days: 2
     aliases:
       - "sabayon/ci"
@@ -81,7 +81,7 @@ products:
     directory: sabayon-luet
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
-    prefix_path: "https://downloads.svc.sabayon.org/lxd-sabayon-luet"
+    prefix_path: "https://get.mocaccino.org/mocaccino-lxd/lxd-sabayon-luet"
     days: 2
     aliases:
       - "sabayon/luet"
@@ -95,7 +95,7 @@ products:
     directory: mocaccino-micro
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
-    prefix_path: "https://downloads.svc.sabayon.org/lxd-mocaccino-micro"
+    prefix_path: "https://get.mocaccino.org/mocaccino-lxd/lxd-mocaccino-micro"
     days: 2
     aliases:
       - "mocaccino/micro"
@@ -109,7 +109,7 @@ products:
     directory: mocaccino-micro-toolchain
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
-    prefix_path: "https://downloads.svc.sabayon.org/lxd-mocaccino-micro-toolchain"
+    prefix_path: "https://get.mocaccino.org/mocaccino-lxd/lxd-mocaccino-micro-toolchain"
     days: 2
     aliases:
       - "mocaccino/micro-toolchain"
@@ -123,7 +123,7 @@ products:
     directory: mocaccino-qa
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
-    prefix_path: "https://downloads.svc.sabayon.org/lxd-mocaccino-qa"
+    prefix_path: "https://get.mocaccino.org/mocaccino-lxd/lxd-mocaccino-qa"
     days: 2
     aliases:
       - "mocaccino/qa"
@@ -137,7 +137,7 @@ products:
     directory: mocaccino-builder
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
-    prefix_path: "https://downloads.svc.sabayon.org/lxd-mocaccino-builder"
+    prefix_path: "https://get.mocaccino.org/mocaccino-lxd/lxd-mocaccino-builder"
     days: 2
     aliases:
       - "mocaccino/builder"
@@ -151,7 +151,7 @@ products:
     directory: mocaccino-portage
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
-    prefix_path: "https://downloads.svc.sabayon.org/lxd-mocaccino-portage"
+    prefix_path: "https://get.mocaccino.org/mocaccino-lxd/lxd-mocaccino-portage"
     days: 2
     aliases:
       - "mocaccino/portage"
@@ -165,7 +165,7 @@ products:
     directory: mocaccino-portage-builder
     # Path where retrieve images informations and files.
     # This option is used by build-images-file
-    prefix_path: "https://downloads.svc.sabayon.org/lxd-mocaccino-portage-builder"
+    prefix_path: "https://get.mocaccino.org/mocaccino-lxd/lxd-mocaccino-portage-builder"
     days: 1
     aliases:
       - "mocaccino/portage-builder"

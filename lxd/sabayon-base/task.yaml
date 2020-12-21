@@ -9,33 +9,33 @@ script:
   - equo up
   - equo install enman --relaxed
   - enman add https://downloads.svc.sabayon.org/geaaru/geaaru
-  # Distrobuilder is now under devel
   - enman add https://downloads.svc.sabayon.org/devel/devel
-  - equo up geaaru && equo up devel
+  - enman add https://downloads.svc.sabayon.org/devel-9999/devel-9999
+  - equo up geaaru && equo up devel && equo up devel-9999
   - touch /etc/entropy/packages/package.unmask
   - equo unmask dev-util/simplestreams-builder-9999
+  - equo unmask app-emulation/distrobuilder-9999
   - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
   # Temporary until replicator support .replicatorignore
   - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+  - source storage/envs
+  - mc alias set minio-ci $MINIO_URL $MINIO_ID $MINIO_SECRET
+  - mc mirror minio-ci/mocaccino-lxd/lxd-sabayon-base/ $PWD/images
+  - find ./images
   - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
   - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
-  - ls -ltr images/$LXD_IMAGEDIR/
-  # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
-  # by agent.
   - chmod a+rwx -R images/
-  - find .
-  - eval 'rm images/build_*.log || true'
+  - ls -ltr images/$LXD_IMAGEDIR/
+  - mc mirror $PWD/images/ minio-ci/mocaccino-lxd/lxd-sabayon-base/
 type: docker
 image: sabayon/base-amd64
 name: "Build LXD sabayon/base image"
+storage: "mocaccino-creds"
 environment:
   - "LXD_PRODUCT=sabayon-base:current:amd64:default"
   - "LXD_IMAGEDIR=sabayon-base"
   - "SSBUILDER_PREFIX=../lxd-sabayon-base"
   - "ACCEPT_LICENSE=*"
-namespace: lxd-sabayon-base
-tag_namespace: lxd-sabayon-base
-artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
 timeout: 0

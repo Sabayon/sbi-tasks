@@ -16,6 +16,10 @@ script:
   - touch /etc/entropy/packages/package.unmask
   - equo unmask dev-util/simplestreams-builder-9999
   - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
+  - eval 'mkdir -p images || true'
+  - source storage/envs
+  - mc alias set minio-ci $MINIO_URL $MINIO_ID $MINIO_SECRET
+  - mc mirror minio-ci/mocaccino-lxd/$MINIO_DIR/ $PWD/images
   # To fix on simplestreams-builder
   - eval 'rm -rf images/streams || true'
   # Build index.json
@@ -25,15 +29,15 @@ script:
   # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
   # by agent.
   - chmod a+rwx -R images/
+  - mc mirror $PWD/images/ minio-ci/mocaccino-lxd/$MINIO_DIR/
   - find .
   - eval 'rm images/build_*.log || true'
 type: docker
+storage: "mocaccino-creds"
 name: "Build LXD Simplestreams index files"
 environment:
-  - "ACCEPT_LICENSE=*"
-namespace: lxd-images
-tag_namespace: lxd-images
-artefact_path: images
+- "ACCEPT_LICENSE=*"
+- "MINIO_DIR=lxd-images"
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
 timeout: 0

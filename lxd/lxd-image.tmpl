@@ -18,25 +18,24 @@ script:
   - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
   # Temporary until replicator support .replicatorignore
   - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+  - source storage/envs
+  - mc alias set minio-ci $MINIO_URL $MINIO_ID $MINIO_SECRET
+  - mc mirror minio-ci/mocaccino-lxd/{{ .LxdImageNamespace }}/ $PWD/images
+  - find ./images
   - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
   - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
-  - ls -ltr images/$LXD_IMAGEDIR/
-  # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
-  # by agent.
   - chmod a+rwx -R images/
-  - find .
-  - eval 'rm images/build_*.log || true'
+  - ls -ltr images/$LXD_IMAGEDIR/
+  - mc mirror $PWD/images/ minio-ci/mocaccino-lxd/{{ .LxdImageNamespace }}/
 type: docker
 image: sabayon/base-amd64
 name: "Build LXD {{.Image}} image"
+storage: "mocaccino-creds"
 environment:
   - "LXD_PRODUCT={{.ImageProduct}}"
   - "LXD_IMAGEDIR={{.ImageDir}}"
   - "SSBUILDER_PREFIX=../{{.LxdImageNamespace}}"
   - "ACCEPT_LICENSE=*"
-namespace: {{.LxdImageNamespace}}
-tag_namespace: {{.LxdImageNamespace}}
-artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
 timeout: 0
