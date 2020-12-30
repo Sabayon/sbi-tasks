@@ -1,19 +1,21 @@
-directory: '/'
-image: 'sabayon/ci'
-storage: '9317096982217158'
+image: 'mocaccino/builder'
+storage: 'sabayonarm'
 source: https://github.com/mocaccinoOS/mocaccino-extra.git
 script:
-   - source storage/env
-   - mkdir -p $HOME/.docker
-   - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
-   - docker build --no-cache --rm -t ${IMAGE_NAME}:${IMAGE_MANIFEST} .
-   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-   - docker push ${IMAGE_NAME}:${IMAGE_MANIFEST}
-   - docker manifest inspect ${IMAGE_NAME}:${IMAGE_MANIFEST}
-type: docker
+- source /etc/profile
+- source storage/env
+- systemctl start docker
+- mkdir -p $HOME/.docker
+- 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+- docker build --no-cache --rm -t ${IMAGE_NAME}:${IMAGE_MANIFEST} .
+- docker push ${IMAGE_NAME}:${IMAGE_MANIFEST}
+- docker manifest inspect ${IMAGE_NAME}:${IMAGE_MANIFEST}
 name: "Build luetpm/mocaccino-extra Docker image"
 environment:
   - IMAGE_NAME=luetpm/mocaccino-extra
   - IMAGE_MANIFEST=latest-amd64
-
+type: lxd
+directory: /
+queue: lxd
 #planned: "0 0 16 * * *"
