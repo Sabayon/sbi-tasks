@@ -7,7 +7,7 @@ image:
 source:
   downloader: docker-http
   # For docker is mandatory for now use 
-  url: luetpm/mocaccino-extra:latest-amd64
+  url: luetpm/mocaccino-extra:latest
 
 environment:
   clear_defaults: true
@@ -17,6 +17,8 @@ environment:
     - key: "SHELL"
       value: "/bin/bash"
     - key: "LUET_NOLOCK"
+      value: "true"
+    - key: "LUET_YES"
       value: "true"
     - key: "USER"
       value: "root"
@@ -68,23 +70,34 @@ packages:
 
   sets:
     - packages:
+        - mocaccino-release/micro
         - init/runit
         - init/runit-init
         - init/mocaccino-runit
         - init/mocaccino-skel
         - groups/utmp
         - editors/vim
-        - kernel/sabayon-full 
-        - runit-srv/udhcpc
-        - system/mocaccino-init 
+        - entity/sshd
+        - system/mocaccino-init
         - system/mocaccino-live-boot
         - system/luet
         - utils/busybox
         - utils/eudev
         - utils/openssh
         - utils/procps
+        - utils/jq
+        - utils/yq
+        - utils/hub
+        - container/docker
+        - container/img
+        - net-fs/minio-client
+        - dev-util/pkgs-checker
         - utils/yip
         - utils/yip-integration
+        - runit-srv/udhcpc
+        - runit-srv/sshd
+        - runit-srv/yip
+        - runit-srv/dockerd
         - shells/bash
       action: install
 
