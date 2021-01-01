@@ -64,7 +64,6 @@ files:
 
 packages:
   manager: luet
-
   update: true
   cleanup: true
 
@@ -87,13 +86,12 @@ packages:
         - utils/procps
         - utils/jq
         - utils/yq
-        - utils/hub
+        - vcs/hub
         - container/docker
         - container/img
         - net-fs/minio-client
         - dev-util/pkgs-checker
         - utils/yip
-        - utils/yip-integration
         - runit-srv/udhcpc
         - runit-srv/sshd
         - runit-srv/yip

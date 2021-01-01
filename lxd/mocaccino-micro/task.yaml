@@ -8,36 +8,36 @@ script:
   - sleep 4
   - equo up
   - equo install enman --relaxed
-  - enman add https://downloads.svc.sabayon.org/geaaru/geaaru
-
-  - enman add https://downloads.svc.sabayon.org/devel/devel
-  # Distrobuilder is now under devel-9999
-  - enman add https://downloads.svc.sabayon.org/devel-9999/devel-9999
+  - enman add https://get.svc.sabayon.org/scr/geaaru/geaaru
+  - enman add https://get.svc.sabayon.org/scr/devel/devel
+  - enman add https://get.svc.sabayon.org/mocaccino-downloads/devel-9999/devel-9999
   - equo up geaaru && equo up devel && equo up devel-9999
   - touch /etc/entropy/packages/package.unmask
-  - equo unmask dev-util/simplestreams-builder-9999 app-emulation/distrobuilder-9999
+  - equo unmask dev-util/simplestreams-builder-9999
+  - equo unmask app-emulation/distrobuilder-9999
   - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
+  - curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
+  - luet install -y system/luet-extensions repository/mocaccino-extra
+  - luet install -y net-fs/minio-client
   # Temporary until replicator support .replicatorignore
   - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
+  - source storage/envs
+  - mc alias set minio-ci $MINIO_URL $MINIO_ID $MINIO_SECRET
+  - mc mirror minio-ci/mocaccino-lxd/lxd-mocaccino-micro/ $PWD/images
+  - find ./images
   - simplestreams-builder build-product -c tree-images.yaml -s . -t ./images $LXD_PRODUCT --skip-lxc
   - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
-  - ls -ltr images/$LXD_IMAGEDIR/
-  # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
-  # by agent.
   - chmod a+rwx -R images/
-  - find .
-  - eval 'rm images/build_*.log || true'
-type: docker
-image: sabayon/base-amd64
+  - ls -ltr images/$LXD_IMAGEDIR/
+  - mc mirror $PWD/images/ minio-ci/mocaccino-lxd/lxd-mocaccino-micro/
+type: lxd
+image: mocaccino/builder
 name: "Build LXD mocaccino/micro image"
+storage: "mocaccino-creds"
 environment:
   - "LXD_PRODUCT=mocaccino-micro:current:amd64:default"
   - "LXD_IMAGEDIR=mocaccino-micro"
   - "SSBUILDER_PREFIX=../lxd-mocaccino-micro"
   - "ACCEPT_LICENSE=*"
-namespace: lxd-mocaccino-micro
-tag_namespace: lxd-mocaccino-micro
-artefact_path: images
 source: https://github.com/Sabayon/sbi-tasks.git
 directory: /lxd
-timeout: 0
