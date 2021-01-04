@@ -1,0 +1,22 @@
+name: "luetpm/mocaccino-portage: Set latest manifest"
+storage: 'sabayonarm'
+script:
+  - source /etc/profile
+  - source storage/env
+  - sleep 2
+  - systemctl start docker
+  - systemctl status docker
+  - mkdir -p $HOME/.docker
+  - 'echo "{\"experimental\": \"enabled\",\"auths\": { \"https://index.docker.io/v1/\": {}}}" > $HOME/.docker/config.json'
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  # No arm image ATM
+  #  - docker manifest create ${IMAGE_NAME}:latest --amend ${IMAGE_NAME}:latest-arm --amend ${IMAGE_NAME}:latest-amd64
+  - docker manifest create ${IMAGE_NAME}:latest --amend ${IMAGE_NAME}:latest-amd64
+  - docker manifest push ${IMAGE_NAME}:latest
+environment:
+  - SHELL=/bin/bash
+  - IMAGE_NAME=luetpm/mocaccino-portage
+image: mocaccino/builder
+type: lxd
+directory: /
+queue: lxd
