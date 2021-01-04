@@ -16,12 +16,9 @@ script:
   - equo unmask dev-util/simplestreams-builder-9999
   - equo unmask app-emulation/distrobuilder-9999
   - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
-  - curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
-  - luet install -y system/luet-extensions repository/mocaccino-extra
-  - luet install -y net-fs/minio-client
   # Temporary until replicator support .replicatorignore
   - mv $LXD_IMAGEDIR/image.yaml.broken $LXD_IMAGEDIR/image.yaml
-  - source storage/envs
+  - source storage/env
   - mc alias set minio-ci $MINIO_URL $MINIO_ID $MINIO_SECRET
   - mc mirror minio-ci/mocaccino-lxd/lxd-mocaccino-micro/ $PWD/images
   - find ./images
