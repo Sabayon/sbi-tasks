@@ -7,7 +7,7 @@ image:
 source:
   downloader: docker-http
   # For docker is mandatory for now use 
-  url: luetpm/mocaccino-extra:latest-amd64
+  url: luetpm/mocaccino-portage:latest-amd64
 
 environment:
   clear_defaults: true
