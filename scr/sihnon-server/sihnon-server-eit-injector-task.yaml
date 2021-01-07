@@ -50,7 +50,7 @@ environment:
   - SKIP_COMMIT=1
   # Pull is required for remove packages from repository. (SKIP_PULL=0)
   - SKIP_PULL=0
-  - "SAB_STAGING_BUILD_RESOURCES=sihnon-server-build-staging1.yml sihnon-server-build-staging2.yml"
+  - "SAB_STAGING_BUILD_RESOURCES=sihnon-server-build-staging1.yml sihnon-server-build-staging2.yml sihnon-server-build-staging3.yml"
 
   - SKIP_INJECT=0
 
@@ -59,7 +59,7 @@ environment:
   - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
   - "PORTAGE_GIT_BRANCH=master"
   - "REPOSITORY_DESCRIPTION=Sihnon Server AMD64 Sabayon Repository"
-  - "SAB_STAGING_DIRS=staging1 staging2"
+  - "SAB_STAGING_DIRS=staging1 staging2 staging3"
   - REPO_BINHOST_CLEAN=1
   - SAB_BUILDFILE=sihnon-server-build-inject.yml
   # Skip errors on process existing broken tarballs
@@ -82,4 +82,4 @@ name: "AMD64 Sihnon Server Repo (injector)"
 source: https://github.com/Sabayon/community-repositories/
 directory: sihnon-server
 queue: scr
-namespace: "sihnon-server-staging1,sihnon-server-staging2"
+namespace: "sihnon-server-staging1,sihnon-server-staging2,sihnon-server-staging3"

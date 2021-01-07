@@ -18,6 +18,7 @@ chain:
 
   - staging1
   - staging2
+  - staging3
   - injector
 
 tasks:
@@ -134,6 +135,62 @@ tasks:
     queue: scr
     tag_namespace: sihnon-server-staging2
 
+  staging3:
+    script:
+      - source /etc/profile
+      # Temporary workaround for delay on DHCP response
+      - sleep 4
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
+      - chmod 755 /sbin/sark-functions.sh
+      - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
+      - chmod 755 /etc/sark-functions
+      - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
+      - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
+      - wget https://downloads.svc.sabayon.org/pkgs-checker-cross-bin/pkgs-checker-latest-linux-amd64 -O /usr/bin/pkgs-checker
+      - chmod a+x /usr/sbin/builder
+      - chmod a+x /usr/bin/sark-localcreaterepo
+      - chmod a+x /usr/bin/sark-localbuild
+      - chmod a+x /usr/bin/pkgs-checker
+      - eselect python set python3.7
+      - enman add https://downloads.svc.sabayon.org/sihnon-server/sihnon-server
+      # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
+      # adding and removing corrects the repo url as a workaround until image is updated
+      - enman remove devel && enman add https://get.svc.sabayon.org/scr/devel/devel
+      - equo up && equo upgrade
+    
+      - sark-localbuild
+      - eval 'rm artifacts/build_*.log || true'
+      - mkdir artifacts/staging3
+      - mv artifacts/sihnon-server-binhost/ artifacts/staging3/
+    environment:
+      - SHELL=/bin/bash
+      - SABAYON_ARCH=amd64
+      - REPOSITORY_NAME=sihnon-server
+      - SAB_BUILDFILE=sihnon-server-build-staging3.yml
+      - ETP_NONINTERACTIVE=1
+      # I need call emerge-webrsync at begin to retrive data for active profile.
+      # Note: When SKIP_PORTAGE_SYNC is equal to 1 "layman -S" is not executed.
+      # - SKIP_PORTAGE_SYNC=1
+      - SKIP_CLEAN_PACKAGESDIR=1
+      - SAB_PORTDIR=/etc/portage
+      - "CREATEREPO_PHASE=false"
+      - "ACCEPT_LICENSE=*"
+      - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
+      - "PORTAGE_GIT_BRANCH=master"
+      # Override list of targets for compile specific packages.
+      # - OVERRIDE_BUILD_TARGET="app/foo"
+    name: "AMD64 Sihnon Server (Staging3)"
+    artefact_path: artifacts
+    image: sabayon/builder
+    
+    type: docker
+    
+    source: https://github.com/Sabayon/community-repositories/
+    directory: sihnon-server
+    queue: scr
+    tag_namespace: sihnon-server-staging3
+
 
   injector:
 
@@ -187,7 +244,7 @@ tasks:
       - SKIP_COMMIT=1
       # Pull is required for remove packages from repository. (SKIP_PULL=0)
       - SKIP_PULL=0
-      - "SAB_STAGING_BUILD_RESOURCES=sihnon-server-build-staging1.yml sihnon-server-build-staging2.yml"
+      - "SAB_STAGING_BUILD_RESOURCES=sihnon-server-build-staging1.yml sihnon-server-build-staging2.yml sihnon-server-build-staging3.yml"
     
       - SKIP_INJECT=0
     
@@ -195,7 +252,7 @@ tasks:
       - "PORTAGE_GIT_URL=https://github.com/Sabayon/gentoo-mirror"
       - "PORTAGE_GIT_BRANCH=master"
       - "REPOSITORY_DESCRIPTION=Sihnon Server AMD64 Sabayon Repository"
-      - "SAB_STAGING_DIRS=staging1 staging2"
+      - "SAB_STAGING_DIRS=staging1 staging2 staging3"
       - REPO_BINHOST_CLEAN=1
       - SAB_BUILDFILE=sihnon-server-build-inject.yml
       # Skip errors on process existing broken tarballs
@@ -212,4 +269,4 @@ tasks:
     name: "AMD64 Sihnon Server Repo (injector)"
     source: https://github.com/Sabayon/community-repositories/
     directory: sihnon-server
-    namespace: "sihnon-server-staging1,sihnon-server-staging2"
+    namespace: "sihnon-server-staging1,sihnon-server-staging2,sihnon-server-staging3"
