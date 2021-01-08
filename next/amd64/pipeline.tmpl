@@ -44,10 +44,10 @@ tasks:
       - chmod a+x /usr/bin/sark-localbuild
       - chmod a+x /usr/bin/pkgs-checker
       - eselect python set python3.7
-      - enman add https://downloads.svc.sabayon.org/{{ $target_prefix_repo }}/{{ $target_repo }}
+      - enman add https://get.mocaccino.org/scr/{{ $target_prefix_repo }}/{{ $target_repo }}
       # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
       # adding and removing corrects the repo url as a workaround until image is updated
-      - enman remove devel && enman add https://get.svc.sabayon.org/scr/devel/devel
+      - enman remove devel && enman add https://get.mocaccino.org/scr/devel/devel
       - equo up && equo upgrade
     {{ if $precommands }}
     {{ range $cmd := $precommands }}
@@ -104,8 +104,8 @@ tasks:
       - cp -rfv /sbin/sark-functions.sh /etc/sark-functions
       - chmod 755 /etc/sark-functions
       - curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
-      - luet install repository/mocaccino-extra-stable
-      - luet install system/luet-extensions net-fs/minio-client
+      - luet install -y repository/mocaccino-extra-stable
+      - luet install -y system/luet-extensions net-fs/minio-client
       - source storage/env
       - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
       - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
@@ -117,14 +117,15 @@ tasks:
       - chmod a+x /usr/bin/sark-localbuild
       - chmod a+x /usr/bin/sark-localinjector
       - chmod a+x /usr/bin/pkgs-checker
+      - mc alias set minio-ci $MINIO_URL $MINIO_ID $MINIO_SECRET
       - mc mirror minio-ci/scr/${REPOSITORY_NAME} $PWD/artifacts
       - eselect python set python3.7
       # Force py3.6 on eit
       #- sed -e 's:python2.7:python:g' -i /usr/bin/eit
-      - enman add https://downloads.svc.sabayon.org/{{ $target_repo }}/{{ $target_repo }}
+      - enman add https://get.mocaccino.org/scr/{{ $target_repo }}/{{ $target_repo }}
       # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
       # adding and removing corrects the repo url as a workaround until image is updated
-      - enman remove devel && enman add https://get.svc.sabayon.org/scr/devel/devel
+      - enman remove devel && enman add https://get.mocaccino.org/scr/devel/devel
       - equo up && equo upgrade
       - sark-localinjector
       - eval 'rm artifacts/build_*.log || true'
