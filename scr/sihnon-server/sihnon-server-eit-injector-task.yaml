@@ -6,7 +6,7 @@
 
 
 
-storage: 'minio'
+storage: 'mocaccino-creds'
 script:
   - source /etc/profile
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
@@ -16,7 +16,7 @@ script:
   - curl --no-progress-meter https://get.mocaccino.org/luet/get_luet_root.sh | sh
   - luet install repository/mocaccino-extra-stable
   - luet install system/luet-extensions net-fs/minio-client
-  - source storage/login.sh
+  - source storage/env
   - wget https://raw.githubusercontent.com/Sabayon/devkit/develop/builder -O /usr/sbin/builder
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localbuild -O /usr/bin/sark-localbuild
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-localcreaterepo -O /usr/bin/sark-localcreaterepo
