@@ -78,17 +78,26 @@ clean_tasks () {
     taskid=$(echo $i | cut -d'-' -f 1)
     tdate=$(echo $i | cut -d'-' -f 2)
     tdate=${tdate:0:8}
-    days=$(python -c "from datetime import datetime; print ((datetime.strptime('$nowdate', '%Y-%m-%d')-datetime.strptime('$tdate', '%Y%m%d')).days)")
-
-    if [ "$DEBUG" = 1 ] ; then
-      echo "Check task ${taskid} with date ${tdate}: days $days"
-    fi
-
-    if [ $days -gt ${RETENTION_PERIOD} ] ; then
-      echo "Removing task $taskid ($tdate - $days)"
+    if [ "$tdate" == "" ] ; then
+      # Something is wrong. Probably is a garbage task old. I will drop it.
+      echo "Removing task $taskid is weird status."
       mottainai-cli task remove $taskid
       let removed++ || true
+    else
+      days=$(python -c "from datetime import datetime; print ((datetime.strptime('$nowdate', '%Y-%m-%d')-datetime.strptime('$tdate', '%Y%m%d')).days)")
+
+      if [ "$DEBUG" = 1 ] ; then
+        echo "Check task ${taskid} with date ${tdate}: days $days"
+      fi
+
+      if [ $days -gt ${RETENTION_PERIOD} ] ; then
+        echo "Removing task $taskid ($tdate - $days)"
+        mottainai-cli task remove $taskid
+        let removed++ || true
+      fi
+
     fi
+
   done
 
   echo "Removed tasks: $removed."
