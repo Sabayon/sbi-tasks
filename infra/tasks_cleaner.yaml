@@ -21,7 +21,7 @@ script:
 - echo "=================================================================="
 planned: "@daily"
 environment:
-- RETENTION_PERIOD=4
+- RETENTION_PERIOD=3
 - LC_ALL=en_US.UTF-8
 - LUET_YES=true
 type: lxd
