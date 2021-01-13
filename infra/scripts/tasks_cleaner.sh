@@ -7,6 +7,7 @@ set -e
 DEBUG=${DEBUG:-0}
 # Define retention period in days. Default 120 days
 RETENTION_PERIOD=${RETENTION_PERIOD:-120}
+REMOVE_STRANGE_TASKS=${REMOVE_STRANGE_TASKS:-0}
 
 clean_pipelines () {
   # NOTE: tasks of pipeline are removed directly
@@ -79,10 +80,12 @@ clean_tasks () {
     tdate=$(echo $i | cut -d'-' -f 2)
     tdate=${tdate:0:8}
     if [ "$tdate" == "" ] ; then
-      # Something is wrong. Probably is a garbage task old. I will drop it.
-      echo "Removing task $taskid is weird status."
-      mottainai-cli task remove $taskid
-      let removed++ || true
+      if [ $REMOVE_STRANGE_TASKS -eq 1 ] ; then
+        # Something is wrong. Probably is a garbage task old. I will drop it.
+        echo "Removing task $taskid is weird status."
+        mottainai-cli task remove $taskid
+        let removed++ || true
+      fi
     else
       days=$(python -c "from datetime import datetime; print ((datetime.strptime('$nowdate', '%Y-%m-%d')-datetime.strptime('$tdate', '%Y%m%d')).days)")
 
