@@ -6,10 +6,10 @@ script:
   # Temporary workaround for delay on DHCP response
   - sleep 4
   - eselect python set python3.7
-  - enman add https://downloads.svc.sabayon.org/geaaru/geaaru
+  - enman add https://get.mocaccino.org/scr/geaaru/geaaru
   # 2020-09-12 optiz0r - devel repo is preinstalled in sabayon/builder but pointing at a nonfunctional mirror
   # adding and removing corrects the repo url as a workaround until image is updated
-  - enman remove devel && enman add https://downloads.svc.sabayon.org/devel/devel
+  - enman remove devel && enman add https://get.mocaccino.org/scr/devel/devel
   - equo up && equo upgrade
   - wget https://raw.githubusercontent.com/Sabayon/sabayon-sark/develop/sark-functions.sh -O /sbin/sark-functions.sh
   - chmod 755 /sbin/sark-functions.sh
