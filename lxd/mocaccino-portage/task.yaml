@@ -26,7 +26,7 @@ script:
   - simplestreams-builder build-versions-manifest -c tree-images.yaml -s ./images -t images -p $LXD_PRODUCT -i $LXD_IMAGEDIR/image.yaml
   - chmod a+rwx -R images/
   - ls -ltr images/$LXD_IMAGEDIR/
-  - mc mirror $PWD/images/ minio-ci/mocaccino-lxd/lxd-mocaccino-portage/
+  - mc mirror --overwrite $PWD/images/ minio-ci/mocaccino-lxd/lxd-mocaccino-portage/
 type: lxd
 image: mocaccino/builder
 name: "Build LXD mocaccino/portage image"

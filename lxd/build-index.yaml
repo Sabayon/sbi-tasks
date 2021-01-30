@@ -3,7 +3,7 @@
 #
 # Description: Script for create images.json file for LXD Simplestreams protocol.
 
-image: sabayon/base-amd64
+image: mocaccino/builder
 script:
   - source /etc/profile
   - equo up
@@ -17,7 +17,7 @@ script:
   - equo unmask dev-util/simplestreams-builder-9999
   - equo install distrobuilder dev-util/simplestreams-builder sys-fs/squashfs-tools --relaxed
   - eval 'mkdir -p images || true'
-  - source storage/envs
+  - source storage/env
   - mc alias set minio-ci $MINIO_URL $MINIO_ID $MINIO_SECRET
   - mc mirror minio-ci/mocaccino-lxd/$MINIO_DIR/ $PWD/images
   # To fix on simplestreams-builder
@@ -29,10 +29,10 @@ script:
   # Force creation of files with rw-rw-rw to permit that volumes in bind are readable
   # by agent.
   - chmod a+rwx -R images/
-  - mc mirror $PWD/images/ minio-ci/mocaccino-lxd/$MINIO_DIR/
+  - mc mirror --overwrite $PWD/images/ minio-ci/mocaccino-lxd/$MINIO_DIR/
   - find .
   - eval 'rm images/build_*.log || true'
-type: docker
+type: lxd
 storage: "mocaccino-creds"
 name: "Build LXD Simplestreams index files"
 environment:
