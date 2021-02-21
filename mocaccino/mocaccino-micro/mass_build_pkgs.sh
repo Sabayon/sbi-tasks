@@ -6,8 +6,10 @@ set -e
 LUET_BIN=${LUET_BIN:-/usr/bin/luet}
 LUET_CONFIG=${LUET_CONFIG:-/tmp/luet.yaml}
 PKGS4_TASK=${PKGS4_TASK:-1}
+
 TREE_PATH="${TREE_PATH:-../../../../mocaccino/mocaccino-micro/amd64}"
 COMMON_TREE_PATH="${COMMON_TREE_PATH:-../../../../mocaccino/mocaccino-micro/multi-arch}"
+
 CONCURRENCY=${CONCURRENCY:-1}
 TASK_NAME_PREFIX="${TASK_NAME_PREFIX:-AMD64 mocaccinoos/mocaccino-micro: }"
 LUET_OPTS="${LUET_OPTS:-}"
@@ -26,7 +28,6 @@ logging:
 general:
   debug: false
 " > /tmp/luet.yaml
-
 TREES_OPTS="-t ${TREE_PATH}/packages -t ${COMMON_TREE_PATH}/packages"
 
 # Retrieve list of packages

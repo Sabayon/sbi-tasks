@@ -7,15 +7,20 @@ values:
     - name: mocaccino-micro
       gitrepo: https://github.com/mocaccinoOS/mocaccino-micro.git
       gitbranch: master
+      multiarch: false
 
     - name: mocaccino-portage-tree
       gitrepo: https://github.com/mocaccinoOS/portage-tree.git
       gitbranch: master
+      multiarch: true
 
     - name: mocaccino-desktop
       gitrepo: https://github.com/mocaccinoOS/desktop.git
       gitbranch: master
+      multiarch: false
 
     - name: mocaccino-kernel
       gitrepo: https://github.com/mocaccinoOS/kernel-repo.git
       gitbranch: master
+      multiarch: true
+
