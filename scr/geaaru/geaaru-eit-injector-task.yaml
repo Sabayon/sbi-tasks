@@ -76,7 +76,7 @@ environment:
 
 
 image: sabayon/builder
-type: docker
+type: lxd
 
 artefact_path: artifacts
 name: "AMD64 Geaaru Repo (injector)"

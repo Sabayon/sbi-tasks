@@ -57,7 +57,7 @@ name: "AMD64 Geaaru (Staging3)"
 artefact_path: artifacts
 
 image: sabayon/builder
-type: docker
+type: lxd
 
 source: https://github.com/Sabayon/community-repositories/
 directory: geaaru
