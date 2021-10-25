@@ -65,7 +65,7 @@ clean_tasks () {
   local days=""
 
   echo "Searching for old task to remove..."
-  local tasks_list=$(mottainai-cli task list -j | jq .[] | jq '.ID + "-" + .created_time' -r)
+  local tasks_list=$(mottainai-cli task list --page-size 1000 -j | jq '.tasks[]' | jq '.ID + "-" + .created_time' -r)
   for i in ${tasks_list} ; do
     taskid=""
     tdate=""
